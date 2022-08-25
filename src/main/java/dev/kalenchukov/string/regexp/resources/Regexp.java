@@ -97,6 +97,15 @@ public enum Regexp
 			-
 			(?<country>[A-Z]{2})
 		)
+		"""),
+
+	RGB_HEX("rgb", """
+		(?<rgb>
+			#
+			(?<red>[0-9a-fA-F]{2})
+			(?<green>[0-9a-fA-F]{2})
+			(?<blue>[0-9a-fA-F]{2})
+		)
 		""");
 
 	/**

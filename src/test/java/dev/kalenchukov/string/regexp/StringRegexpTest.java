@@ -359,6 +359,35 @@ public class StringRegexpTest
 		assertFalse(StringRegexp.isEmailAddress("aleksey.kalenchukovkalenchukovkalenchukovkalenchukovkalenchukovkalenchukov@yandex.ru"));
 	}
 
+
+	/**
+	 * Проверка корректного RGB в шестнадцатеричной системе счисления.
+	 */
+	@Test
+	public void isRgbHexCorrect()
+	{
+		assertTrue(StringRegexp.isRgbHex("#FFFFFF"));
+		assertTrue(StringRegexp.isRgbHex("#ABCDEF"));
+
+		assertTrue(StringRegexp.isRgbHex("#000000"));
+		assertTrue(StringRegexp.isRgbHex("#123456"));
+	}
+
+	/**
+	 * Проверка некорректного RGB в шестнадцатеричной системе счисления.
+	 */
+	@Test
+	public void isRgbHexNotCorrect()
+	{
+		assertFalse(StringRegexp.isRgbHex(""));
+		assertFalse(StringRegexp.isRgbHex(" "));
+
+		assertFalse(StringRegexp.isRgbHex("FFFFFF"));
+
+		assertFalse(StringRegexp.isRgbHex("#23394W"));
+		assertFalse(StringRegexp.isRgbHex("#ARDBZG"));
+	}
+
 	/**
 	 * Проверка поиска адресов электронной почты.
 	 */
@@ -391,5 +420,53 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(emailAddress, StringRegexp.findEmailAddress(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска RGB в шестнадцатеричной системе счисления.
+	 */
+	@Test
+	public void findRgbHex()
+	{
+		String[] RgbHex = {
+			"#FFFFFF",
+			"#000000",
+			"#D0E9F8",
+			"#1A2B3C"
+		};
+
+		String string = """
+			Крыши домов дрожат под тяжестью дней
+			Небесный пастух пасёт #FFFFFF облака
+			Город стреляет в ночь дробью огней
+			Но ночь сильней, её власть велика
+			
+			Тем, кто ложится спать
+			Спокойного сна, спокойная ночь
+			Тем, кто ложится спать, спокойного сна #000000
+			Спокойная ночь
+			
+			Я ждал это время, и вот это время пришло
+			Те, кто молчал перестали молчать
+			Те, кому нечего ждать, садятся в седло
+			Их не догнать, уже не догнать
+			
+			А тем, кто#D0E9F8 ложится спать
+			Спокойного сна, спокойная ночь
+			Тем, кто ложится спать, спокойного сна
+			Спокойная ночь
+			
+			Соседи приходят, им слышится стук копыт
+			Мешает уснуть, тревожит их сон
+			Те, кому нечего ждать, отправляются в путь
+			Те, кто спасён,#1A2B3C те, кто спасён
+			
+			А тем, кто ложится спать
+			Спокойного сна, спокойная ночь
+			Тем, кто ложится спать, спокойного сна
+			Спокойная ночь
+			""";
+
+		assertArrayEquals(RgbHex, StringRegexp.findRgbHex(string).toArray());
 	}
 }
