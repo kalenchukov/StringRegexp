@@ -191,21 +191,21 @@ public class StringRegexpTest
 	@Test
 	public void isIpAddressVersion6Correct()
 	{
-		assertTrue(StringRegexp.isInet6Address("2001:0db8:11a3:09d7:1f34:8a2e:07a0:765d"));
+		assertTrue(StringRegexp.isInet6Address("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D"));
 
-		assertTrue(StringRegexp.isInet6Address("2001:0db8:0000:0000:0000:0000:ae21:ad12"));
-		assertTrue(StringRegexp.isInet6Address("0000:0000:0000:0000:0000:0000:ae21:ad12"));
+		assertTrue(StringRegexp.isInet6Address("2001:0DB8:0000:0000:0000:0000:AE21:AD12"));
+		assertTrue(StringRegexp.isInet6Address("0000:0000:0000:0000:0000:0000:AE21:AD12"));
 
-		assertTrue(StringRegexp.isInet6Address("2001:0db8:0000:0000:0000:0000:ae21:1"));
-		assertTrue(StringRegexp.isInet6Address("2001:0db8:0000:1:0000:0000:ae21:ad12"));
-		assertTrue(StringRegexp.isInet6Address("1:0000:0000:0000:0000:0000:ae21:ad12"));
+		assertTrue(StringRegexp.isInet6Address("2001:0DB8:0000:0000:0000:0000:AE21:1"));
+		assertTrue(StringRegexp.isInet6Address("2001:0DB8:0000:1:0000:0000:AE21:AD12"));
+		assertTrue(StringRegexp.isInet6Address("1:0000:0000:0000:0000:0000:AE21:AD12"));
 
-		assertTrue(StringRegexp.isInet6Address("::0db8:11a3:09d7:1f34:8a2e:07a0:765d"));
-		assertTrue(StringRegexp.isInet6Address("0db8:11a3:09d7:1f34::07a0:765d"));
-		assertTrue(StringRegexp.isInet6Address("2001:0db8:11a3:09d7:1f34:8a2e:07a0::"));
+		assertTrue(StringRegexp.isInet6Address("::0DB8:11A3:09D7:1F34:8A2E:07A0:765D"));
+		assertTrue(StringRegexp.isInet6Address("0DB8:11A3:09D7:1F34::07A0:765D"));
+		assertTrue(StringRegexp.isInet6Address("2001:0DB8:11A3:09D7:1F34:8A2E:07A0::"));
 
-		assertTrue(StringRegexp.isInet6Address("::ae21:ad12"));
-		assertTrue(StringRegexp.isInet6Address("ad12::ae21::"));
+		assertTrue(StringRegexp.isInet6Address("::AE21:AD12"));
+		assertTrue(StringRegexp.isInet6Address("AD12::AE21::"));
 
 		assertTrue(StringRegexp.isInet6Address("2001::"));
 		assertTrue(StringRegexp.isInet6Address("::2001"));
@@ -217,7 +217,7 @@ public class StringRegexpTest
 
 		assertTrue(StringRegexp.isInet6Address("EF98:3:0:0:0:0:2F3B:7654"));
 		assertTrue(StringRegexp.isInet6Address("EF98:3::2F3B:7654"));
-		assertTrue(StringRegexp.isInet6Address("2001:db8::ae21:ad12"));
+		assertTrue(StringRegexp.isInet6Address("2001:DB8::AE21:AD12"));
 	}
 
 	/**
@@ -237,32 +237,32 @@ public class StringRegexpTest
 		assertFalse(StringRegexp.isInet6Address(":::"));
 		assertFalse(StringRegexp.isInet6Address("::::"));
 
-		assertFalse(StringRegexp.isInet6Address("2001:0db8:11a3:09d7:1f34:8a2e:07a0:765d:765d"));
+		assertFalse(StringRegexp.isInet6Address("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D:765D"));
 
-		assertFalse(StringRegexp.isInet6Address(":0db8:11a3:09d7:1f34:8a2e:07a0:765d"));
-		assertFalse(StringRegexp.isInet6Address("2001:0db8:11a3:09d7:1f34:8a2e:07a0:"));
+		assertFalse(StringRegexp.isInet6Address(":0DB8:11A3:09D7:1F34:8A2E:07A0:765D"));
+		assertFalse(StringRegexp.isInet6Address("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:"));
 
-		assertFalse(StringRegexp.isInet6Address(":::0db8:11a3:09d7:1f34:8a2e:07a0:765d"));
-		assertFalse(StringRegexp.isInet6Address("2001:0db8:11a3:09d7:1f34:8a2e:07a0:::"));
+		assertFalse(StringRegexp.isInet6Address(":::0DB8:11A3:09D7:1F34:8A2E:07A0:765D"));
+		assertFalse(StringRegexp.isInet6Address("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:::"));
 
-		assertFalse(StringRegexp.isInet6Address("::::0db8:11a3:09d7:1f34:8a2e:07a0:765d"));
-		assertFalse(StringRegexp.isInet6Address("0db8:11a3:09d7::::1f34:8a2e:07a0:765d"));
-		assertFalse(StringRegexp.isInet6Address("2001:0db8:11a3:09d7:1f34:8a2e:07a0::::"));
+		assertFalse(StringRegexp.isInet6Address("::::0DB8:11A3:09D7:1F34:8A2E:07A0:765D"));
+		assertFalse(StringRegexp.isInet6Address("0DB8:11A3:09D7::::1F34:8A2E:07A0:765D"));
+		assertFalse(StringRegexp.isInet6Address("2001:0DB8:11A3:09D7:1F34:8A2E:07A0::::"));
 
-		assertFalse(StringRegexp.isInet6Address(":0db8:11a3:09d7:1f34:8a2e:07a0:765d:1000"));
-		assertFalse(StringRegexp.isInet6Address("1000:2001:0db8:11a3:09d7:1f34:8a2e:07a0:"));
+		assertFalse(StringRegexp.isInet6Address(":0DB8:11A3:09D7:1F34:8A2E:07A0:765D:1000"));
+		assertFalse(StringRegexp.isInet6Address("1000:2001:0DB8:11A3:09D7:1F34:8A2E:07A0:"));
 
-		assertFalse(StringRegexp.isInet6Address(":0db8:11a3:09d7:1f34:8a2e:07a0:765d:1"));
-		assertFalse(StringRegexp.isInet6Address("1:2001:0db8:11a3:09d7:1f34:8a2e:07a0:"));
+		assertFalse(StringRegexp.isInet6Address(":0DB8:11A3:09D7:1F34:8A2E:07A0:765D:1"));
+		assertFalse(StringRegexp.isInet6Address("1:2001:0DB8:11A3:09D7:1F34:8A2E:07A0:"));
 
-		assertFalse(StringRegexp.isInet6Address("::0db8:11a3:09d7:1f34:8a2e:07a0:765d:1"));
-		assertFalse(StringRegexp.isInet6Address("1:2001:0db8:11a3:09d7:1f34:8a2e:07a0::"));
+		assertFalse(StringRegexp.isInet6Address("::0DB8:11A3:09D7:1F34:8A2E:07A0:765D:1"));
+		assertFalse(StringRegexp.isInet6Address("1:2001:0DB8:11A3:09D7:1F34:8A2E:07A0::"));
 
-		assertFalse(StringRegexp.isInet6Address(":::0db8:11a3:09d7:1f34:8a2e:07a0:765d:1"));
-		assertFalse(StringRegexp.isInet6Address("1:2001:0db8:11a3:09d7:1f34:8a2e:07a0:::"));
+		assertFalse(StringRegexp.isInet6Address(":::0DB8:11A3:09D7:1F34:8A2E:07A0:765D:1"));
+		assertFalse(StringRegexp.isInet6Address("1:2001:0DB8:11A3:09D7:1F34:8A2E:07A0:::"));
 
-		assertFalse(StringRegexp.isInet6Address("0db8:11a3::::8a2e:07a0:765d"));
-		assertFalse(StringRegexp.isInet6Address("0db8:11a3::::::8a2e:07a0:765d"));
+		assertFalse(StringRegexp.isInet6Address("0DB8:11A3::::8A2E:07A0:765D"));
+		assertFalse(StringRegexp.isInet6Address("0DB8:11A3::::::8A2E:07A0:765D"));
 	}
 
 	/**
@@ -272,26 +272,26 @@ public class StringRegexpTest
 	public void findIpAddressVersion6()
 	{
 		String[] inet6Address = {
-			"2001:0db8:11a3:09d7:1f34:8a2e:07a0:765d",
-			"ad12::ae21::",
-			"::ae21:ad12",
-			"2001:db8::ae21:ad12"
+			"2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D",
+			"AD12::AE21::",
+			"::AE21:AD12",
+			"2001:DB8::AE21:AD12"
 		};
 
 		String string = """
 			В последнее время я редко был дома,
 			Так что даже отвыкли звонить мне друзья.
-			В разъездах, разгулах 2001:0db8:11a3:09d7:1f34:8a2e:07a0:765d конца лета симптомы
+			В разъездах, разгулах 2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D конца лета симптомы
 			Совсем перестали вдруг мучить меня.
 			
 			И я подумал что Осень - это тоже не плохо,
-			И что Осенью слякоть и сер первый снег, ad12::ae21::
+			И что Осенью слякоть и сер первый снег, AD12::AE21::
 			И что холод ветров я буду чувствовать боком,
 			Опьяненный сознаньем того, что я человек.
 			
 			И этой Осенью много дней чьих-то рождений
 			И уж я постараюсь на них побывать,
-			::ae21:ad12 А потом, игнорируя лужи и слякоть,
+			::AE21:AD12 А потом, игнорируя лужи и слякоть,
 			Я приду домой пьяный и мешком повалюсь на кровать.
 			
 			И утром рано я встану и отправлюсь учиться,
@@ -302,7 +302,7 @@ public class StringRegexpTest
 			И я начал за здравие, а кончу я плохо,
 			Написав наш порядковый номер - 600.
 			С чьих-то старых столов подбираю я крохи,
-			И не в силах сказать,2001:db8::ae21:ad12 что принес этот год.
+			И не в силах сказать,2001:DB8::AE21:AD12 что принес этот год.
 			""";
 
 		assertArrayEquals(inet6Address, StringRegexp.findInet6Address(string).toArray());

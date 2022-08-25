@@ -148,7 +148,7 @@ public class StringRegexp
 	 */
 	public static boolean isEmailAddress(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.EMAIL_ADDRESS);
+		return StringRegexp.is(string, Regexp.EMAIL_ADDRESS, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findEmailAddress(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.EMAIL_ADDRESS);
+		return StringRegexp.find(string, Regexp.EMAIL_ADDRESS, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -173,7 +173,25 @@ public class StringRegexp
 	 */
 	private static boolean is(@NotNull final String string, @NotNull final Regexp regexp)
 	{
-		return string.matches("^" + regexp.getPattern() + "$");
+		return StringRegexp.is(string, regexp, 0);
+	}
+
+	/**
+	 * Проверяет, является ли строка значением.
+	 *
+	 * @param regexp Регулярное выражение.
+	 * @param flags Флаги регулярного выражения.
+	 * @param string Строка.
+	 * @return {@code True}, если строка является значением, иначе {@code false}.
+	 */
+	private static boolean is(@NotNull final String string,
+							  @NotNull final Regexp regexp,
+							  @NotNull final Integer flags)
+	{
+		final Pattern pattern = Pattern.compile("^" + regexp.getPattern() + "$", flags);
+		final Matcher matcher = pattern.matcher(string);
+
+		return matcher.matches();
 	}
 
 	/**
@@ -186,9 +204,25 @@ public class StringRegexp
 	@NotNull
 	private static List<@NotNull String> find(@NotNull final String string, @NotNull final Regexp regexp)
 	{
+		return StringRegexp.find(string, regexp, 0);
+	}
+
+	/**
+	 * Выполняет поиск значений.
+	 *
+	 * @param string Строка.
+	 * @param flags Флаги регулярного выражения.
+	 * @return Коллекцию с найденными значениями.
+	 */
+	@Unmodifiable
+	@NotNull
+	private static List<@NotNull String> find(@NotNull final String string,
+											  @NotNull final Regexp regexp,
+											  @NotNull final Integer flags)
+	{
 		final List<String> locales = new ArrayList<>();
 
-		final Pattern pattern = Pattern.compile(regexp.getPattern());
+		final Pattern pattern = Pattern.compile(regexp.getPattern(), flags);
 		final Matcher matcher = pattern.matcher(string);
 
 		while (matcher.find()) {
