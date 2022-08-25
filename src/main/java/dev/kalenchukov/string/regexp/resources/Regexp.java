@@ -110,6 +110,7 @@ public enum Regexp
 
 	RGB_HEX("rgb", """
 		(?<rgb>
+			(?=.{4,7})
 			#
 			(?<red>[0-9A-F]{2})
 			(?<green>[0-9A-F]{2})
