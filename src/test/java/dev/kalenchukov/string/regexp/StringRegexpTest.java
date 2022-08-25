@@ -359,6 +359,48 @@ public class StringRegexpTest
 		assertFalse(StringRegexp.isEmailAddress("aleksey.kalenchukovkalenchukovkalenchukovkalenchukovkalenchukovkalenchukov@yandex.ru"));
 	}
 
+	/**
+	 * Проверка корректного RGB в числовом представлении.
+	 */
+	@Test
+	public void isRgbCorrect()
+	{
+		assertTrue(StringRegexp.isRgb("215,200,166"));
+		assertTrue(StringRegexp.isRgb("0,0,0"));
+
+		assertTrue(StringRegexp.isRgb("215, 200, 166"));
+		assertTrue(StringRegexp.isRgb("0, 0, 0"));
+
+		assertTrue(StringRegexp.isRgb("255,155, 55"));
+		assertTrue(StringRegexp.isRgb("1,1,1"));
+	}
+
+	/**
+	 * Проверка некорректного RGB в числовом представлении.
+	 */
+	@Test
+	public void isRgbNotCorrect()
+	{
+		assertFalse(StringRegexp.isRgb(""));
+		assertFalse(StringRegexp.isRgb(" "));
+
+		assertFalse(StringRegexp.isRgb("0,0"));
+		assertFalse(StringRegexp.isRgb("0"));
+
+		assertFalse(StringRegexp.isRgb("215,  200, 166"));
+		assertFalse(StringRegexp.isRgb("215, 200,  166"));
+
+		assertFalse(StringRegexp.isRgb("-1, 0, 0"));
+		assertFalse(StringRegexp.isRgb("0, -1, 0"));
+		assertFalse(StringRegexp.isRgb("0, 0, -1"));
+
+		assertFalse(StringRegexp.isRgb("215,200,"));
+		assertFalse(StringRegexp.isRgb("1,1,1,"));
+
+		assertFalse(StringRegexp.isRgb("256,155,55"));
+		assertFalse(StringRegexp.isRgb("255,256,55"));
+		assertFalse(StringRegexp.isRgb("255,155,256"));
+	}
 
 	/**
 	 * Проверка корректного RGB в шестнадцатеричной системе счисления.
@@ -468,5 +510,55 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(RgbHex, StringRegexp.findRgbHex(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска RGB в числовом представлении.
+	 */
+	@Test
+	public void findRgb()
+	{
+		String[] Rgb = {
+			"255,150,50",
+			"0, 0, 0",
+			"50, 50,50",
+			"113,13,3"
+		};
+
+		String string = """
+			Наши реки бедны водой
+			В наших окнах 255,150,50 не видно дня
+			Наше утро похоже на ночь
+			Ну, а ночь — для меня
+			Глядя в жидкое зеркало луж 0, 0, 0
+			На часы, что полвека стоят
+			На до дыр зацелованный флаг
+			Я полцарства отдам за коня
+			
+			Играй!50, 50,50
+			Невесёлая песня моя
+			Играй!
+			Играй!
+			
+			Командиры Армии Лет
+			Мы теряли в бою день за днём
+			А когда мы разжигали огонь
+			Наш огонь тушили дождём
+			Мы сидим у разбитых корыт
+			И гадаем на розе ветров
+			А когда приходит время вставать
+			Мы сидим, 113,13,3 мы ждём
+			
+			Играй!
+			Невесёлая песня моя
+			Играй!
+			Играй!
+			Играй!
+			Невесёлая песня моя
+			Играй!
+			Играй!
+			""";
+
+		assertArrayEquals(Rgb, StringRegexp.findRgb(string).toArray());
 	}
 }

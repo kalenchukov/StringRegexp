@@ -45,6 +45,17 @@ public class StringRegexp
 	private StringRegexp() {}
 
 	/**
+	 * Проверяет, является ли строка RGB в числовом представлении.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является RGB в числовом представлении, иначе {@code false}.
+	 */
+	public static boolean isRgb(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.RGB);
+	}
+
+	/**
 	 * Проверяет, является ли строка RGB в шестнадцатеричной системе счисления.
 	 *
 	 * @param string Строка
@@ -53,6 +64,19 @@ public class StringRegexp
 	public static boolean isRgbHex(@NotNull final String string)
 	{
 		return StringRegexp.is(string, Regexp.RGB_HEX);
+	}
+
+	/**
+	 * Выполняет поиск RGB в числовом представлении.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными RGB в числовом представлении.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findRgb(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.RGB);
 	}
 
 	/**

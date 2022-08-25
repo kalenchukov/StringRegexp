@@ -13,6 +13,13 @@ StringRegexp.isLocale("ru-RU");
 // Результат выполнения: true
 ```
 
+#### Проверка RGB в числовом представлении
+
+```java
+StringRegexp.isRgb("250,150,50");
+// Результат выполнения: true
+```
+
 #### Проверка RGB в шестнадцатеричной системе счисления
 
 ```java
@@ -56,10 +63,34 @@ String text = """
 StringRegexp.findLocale(text);
 /*
 Результат выполнения: 
-{
+[
     by-BY,
     ru-RU
-}
+]
+*/
+```
+
+#### Поиск RGB в числовом представлении
+
+```java
+String text = """
+    Наши реки бедны водой
+    В наших окнах 255,150,50 не видно дня
+    Наше утро похоже на ночь
+    Ну, а ночь — для меня
+    Глядя в жидкое зеркало луж 0, 0, 0
+    На часы, что полвека стоят
+    На до дыр зацелованный флаг
+    Я полцарства отдам за коня
+    """;
+
+StringRegexp.findRgb(text);
+/*
+Результат выполнения: 
+[
+    255,150,50,
+    0, 0, 0
+]
 */
 ```
 
@@ -76,10 +107,10 @@ String text = """
 StringRegexp.findRgbHex(text);
 /*
 Результат выполнения: 
-{
+[
     #FFFFFF,
     #123456
-}
+]
 */
 ```
 
@@ -96,10 +127,10 @@ String text = """
 StringRegexp.findEmailAddress(text);
 /*
 Результат выполнения: 
-{
+[
     aleksey.kalenchukov@yandex.ru,
     123alekseykalenchukov@yandex.ru
-}
+]
 */
 ```
 
@@ -116,10 +147,10 @@ String text = """
 StringRegexp.findInet4Address(text);
 /*
 Результат выполнения: 
-{
+[
     10.222.170.80,
     192.168.1.1
-}
+]
 */
 ```
 
@@ -136,10 +167,10 @@ String text = """
 StringRegexp.findInet6Address(text);
 /*
 Результат выполнения: 
-{
+[
 	AD12::AE21::,
 	2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D
-}
+]
 */
 ```
 
