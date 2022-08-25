@@ -22,4 +22,22 @@
  * SOFTWARE.
  */
 
-package dev.kalenchukov.string.regexp.validation;
+package dev.kalenchukov.string.regexp;
+
+public class Main
+{
+	public static void main(String[] args)
+	{
+		String text = """
+   			by-BY dsgdfg dfg dfgh ru-RU gfdfg dfg dfgh fdhg dfg h
+   			dfhg fgh 
+   			 gdfhgf gh sdf@dsf.ru
+   			 en-EN dfgfhg
+   			 dfgdfg
+   			 dfhg
+			""";
+
+		System.out.println(StringRegexp.findLocale(text));
+		System.out.println(StringRegexp.findEmailAddress(text));
+	}
+}

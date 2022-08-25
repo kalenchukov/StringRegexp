@@ -22,16 +22,4 @@
  * SOFTWARE.
  */
 
-package dev.kalenchukov.string.regexp.validation;
-
-/**
- * Класс содержит статические методы для проверки корректности строк с помощью регулярных выражений.
- */
-public class StringValidator
-{
-	/**
-	 * Конструктор для {@code StringValidator} запрещающий создавать объект класса.
-	 */
-	private StringValidator() {}
-
-}
+package dev.kalenchukov.string.regexp.resources;

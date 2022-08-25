@@ -33,7 +33,7 @@
 	<version>1.0.0</version>
 
 	<name>StringRegexp</name>
-	<description>Реализации регулярных выражений для строк.</description>
+	<description>Операции над строками с помощью регулярных выражений.</description>
 	<url>https://github.com/kalenchukov/StringRegexp</url>
 
 	<licenses>
