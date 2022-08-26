@@ -78,6 +78,61 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка локализацией.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является локализацией, иначе {@code false}.
+	 */
+	public static boolean isLocale(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.LOCALE);
+	}
+
+	/**
+	 * Проверяет, является ли строка адресом электронной почты.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является адресом электронной почты, иначе {@code false}.
+	 */
+	public static boolean isEmailAddress(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.EMAIL_ADDRESS, Pattern.CASE_INSENSITIVE);
+	}
+
+	/**
+	 * Проверяет, является ли строка IP адресом четвёртой версии.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является IP адресом четвёртой версии, иначе {@code false}.
+	 */
+	public static boolean isInet4Address(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.INET_4_ADDRESS);
+	}
+
+	/**
+	 * Проверяет, является ли строка IP адресом шестой версии.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является IP адресом шестой версии, иначе {@code false}.
+	 */
+	public static boolean isInet6Address(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.INET_6_ADDRESS);
+	}
+
+	/**
+	 * Проверяет, является ли строка меткой.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является меткой, иначе {@code false}.
+	 */
+	public static boolean isTag(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.TAG, Pattern.CASE_INSENSITIVE);
+	}
+
+	/**
 	 * Выполняет поиск имён телеграм каналов.
 	 *
 	 * @param string Строка.
@@ -88,6 +143,19 @@ public class StringRegexp
 	public static List<@NotNull String> findTelegram(@NotNull final String string)
 	{
 		return StringRegexp.find(string, Regexp.TELEGRAM, Pattern.CASE_INSENSITIVE);
+	}
+
+	/**
+	 * Выполняет поиск меток.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными метками.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findTag(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.TAG, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -117,17 +185,6 @@ public class StringRegexp
 	}
 
 	/**
-	 * Проверяет, является ли строка локализацией.
-	 *
-	 * @param string Строка
-	 * @return {@code True}, если строка является локализацией, иначе {@code false}.
-	 */
-	public static boolean isLocale(@NotNull final String string)
-	{
-		return StringRegexp.is(string, Regexp.LOCALE);
-	}
-
-	/**
 	 * Выполняет поиск локализаций.
 	 *
 	 * @param string Строка.
@@ -138,17 +195,6 @@ public class StringRegexp
 	public static List<@NotNull String> findLocale(@NotNull final String string)
 	{
 		return StringRegexp.find(string, Regexp.LOCALE);
-	}
-
-	/**
-	 * Проверяет, является ли строка IP адресом четвёртой версии.
-	 *
-	 * @param string Строка
-	 * @return {@code True}, если строка является IP адресом четвёртой версии, иначе {@code false}.
-	 */
-	public static boolean isInet4Address(@NotNull final String string)
-	{
-		return StringRegexp.is(string, Regexp.INET_4_ADDRESS);
 	}
 
 	/**
@@ -165,17 +211,6 @@ public class StringRegexp
 	}
 
 	/**
-	 * Проверяет, является ли строка IP адресом шестой версии.
-	 *
-	 * @param string Строка
-	 * @return {@code True}, если строка является IP адресом шестой версии, иначе {@code false}.
-	 */
-	public static boolean isInet6Address(@NotNull final String string)
-	{
-		return StringRegexp.is(string, Regexp.INET_6_ADDRESS);
-	}
-
-	/**
 	 * Выполняет поиск IP адресов шестой версии.
 	 *
 	 * @param string Строка.
@@ -186,17 +221,6 @@ public class StringRegexp
 	public static List<@NotNull String> findInet6Address(@NotNull final String string)
 	{
 		return StringRegexp.find(string, Regexp.INET_6_ADDRESS);
-	}
-
-	/**
-	 * Проверяет, является ли строка адресом электронной почты.
-	 *
-	 * @param string Строка
-	 * @return {@code True}, если строка является адресом электронной почты, иначе {@code false}.
-	 */
-	public static boolean isEmailAddress(@NotNull final String string)
-	{
-		return StringRegexp.is(string, Regexp.EMAIL_ADDRESS, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**

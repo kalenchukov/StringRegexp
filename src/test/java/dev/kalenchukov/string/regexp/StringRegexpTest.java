@@ -464,6 +464,59 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректной метки.
+	 */
+	@Test
+	public void isTagCorrect()
+	{
+		assertTrue(StringRegexp.isTag("#tag"));
+		assertTrue(StringRegexp.isTag("#Tag"));
+		assertTrue(StringRegexp.isTag("#TAG"));
+
+		assertTrue(StringRegexp.isTag("#ta_g"));
+
+		assertTrue(StringRegexp.isTag("#123tag"));
+		assertTrue(StringRegexp.isTag("#tag123"));
+		assertTrue(StringRegexp.isTag("#tag_123"));
+
+		assertTrue(StringRegexp.isTag("#тег"));
+		assertTrue(StringRegexp.isTag("#тег123"));
+		assertTrue(StringRegexp.isTag("#тег_123"));
+	}
+
+	/**
+	 * Проверка некорректной метки.
+	 */
+	@Test
+	public void isTagNotCorrect()
+	{
+		assertFalse(StringRegexp.isTag(""));
+		assertFalse(StringRegexp.isTag(" "));
+
+		assertFalse(StringRegexp.isTag("tag"));
+
+		assertFalse(StringRegexp.isTag("#t"));
+		assertFalse(StringRegexp.isTag("#ta"));
+
+		assertFalse(StringRegexp.isTag("#tag."));
+		assertFalse(StringRegexp.isTag("#tag-"));
+		assertFalse(StringRegexp.isTag("#ta-g"));
+		assertFalse(StringRegexp.isTag("#tag+tag"));
+
+		assertFalse(StringRegexp.isTag("#_tag"));
+		assertFalse(StringRegexp.isTag("#tag_"));
+
+		assertFalse(StringRegexp.isTag("#_"));
+		assertFalse(StringRegexp.isTag("#__"));
+		assertFalse(StringRegexp.isTag("#___"));
+
+		assertFalse(StringRegexp.isTag("#123"));
+		assertFalse(StringRegexp.isTag("#123_"));
+		assertFalse(StringRegexp.isTag("#_123"));
+
+	}
+
+	/**
 	 * Проверка поиска адресов электронной почты.
 	 */
 	@Test
@@ -635,5 +688,46 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(telegram, StringRegexp.findTelegram(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска меток.
+	 */
+	@Test
+	public void findTag()
+	{
+		String[] tag = {
+			"#tag",
+			"#Tag",
+			"#TAG",
+			"#ta_g"
+		};
+
+		String string = """
+			Гуляю. Я один гуляю.
+			Что дальше делать, #tag я не знаю.
+			Нет дома. Никого нет дома #Tag.
+			Я лишний, словно куча лома, у-у.
+
+			Припев:
+			Я бездельник, о-о, мама, мама, я бездельник, у-у...
+			Я бездельник, о-о, мама, мама.
+
+			В толпе я как иголка в сене.
+			Я снова человек без цели.#TAG
+			Болтаюсь, целый день гуляю.
+			Не знаю, я ничего не знаю, у-у.
+
+			Припев:#ta_g
+			Я бездельник, о-о, мама, мама, я бездельник, у-у...
+			Я бездельник, о-о, мама, мама.
+			   
+			у-у... я бездельник, о-о, мама, мама.
+			Я бездельник, у-у...
+			Я бездельник, о-о, мама, мама, я бездельник, у-у...
+			Я бездельник, у-у...
+			""";
+
+		assertArrayEquals(tag, StringRegexp.findTag(string).toArray());
 	}
 }

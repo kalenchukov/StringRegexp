@@ -55,6 +55,13 @@ StringRegexp.isInet6Address("EF98:3:0:0:0:0:2F3B:7654");
 // Результат выполнения: true
 ```
 
+#### Проверка метки
+
+```java
+StringRegexp.isTag("#tag");
+// Результат выполнения: true
+```
+
 ### Поиск
 
 #### Поиск локализаций
@@ -197,6 +204,26 @@ StringRegexp.findTelegram(text);
 [
 	@kalenchukov,
 	@Kalenchukov
+]
+*/
+```
+
+#### Поиск меток
+
+```java
+String text = """
+    Гуляю. Я один гуляю.
+    Что дальше делать, #tag я не знаю.
+    Нет дома. Никого нет дома #Tag.
+    Я лишний, словно куча лома, у-у.
+    """;
+
+StringRegexp.findTag(text);
+/*
+Результат выполнения: 
+[
+	#tag,
+	#Tag
 ]
 */
 ```
