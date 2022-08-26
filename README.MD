@@ -27,6 +27,13 @@ StringRegexp.isRgbHex("#FFFFFF");
 // Результат выполнения: true
 ```
 
+#### Проверка телеграм канала
+
+```java
+StringRegexp.isTelegram("@kalenchukov");
+// Результат выполнения: true
+```
+
 #### Проверка адреса электронной почты
 
 ```java
@@ -170,6 +177,26 @@ StringRegexp.findInet6Address(text);
 [
 	AD12::AE21::,
 	2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D
+]
+*/
+```
+
+#### Поиск телеграм каналов
+
+```java
+String text = """
+    Ты часто проходишь мимо, не видя меня
+    С кем-то другим, я стою не дыша @kalenchukov
+    Я знаю, что ты живешь в соседнем дворе
+    Ты идешь не спеша,@Kalenchukov не спеша...
+    """;
+
+StringRegexp.findTelegram(text);
+/*
+Результат выполнения: 
+[
+	@kalenchukov,
+	@Kalenchukov
 ]
 */
 ```

@@ -91,6 +91,9 @@ public enum Regexp
 		)
 		"""),
 
+	/**
+	 * Локализация.
+	 */
 	LOCALE("locale", """
 		(?<locale>
 			(?<language>[a-z]{2})
@@ -99,6 +102,9 @@ public enum Regexp
 		)
 		"""),
 
+	/**
+	 * RGB в числовом представлении.
+	 */
 	RGB("rgb", """
 		(?<rgb>
 			(?=.{5,11})
@@ -108,6 +114,9 @@ public enum Regexp
 		)
 		"""),
 
+	/**
+	 * RGB в шестнадцатеричной системе счисления.
+	 */
 	RGB_HEX("rgb", """
 		(?<rgb>
 			(?=.{4,7})
@@ -116,6 +125,17 @@ public enum Regexp
 			(?<green>[0-9A-F]{2})
 			(?<blue>[0-9A-F]{2})
 		)
+		"""),
+
+	/**
+	 * Телеграм канал.
+	 */
+	TELEGRAM("telegram", """
+		(?<telegram>
+			(?=.{6,})
+			@
+			(?<name>[0-9A-Z_]{5,})
+		)
 		""");
 
 	/**
@@ -123,7 +143,6 @@ public enum Regexp
 	 */
 	@NotNull
 	private final String group;
-
 
 	/**
 	 * Шаблон регулярного выражения.

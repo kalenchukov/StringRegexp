@@ -45,6 +45,17 @@ public class StringRegexp
 	private StringRegexp() {}
 
 	/**
+	 * Проверяет, является ли строка именем телеграм канала.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является именем телеграм канала, иначе {@code false}.
+	 */
+	public static boolean isTelegram(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.TELEGRAM, Pattern.CASE_INSENSITIVE);
+	}
+
+	/**
 	 * Проверяет, является ли строка RGB в числовом представлении.
 	 *
 	 * @param string Строка
@@ -64,6 +75,19 @@ public class StringRegexp
 	public static boolean isRgbHex(@NotNull final String string)
 	{
 		return StringRegexp.is(string, Regexp.RGB_HEX);
+	}
+
+	/**
+	 * Выполняет поиск имён телеграм каналов.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными именами телеграм каналов.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findTelegram(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.TELEGRAM, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**

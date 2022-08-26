@@ -431,6 +431,39 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректного телеграм канала.
+	 */
+	@Test
+	public void isTelegramCorrect()
+	{
+		assertTrue(StringRegexp.isTelegram("@kalenchukov"));
+		assertTrue(StringRegexp.isTelegram("@Kalenchukov"));
+		assertTrue(StringRegexp.isTelegram("@KALENCHUKOV"));
+
+		assertTrue(StringRegexp.isTelegram("@kalen_chukov"));
+		assertTrue(StringRegexp.isTelegram("@kalenchukov_"));
+		assertTrue(StringRegexp.isTelegram("@_kalenchukov"));
+	}
+
+	/**
+	 * Проверка некорректного телеграм канала.
+	 */
+	@Test
+	public void isTelegramNotCorrect()
+	{
+		assertFalse(StringRegexp.isTelegram(""));
+		assertFalse(StringRegexp.isTelegram(" "));
+
+		assertFalse(StringRegexp.isTelegram("kalenchukov"));
+
+		assertFalse(StringRegexp.isTelegram("@kalenchukov."));
+		assertFalse(StringRegexp.isTelegram("@kalenchukov-"));
+		assertFalse(StringRegexp.isTelegram("@kalenchukov+"));
+
+		assertFalse(StringRegexp.isTelegram("@kalen-chukov"));
+	}
+
+	/**
 	 * Проверка поиска адресов электронной почты.
 	 */
 	@Test
@@ -470,7 +503,7 @@ public class StringRegexpTest
 	@Test
 	public void findRgbHex()
 	{
-		String[] RgbHex = {
+		String[] rgbHex = {
 			"#FFFFFF",
 			"#000000",
 			"#D0E9F8",
@@ -509,7 +542,7 @@ public class StringRegexpTest
 			Спокойная ночь
 			""";
 
-		assertArrayEquals(RgbHex, StringRegexp.findRgbHex(string).toArray());
+		assertArrayEquals(rgbHex, StringRegexp.findRgbHex(string).toArray());
 	}
 
 	/**
@@ -518,7 +551,7 @@ public class StringRegexpTest
 	@Test
 	public void findRgb()
 	{
-		String[] Rgb = {
+		String[] rgb = {
 			"255,150,50",
 			"0, 0, 0",
 			"50, 50,50",
@@ -559,6 +592,48 @@ public class StringRegexpTest
 			Играй!
 			""";
 
-		assertArrayEquals(Rgb, StringRegexp.findRgb(string).toArray());
+		assertArrayEquals(rgb, StringRegexp.findRgb(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска телеграм каналов.
+	 */
+	@Test
+	public void findTelegram()
+	{
+		String[] telegram = {
+			"@kalenchukov",
+			"@Kalenchukov",
+			"@KALENCHUKOV",
+			"@kalen_CHUKOV"
+		};
+
+		String string = """
+			Ты часто проходишь мимо, не видя меня
+			С кем-то другим, я стою не дыша @kalenchukov
+			Я знаю, что ты живешь в соседнем дворе
+			Ты идешь не спеша,@Kalenchukov не спеша...
+			
+			Ооооу, но это не любовь...
+			Ооооу, но это не любовь...
+			
+			А вечером я стою под твоим окном
+			Ты поливаешь цветы, поливаешь цветы
+			А я дотемна стою и сгораю огнем
+			И виной тому ты, только ты...@KALENCHUKOV
+			
+			Ооооу, но это не любовь...
+			Ооооу, но это не любовь...
+			
+			Научи меня всему тому, что умеешь ты
+			Я хочу это знать и уметь
+			Сделай так, чтобы сбылись все мои мечты
+			Мне нельзя больше ждать, я могу умереть...
+			@kalen_CHUKOV
+			Ооооу, но это не любовь...
+			Ооооу, но это не любовь...
+			""";
+
+		assertArrayEquals(telegram, StringRegexp.findTelegram(string).toArray());
 	}
 }
