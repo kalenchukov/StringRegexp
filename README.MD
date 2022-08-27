@@ -9,7 +9,7 @@
 #### Проверка локализации
 
 ```java
-StringRegexp.isLocale("ru-RU");
+StringRegexp.isLocalization("ru-RU");
 // Результат выполнения: true
 ```
 
@@ -74,7 +74,7 @@ String text = """
     На пороге осень — моя сестра.ru-RU
     """;
 
-StringRegexp.findLocale(text);
+StringRegexp.findLocalization(text);
 /*
 Результат выполнения: 
 [

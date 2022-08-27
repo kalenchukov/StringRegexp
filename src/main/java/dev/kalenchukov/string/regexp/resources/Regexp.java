@@ -120,8 +120,8 @@ public enum Regexp
 	 *     </ul>
 	 * </p>
 	 */
-	LOCALE("locale", """
-		(?<locale>
+	LOCALIZATION("localization", """
+		(?<localization>
 			(?<language>[a-z]{2})
 			-
 			(?<country>[A-Z]{2})

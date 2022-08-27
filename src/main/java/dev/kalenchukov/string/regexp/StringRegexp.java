@@ -83,9 +83,9 @@ public class StringRegexp
 	 * @param string Строка
 	 * @return {@code True}, если строка является локализацией, иначе {@code false}.
 	 */
-	public static boolean isLocale(@NotNull final String string)
+	public static boolean isLocalization(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.LOCALE);
+		return StringRegexp.is(string, Regexp.LOCALIZATION);
 	}
 
 	/**
@@ -192,9 +192,9 @@ public class StringRegexp
 	 */
 	@Unmodifiable
 	@NotNull
-	public static List<@NotNull String> findLocale(@NotNull final String string)
+	public static List<@NotNull String> findLocalization(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.LOCALE);
+		return StringRegexp.find(string, Regexp.LOCALIZATION);
 	}
 
 	/**
@@ -292,15 +292,15 @@ public class StringRegexp
 											  @NotNull final Regexp regexp,
 											  @NotNull final Integer flags)
 	{
-		final List<String> locales = new ArrayList<>();
+		final List<String> localizations = new ArrayList<>();
 
 		final Pattern pattern = Pattern.compile(regexp.getPattern(), flags);
 		final Matcher matcher = pattern.matcher(string);
 
 		while (matcher.find()) {
-			locales.add(matcher.group(regexp.getGroup()));
+			localizations.add(matcher.group(regexp.getGroup()));
 		}
 
-		return Collections.unmodifiableList(locales);
+		return Collections.unmodifiableList(localizations);
 	}
 }

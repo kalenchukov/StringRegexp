@@ -34,35 +34,35 @@ public class StringRegexpTest
 	 * Проверка корректной локализации.
 	 */
 	@Test
-	public void isLocaleCorrect()
+	public void isLocalizationCorrect()
 	{
-		assertTrue(StringRegexp.isLocale("ru-RU"));
+		assertTrue(StringRegexp.isLocalization("ru-RU"));
 	}
 
 	/**
 	 * Проверка некорректной локализации.
 	 */
 	@Test
-	public void isLocaleNotCorrect()
+	public void isLocalizationNotCorrect()
 	{
-		assertFalse(StringRegexp.isLocale(""));
-		assertFalse(StringRegexp.isLocale(" "));
+		assertFalse(StringRegexp.isLocalization(""));
+		assertFalse(StringRegexp.isLocalization(" "));
 
-		assertFalse(StringRegexp.isLocale("RU-RU"));
-		assertFalse(StringRegexp.isLocale("RU-ru"));
-		assertFalse(StringRegexp.isLocale("ru-ru"));
+		assertFalse(StringRegexp.isLocalization("RU-RU"));
+		assertFalse(StringRegexp.isLocalization("RU-ru"));
+		assertFalse(StringRegexp.isLocalization("ru-ru"));
 
-		assertFalse(StringRegexp.isLocale("ru"));
-		assertFalse(StringRegexp.isLocale("RU"));
+		assertFalse(StringRegexp.isLocalization("ru"));
+		assertFalse(StringRegexp.isLocalization("RU"));
 	}
 
 	/**
 	 * Проверка поиска локализаций.
 	 */
 	@Test
-	public void findLocale()
+	public void findLocalization()
 	{
-		String[] locale = {
+		String[] localization = {
 			"ru-RU",
 			"en-EN",
 			"by-BY",
@@ -101,7 +101,7 @@ public class StringRegexpTest
 			В серебре, а, может быть, в нищете, но как можно скорей.
 			""";
 
-		assertArrayEquals(locale, StringRegexp.findLocale(string).toArray());
+		assertArrayEquals(localization, StringRegexp.findLocalization(string).toArray());
 	}
 
 	/**
