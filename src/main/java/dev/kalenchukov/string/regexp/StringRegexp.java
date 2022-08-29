@@ -144,6 +144,30 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка словом.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является словом, иначе {@code false}.
+	 */
+	public static boolean isWord(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.WORD);
+	}
+
+	/**
+	 * Выполняет поиск слов.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными словами.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findWord(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.WORD);
+	}
+
+	/**
 	 * Выполняет поиск имён цифрой.
 	 *
 	 * @param string Строка.

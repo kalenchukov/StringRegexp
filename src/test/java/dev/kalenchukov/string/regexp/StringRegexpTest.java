@@ -544,6 +544,41 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректного слова.
+	 */
+	@Test
+	public void isWordCorrect()
+	{
+		assertTrue(StringRegexp.isWord("привет"));
+		assertTrue(StringRegexp.isWord("ПРИВЕТ"));
+
+		assertTrue(StringRegexp.isWord("Hello"));
+		assertTrue(StringRegexp.isWord("WoRlD"));
+
+		assertTrue(StringRegexp.isWord("Hello-World"));
+	}
+
+	/**
+	 * Проверка некорректного слова.
+	 */
+	@Test
+	public void isWordNotCorrect()
+	{
+		assertFalse(StringRegexp.isWord(""));
+		assertFalse(StringRegexp.isWord(" "));
+
+		assertFalse(StringRegexp.isWord("-привет"));
+		assertFalse(StringRegexp.isWord("привет-"));
+
+		assertFalse(StringRegexp.isWord(" привет"));
+		assertFalse(StringRegexp.isWord("привет "));
+
+		assertFalse(StringRegexp.isWord("Hello- World"));
+		assertFalse(StringRegexp.isWord("Hello -World"));
+		assertFalse(StringRegexp.isWord("Hello - World"));
+	}
+
+	/**
 	 * Проверка поиска адресов электронной почты.
 	 */
 	@Test
@@ -795,5 +830,47 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(digit, StringRegexp.findDigit(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска цифр.
+	 */
+	@Test
+	public void findWord()
+	{
+		String[] word = {
+			"Красно-жёлтые",
+			"дни",
+			"Застоялся",
+			"мой",
+			"поезд",
+			"в",
+			"депо",
+			"Снова",
+			"я",
+			"уезжаю",
+			"Пора",
+			"На",
+			"пороге",
+			"ветер",
+			"заждался",
+			"меня",
+			"На",
+			"пороге",
+			"осень",
+			"моя",
+			"сестра"
+		};
+
+		String string = """
+			Красно-жёлтые дни.
+						
+			Застоялся мой поезд в депо.
+			Снова я уезжаю. Пора…
+			На пороге ветер заждался меня.
+			На пороге осень — моя сестра.
+			""";
+
+		assertArrayEquals(word, StringRegexp.findWord(string).toArray());
 	}
 }
