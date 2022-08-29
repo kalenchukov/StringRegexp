@@ -579,6 +579,33 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректной буквы.
+	 */
+	@Test
+	public void isLetterCorrect()
+	{
+		assertTrue(StringRegexp.isLetter("А"));
+		assertTrue(StringRegexp.isLetter("Ж"));
+
+		assertTrue(StringRegexp.isLetter("W"));
+		assertTrue(StringRegexp.isLetter("Z"));
+	}
+
+	/**
+	 * Проверка некорректной буквы.
+	 */
+	@Test
+	public void isLetterNotCorrect()
+	{
+		assertFalse(StringRegexp.isLetter(""));
+		assertFalse(StringRegexp.isLetter(" "));
+
+		assertFalse(StringRegexp.isLetter("-"));
+		assertFalse(StringRegexp.isLetter("0"));
+		assertFalse(StringRegexp.isLetter("?"));
+	}
+
+	/**
 	 * Проверка поиска адресов электронной почты.
 	 */
 	@Test
@@ -872,5 +899,26 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(word, StringRegexp.findWord(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска букв.
+	 */
+	@Test
+	public void findLetter()
+	{
+		String[] letter = {
+			"М",
+			"а",
+			"л",
+			"ы",
+			"ш"
+		};
+
+		String string = """
+			Малыш
+			""";
+
+		assertArrayEquals(letter, StringRegexp.findLetter(string).toArray());
 	}
 }

@@ -155,6 +155,30 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка буквой.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является буквой, иначе {@code false}.
+	 */
+	public static boolean isLetter(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.LETTER);
+	}
+
+	/**
+	 * Выполняет поиск букв.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными буквами.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findLetter(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.LETTER);
+	}
+
+	/**
 	 * Выполняет поиск слов.
 	 *
 	 * @param string Строка.
