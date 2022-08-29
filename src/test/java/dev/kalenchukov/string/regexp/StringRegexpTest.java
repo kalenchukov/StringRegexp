@@ -433,6 +433,34 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректного RGB в шестнадцатеричной системе счисления без учёта регистра букв.
+	 */
+	@Test
+	public void isRgbHexIgnoreCaseCorrect()
+	{
+		assertTrue(StringRegexp.isRgbHexIgnoreCase("#fffFFF"));
+		assertTrue(StringRegexp.isRgbHexIgnoreCase("#abcDEF"));
+
+		assertTrue(StringRegexp.isRgbHexIgnoreCase("#000000"));
+		assertTrue(StringRegexp.isRgbHexIgnoreCase("#123456"));
+	}
+
+	/**
+	 * Проверка некорректного RGB в шестнадцатеричной системе счисления без учёта регистра букв.
+	 */
+	@Test
+	public void isRgbHexIgnoreCaseNotCorrect()
+	{
+		assertFalse(StringRegexp.isRgbHexIgnoreCase(""));
+		assertFalse(StringRegexp.isRgbHexIgnoreCase(" "));
+
+		assertFalse(StringRegexp.isRgbHexIgnoreCase("fffFFF"));
+
+		assertFalse(StringRegexp.isRgbHexIgnoreCase("#23394w"));
+		assertFalse(StringRegexp.isRgbHexIgnoreCase("#ardBZG"));
+	}
+
+	/**
 	 * Проверка корректного телеграм канала.
 	 */
 	@Test
@@ -685,6 +713,54 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(rgbHex, StringRegexp.findRgbHex(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска RGB в шестнадцатеричной системе счисления.
+	 */
+	@Test
+	public void findRgbHexIgnoreCase()
+	{
+		String[] rgbHex = {
+			"#fffFFF",
+			"#000000",
+			"#d0e9F8",
+			"#1a2B3C"
+		};
+
+		String string = """
+			Застоялся мой #fffFFF поезд в депо.
+			Снова я уезжаю. Пора…
+			На пороге ветер заждался меня.
+			На пороге осень — моя сестра.#000000
+			
+			После красно-желтых дней начнется и кончится зима.
+			Горе ты мое от ума, не печалься, гляди веселей.
+			И я вернусь домой со щитом,#d0e9F8 а, может быть, на щите,
+			В серебре, а, может быть, в нищете, но как можно скорей.
+			
+			Расскажи мне о тех, кто устал
+			От безжалостных уличных драм
+			И о храме из разбитых сердец
+			И о тех, кто идет в этот храм.
+			
+			После красно-желтых дней начнется и кончится зима.
+			Горе ты мое от ума, не печалься, гляди веселей.
+			И я вернусь домой со щитом, а, может быть, на щите,
+			В серебре, а, может быть, в нищете, но как можно скорей.
+			
+			А мне приснилось: миром правит любовь,
+			А мне приснилось: миром правит мечта.
+			И над этим прекрасно горит звезда,
+			Я проснулся и понял — беда...#1a2B3C
+			
+			После красно-желтых дней начнется и кончится зима.
+			Горе ты мое от ума, не печалься, гляди веселей.
+			И я вернусь домой со щитом, а, может быть, на щите,
+			В серебре, а, может быть, в нищете, но как можно скорей.
+			""";
+
+		assertArrayEquals(rgbHex, StringRegexp.findRgbHexIgnoreCase(string).toArray());
 	}
 
 	/**

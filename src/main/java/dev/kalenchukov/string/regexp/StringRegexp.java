@@ -78,6 +78,17 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка RGB в шестнадцатеричной системе счисления без учёта регистра букв.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является RGB в шестнадцатеричной системе счисления, иначе {@code false}.
+	 */
+	public static boolean isRgbHexIgnoreCase(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.RGB_HEX, Pattern.CASE_INSENSITIVE);
+	}
+
+	/**
 	 * Проверяет, является ли строка локализацией.
 	 *
 	 * @param string Строка
@@ -254,6 +265,19 @@ public class StringRegexp
 	public static List<@NotNull String> findRgbHex(@NotNull final String string)
 	{
 		return StringRegexp.find(string, Regexp.RGB_HEX);
+	}
+
+	/**
+	 * Выполняет поиск RGB в шестнадцатеричной системе счисления без учётна регистра букв.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными RGB в шестнадцатеричной системе счисления.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findRgbHexIgnoreCase(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.RGB_HEX, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
