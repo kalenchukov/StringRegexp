@@ -26,6 +26,8 @@ package dev.kalenchukov.string.regexp;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class StringRegexpTest
@@ -513,7 +515,32 @@ public class StringRegexpTest
 		assertFalse(StringRegexp.isTag("#123"));
 		assertFalse(StringRegexp.isTag("#123_"));
 		assertFalse(StringRegexp.isTag("#_123"));
+	}
 
+	/**
+	 * Проверка корректной цифры.
+	 */
+	@Test
+	public void isDigitCorrect()
+	{
+		assertTrue(StringRegexp.isDigit("0"));
+		assertTrue(StringRegexp.isDigit("0123"));
+		assertTrue(StringRegexp.isDigit("6516166848498494"));
+	}
+
+	/**
+	 * Проверка некорректной цифры.
+	 */
+	@Test
+	public void isDigitNotCorrect()
+	{
+		assertFalse(StringRegexp.isDigit(""));
+		assertFalse(StringRegexp.isDigit(" "));
+
+		assertFalse(StringRegexp.isDigit("1.1"));
+		assertFalse(StringRegexp.isDigit("1.1"));
+		assertFalse(StringRegexp.isDigit("1a1"));
+		assertFalse(StringRegexp.isDigit("1a"));
 	}
 
 	/**
@@ -729,5 +756,44 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(tag, StringRegexp.findTag(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска цифр.
+	 */
+	@Test
+	public void findDigit()
+	{
+		String[] digit = {
+			"0",
+			"12",
+			"123",
+			"0123456789"
+		};
+
+		String string = """
+			Ты часто проходишь 0 мимо, не видя меня,
+			С кем-то другим, я стою не дыша.
+			Я знаю, что ты живешь в соседнем дворе,12
+			Ты идешь не спеша, не спеша...
+			
+			О, но это не любовь...
+			
+			А вечером я стою под твоим окном,
+			Ты поливаешь цветы, поливаешь цветы.
+			А я дотемна стою и сгораю огнем,
+			123И виной тому ты, только ты...
+			
+			О, но это не любовь...
+			
+			Научи меня всему тому, что умеешь ты,
+			Я хочу это знать и уметь.
+			Сделай так, чтобы сбылись все мои мечты,
+			Мне нельзя больше ждать, я могу умереть...
+			
+			О, но это не любовь...0123456789
+			""";
+
+		assertArrayEquals(digit, StringRegexp.findDigit(string).toArray());
 	}
 }

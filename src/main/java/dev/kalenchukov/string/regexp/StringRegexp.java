@@ -133,6 +133,30 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка цифрой.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является цифрой, иначе {@code false}.
+	 */
+	public static boolean isDigit(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.DIGIT);
+	}
+
+	/**
+	 * Выполняет поиск имён цифрой.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными цифрами.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findDigit(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.DIGIT);
+	}
+
+	/**
 	 * Выполняет поиск имён телеграм каналов.
 	 *
 	 * @param string Строка.
