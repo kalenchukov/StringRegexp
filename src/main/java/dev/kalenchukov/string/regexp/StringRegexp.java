@@ -166,6 +166,17 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка числом.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является числом, иначе {@code false}.
+	 */
+	public static boolean isNumber(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.NUMBER);
+	}
+
+	/**
 	 * Проверяет, является ли строка словом.
 	 *
 	 * @param string Строка
@@ -214,7 +225,7 @@ public class StringRegexp
 	}
 
 	/**
-	 * Выполняет поиск имён цифрой.
+	 * Выполняет поиск цифр.
 	 *
 	 * @param string Строка.
 	 * @return Коллекцию с найденными цифрами.
@@ -224,6 +235,19 @@ public class StringRegexp
 	public static List<@NotNull String> findDigit(@NotNull final String string)
 	{
 		return StringRegexp.find(string, Regexp.DIGIT);
+	}
+
+	/**
+	 * Выполняет поиск чисел.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными числами.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findNumber(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.NUMBER);
 	}
 
 	/**

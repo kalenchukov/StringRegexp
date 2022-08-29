@@ -26,8 +26,6 @@ package dev.kalenchukov.string.regexp;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.*;
 
 public class StringRegexpTest
@@ -73,7 +71,7 @@ public class StringRegexpTest
 
 		String string = """
 			Застоялся мой поезд в депо.
-			Снова я уезжаю. Пора…
+			Снова я уезжаю. Пора...
 			На пороге ветер заждался меня.
 			На пороге осень — моя сестра.ru-RU
 			
@@ -95,7 +93,7 @@ public class StringRegexpTest
 			А мне приснилось: миром правит любовь,
 			А мне приснилось:it-IT миром правит мечта.
 			И над этим прекрасно горит звезда,
-			Я проснулся и понял — беда…
+			Я проснулся и понял — беда...
 			
 			После красно-желтых дней начнется и кончится зима.
 			Горе ты мое от ума, не печалься, гляди веселей.
@@ -547,6 +545,59 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректного числа.
+	 */
+	@Test
+	public void isNumberCorrect()
+	{
+		assertTrue(StringRegexp.isNumber("0"));
+		assertTrue(StringRegexp.isNumber("100"));
+
+		assertTrue(StringRegexp.isNumber("0.1"));
+		assertTrue(StringRegexp.isNumber("0,1"));
+
+		assertTrue(StringRegexp.isNumber("1.100"));
+		assertTrue(StringRegexp.isNumber("1,100"));
+
+		assertTrue(StringRegexp.isNumber("1,100,123"));
+		assertTrue(StringRegexp.isNumber("1.100.123"));
+	}
+
+	/**
+	 * Проверка некорректного числа.
+	 */
+	@Test
+	public void isNumberNotCorrect()
+	{
+		assertFalse(StringRegexp.isNumber(""));
+		assertFalse(StringRegexp.isNumber(" "));
+
+		assertFalse(StringRegexp.isNumber("."));
+		assertFalse(StringRegexp.isNumber(","));
+
+		assertFalse(StringRegexp.isNumber(".1"));
+		assertFalse(StringRegexp.isNumber(",2"));
+
+		assertFalse(StringRegexp.isNumber("3,"));
+		assertFalse(StringRegexp.isNumber("4."));
+
+		assertFalse(StringRegexp.isNumber("1. 1"));
+		assertFalse(StringRegexp.isNumber("1, 1"));
+
+		assertFalse(StringRegexp.isNumber("1. 100"));
+		assertFalse(StringRegexp.isNumber("1, 100"));
+
+		assertFalse(StringRegexp.isNumber("1 .100"));
+		assertFalse(StringRegexp.isNumber("1 ,100"));
+
+		assertFalse(StringRegexp.isNumber("1 . 100"));
+		assertFalse(StringRegexp.isNumber("1 , 100"));
+
+		assertFalse(StringRegexp.isNumber("1,100, 123"));
+		assertFalse(StringRegexp.isNumber("1.100. 123"));
+	}
+
+	/**
 	 * Проверка корректного слова.
 	 */
 	@Test
@@ -705,7 +756,7 @@ public class StringRegexpTest
 
 		String string = """
 			Застоялся мой #fffFFF поезд в депо.
-			Снова я уезжаю. Пора…
+			Снова я уезжаю. Пора...
 			На пороге ветер заждался меня.
 			На пороге осень — моя сестра.#000000
 			
@@ -1002,6 +1053,54 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка поиска числа.
+	 */
+	@Test
+	public void findNumber()
+	{
+		String[] number = {
+			"1.100",
+			"0,1",
+			"1,000,00",
+			"1.222,123"
+		};
+
+		String string = """
+			Ночь коротка, цель далека;
+			Ночью так часто 1.100 хочется пить,
+			Ты выходишь на кухню, но вода здесь горька;
+			Ты не можешь здесь спать, 0,1 ты не хочешь здесь жить.
+			
+			Доброе утро, последний герой!
+			Доброе утро, — тебе, и таким, как ты!
+			Доброе утро, последний герой!
+			Здравствуй, последний герой!
+			
+			Ты хотел быть один — это быстро прошло,
+			Ты хотел быть один, но не смог быть один.
+			Твоя ноша легка, но немеет рука;
+			И ты встречаешь рассвет за игрой в «Дурака».
+			
+			Доброе утро, последний герой!
+			Доброе утро, —1,000,00 тебе, и таким, как ты!
+			Доброе утро, последний герой!
+			Здравствуй, последний герой!
+			
+			Утром ты стремишься скорее уйти,
+			Телефонный звонок, как команда «Вперёд!»
+			Ты уходишь туда, куда не хочешь идти;
+			Ты уходишь туда,1.222,123 но тебя там никто не ждёт!
+			
+			Доброе утро, последний герой!
+			Доброе утро, — тебе, и таким, как ты!
+			Доброе утро, последний герой!
+			Здравствуй, последний герой!
+			""";
+
+		assertArrayEquals(number, StringRegexp.findNumber(string).toArray());
+	}
+
+	/**
 	 * Проверка поиска цифр.
 	 */
 	@Test
@@ -1035,7 +1134,7 @@ public class StringRegexpTest
 			Красно-жёлтые дни.
 						
 			Застоялся мой поезд в депо.
-			Снова я уезжаю. Пора…
+			Снова я уезжаю. Пора...
 			На пороге ветер заждался меня.
 			На пороге осень — моя сестра.
 			""";
