@@ -194,32 +194,6 @@ public class StringRegexpTest
 	public void isIpAddressVersion6Correct()
 	{
 		assertTrue(StringRegexp.isInet6Address("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D"));
-
-		assertTrue(StringRegexp.isInet6Address("2001:0DB8:0000:0000:0000:0000:AE21:AD12"));
-		assertTrue(StringRegexp.isInet6Address("0000:0000:0000:0000:0000:0000:AE21:AD12"));
-
-		assertTrue(StringRegexp.isInet6Address("2001:0DB8:0000:0000:0000:0000:AE21:1"));
-		assertTrue(StringRegexp.isInet6Address("2001:0DB8:0000:1:0000:0000:AE21:AD12"));
-		assertTrue(StringRegexp.isInet6Address("1:0000:0000:0000:0000:0000:AE21:AD12"));
-
-		assertTrue(StringRegexp.isInet6Address("::0DB8:11A3:09D7:1F34:8A2E:07A0:765D"));
-		assertTrue(StringRegexp.isInet6Address("0DB8:11A3:09D7:1F34::07A0:765D"));
-		assertTrue(StringRegexp.isInet6Address("2001:0DB8:11A3:09D7:1F34:8A2E:07A0::"));
-
-		assertTrue(StringRegexp.isInet6Address("::AE21:AD12"));
-		assertTrue(StringRegexp.isInet6Address("AD12::AE21::"));
-
-		assertTrue(StringRegexp.isInet6Address("2001::"));
-		assertTrue(StringRegexp.isInet6Address("::2001"));
-
-		assertTrue(StringRegexp.isInet6Address("::"));
-
-		assertTrue(StringRegexp.isInet6Address("::1"));
-		assertTrue(StringRegexp.isInet6Address("1::"));
-
-		assertTrue(StringRegexp.isInet6Address("EF98:3:0:0:0:0:2F3B:7654"));
-		assertTrue(StringRegexp.isInet6Address("EF98:3::2F3B:7654"));
-		assertTrue(StringRegexp.isInet6Address("2001:DB8::AE21:AD12"));
 	}
 
 	/**
@@ -228,86 +202,87 @@ public class StringRegexpTest
 	@Test
 	public void isIpAddressVersion6NotCorrect()
 	{
-		assertFalse(StringRegexp.isInet6Address(""));
-		assertFalse(StringRegexp.isInet6Address(" "));
-
-		assertFalse(StringRegexp.isInet6Address("1000"));
-		assertFalse(StringRegexp.isInet6Address("1000:"));
-		assertFalse(StringRegexp.isInet6Address(":1000"));
-
-		assertFalse(StringRegexp.isInet6Address(":"));
-		assertFalse(StringRegexp.isInet6Address(":::"));
-		assertFalse(StringRegexp.isInet6Address("::::"));
-
-		assertFalse(StringRegexp.isInet6Address("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D:765D"));
-
-		assertFalse(StringRegexp.isInet6Address(":0DB8:11A3:09D7:1F34:8A2E:07A0:765D"));
-		assertFalse(StringRegexp.isInet6Address("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:"));
-
-		assertFalse(StringRegexp.isInet6Address(":::0DB8:11A3:09D7:1F34:8A2E:07A0:765D"));
-		assertFalse(StringRegexp.isInet6Address("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:::"));
-
-		assertFalse(StringRegexp.isInet6Address("::::0DB8:11A3:09D7:1F34:8A2E:07A0:765D"));
-		assertFalse(StringRegexp.isInet6Address("0DB8:11A3:09D7::::1F34:8A2E:07A0:765D"));
-		assertFalse(StringRegexp.isInet6Address("2001:0DB8:11A3:09D7:1F34:8A2E:07A0::::"));
-
-		assertFalse(StringRegexp.isInet6Address(":0DB8:11A3:09D7:1F34:8A2E:07A0:765D:1000"));
-		assertFalse(StringRegexp.isInet6Address("1000:2001:0DB8:11A3:09D7:1F34:8A2E:07A0:"));
-
-		assertFalse(StringRegexp.isInet6Address(":0DB8:11A3:09D7:1F34:8A2E:07A0:765D:1"));
-		assertFalse(StringRegexp.isInet6Address("1:2001:0DB8:11A3:09D7:1F34:8A2E:07A0:"));
-
-		assertFalse(StringRegexp.isInet6Address("::0DB8:11A3:09D7:1F34:8A2E:07A0:765D:1"));
-		assertFalse(StringRegexp.isInet6Address("1:2001:0DB8:11A3:09D7:1F34:8A2E:07A0::"));
-
-		assertFalse(StringRegexp.isInet6Address(":::0DB8:11A3:09D7:1F34:8A2E:07A0:765D:1"));
-		assertFalse(StringRegexp.isInet6Address("1:2001:0DB8:11A3:09D7:1F34:8A2E:07A0:::"));
-
-		assertFalse(StringRegexp.isInet6Address("0DB8:11A3::::8A2E:07A0:765D"));
-		assertFalse(StringRegexp.isInet6Address("0DB8:11A3::::::8A2E:07A0:765D"));
+		assertFalse(StringRegexp.isInet6Address("2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D"));
 	}
 
 	/**
-	 * Проверка поиска IP адресов шестой версии.
+	 * Проверка корректного IP адреса шестой версии без учёта регистра букв.
 	 */
 	@Test
-	public void findIpAddressVersion6()
+	public void isIpAddressVersion6IgnoreCaseCorrect()
 	{
-		String[] inet6Address = {
-			"2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D",
-			"AD12::AE21::",
-			"::AE21:AD12",
-			"2001:DB8::AE21:AD12"
-		};
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D"));
 
-		String string = """
-			В последнее время я редко был дома,
-			Так что даже отвыкли звонить мне друзья.
-			В разъездах, разгулах 2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D конца лета симптомы
-			Совсем перестали вдруг мучить меня.
-			
-			И я подумал что Осень - это тоже не плохо,
-			И что Осенью слякоть и сер первый снег, AD12::AE21::
-			И что холод ветров я буду чувствовать боком,
-			Опьяненный сознаньем того, что я человек.
-			
-			И этой Осенью много дней чьих-то рождений
-			И уж я постараюсь на них побывать,
-			::AE21:AD12 А потом, игнорируя лужи и слякоть,
-			Я приду домой пьяный и мешком повалюсь на кровать.
-			
-			И утром рано я встану и отправлюсь учиться,
-			И с похмелья я буду смеяться над всем.
-			Скоро будет Зима, чтоб в Весне раствориться,
-			А потом будет Лето - неизвестно зачем.
-			
-			И я начал за здравие, а кончу я плохо,
-			Написав наш порядковый номер - 600.
-			С чьих-то старых столов подбираю я крохи,
-			И не в силах сказать,2001:DB8::AE21:AD12 что принес этот год.
-			""";
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001:0db8:0000:0000:0000:0000:ae21:AD12"));
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("0000:0000:0000:0000:0000:0000:ae21:AD12"));
 
-		assertArrayEquals(inet6Address, StringRegexp.findInet6Address(string).toArray());
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001:0DB8:0000:0000:0000:0000:ae21:1"));
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001:0DB8:0000:1:0000:0000:ae21:AD12"));
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("1:0000:0000:0000:0000:0000:ae21:AD12"));
+
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("::0DB8:11A3:09D7:1F34:8A2E:07a0:765D"));
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("0DB8:11A3:09D7:1F34::07a0:765D"));
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001:0DB8:11A3:09D7:1F34:07a0:07A0::"));
+
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("::ae21:AD12"));
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("AD12::ae21::"));
+
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001::"));
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("::2001"));
+
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("::"));
+
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("::1"));
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("1::"));
+
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("EF98:3:0:0:0:0:2F3B:7654"));
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("EF98:3::2f3b:7654"));
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001:DB8::ae21:AD12"));
+	}
+
+	/**
+	 * Проверка некорректного IP адреса шестой версии без учёта регистра букв.
+	 */
+	@Test
+	public void isIpAddressVersion6IgnoreCaseNotCorrect()
+	{
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase(""));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase(" "));
+
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("1000"));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("1000:"));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":1000"));
+
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":"));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":::"));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("::::"));
+
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D:765D"));
+
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":0db8:11a3:09d7:1f34:8A2E:07A0:765D"));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("2001:0db8:11a3:09d7:1F34:8A2E:07A0:"));
+
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":::0db8:11a3:09d7:1f34:8A2E:07A0:765D"));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("2001:0db8:11a3:09d7:1F34:8A2E:07A0:::"));
+
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("::::0db8:11a3:09d7:1F34:8A2E:07A0:765D"));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("0db8:11a3:09d7::::1f34:8A2E:07A0:765D"));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("2001:0db8:11a3:09d7:1F34:8A2E:07A0::::"));
+
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":0db8:11a3:09d7:1f34:8A2E:07A0:765D:1000"));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("1000:2001:0db8:11a3:09D7:1F34:8A2E:07A0:"));
+
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":0db8:11a3:09d7:1f34:8A2E:07A0:765D:1"));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("1:2001:0db8:11a3:09d7:1f34:8A2E:07A0:"));
+
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("::0db8:11a3:09d7:1f34:8A2E:07A0:765D:1"));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("1:2001:0db8:11a3:09d7:1f34:8A2E:07A0::"));
+
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":::0db8:11a3:09d7:1f34:8a2e:07A0:765D:1"));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("1:2001:0db8:11a3:09d7:1F34:8A2E:07A0:::"));
+
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("0db8:11a3::::8A2E:07A0:765D"));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase("0db8:11a3::::::8A2E:07A0:765D"));
 	}
 
 	/**
@@ -853,6 +828,97 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(telegram, StringRegexp.findTelegram(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска IP адресов шестой версии.
+	 */
+	@Test
+	public void findIpAddressVersion6()
+	{
+		String[] inet6Address = {
+			"2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D",
+			"AD12::AE21::",
+			"::AE21:AD12",
+			"2001:DB8::AE21:AD12"
+		};
+
+		String string = """
+			В последнее время я редко был дома,
+			Так что даже отвыкли звонить мне друзья.
+			В разъездах, разгулах 2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D конца лета симптомы
+			Совсем перестали вдруг мучить меня.
+			
+			И я подумал что Осень - это тоже не плохо,
+			И что Осенью слякоть и сер первый снег, AD12::AE21::
+			И что холод ветров я буду чувствовать боком,
+			Опьяненный сознаньем того, что я человек.
+			
+			И этой Осенью много дней чьих-то рождений
+			И уж я постараюсь на них побывать,
+			::AE21:AD12 А потом, игнорируя лужи и слякоть,
+			Я приду домой пьяный и мешком повалюсь на кровать.
+			
+			И утром рано я встану и отправлюсь учиться,
+			И с похмелья я буду смеяться над всем.
+			Скоро будет Зима, чтоб в Весне раствориться,
+			А потом будет Лето - неизвестно зачем.
+			
+			И я начал за здравие, а кончу я плохо,
+			Написав наш порядковый номер - 600.
+			С чьих-то старых столов подбираю я крохи,
+			И не в силах сказать,2001:DB8::AE21:AD12 что принес этот год.
+			""";
+
+		assertArrayEquals(inet6Address, StringRegexp.findInet6Address(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска IP адресов шестой версии.
+	 */
+	@Test
+	public void findIpAddressVersion6IgnoreCase()
+	{
+		String[] inet6Address = {
+			"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D",
+			"ad12::AE21::",
+			"::ae21:AD12",
+			"2001:db8::AE21:AD12"
+		};
+
+		String string = """
+			За окнами солнце, за окнами свет - это день.
+			Ну, а я всегда 2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D любил ночь.
+			И это мое дело - любить ночь,
+			И это мое право - ad12::AE21:: уйти в тень.
+			
+			Я люблю ночь за то, что в ней меньше машин,
+			Я люблю дым и пепел своих папирос,
+			Я люблю кухни за то, что они хранят тайны,
+			Я люблю свой дом, но вряд ли это всерьез.
+			
+			И эта ночь и ее электрический свет бьет мне в глаза,
+			И эта ночь и ее электрический дождь бьет мне в окно,
+			И эта ночь и ее электрический голос манит меня к себе,
+			И я не знаю, как мне прожить следующий день.
+			
+			Я один, но это не значит, что я одинок, ::ae21:AD12
+			Мой магнитофон хрипит о радостях дня,
+			Я помню, что завтра меня ждет несколько встреч,
+			И кофе в известном кафе согреет меня.
+			
+			И эта ночь и ее электрический свет бьет мне в глаза,
+			И эта ночь и ее электрический дождь бьет мне в окно,
+			И эта ночь и ее электрический голос манит меня к себе,
+			И я не знаю, как мне прожить следующий день.
+			
+			И эта ночь и ее электрический свет бьет мне в глаза,
+			И эта ночь и ее электрический дождь бьет мне в окно,
+			И эта ночь и ее электрический голос манит меня к себе,
+			И я не знаю,2001:db8::AE21:AD12 как мне прожить следующий день.
+			""";
+
+		assertArrayEquals(inet6Address, StringRegexp.findInet6AddressIgnoreCase(string).toArray());
 	}
 
 	/**

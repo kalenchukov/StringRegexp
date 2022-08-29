@@ -133,6 +133,17 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка IP адресом шестой версии без учёта регистра букв.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является IP адресом шестой версии, иначе {@code false}.
+	 */
+	public static boolean isInet6AddressIgnoreCase(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.INET_6_ADDRESS, Pattern.CASE_INSENSITIVE);
+	}
+
+	/**
 	 * Проверяет, является ли строка меткой.
 	 *
 	 * @param string Строка
@@ -317,6 +328,19 @@ public class StringRegexp
 	public static List<@NotNull String> findInet6Address(@NotNull final String string)
 	{
 		return StringRegexp.find(string, Regexp.INET_6_ADDRESS);
+	}
+
+	/**
+	 * Выполняет поиск IP адресов шестой версии без учёта регистра букв.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными IP адресами шестой версии.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findInet6AddressIgnoreCase(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.INET_6_ADDRESS, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
