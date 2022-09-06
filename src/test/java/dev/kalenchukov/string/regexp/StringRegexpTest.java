@@ -519,6 +519,77 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректного HTML комментария.
+	 */
+	@Test
+	public void isHTMLCommentCorrect()
+	{
+		assertTrue(StringRegexp.isHtmlComment("<!---->"));
+		assertTrue(StringRegexp.isHtmlComment("<!-- -->"));
+		assertTrue(StringRegexp.isHtmlComment("<!--  -->"));
+
+		assertTrue(StringRegexp.isHtmlComment("<!-- 12345 -->"));
+		assertTrue(StringRegexp.isHtmlComment("<!-- Комментарий -->"));
+		assertTrue(StringRegexp.isHtmlComment("<!-- Comment -->"));
+
+		assertTrue(StringRegexp.isHtmlComment("<!-- Comment-->"));
+		assertTrue(StringRegexp.isHtmlComment("<!--Комментарий -->"));
+
+		assertTrue(StringRegexp.isHtmlComment("""
+			<!--
+
+			-->"""));
+
+		assertTrue(StringRegexp.isHtmlComment("""
+			<!--
+				12345
+			-->"""));
+
+		assertTrue(StringRegexp.isHtmlComment("""
+			<!--
+				12345 -->"""));
+	}
+
+	/**
+	 * Проверка некорректного HTML комментария.
+	 */
+	@Test
+	public void isHTMLCommentNotCorrect()
+	{
+		assertFalse(StringRegexp.isHtmlComment(""));
+		assertFalse(StringRegexp.isHtmlComment(" "));
+
+		assertFalse(StringRegexp.isHtmlComment("<!- Комментарий -->"));
+		assertFalse(StringRegexp.isHtmlComment("<-- Комментарий -->"));
+
+		assertFalse(StringRegexp.isHtmlComment("<!-- Комментарий ->"));
+		assertFalse(StringRegexp.isHtmlComment("<!-- Комментарий --"));
+
+		assertFalse(StringRegexp.isHtmlComment("<!--< Comment -->"));
+		assertFalse(StringRegexp.isHtmlComment("<!---> Comment -->"));
+		assertFalse(StringRegexp.isHtmlComment("<!-- Comment<!--->"));
+
+		assertFalse(StringRegexp.isHtmlComment("<!-- Comm<!--ent -->"));
+		assertFalse(StringRegexp.isHtmlComment("<!-- Comm-->ent -->"));
+		assertFalse(StringRegexp.isHtmlComment("<!-- Comm--!>ent -->"));
+
+		assertFalse(StringRegexp.isHtmlComment("<!-- <!--Comment -->"));
+		assertFalse(StringRegexp.isHtmlComment("<!-- -->Comment -->"));
+		assertFalse(StringRegexp.isHtmlComment("<!-- --!>Comment -->"));
+
+		assertFalse(StringRegexp.isHtmlComment("<!-- Comment<!-- -->"));
+		assertFalse(StringRegexp.isHtmlComment("<!-- Comment--> -->"));
+		assertFalse(StringRegexp.isHtmlComment("<!-- Comment--!> -->"));
+
+		// Оканчивается на "-->\n", а должно на "-->".
+		assertFalse(StringRegexp.isHtmlComment("""
+			<!--
+				Comment
+			-->
+			"""));
+	}
+
+	/**
 	 * Проверка корректной цифры.
 	 */
 	@Test
@@ -1161,5 +1232,51 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(letter, StringRegexp.findLetter(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска HTML комментариев.
+	 */
+	@Test
+	public void findHTMLComment()
+	{
+		String[] htmlComment = {
+			"<!--Всё в свое время, зима и весна-->",
+			"<!-- яблоку место упасть\nКаждому вору возможность украсть\nКаждой собаке палку и кость-->",
+			"<!--,-->",
+			"<!---->"
+		};
+
+		String string = """
+			Песня без слов, ночь без сна
+			<!--Всё в свое время, зима и весна-->
+			Каждой звезде свой неба кусок
+			Каждому морю дождя глоток
+			Каждому <!-- яблоку место упасть
+			Каждому вору возможность украсть
+			Каждой собаке палку и кость-->
+			И каждому волку зубы и злость
+			   
+			Снова за окнами белый день
+			День вызывает меня на бой
+			Я чувствую, закрывая глаза
+			Весь мир идёт на меня войной
+			   
+			Если есть стадо, есть пастух
+			Если есть тело, должен быть дух
+			Если есть шаг<!--,--> должен быть след
+			Если есть тьма, должен быть свет
+			Хочешь ли ты изменить этот мир?
+			Сможешь ли ты принять как есть?
+			Встать и выйти из ряда вон?
+			Сесть на электрический стул или трон?
+			<!---->
+			Снова за окнами белый день
+			День вызывает меня на бой
+			Я чувствую, закрывая глаза
+			Весь мир идёт на меня войной
+			""";
+
+		assertArrayEquals(htmlComment, StringRegexp.findHtmlComment(string).toArray());
 	}
 }

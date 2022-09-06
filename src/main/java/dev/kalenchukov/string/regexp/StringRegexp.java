@@ -199,6 +199,30 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка HTML комментарием.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является HTML комментарием, иначе {@code false}.
+	 */
+	public static boolean isHtmlComment(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.HTML_COMMENT, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+	}
+
+	/**
+	 * Выполняет поиск HTML комментариев.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными HTML комментариями.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findHtmlComment(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.HTML_COMMENT, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+	}
+
+	/**
 	 * Выполняет поиск букв.
 	 *
 	 * @param string Строка.

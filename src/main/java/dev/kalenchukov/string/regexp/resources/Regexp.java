@@ -288,6 +288,16 @@ public enum Regexp
 		(?<letter>
 			[\\p{L}]{1}
 		)
+		"""),
+
+	HTML_COMMENT("comment", """
+		(?<comment>
+			<!--
+			(?!(<|->))
+			(?<value>((?!<!--|-->|--!>).)*?)
+			(?!(<!-))
+			-->
+		)
 		""");
 
 	/**
