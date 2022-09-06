@@ -93,7 +93,7 @@ public enum Regexp
 	EMAIL_ADDRESS("emailAddress", """
 		(?<emailAddress>
 			(?=.{1,64}@)
-			(?<localPart>
+			(?<local>
 				([\\p{L}0-9_-]+)
 				(\\.[\\p{L}0-9_-]+)*
 			)
@@ -102,7 +102,7 @@ public enum Regexp
 				[^-]
 				([\\p{L}0-9-]+)*
 				(\\.[\\p{L}0-9-]+)*
-				\\.(?<domainTld>(\\p{L}{2,}))
+				\\.(?<tld>(\\p{L}{2,}))
 			)
 		)
 		"""),
