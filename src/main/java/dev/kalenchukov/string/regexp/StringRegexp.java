@@ -195,7 +195,7 @@ public class StringRegexp
 	 */
 	public static boolean isLetter(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.LETTER);
+		return StringRegexp.is(string, Regexp.LETTER, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -232,7 +232,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findLetter(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.LETTER);
+		return StringRegexp.find(string, Regexp.LETTER, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
