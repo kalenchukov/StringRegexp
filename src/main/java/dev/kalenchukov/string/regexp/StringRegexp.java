@@ -184,7 +184,7 @@ public class StringRegexp
 	 */
 	public static boolean isWord(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.WORD);
+		return StringRegexp.is(string, Regexp.WORD, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -245,7 +245,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findWord(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.WORD);
+		return StringRegexp.find(string, Regexp.WORD, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
