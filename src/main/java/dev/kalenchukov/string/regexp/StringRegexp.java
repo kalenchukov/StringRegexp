@@ -254,6 +254,30 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка закрывающим HTML тегом.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является закрывающим HTML тегом, иначе {@code false}.
+	 */
+	public static boolean isHtmlEndTag(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.HTML_END_TAG, Pattern.CASE_INSENSITIVE);
+	}
+
+	/**
+	 * Выполняет поиск закрывающих HTML тегов.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными закрывающими HTML тегами.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findHtmlEndTag(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.HTML_END_TAG, Pattern.CASE_INSENSITIVE);
+	}
+
+	/**
 	 * Выполняет поиск областей CDATA.
 	 *
 	 * @param string Строка.

@@ -742,6 +742,32 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректного закрывающего HTML тега.
+	 */
+	@Test
+	public void isHtmlEndTagCorrect()
+	{
+		assertTrue(StringRegexp.isHtmlEndTag("</form>"));
+		assertTrue(StringRegexp.isHtmlEndTag("</form >"));
+		assertTrue(StringRegexp.isHtmlEndTag("</form  >"));
+	}
+
+	/**
+	 * Проверка некорректного закрывающего HTML тега.
+	 */
+	@Test
+	public void isHtmlEndTagNotCorrect()
+	{
+		assertFalse(StringRegexp.isHtmlEndTag(""));
+		assertFalse(StringRegexp.isHtmlEndTag(" "));
+
+		assertFalse(StringRegexp.isHtmlEndTag("</ form>"));
+		assertFalse(StringRegexp.isHtmlEndTag("< /form>"));
+
+		assertFalse(StringRegexp.isHtmlEndTag("text</form>"));
+	}
+
+	/**
 	 * Проверка корректной области CDATA.
 	 */
 	@Test
@@ -1450,7 +1476,7 @@ public class StringRegexpTest
 	 * Проверка поиска HTML комментариев.
 	 */
 	@Test
-	public void findHTMLComment()
+	public void findHtmlComment()
 	{
 		String[] htmlComment = {
 			"<!--Всё в свое время, зима и весна-->",
@@ -1547,7 +1573,7 @@ public class StringRegexpTest
 	 * Проверка поиска HTML сущностей в виде мнемоники.
 	 */
 	@Test
-	public void findHTMLEntityMnemonic()
+	public void findHtmlEntityMnemonic()
 	{
 		String[] htmlEntityMnemonic = {
 			"&frac14;",
@@ -1589,7 +1615,7 @@ public class StringRegexpTest
 	 * Проверка поиска HTML сущностей в виде числа.
 	 */
 	@Test
-	public void findHTMLEntityNumeric()
+	public void findHtmlEntityNumeric()
 	{
 		String[] htmlEntityNumeric = {
 			"&#44;",
@@ -1639,7 +1665,7 @@ public class StringRegexpTest
 	 * Проверка поиска HTML типов документа.
 	 */
 	@Test
-	public void findHTMLDoctype()
+	public void findHtmlDoctype()
 	{
 		String[] htmlDoctype = {
 			"<!DOCTYPE html>",
@@ -1672,5 +1698,44 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(htmlDoctype, StringRegexp.findHtmlDoctype(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска закрывающих HTML тегов.
+	 */
+	@Test
+	public void findHtmlEndTag()
+	{
+		String[] htmlEndTag = {
+			"</form>",
+			"</b >",
+			"</table>",
+			"</strong>",
+		};
+
+		String string = """
+			О-o, это странное место Камчатка,
+			О-o, это сладкое</form> слово "Камчатка".
+			Но на этой земле я не вижу тебя,
+			Я не вижу твоих кораблей,
+			Я не вижу реки, я не вижу моста,
+			Ну и пусть...</b >
+			
+			О-o, это странное место Камчатка,
+			О-o, это сладкое слово "Камчатка".
+			Я нашел здесь руду</table>, я нашел здесь любовь,
+			Я пытаюсь забыть, забываю и вновь
+			Вспоминаю собаку, она, как звезда,
+			Ну и пусть...
+			
+			О-o, это странное место Камчатка,
+			О-o, это сладкое слово "Камчатка"</strong>.
+			Я не вижу здесь их, я не вижу здесь нас,
+			Я искал здесь вино, а нашел третий глаз,
+			Мои руки из дуба, голова из свинца,
+			Ну и пусть...
+			""";
+
+		assertArrayEquals(htmlEndTag, StringRegexp.findHtmlEndTag(string).toArray());
 	}
 }

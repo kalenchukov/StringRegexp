@@ -132,6 +132,13 @@ StringRegexp.isHtmlDoctype("<!DOCTYPE html>");
 // Результат выполнения: true
 ```
 
+#### Проверка закрывающего HTML тега
+
+```java
+StringRegexp.isHtmlEndTag("</form>");
+// Результат выполнения: true
+```
+
 #### Проверка области CData
 
 ```java
@@ -547,6 +554,28 @@ StringRegexp.findHtmlDoctype(text);
 [
     "<!DOCTYPE html>",
     "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'\n'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>"
+]
+*/
+```
+
+#### Поиск закрывающих HTML тегов
+
+```java
+String text = """
+    О-o, это странное место Камчатка,
+    О-o, это сладкое</form> слово "Камчатка".
+    Но на этой земле я не вижу тебя,
+    Я не вижу твоих кораблей,
+    Я не вижу реки, я не вижу моста,
+    Ну и пусть...</b >
+    """;
+
+StringRegexp.findHtmlEndTag(text);
+/*
+Результат выполнения: 
+[
+    "</form>",
+    "</b >"
 ]
 */
 ```
