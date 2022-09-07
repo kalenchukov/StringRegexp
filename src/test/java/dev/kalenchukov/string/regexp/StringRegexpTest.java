@@ -559,6 +559,8 @@ public class StringRegexpTest
 		assertFalse(StringRegexp.isHtmlComment(""));
 		assertFalse(StringRegexp.isHtmlComment(" "));
 
+		assertFalse(StringRegexp.isHtmlComment("34546<!-- Comment -->"));
+
 		assertFalse(StringRegexp.isHtmlComment("<!- Комментарий -->"));
 		assertFalse(StringRegexp.isHtmlComment("<-- Комментарий -->"));
 
@@ -586,6 +588,66 @@ public class StringRegexpTest
 			<!--
 				Comment
 			-->
+			"""));
+	}
+
+	/**
+	 * Проверка корректной области CDATA.
+	 */
+	@Test
+	public void isCDataCorrect()
+	{
+		assertTrue(StringRegexp.isCData("<![CDATA[]]>"));
+		assertTrue(StringRegexp.isCData("<![CDATA[ ]]>"));
+		assertTrue(StringRegexp.isCData("<![CDATA[  ]]>"));
+
+		assertTrue(StringRegexp.isCData("<![CDATA[ 12345 ]]>"));
+		assertTrue(StringRegexp.isCData("<![CDATA[ Текст ]]>"));
+		assertTrue(StringRegexp.isCData("<![CDATA[ Text ]]>"));
+
+		assertTrue(StringRegexp.isCData("<![CDATA[ Text]]>"));
+		assertTrue(StringRegexp.isCData("<![CDATA[Текст ]]>"));
+
+		assertTrue(StringRegexp.isCData("""
+			<![CDATA[
+
+			]]>"""));
+
+		assertTrue(StringRegexp.isCData("""
+			<![CDATA[
+				12345
+			]]>"""));
+
+		assertTrue(StringRegexp.isCData("""
+			<![CDATA[
+				12345 ]]>"""));
+	}
+
+	/**
+	 * Проверка некорректной области CDATA.
+	 */
+	@Test
+	public void isCDataNotCorrect()
+	{
+		assertFalse(StringRegexp.isCData(""));
+		assertFalse(StringRegexp.isCData(" "));
+
+		assertFalse(StringRegexp.isCData("2134<![CDATA[ Text ]]>"));
+
+		assertFalse(StringRegexp.isCData("<[CDATA[ Текст ]]>"));
+
+		assertFalse(StringRegexp.isCData("<![CDATA[ Текст ]>"));
+		assertFalse(StringRegexp.isCData("<![CDATA[ Текст ]]"));
+
+		assertFalse(StringRegexp.isCData("<![CDATA[ Te]]>xt ]]>"));
+		assertFalse(StringRegexp.isCData("<![CDATA[ ]]>Text ]]>"));
+		assertFalse(StringRegexp.isCData("<![CDATA[ Text]]> ]]>"));
+
+		// Оканчивается на "]]>\n", а должно на "]]>".
+		assertFalse(StringRegexp.isCData("""
+			<![CDATA[
+				Text
+			]]>
 			"""));
 	}
 
@@ -1278,5 +1340,56 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(htmlComment, StringRegexp.findHtmlComment(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска областей CDATA.
+	 */
+	@Test
+	public void findCData()
+	{
+		String[] cData = {
+			"<![CDATA[Здесь не понятно, где лицо, а где рыло,]]>",
+			"<![CDATA[Здесь в сено не втыкаются вилы,\nА рыба проходит сквозь сеть.\nИ не ясно, где море, где суша,\nГде золото, а где медь.]]>",
+			"<![CDATA[...]]>",
+			"<![CDATA[]]>"
+		};
+
+		String string = """
+			<![CDATA[Здесь не понятно, где лицо, а где рыло,]]>
+			И не понятно, где пряник, где плеть.
+			<![CDATA[Здесь в сено не втыкаются вилы,
+			А рыба проходит сквозь сеть.
+			И не ясно, где море, где суша,
+			Где золото, а где медь.]]>
+			Что построить, и что разрушить,
+			И кому, и зачем здесь петь?
+			
+			Нам с тобой: голубых небес навес.
+			Нам с тобой: станет лес глухой стеной.
+			Нам с тобой: из заплеванных колодцев не пить.
+			План такой – нам с тобой<![CDATA[...]]>
+			
+			Здесь камни похожи на мыло,
+			А сталь похожа на жесть,
+			И слабость, как сила,
+			И правда, как лесть.
+			И не ясно, где мешок, а где шило,
+			И не ясно, где обида, а где месть.
+			И мне не нравится то, что здесь было,
+			И мне не нравится то, что здесь есть.
+			<![CDATA[]]>
+			Нам с тобой: голубых небес навес.
+			Нам с тобой: станет лес глухой стеной.
+			Нам с тобой: из заплеванных колодцев не пить.
+			План такой – нам с тобой...
+			
+			Чёрная ночь да в реке вода - нам с тобой.
+			И беда станет не беда. Уезжай...
+			Так, была не была, прости и прощай.
+			План такой - нам с тобой...
+			""";
+
+		assertArrayEquals(cData, StringRegexp.findCData(string).toArray());
 	}
 }

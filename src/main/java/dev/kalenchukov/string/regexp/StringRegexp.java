@@ -210,6 +210,30 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка областью CDATA.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является областью CDATA, иначе {@code false}.
+	 */
+	public static boolean isCData(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.CDATA, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+	}
+
+	/**
+	 * Выполняет поиск областей CDATA.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными областями CDATA.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findCData(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.CDATA, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+	}
+
+	/**
 	 * Выполняет поиск HTML комментариев.
 	 *
 	 * @param string Строка.
