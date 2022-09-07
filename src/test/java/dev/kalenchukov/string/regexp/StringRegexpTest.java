@@ -26,6 +26,8 @@ package dev.kalenchukov.string.regexp;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class StringRegexpTest
@@ -522,7 +524,7 @@ public class StringRegexpTest
 	 * Проверка корректного HTML комментария.
 	 */
 	@Test
-	public void isHTMLCommentCorrect()
+	public void isHtmlCommentCorrect()
 	{
 		assertTrue(StringRegexp.isHtmlComment("<!---->"));
 		assertTrue(StringRegexp.isHtmlComment("<!-- -->"));
@@ -554,7 +556,7 @@ public class StringRegexpTest
 	 * Проверка некорректного HTML комментария.
 	 */
 	@Test
-	public void isHTMLCommentNotCorrect()
+	public void isHtmlCommentNotCorrect()
 	{
 		assertFalse(StringRegexp.isHtmlComment(""));
 		assertFalse(StringRegexp.isHtmlComment(" "));
@@ -595,7 +597,7 @@ public class StringRegexpTest
 	 * Проверка корректной HTML сущности в виде мнемоники.
 	 */
 	@Test
-	public void isHTMLEntityMnemonicCorrect()
+	public void isHtmlEntityMnemonicCorrect()
 	{
 		assertTrue(StringRegexp.isHtmlEntityMnemonic("&dd;"));
 		assertTrue(StringRegexp.isHtmlEntityMnemonic("&dollar;"));
@@ -609,7 +611,7 @@ public class StringRegexpTest
 	 * Проверка некорректной HTML сущности в виде мнемоники.
 	 */
 	@Test
-	public void isHTMLEntityMnemonicNotCorrect()
+	public void isHtmlEntityMnemonicNotCorrect()
 	{
 		assertFalse(StringRegexp.isHtmlEntityMnemonic(""));
 		assertFalse(StringRegexp.isHtmlEntityMnemonic(" "));
@@ -630,7 +632,7 @@ public class StringRegexpTest
 	 * Проверка корректной HTML сущности в виде числа.
 	 */
 	@Test
-	public void isHTMLEntityNumericCorrect()
+	public void isHtmlEntityNumericCorrect()
 	{
 		assertTrue(StringRegexp.isHtmlEntityNumeric("&#038;"));
 		assertTrue(StringRegexp.isHtmlEntityNumeric("&#38;"));
@@ -646,7 +648,7 @@ public class StringRegexpTest
 	 * Проверка некорректной HTML сущности в виде числа.
 	 */
 	@Test
-	public void isHTMLEntityNumericNotCorrect()
+	public void isHtmlEntityNumericNotCorrect()
 	{
 		assertFalse(StringRegexp.isHtmlEntityNumeric(""));
 		assertFalse(StringRegexp.isHtmlEntityNumeric(" "));
@@ -661,6 +663,82 @@ public class StringRegexpTest
 		assertFalse(StringRegexp.isHtmlEntityNumeric("&#256"));
 
 		assertFalse(StringRegexp.isHtmlEntityNumeric("&#2D56;"));
+	}
+
+	/**
+	 * Проверка корректной HTML типа документа.
+	 */
+	@Test
+	public void isHtmlDoctypeCorrect()
+	{
+		assertTrue(StringRegexp.isHtmlDoctype(
+			"<!DOCTYPE html>"
+		));
+		assertTrue(StringRegexp.isHtmlDoctype(
+			"<!DOCTYPE  html >"
+		));
+		assertTrue(StringRegexp.isHtmlDoctype(
+			"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">"
+		));
+		assertTrue(StringRegexp.isHtmlDoctype(
+			"<!DOCTYPE HTML PUBLIC \"+//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">"
+		));
+		assertTrue(StringRegexp.isHtmlDoctype(
+			"<!DOCTYPE HTML PUBLIC   '-//W3C//DTD HTML 4.01 Transitional//EN' \"http://www.w3.org/TR/html4/loose.dtd\">"
+		));
+		assertTrue(StringRegexp.isHtmlDoctype(
+			"<!DOCTYPE HTML  PUBLIC \"-//W3C//DTD HTML 4.01 Frameset//EN\"  'http://www.w3.org/TR/html4/frameset.dtd'>"
+		));
+		assertTrue(StringRegexp.isHtmlDoctype(
+			"<!DOCTYPE html  PUBLIC  '-//W3C//DTD XHTML 1.0 Strict//EN'   'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd' >"
+		));
+		assertTrue(StringRegexp.isHtmlDoctype("""
+			<!DOCTYPE html PUBLIC
+				'-//W3C//DTD XHTML 1.0 Frameset//EN'
+			'http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd'
+			>"""
+		));
+		assertTrue(StringRegexp.isHtmlDoctype("""
+			<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+				"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">"""
+		));
+	}
+
+	/**
+	 * Проверка некорректной HTML типа документа.
+	 */
+	@Test
+	public void isHtmlDoctypeNotCorrect()
+	{
+		assertFalse(StringRegexp.isHtmlDoctype(""));
+		assertFalse(StringRegexp.isHtmlDoctype(" "));
+
+		assertFalse(StringRegexp.isHtmlDoctype("<DOCTYPE>"));
+
+		assertFalse(StringRegexp.isHtmlDoctype("<DOCTYPE html>"));
+
+		assertFalse(StringRegexp.isHtmlDoctype("text<!DOCTYPE html>"));
+
+		assertFalse(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC>"));
+
+		assertFalse(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"\">"));
+		assertFalse(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\">"));
+		assertFalse(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">"));
+		assertFalse(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"-//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">"));
+		assertFalse(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"-//W3C//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">"));
+		assertFalse(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01\" \"http://www.w3.org/TR/html4/strict.dtd\">"));
+		assertFalse(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//\" \"http://www.w3.org/TR/html4/strict.dtd\">"));
+
+		assertFalse(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"\" \"http://www.w3.org/TR/html4/strict.dtd\">"));
+		assertFalse(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"http://www.w3.org/TR/html4/strict.dtd\">"));
+
+		assertFalse(StringRegexp.isHtmlDoctype("""
+			<!DOCTYPE html PUBLIC
+				'-//W3C//DTD XHTML 1.0 Frameset//EN'
+			'http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd'
+			>
+			"""
+		));
 	}
 
 	/**
@@ -1555,5 +1633,44 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(htmlEntityNumeric, StringRegexp.findHtmlEntityNumeric(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска HTML типов документа.
+	 */
+	@Test
+	public void findHTMLDoctype()
+	{
+		String[] htmlDoctype = {
+			"<!DOCTYPE html>",
+			"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'\n'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>",
+			"<!DOCTYPE html PUBLIC \"+//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">",
+			"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" 'http://www.w3.org/TR/html4/loose.dtd'>"
+		};
+
+		String string = """
+			<!DOCTYPE html>Они говорят: им нельзя рисковать,
+			Потому что у них есть дом,
+			В доме горит свет.
+			И я не знаю точно, <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+			'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'> кто из нас прав,
+			Меня ждет на улице дождь,
+			Их ждет дома обед.
+			<!DOCTYPE html PUBLIC "+//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+			Закрой за мной дверь.
+			Я ухожу.
+			
+			И если тебе вдруг наскучит твой ласковый свет,
+			Тебе найдется место у нас,
+			Дождя хватит на всех.
+			Посмотри на часы, посмотри на портрет на стене,
+			Прислушайся –<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 'http://www.w3.org/TR/html4/loose.dtd'> там, за окном,
+			Ты услышишь наш смех.
+			
+			Закрой за мной дверь.
+			Я ухожу.
+			""";
+
+		assertArrayEquals(htmlDoctype, StringRegexp.findHtmlDoctype(string).toArray());
 	}
 }

@@ -125,6 +125,13 @@ StringRegexp.isHtmlEntityтNumeric("&38;");
 // Результат выполнения: true
 ```
 
+#### Проверка HTML типа документа
+
+```java
+StringRegexp.isHtmlDoctype("<!DOCTYPE html>");
+// Результат выполнения: true
+```
+
 #### Проверка области CData
 
 ```java
@@ -517,6 +524,29 @@ StringRegexp.findHtmlEntityNumeric(text);
 [
     "&#44;",
     "&#169;"
+]
+*/
+```
+
+#### Поиск HTML типа документа
+
+```java
+String text = """
+    <!DOCTYPE html>Они говорят: им нельзя рисковать,
+    Потому что у них есть дом,
+    В доме горит свет.
+    И я не знаю точно, <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'> кто из нас прав,
+    Меня ждет на улице дождь,
+    Их ждет дома обед.
+    """;
+
+StringRegexp.findHtmlDoctype(text);
+/*
+Результат выполнения: 
+[
+    "<!DOCTYPE html>",
+    "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'\n'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>"
 ]
 */
 ```

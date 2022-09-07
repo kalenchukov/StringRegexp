@@ -232,6 +232,17 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка HTML типом документа.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является HTML типом документа, иначе {@code false}.
+	 */
+	public static boolean isHtmlDoctype(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.HTML_DOCTYPE, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+	}
+
+	/**
 	 * Проверяет, является ли строка областью CDATA.
 	 *
 	 * @param string Строка
@@ -253,6 +264,19 @@ public class StringRegexp
 	public static List<@NotNull String> findCData(@NotNull final String string)
 	{
 		return StringRegexp.find(string, Regexp.CDATA, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+	}
+
+	/**
+	 * Выполняет поиск HTML типов документа.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными HTML типами документа.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findHtmlDoctype(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.HTML_DOCTYPE, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
 	}
 
 	/**
