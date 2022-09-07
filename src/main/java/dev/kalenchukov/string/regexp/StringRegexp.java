@@ -210,6 +210,17 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка HTML сущностью в виде мнемоники.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является HTML сущностью в виде мнемоники, иначе {@code false}.
+	 */
+	public static boolean isHtmlEntityMnemonic(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.HTML_ENTITY_MNEMONIC, Pattern.CASE_INSENSITIVE);
+	}
+
+	/**
 	 * Проверяет, является ли строка областью CDATA.
 	 *
 	 * @param string Строка
@@ -231,6 +242,19 @@ public class StringRegexp
 	public static List<@NotNull String> findCData(@NotNull final String string)
 	{
 		return StringRegexp.find(string, Regexp.CDATA, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+	}
+
+	/**
+	 * Выполняет поиск HTML сущностей в виде мнемоники.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными HTML сущностями в виде мнемоники.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findHtmlEntityMnemonic(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.HTML_ENTITY_MNEMONIC, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**

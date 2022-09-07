@@ -592,6 +592,41 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректной HTML сущности в виде мнемоники.
+	 */
+	@Test
+	public void isHTMLEntityMnemonicCorrect()
+	{
+		assertTrue(StringRegexp.isHtmlEntityMnemonic("&dd;"));
+		assertTrue(StringRegexp.isHtmlEntityMnemonic("&dollar;"));
+		assertTrue(StringRegexp.isHtmlEntityMnemonic("&DownArrowBar;"));
+		assertTrue(StringRegexp.isHtmlEntityMnemonic("&ecir;"));
+		assertTrue(StringRegexp.isHtmlEntityMnemonic("&DD;"));
+		assertTrue(StringRegexp.isHtmlEntityMnemonic("&frac14;"));
+	}
+
+	/**
+	 * Проверка некорректной HTML сущности в виде мнемоники.
+	 */
+	@Test
+	public void isHTMLEntityMnemonicNotCorrect()
+	{
+		assertFalse(StringRegexp.isHtmlEntityMnemonic(""));
+		assertFalse(StringRegexp.isHtmlEntityMnemonic(" "));
+
+		assertFalse(StringRegexp.isHtmlEntityMnemonic("34546&DownArrowBar;"));
+
+		assertFalse(StringRegexp.isHtmlEntityMnemonic("&"));
+		assertFalse(StringRegexp.isHtmlEntityMnemonic(";"));
+		assertFalse(StringRegexp.isHtmlEntityMnemonic("&;"));
+		assertFalse(StringRegexp.isHtmlEntityMnemonic("&d;"));
+		assertFalse(StringRegexp.isHtmlEntityMnemonic("ecir;"));
+		assertFalse(StringRegexp.isHtmlEntityMnemonic("&ecir"));
+		assertFalse(StringRegexp.isHtmlEntityMnemonic("&3124;"));
+		assertFalse(StringRegexp.isHtmlEntityMnemonic("&1DownArrowBar;"));
+	}
+
+	/**
 	 * Проверка корректной области CDATA.
 	 */
 	@Test
@@ -1391,5 +1426,47 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(cData, StringRegexp.findCData(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска HTML сущностей в виде мнемоники.
+	 */
+	@Test
+	public void findHTMLEntityMnemonic()
+	{
+		String[] htmlComment = {
+			"&frac14;",
+			"&amp;",
+			"&commat;",
+			"&lt;"
+		};
+
+		String string = """
+			Как много веселых ребят,
+			И все делают &frac14; велосипед,
+			А один из них как-нибудь утром придумает порох.
+			Ну а я здесь сижу без тебя,&amp;
+			Мне до этих ребят дела нет,
+			Лишь окурки лежат на полу, да мусора ворох.
+			
+			Расскажи мне историю этого мира,
+			Удивись количеству прожитых лет,
+			Расскажи, &commat;каково быть мишенью в тире,
+			У меня есть вопрос, на который ты не дашь мне ответ.
+			
+			Так странно проходят часы,
+			И так странно не хочется спать,
+			И так странно, когда за окном проезжает машина.
+			И я не знаю, точны ли весы,
+			Но мне не хочется их проверять,
+			Мне слишком нравится эта картина.
+			
+			Расскажи мне историю этого мира,
+			Удивись количеству прожитых лет&lt;,
+			Расскажи, каково быть мишенью в тире,
+			У меня есть вопрос, на который ты не дашь мне ответ.
+			""";
+
+		assertArrayEquals(htmlComment, StringRegexp.findHtmlEntityMnemonic(string).toArray());
 	}
 }
