@@ -221,6 +221,17 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка HTML сущностью в виде числа.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является HTML сущностью в виде числа, иначе {@code false}.
+	 */
+	public static boolean isHtmlEntityNumeric(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.HTML_ENTITY_NUMERIC);
+	}
+
+	/**
 	 * Проверяет, является ли строка областью CDATA.
 	 *
 	 * @param string Строка
@@ -255,6 +266,19 @@ public class StringRegexp
 	public static List<@NotNull String> findHtmlEntityMnemonic(@NotNull final String string)
 	{
 		return StringRegexp.find(string, Regexp.HTML_ENTITY_MNEMONIC, Pattern.CASE_INSENSITIVE);
+	}
+
+	/**
+	 * Выполняет поиск HTML сущностей в виде числа.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными HTML сущностями в виде числа.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findHtmlEntityNumeric(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.HTML_ENTITY_NUMERIC);
 	}
 
 	/**

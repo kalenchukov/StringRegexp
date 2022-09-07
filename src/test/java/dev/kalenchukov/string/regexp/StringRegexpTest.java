@@ -627,6 +627,43 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректной HTML сущности в виде числа.
+	 */
+	@Test
+	public void isHTMLEntityNumericCorrect()
+	{
+		assertTrue(StringRegexp.isHtmlEntityNumeric("&#038;"));
+		assertTrue(StringRegexp.isHtmlEntityNumeric("&#38;"));
+		assertTrue(StringRegexp.isHtmlEntityNumeric("&#256;"));
+		assertTrue(StringRegexp.isHtmlEntityNumeric("&#0038;"));
+		assertTrue(StringRegexp.isHtmlEntityNumeric("&#8501;"));
+		assertTrue(StringRegexp.isHtmlEntityNumeric("&#10590;"));
+		assertTrue(StringRegexp.isHtmlEntityNumeric("&#010590;"));
+		assertTrue(StringRegexp.isHtmlEntityNumeric("&#0010590;"));
+	}
+
+	/**
+	 * Проверка некорректной HTML сущности в виде числа.
+	 */
+	@Test
+	public void isHTMLEntityNumericNotCorrect()
+	{
+		assertFalse(StringRegexp.isHtmlEntityNumeric(""));
+		assertFalse(StringRegexp.isHtmlEntityNumeric(" "));
+
+		assertFalse(StringRegexp.isHtmlEntityNumeric("34546&#8501;"));
+
+		assertFalse(StringRegexp.isHtmlEntityNumeric("&#3;"));
+		assertFalse(StringRegexp.isHtmlEntityNumeric("&#373532589788;"));
+
+		assertFalse(StringRegexp.isHtmlEntityNumeric("#256;"));
+		assertFalse(StringRegexp.isHtmlEntityNumeric("&256;"));
+		assertFalse(StringRegexp.isHtmlEntityNumeric("&#256"));
+
+		assertFalse(StringRegexp.isHtmlEntityNumeric("&#2D56;"));
+	}
+
+	/**
 	 * Проверка корректной области CDATA.
 	 */
 	@Test
@@ -1434,7 +1471,7 @@ public class StringRegexpTest
 	@Test
 	public void findHTMLEntityMnemonic()
 	{
-		String[] htmlComment = {
+		String[] htmlEntityMnemonic = {
 			"&frac14;",
 			"&amp;",
 			"&commat;",
@@ -1467,6 +1504,56 @@ public class StringRegexpTest
 			У меня есть вопрос, на который ты не дашь мне ответ.
 			""";
 
-		assertArrayEquals(htmlComment, StringRegexp.findHtmlEntityMnemonic(string).toArray());
+		assertArrayEquals(htmlEntityMnemonic, StringRegexp.findHtmlEntityMnemonic(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска HTML сущностей в виде числа.
+	 */
+	@Test
+	public void findHTMLEntityNumeric()
+	{
+		String[] htmlEntityNumeric = {
+			"&#44;",
+			"&#169;",
+			"&#10589;",
+			"&#10590;"
+		};
+
+		String string = """
+			В моем доме не видно стены,
+			В моем небе &#44;не видно луны.
+			Я слеп, но я вижу тебя,
+			Я глух, но я слышу тебя.
+			Я не сплю, &#169; но я вижу сны,
+			Здесь нет моей вины,
+			Я нем, но ты слышишь меня,
+			И этим мы сильны.
+			
+			И снова приходит ночь,
+			Я пьян, но я слышу дождь,
+			Дождь для нас...
+			Квартира пуста, но мы здесь,
+			Здесь мало, что есть, но мы есть.
+			Дождь для нас...
+			
+			Ты видишь мою звезду,
+			Ты веришь, что я пойду.
+			Я слеп, я не вижу звезд,
+			Я пьян, но я помню свой пост.
+			Ты смотришь на Млечный Путь,
+			Я - ночь, а ты -&#10589; утра суть.
+			Я - сон, я не видим тебе,
+			Я слеп, но я вижу свет.
+			
+			И снова приходит ночь,
+			Я пьян, но я слышу дождь,
+			Дождь для нас...&#10590;
+			Квартира пуста, но мы здесь,
+			Здесь мало, что есть, но мы есть.
+			Дождь для нас...
+			""";
+
+		assertArrayEquals(htmlEntityNumeric, StringRegexp.findHtmlEntityNumeric(string).toArray());
 	}
 }
