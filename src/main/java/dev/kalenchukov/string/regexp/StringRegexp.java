@@ -276,6 +276,30 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка самозакрывающимся HTML тегом.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является самозакрывающимся HTML тегом, иначе {@code false}.
+	 */
+	public static boolean isHtmlSelfClosingTag(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.HTML_SELF_CLOSING_TAG, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+	}
+
+	/**
+	 * Выполняет поиск самозакрывающихся HTML тегов.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными самозакрывающихся HTML тегами.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findHtmlSelfClosingTag(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.HTML_SELF_CLOSING_TAG, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+	}
+
+	/**
 	 * Выполняет поиск открывающих HTML тегов.
 	 *
 	 * @param string Строка.

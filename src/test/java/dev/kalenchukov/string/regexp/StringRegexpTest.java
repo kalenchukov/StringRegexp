@@ -760,6 +760,104 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректного самозакрывающегося HTML тега.
+	 */
+	@Test
+	public void isHtmlSelfClosingTagCorrect()
+	{
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta/>"));
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta />"));
+
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta charset='UTF-8' />"));
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta charset=\"UTF-8\"/>"));
+
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta />"));
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta  />"));
+
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta value/>"));
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta value=yes/>"));
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta value = yes />"));
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta value  =  yes  />"));
+
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<input id=''/>"));
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<input id=\"\"/>"));
+
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta charset='UTF-8'/>"));
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta charset=\"UTF-8\"/>"));
+
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta name='123'/>"));
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta name=' текст'/>"));
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta name=' текст 123'/>"));
+
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta name=\"input name\"/>"));
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<meta name=\"0123456789\"/>"));
+
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<input id='input-id'/>"));
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<input id=\"input-id-123\"/>"));
+
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<input name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=0\"/>"));
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<input name=viewport content=\"width=device-width, initial-scale=1, user-scalable=0\"/>"));
+
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<input id  ='ID' qwe-attr =  \"my_attribute\"  />"));
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("<input qwe_attr =  \"my_attribute\"  />"));
+
+		assertTrue(StringRegexp.isHtmlSelfClosingTag("""
+			<link
+				rel="icon"
+			type='image/png'
+				sizes=""
+				href=''/>"""));
+	}
+
+	/**
+	 * Проверка некорректного самозакрывающегося HTML тега.
+	 */
+	@Test
+	public void isHtmlSelfClosingTagNotCorrect()
+	{
+		assertFalse(StringRegexp.isHtmlSelfClosingTag(""));
+		assertFalse(StringRegexp.isHtmlSelfClosingTag(" "));
+
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("text<input/>"));
+
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<link href=/>"));
+
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input name='text\"/>"));
+
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input name=text'/>"));
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input name='text/>"));
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input name='te'xt'/>"));
+
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input name=text\"/>"));
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input name=\"text/>"));
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input name=\"te\"xt\"/>"));
+
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("< input/>"));
+
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input/"));
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("input/>"));
+
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<inp-ut/>"));
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<inp_ut/>"));
+
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input id=='input-id'/>"));
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input id = = 'input-id'/>"));
+
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input id=''input-id'/>"));
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input id='input-id''/>"));
+
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input id=input=id/>"));
+
+		assertFalse(StringRegexp.isHtmlSelfClosingTag("""
+			<link
+				rel="icon"
+			type='image/png'
+				sizes=""
+				href=/>
+			"""));
+	}
+
+	/**
 	 * Проверка корректного открывающего HTML тега.
 	 */
 	@Test
@@ -1866,5 +1964,51 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(htmlStartTag, StringRegexp.findHtmlStartTag(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска самозакрывающихся HTML тегов.
+	 */
+	@Test
+	public void findHtmlSelfClosingTag()
+	{
+		String[] htmlStartTag = {
+			"<br/>",
+			"<meta charset='UTF-8'/>",
+			"<input type='checkbox'  />",
+			"<input value =  yes/>",
+		};
+
+		String string = """
+			У меня есть дом, только нет ключей,
+			У меня есть солнце, но оно среди туч,<br/>
+			Есть голова<meta charset='UTF-8'/>, только нет плечей,
+			Но я вижу, как тучи режут солнечный луч.
+			У меня есть слово, но в нем нет букв,
+			У меня есть лес, но нет топоров,
+			У меня есть время, но нет сил ждать,
+			И есть еще ночь, но в ней нет снов.
+			
+			И есть еще белые, белые дни,
+			Белые горы и белый лед.
+			Но все, что мне нужно <input type='checkbox'  />- это несколько слов
+			И место для шага вперед.
+			
+			У меня река, только нет моста,
+			У меня есть мыши, но нет кота,
+			У меня есть парус, но ветра нет
+			И есть еще краски, но нет холста.
+			У меня на <input value =  yes/> кухне из крана вода,
+			У меня есть рана, но нет бинта,
+			У меня есть братья, но нет родных
+			И есть рука, и она пуста.
+			
+			И есть еще белые, белые дни,
+			Белые горы и белый лед.
+			Но все, что мне нужно - это несколько слов
+			И место для шага вперед.
+			""";
+
+		assertArrayEquals(htmlStartTag, StringRegexp.findHtmlSelfClosingTag(string).toArray());
 	}
 }
