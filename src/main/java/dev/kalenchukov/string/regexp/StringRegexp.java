@@ -265,6 +265,30 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка открывающим HTML тегом.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является открывающим HTML тегом, иначе {@code false}.
+	 */
+	public static boolean isHtmlStartTag(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.HTML_START_TAG, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+	}
+
+	/**
+	 * Выполняет поиск открывающих HTML тегов.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными открывающими HTML тегами.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findHtmlStartTag(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.HTML_START_TAG, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+	}
+
+	/**
 	 * Выполняет поиск закрывающих HTML тегов.
 	 *
 	 * @param string Строка.

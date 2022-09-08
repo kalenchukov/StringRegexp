@@ -671,27 +671,16 @@ public class StringRegexpTest
 	@Test
 	public void isHtmlDoctypeCorrect()
 	{
-		assertTrue(StringRegexp.isHtmlDoctype(
-			"<!DOCTYPE html>"
-		));
-		assertTrue(StringRegexp.isHtmlDoctype(
-			"<!DOCTYPE  html >"
-		));
-		assertTrue(StringRegexp.isHtmlDoctype(
-			"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">"
-		));
-		assertTrue(StringRegexp.isHtmlDoctype(
-			"<!DOCTYPE HTML PUBLIC \"+//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">"
-		));
-		assertTrue(StringRegexp.isHtmlDoctype(
-			"<!DOCTYPE HTML PUBLIC   '-//W3C//DTD HTML 4.01 Transitional//EN' \"http://www.w3.org/TR/html4/loose.dtd\">"
-		));
-		assertTrue(StringRegexp.isHtmlDoctype(
-			"<!DOCTYPE HTML  PUBLIC \"-//W3C//DTD HTML 4.01 Frameset//EN\"  'http://www.w3.org/TR/html4/frameset.dtd'>"
-		));
-		assertTrue(StringRegexp.isHtmlDoctype(
-			"<!DOCTYPE html  PUBLIC  '-//W3C//DTD XHTML 1.0 Strict//EN'   'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd' >"
-		));
+		assertTrue(StringRegexp.isHtmlDoctype("<!DOCTYPE html>"));
+		assertTrue(StringRegexp.isHtmlDoctype("<!DOCTYPE  html >"));
+
+		assertTrue(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">"));
+		assertTrue(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"+//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">"));
+
+		assertTrue(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC   '-//W3C//DTD HTML 4.01 Transitional//EN' \"http://www.w3.org/TR/html4/loose.dtd\">"));
+		assertTrue(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML  PUBLIC \"-//W3C//DTD HTML 4.01 Frameset//EN\"  'http://www.w3.org/TR/html4/frameset.dtd'>"));
+		assertTrue(StringRegexp.isHtmlDoctype("<!DOCTYPE html  PUBLIC  '-//W3C//DTD XHTML 1.0 Strict//EN'   'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd' >"));
+
 		assertTrue(StringRegexp.isHtmlDoctype("""
 			<!DOCTYPE html PUBLIC
 				'-//W3C//DTD XHTML 1.0 Frameset//EN'
@@ -732,6 +721,9 @@ public class StringRegexpTest
 		assertFalse(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"\" \"http://www.w3.org/TR/html4/strict.dtd\">"));
 		assertFalse(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"http://www.w3.org/TR/html4/strict.dtd\">"));
 
+		assertFalse(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR'/html4/strict.dtd\">"));
+		assertFalse(StringRegexp.isHtmlDoctype("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" 'http://www.w3.org/TR\"/html4/strict.dtd'>"));
+
 		assertFalse(StringRegexp.isHtmlDoctype("""
 			<!DOCTYPE html PUBLIC
 				'-//W3C//DTD XHTML 1.0 Frameset//EN'
@@ -765,6 +757,101 @@ public class StringRegexpTest
 		assertFalse(StringRegexp.isHtmlEndTag("< /form>"));
 
 		assertFalse(StringRegexp.isHtmlEndTag("text</form>"));
+	}
+
+	/**
+	 * Проверка корректного открывающего HTML тега.
+	 */
+	@Test
+	public void isHtmlStartTagCorrect()
+	{
+		assertTrue(StringRegexp.isHtmlStartTag("<form>"));
+		assertTrue(StringRegexp.isHtmlStartTag("<form >"));
+		assertTrue(StringRegexp.isHtmlStartTag("<form  >"));
+
+		assertTrue(StringRegexp.isHtmlStartTag("<input value>"));
+		assertTrue(StringRegexp.isHtmlStartTag("<input value=yes>"));
+		assertTrue(StringRegexp.isHtmlStartTag("<input value = yes >"));
+		assertTrue(StringRegexp.isHtmlStartTag("<input value  =  yes  >"));
+
+		assertTrue(StringRegexp.isHtmlStartTag("<input id=''>"));
+		assertTrue(StringRegexp.isHtmlStartTag("<input id=\"\">"));
+
+		assertTrue(StringRegexp.isHtmlStartTag("<input type=\"checkbox\">"));
+		assertTrue(StringRegexp.isHtmlStartTag("<input type='checkbox'>"));
+
+		assertTrue(StringRegexp.isHtmlStartTag("<input name='123'>"));
+		assertTrue(StringRegexp.isHtmlStartTag("<input name=' текст'>"));
+		assertTrue(StringRegexp.isHtmlStartTag("<input name=' текст 123'>"));
+
+		assertTrue(StringRegexp.isHtmlStartTag("<input name=\"input name\">"));
+		assertTrue(StringRegexp.isHtmlStartTag("<input name=\"0123456789\">"));
+
+		assertTrue(StringRegexp.isHtmlStartTag("<input id='input-id'>"));
+		assertTrue(StringRegexp.isHtmlStartTag("<input id=\"input-id-123\">"));
+
+		assertTrue(StringRegexp.isHtmlStartTag("<meta charset=\"UTF-8\">"));
+
+		assertTrue(StringRegexp.isHtmlStartTag("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=0\">"));
+		assertTrue(StringRegexp.isHtmlStartTag("<meta name=viewport content=\"width=device-width, initial-scale=1, user-scalable=0\">"));
+
+		assertTrue(StringRegexp.isHtmlStartTag("<input id  ='ID' qwe-attr =  \"my_attribute\"  >"));
+		assertTrue(StringRegexp.isHtmlStartTag("<input qwe_attr =  \"my_attribute\"  >"));
+
+		assertTrue(StringRegexp.isHtmlStartTag("""
+			<link
+				rel="icon"
+			type='image/png'
+				sizes=""
+				href=''>"""));
+	}
+
+	/**
+	 * Проверка некорректного открывающего HTML тега.
+	 */
+	@Test
+	public void isHtmlStartTagNotCorrect()
+	{
+		assertFalse(StringRegexp.isHtmlStartTag(""));
+		assertFalse(StringRegexp.isHtmlStartTag(" "));
+
+		assertFalse(StringRegexp.isHtmlStartTag("text<input>"));
+
+		assertFalse(StringRegexp.isHtmlStartTag("<link href=>"));
+
+		assertFalse(StringRegexp.isHtmlStartTag("<input name='text\">"));
+
+		assertFalse(StringRegexp.isHtmlStartTag("<input name=text'>"));
+		assertFalse(StringRegexp.isHtmlStartTag("<input name='text>"));
+		assertFalse(StringRegexp.isHtmlStartTag("<input name='te'xt'>"));
+
+		assertFalse(StringRegexp.isHtmlStartTag("<input name=text\">"));
+		assertFalse(StringRegexp.isHtmlStartTag("<input name=\"text>"));
+		assertFalse(StringRegexp.isHtmlStartTag("<input name=\"te\"xt\">"));
+
+		assertFalse(StringRegexp.isHtmlStartTag("< input>"));
+
+		assertFalse(StringRegexp.isHtmlStartTag("<input"));
+		assertFalse(StringRegexp.isHtmlStartTag("input>"));
+
+		assertFalse(StringRegexp.isHtmlStartTag("<inp-ut>"));
+		assertFalse(StringRegexp.isHtmlStartTag("<inp_ut>"));
+
+		assertFalse(StringRegexp.isHtmlStartTag("<input id=='input-id'>"));
+		assertFalse(StringRegexp.isHtmlStartTag("<input id = = 'input-id'>"));
+
+		assertFalse(StringRegexp.isHtmlStartTag("<input id=''input-id'>"));
+		assertFalse(StringRegexp.isHtmlStartTag("<input id='input-id''>"));
+
+		assertFalse(StringRegexp.isHtmlStartTag("<input id=input=id>"));
+
+		assertFalse(StringRegexp.isHtmlStartTag("""
+			<link
+				rel="icon"
+			type='image/png'
+				sizes=""
+				href=>
+			"""));
 	}
 
 	/**
@@ -1737,5 +1824,47 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(htmlEndTag, StringRegexp.findHtmlEndTag(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска открывающих HTML тегов.
+	 */
+	@Test
+	public void findHtmlStartTag()
+	{
+		String[] htmlStartTag = {
+			"<b>",
+			"<meta charset='UTF-8'>",
+			"<input type='checkbox'  >",
+			"<input value =  yes>",
+		};
+
+		String string = """
+			Солдат шел по улице домой
+			И <b>увидел этих ребят.
+			"Кто ваша мама, ребята?" -
+			<meta charset='UTF-8'>Спросил у ребят солдат.
+			
+			Мама - Анархия,
+			Папа - стакан портвейна.
+			
+			Все они в кожаных куртках,
+			Все небольшого роста,
+			Хотел солдат пройти мимо<input type='checkbox'  >,
+			Но это было не просто.
+			
+			Мама - Анархия,
+			Папа - стакан портвейна.
+			
+			Довольно веселую шутку
+			Сыграли с солдатом ребята:<input value =  yes>
+			Раскрасили красным и синим,
+			Заставляли ругаться матом.
+			
+			Мама - Анархия,
+			Папа - стакан портвейна.
+			""";
+
+		assertArrayEquals(htmlStartTag, StringRegexp.findHtmlStartTag(string).toArray());
 	}
 }

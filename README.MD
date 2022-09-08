@@ -132,6 +132,13 @@ StringRegexp.isHtmlDoctype("<!DOCTYPE html>");
 // Результат выполнения: true
 ```
 
+#### Проверка открывающего HTML тега
+
+```java
+StringRegexp.isHtmlStartTag("<input type='checkbox'>");
+// Результат выполнения: true
+```
+
 #### Проверка закрывающего HTML тега
 
 ```java
@@ -554,6 +561,26 @@ StringRegexp.findHtmlDoctype(text);
 [
     "<!DOCTYPE html>",
     "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'\n'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>"
+]
+*/
+```
+
+#### Поиск открывающих HTML тегов
+
+```java
+String text = """
+    Солдат шел по улице домой
+    И <b>увидел этих ребят.
+    "Кто ваша мама, ребята?" -
+    <meta charset='UTF-8'>Спросил у ребят солдат.
+    """;
+
+StringRegexp.findHtmlStartTag(text);
+/*
+Результат выполнения: 
+[
+    "<b>",
+    "<meta charset='UTF-8'>"
 ]
 */
 ```
