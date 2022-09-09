@@ -287,30 +287,6 @@ public class StringRegexp
 	}
 
 	/**
-	 * Проверяет, является ли строка парным HTML тегом.
-	 *
-	 * @param string Строка
-	 * @return {@code True}, если строка является парным HTML тегом, иначе {@code false}.
-	 */
-	public static boolean isHtmlPairedTag(@NotNull final String string)
-	{
-		return StringRegexp.is(string, Regexp.HTML_PAIRED_TAG, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
-	}
-
-	/**
-	 * Выполняет поиск парных HTML тегов.
-	 *
-	 * @param string Строка.
-	 * @return Коллекцию с найденными парными HTML тегами.
-	 */
-	@Unmodifiable
-	@NotNull
-	public static List<@NotNull String> findHtmlPairedTag(@NotNull final String string)
-	{
-		return StringRegexp.find(string, Regexp.HTML_PAIRED_TAG, Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
-	}
-
-	/**
 	 * Выполняет поиск самозакрывающихся HTML тегов.
 	 *
 	 * @param string Строка.
@@ -620,7 +596,7 @@ public class StringRegexp
 							  @NotNull final Regexp regexp,
 							  @NotNull final Integer flags)
 	{
-		final Pattern pattern = Pattern.compile("^" + regexp.getPattern() + "$", flags);
+		final Pattern pattern = Pattern.compile(regexp.getPattern(), flags);
 		final Matcher matcher = pattern.matcher(string);
 
 		return matcher.matches();
