@@ -642,6 +642,7 @@ public class StringRegexpTest
 		assertTrue(StringRegexp.isHtmlEntityNumeric("&#10590;"));
 		assertTrue(StringRegexp.isHtmlEntityNumeric("&#010590;"));
 		assertTrue(StringRegexp.isHtmlEntityNumeric("&#0010590;"));
+		assertTrue(StringRegexp.isHtmlEntityNumeric("&#0000000000000010590;"));
 	}
 
 	/**
@@ -656,7 +657,6 @@ public class StringRegexpTest
 		assertFalse(StringRegexp.isHtmlEntityNumeric("34546&#8501;"));
 
 		assertFalse(StringRegexp.isHtmlEntityNumeric("&#3;"));
-		assertFalse(StringRegexp.isHtmlEntityNumeric("&#373532589788;"));
 
 		assertFalse(StringRegexp.isHtmlEntityNumeric("#256;"));
 		assertFalse(StringRegexp.isHtmlEntityNumeric("&256;"));
