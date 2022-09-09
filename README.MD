@@ -125,6 +125,13 @@ StringRegexp.isHtmlEntityтNumeric("&38;");
 // Результат выполнения: true
 ```
 
+#### Проверка HTML сущности в виде unicode
+
+```java
+StringRegexp.isHtmlEntityтUnicode("&#X22C8;");
+// Результат выполнения: true
+```
+
 #### Проверка HTML типа документа
 
 ```java
@@ -545,6 +552,30 @@ StringRegexp.findHtmlEntityNumeric(text);
 [
     "&#44;",
     "&#169;"
+]
+*/
+```
+
+#### Поиск HTML сущностей в виде unicode
+
+```java
+String text = """
+    Ночь, день -
+    Спать &#X22C8;лень.
+    Есть дым -&#x224E;
+    Чёрт с ним.
+    Сна нет -
+    Есть сон лет.
+    Кино -
+    Кончилось давно.
+    """;
+
+StringRegexp.findHtmlEntityUnicode(text);
+/*
+Результат выполнения: 
+[
+    "&#X22C8;",
+    "&#x224E;"
 ]
 */
 ```

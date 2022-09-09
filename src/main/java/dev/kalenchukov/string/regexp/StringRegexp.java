@@ -232,6 +232,17 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка HTML сущностью в виде unicode.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является HTML сущностью в виде unicode, иначе {@code false}.
+	 */
+	public static boolean isHtmlEntityUnicode(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.HTML_ENTITY_UNICODE, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+	}
+
+	/**
 	 * Проверяет, является ли строка HTML типом документа.
 	 *
 	 * @param string Строка
@@ -375,6 +386,19 @@ public class StringRegexp
 	public static List<@NotNull String> findHtmlEntityNumeric(@NotNull final String string)
 	{
 		return StringRegexp.find(string, Regexp.HTML_ENTITY_NUMERIC);
+	}
+
+	/**
+	 * Выполняет поиск HTML сущностей в виде unicode.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными HTML сущностями в виде unicode.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findHtmlEntityUnicode(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.HTML_ENTITY_UNICODE, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
 	}
 
 	/**

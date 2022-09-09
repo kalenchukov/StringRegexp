@@ -666,6 +666,38 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректной HTML сущности в виде unicode.
+	 */
+	@Test
+	public void isHtmlEntityUnicodeCorrect()
+	{
+		assertTrue(StringRegexp.isHtmlEntityUnicode("&#XB0;"));
+		assertTrue(StringRegexp.isHtmlEntityUnicode("&#x394;"));
+		assertTrue(StringRegexp.isHtmlEntityUnicode("&#X2223;"));
+		assertTrue(StringRegexp.isHtmlEntityUnicode("&#X154;"));
+		assertTrue(StringRegexp.isHtmlEntityUnicode("&#x00000000000000BB;"));
+	}
+
+	/**
+	 * Проверка некорректной HTML сущности в виде unicode.
+	 */
+	@Test
+	public void isHtmlEntityUnicodeNotCorrect()
+	{
+		assertFalse(StringRegexp.isHtmlEntityUnicode(""));
+		assertFalse(StringRegexp.isHtmlEntityUnicode(" "));
+
+		assertFalse(StringRegexp.isHtmlEntityUnicode("34546&#XB0;"));
+
+		assertFalse(StringRegexp.isHtmlEntityUnicode("&#x3;"));
+
+		assertFalse(StringRegexp.isHtmlEntityUnicode("#XB0;"));
+		assertFalse(StringRegexp.isHtmlEntityUnicode("&XB0;"));
+		assertFalse(StringRegexp.isHtmlEntityUnicode("&#B0;"));
+		assertFalse(StringRegexp.isHtmlEntityUnicode("&#B0"));
+	}
+
+	/**
 	 * Проверка корректной HTML типа документа.
 	 */
 	@Test
@@ -1844,6 +1876,51 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(htmlEntityNumeric, StringRegexp.findHtmlEntityNumeric(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска HTML сущностей в виде unicode.
+	 */
+	@Test
+	public void findHtmlEntityUnicode()
+	{
+		String[] htmlEntityUnicode = {
+			"&#X22C8;",
+			"&#x224E;",
+			"&#X0000141;",
+			"&#X000000BB;"
+		};
+
+		String string = """
+			Ночь, день -
+			Спать &#X22C8;лень.
+			Есть дым -&#x224E;
+			Чёрт с ним.
+			Сна нет -
+			Есть сон лет.
+			Кино -
+			Кончилось давно.
+			
+			Мой дом,
+			Я в нём
+			Сижу -
+			Пень пнём.
+			Есть свет&#X0000141;,
+			Сна нет.
+			Есть ночь -
+			Уже уходит прочь.
+			
+			Стоит таз,
+			Горит газ.
+			Щелчок -
+			&#X000000BB;И газ погас.
+			Пора спать -
+			В кровать.
+			Вставать,
+			Завтра вставать.
+			""";
+
+		assertArrayEquals(htmlEntityUnicode, StringRegexp.findHtmlEntityUnicode(string).toArray());
 	}
 
 	/**

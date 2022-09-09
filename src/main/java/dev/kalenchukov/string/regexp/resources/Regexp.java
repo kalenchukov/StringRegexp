@@ -26,8 +26,6 @@ package dev.kalenchukov.string.regexp.resources;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.regex.Pattern;
-
 /**
  * Перечисление шаблонов регулярных выражений.
  */
@@ -518,6 +516,29 @@ public enum Regexp
 			&
 			(?![0-9]+)
 			(?<mnemonic>[0-9A-Z]+)
+			;
+		)
+		"""),
+
+	/**
+	 * HTML сущность в виде unicode.
+	 *
+	 * <p>Требования:
+	 *     <ul>
+	 *         <li>Должен начинаться со строки "&#X";</li>
+	 *         <li>Может состоять из диапазона букв A-F и цифр;</li>
+	 *         <li>Не может быть меньше 6 символов;</li>
+	 *         <li>Должен заканчиваться символом ";".</li>
+	 *     </ul>
+	 */
+	HTML_ENTITY_UNICODE("entity", """
+		(?<entity>
+			(?=.{6,})
+			&#X
+			(?<unicode>
+				0*
+				(?<unicodeLeast>[0-9A-F]+)
+			)
 			;
 		)
 		"""),
