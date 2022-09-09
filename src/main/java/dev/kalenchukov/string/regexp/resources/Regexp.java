@@ -558,7 +558,10 @@ public enum Regexp
 		(?<entity>
 			(?=.{5,})
 			&#
-			(?<numeric>[0-9]{2,})
+			(?<numeric>
+				0*
+				(?<numericLeast>[0-9]+)
+			)
 			;
 		)
 		""");
