@@ -212,4 +212,24 @@ public class RegexpTest
 		assertEquals("<!-- Комментарий -->", matcher.group(Regexp.HTML_COMMENT.getGroup()));
 		assertEquals(" Комментарий ", matcher.group("value"));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpHtmlEntityMnemonic()
+	{
+		String string = "&DownArrowBar;";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.HTML_ENTITY_MNEMONIC.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("&DownArrowBar;", matcher.group(Regexp.HTML_ENTITY_MNEMONIC.getGroup()));
+		assertEquals("DownArrowBar", matcher.group("mnemonic"));
+	}
 }
