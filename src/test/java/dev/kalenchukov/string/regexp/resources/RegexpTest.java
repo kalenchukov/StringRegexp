@@ -417,4 +417,20 @@ public class RegexpTest
 
 		assertEquals("0123", matcher.group(Regexp.DIGIT.getGroup()));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpNumber()
+	{
+		String string = "1.100";
+
+		Pattern pattern = Pattern.compile(Regexp.NUMBER.getPattern());
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("1.100", matcher.group(Regexp.NUMBER.getGroup()));
+	}
 }
