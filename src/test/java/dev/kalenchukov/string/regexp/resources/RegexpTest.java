@@ -70,4 +70,20 @@ public class RegexpTest
 		assertEquals("1", matcher.group("part3"));
 		assertEquals("100", matcher.group("part4"));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpInetAddressVersion6()
+	{
+		String string = "2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D";
+
+		Pattern pattern = Pattern.compile(Regexp.INET_6_ADDRESS.getPattern());
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D", matcher.group(Regexp.INET_6_ADDRESS.getGroup()));
+	}
 }
