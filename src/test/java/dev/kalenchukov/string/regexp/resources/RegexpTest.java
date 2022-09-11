@@ -356,4 +356,29 @@ public class RegexpTest
 			matcher.group("paramValue")
 		);
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpHtmlStartTag()
+	{
+		String string = "<meta name=viewport content=\"width=device-width, initial-scale=1, user-scalable=0\">";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.HTML_START_TAG.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals(
+			"<meta name=viewport content=\"width=device-width, initial-scale=1, user-scalable=0\">",
+			matcher.group(Regexp.HTML_START_TAG.getGroup())
+		);
+		assertEquals("meta", matcher.group("name"));
+		assertEquals("content", matcher.group("paramName"));
+		assertEquals("\"width=device-width, initial-scale=1, user-scalable=0\"", matcher.group("paramValue"));
+	}
 }
