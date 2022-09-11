@@ -433,4 +433,23 @@ public class RegexpTest
 
 		assertEquals("1.100", matcher.group(Regexp.NUMBER.getGroup()));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpWord()
+	{
+		String string = "Привет";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.WORD.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("Привет", matcher.group(Regexp.WORD.getGroup()));
+	}
 }
