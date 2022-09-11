@@ -172,4 +172,24 @@ public class RegexpTest
 		assertEquals("@kalenchukov", matcher.group(Regexp.TELEGRAM.getGroup()));
 		assertEquals("kalenchukov", matcher.group("name"));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpTag()
+	{
+		String string = "#tag";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.TAG.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("#tag", matcher.group(Regexp.TAG.getGroup()));
+		assertEquals("tag", matcher.group("name"));
+	}
 }
