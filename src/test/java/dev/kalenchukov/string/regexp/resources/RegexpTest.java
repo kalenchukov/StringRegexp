@@ -274,4 +274,34 @@ public class RegexpTest
 		assertEquals("000154", matcher.group("unicode"));
 		assertEquals("154", matcher.group("unicodeLeast"));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpHtmlDoctype()
+	{
+		String string = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.HTML_DOCTYPE.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals(
+			"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">",
+			matcher.group(Regexp.HTML_DOCTYPE.getGroup())
+		);
+		assertEquals("HTML", matcher.group("rootElement"));
+		assertEquals("PUBLIC", matcher.group("public"));
+		assertEquals("-//W3C//DTD HTML 4.01//EN", matcher.group("dtd"));
+		assertEquals("-", matcher.group("registration"));
+		assertEquals("W3C", matcher.group("organization"));
+		assertEquals("DTD HTML 4.01", matcher.group("documentType"));
+		assertEquals("EN", matcher.group("language"));
+		assertEquals("http://www.w3.org/TR/html4/strict.dtd", matcher.group("url"));
+	}
 }
