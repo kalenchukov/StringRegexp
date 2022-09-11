@@ -253,4 +253,25 @@ public class RegexpTest
 		assertEquals("0010590", matcher.group("numeric"));
 		assertEquals("10590", matcher.group("numericLeast"));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpHtmlEntityUnicode()
+	{
+		String string = "&#X000154;";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.HTML_ENTITY_UNICODE.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("&#X000154;", matcher.group(Regexp.HTML_ENTITY_UNICODE.getGroup()));
+		assertEquals("000154", matcher.group("unicode"));
+		assertEquals("154", matcher.group("unicodeLeast"));
+	}
 }
