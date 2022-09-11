@@ -79,7 +79,10 @@ public class RegexpTest
 	{
 		String string = "2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D";
 
-		Pattern pattern = Pattern.compile(Regexp.INET_6_ADDRESS.getPattern());
+		Pattern pattern = Pattern.compile(
+			Regexp.INET_6_ADDRESS.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 		Matcher matcher = pattern.matcher(string);
 
 		assertTrue(matcher.find());
@@ -95,7 +98,10 @@ public class RegexpTest
 	{
 		String string = "aleksey.kalenchukov@yandex.ru";
 
-		Pattern pattern = Pattern.compile(Regexp.EMAIL_ADDRESS.getPattern());
+		Pattern pattern = Pattern.compile(
+			Regexp.EMAIL_ADDRESS.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 		Matcher matcher = pattern.matcher(string);
 
 		assertTrue(matcher.find());
@@ -133,7 +139,10 @@ public class RegexpTest
 	{
 		String string = "#ABCDEF";
 
-		Pattern pattern = Pattern.compile(Regexp.RGB_HEX.getPattern());
+		Pattern pattern = Pattern.compile(
+			Regexp.RGB_HEX.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 		Matcher matcher = pattern.matcher(string);
 
 		assertTrue(matcher.find());
@@ -142,5 +151,25 @@ public class RegexpTest
 		assertEquals("AB", matcher.group("red"));
 		assertEquals("CD", matcher.group("green"));
 		assertEquals("EF", matcher.group("blue"));
+	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpTelegram()
+	{
+		String string = "@kalenchukov";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.TELEGRAM.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("@kalenchukov", matcher.group(Regexp.TELEGRAM.getGroup()));
+		assertEquals("kalenchukov", matcher.group("name"));
 	}
 }
