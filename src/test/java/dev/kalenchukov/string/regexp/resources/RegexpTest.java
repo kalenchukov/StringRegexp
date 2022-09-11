@@ -86,4 +86,23 @@ public class RegexpTest
 
 		assertEquals("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D", matcher.group(Regexp.INET_6_ADDRESS.getGroup()));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpEmailAddress()
+	{
+		String string = "aleksey.kalenchukov@yandex.ru";
+
+		Pattern pattern = Pattern.compile(Regexp.EMAIL_ADDRESS.getPattern());
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("aleksey.kalenchukov@yandex.ru", matcher.group(Regexp.EMAIL_ADDRESS.getGroup()));
+		assertEquals("aleksey.kalenchukov", matcher.group("local"));
+		assertEquals("yandex.ru", matcher.group("domain"));
+		assertEquals("ru", matcher.group("tld"));
+	}
 }
