@@ -105,4 +105,23 @@ public class RegexpTest
 		assertEquals("yandex.ru", matcher.group("domain"));
 		assertEquals("ru", matcher.group("tld"));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpRgb()
+	{
+		String string = "215,200,166";
+
+		Pattern pattern = Pattern.compile(Regexp.RGB.getPattern());
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("215,200,166", matcher.group(Regexp.RGB.getGroup()));
+		assertEquals("215", matcher.group("red"));
+		assertEquals("200", matcher.group("green"));
+		assertEquals("166", matcher.group("blue"));
+	}
 }
