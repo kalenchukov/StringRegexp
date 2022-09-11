@@ -324,4 +324,36 @@ public class RegexpTest
 		assertEquals("</form >", matcher.group(Regexp.HTML_END_TAG.getGroup()));
 		assertEquals("form", matcher.group("name"));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpHtmlSelfClosingTag()
+	{
+		String string = "<input name=viewport content=\"width=device-width, initial-scale=1, user-scalable=0\"/>";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.HTML_SELF_CLOSING_TAG.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals(
+			"<input name=viewport content=\"width=device-width, initial-scale=1, user-scalable=0\"/>",
+			matcher.group(Regexp.HTML_SELF_CLOSING_TAG.getGroup())
+		);
+		assertEquals("input", matcher.group("name"));
+		assertEquals(
+			"content=\"width=device-width, initial-scale=1, user-scalable=0\"",
+			matcher.group("param")
+		);
+		assertEquals("content", matcher.group("paramName"));
+		assertEquals(
+			"\"width=device-width, initial-scale=1, user-scalable=0\"",
+			matcher.group("paramValue")
+		);
+	}
 }
