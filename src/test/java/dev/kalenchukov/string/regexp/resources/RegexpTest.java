@@ -304,4 +304,24 @@ public class RegexpTest
 		assertEquals("EN", matcher.group("language"));
 		assertEquals("http://www.w3.org/TR/html4/strict.dtd", matcher.group("url"));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpHtmlEndTag()
+	{
+		String string = "</form >";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.HTML_END_TAG.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("</form >", matcher.group(Regexp.HTML_END_TAG.getGroup()));
+		assertEquals("form", matcher.group("name"));
+	}
 }
