@@ -401,4 +401,20 @@ public class RegexpTest
 		assertEquals("<![CDATA[ Текст ]]>", matcher.group(Regexp.CDATA.getGroup()));
 		assertEquals(" Текст ", matcher.group("value"));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpDigit()
+	{
+		String string = "0123";
+
+		Pattern pattern = Pattern.compile(Regexp.DIGIT.getPattern());
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("0123", matcher.group(Regexp.DIGIT.getGroup()));
+	}
 }
