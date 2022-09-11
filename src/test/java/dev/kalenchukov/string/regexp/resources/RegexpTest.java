@@ -124,4 +124,23 @@ public class RegexpTest
 		assertEquals("200", matcher.group("green"));
 		assertEquals("166", matcher.group("blue"));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpRgbHex()
+	{
+		String string = "#ABCDEF";
+
+		Pattern pattern = Pattern.compile(Regexp.RGB_HEX.getPattern());
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("#ABCDEF", matcher.group(Regexp.RGB_HEX.getGroup()));
+		assertEquals("AB", matcher.group("red"));
+		assertEquals("CD", matcher.group("green"));
+		assertEquals("EF", matcher.group("blue"));
+	}
 }
