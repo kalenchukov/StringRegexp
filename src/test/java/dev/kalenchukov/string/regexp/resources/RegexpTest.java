@@ -232,4 +232,25 @@ public class RegexpTest
 		assertEquals("&DownArrowBar;", matcher.group(Regexp.HTML_ENTITY_MNEMONIC.getGroup()));
 		assertEquals("DownArrowBar", matcher.group("mnemonic"));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpHtmlEntityNumeric()
+	{
+		String string = "&#0010590;";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.HTML_ENTITY_NUMERIC.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("&#0010590;", matcher.group(Regexp.HTML_ENTITY_NUMERIC.getGroup()));
+		assertEquals("0010590", matcher.group("numeric"));
+		assertEquals("10590", matcher.group("numericLeast"));
+	}
 }
