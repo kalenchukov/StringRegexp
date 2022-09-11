@@ -192,4 +192,24 @@ public class RegexpTest
 		assertEquals("#tag", matcher.group(Regexp.TAG.getGroup()));
 		assertEquals("tag", matcher.group("name"));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpHtmlComment()
+	{
+		String string = "<!-- Комментарий -->";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.HTML_COMMENT.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("<!-- Комментарий -->", matcher.group(Regexp.HTML_COMMENT.getGroup()));
+		assertEquals(" Комментарий ", matcher.group("value"));
+	}
 }
