@@ -452,4 +452,23 @@ public class RegexpTest
 
 		assertEquals("Привет", matcher.group(Regexp.WORD.getGroup()));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpLetter()
+	{
+		String string = "Ъ";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.LETTER.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("Ъ", matcher.group(Regexp.LETTER.getGroup()));
+	}
 }
