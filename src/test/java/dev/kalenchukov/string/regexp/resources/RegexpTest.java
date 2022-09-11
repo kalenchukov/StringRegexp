@@ -381,4 +381,24 @@ public class RegexpTest
 		assertEquals("content", matcher.group("paramName"));
 		assertEquals("\"width=device-width, initial-scale=1, user-scalable=0\"", matcher.group("paramValue"));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpCData()
+	{
+		String string = "<![CDATA[ Текст ]]>";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.CDATA.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("<![CDATA[ Текст ]]>", matcher.group(Regexp.CDATA.getGroup()));
+		assertEquals(" Текст ", matcher.group("value"));
+	}
 }
