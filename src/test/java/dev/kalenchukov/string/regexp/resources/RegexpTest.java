@@ -50,4 +50,24 @@ public class RegexpTest
 		assertEquals("ru", matcher.group("language"));
 		assertEquals("RU", matcher.group("country"));
 	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
+	public void testRegexpInetAddressVersion4()
+	{
+		String string = "192.168.1.100";
+
+		Pattern pattern = Pattern.compile(Regexp.INET_4_ADDRESS.getPattern());
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("192.168.1.100", matcher.group(Regexp.INET_4_ADDRESS.getGroup()));
+		assertEquals("192", matcher.group("part1"));
+		assertEquals("168", matcher.group("part2"));
+		assertEquals("1", matcher.group("part3"));
+		assertEquals("100", matcher.group("part4"));
+	}
 }
