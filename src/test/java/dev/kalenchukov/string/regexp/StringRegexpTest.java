@@ -26,8 +26,6 @@ package dev.kalenchukov.string.regexp;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.*;
 
 public class StringRegexpTest
