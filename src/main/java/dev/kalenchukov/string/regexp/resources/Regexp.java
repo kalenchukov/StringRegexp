@@ -498,7 +498,7 @@ public enum Regexp
 		"""),
 
 	/**
-	 * HTML сущность в виде мнемоники.
+	 * HTML-сущностейа в виде имени.
 	 *
 	 * <p>Требования:
 	 *     <ul>
@@ -510,18 +510,18 @@ public enum Regexp
 	 *         <li>Должен заканчиваться символом ";".</li>
 	 *     </ul>
 	 */
-	HTML_ENTITY_MNEMONIC("entity", """
+	HTML_ENTITY_NAME("entity", """
 		(?<entity>
 			(?=.{4,})
 			&
 			(?![0-9]+)
-			(?<mnemonic>[0-9A-Z]+)
+			(?<name>[0-9A-Z]+)
 			;
 		)
 		"""),
 
 	/**
-	 * HTML сущность в виде unicode.
+	 * HTML-сущностейа в виде unicode.
 	 *
 	 * <p>Требования:
 	 *     <ul>
@@ -544,7 +544,7 @@ public enum Regexp
 		"""),
 
 	/**
-	 * HTML сущность в виде числа.
+	 * HTML-сущностейа в виде числа.
 	 *
 	 * <p>Требования:
 	 *     <ul>

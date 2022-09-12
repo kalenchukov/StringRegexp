@@ -592,38 +592,38 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректной HTML сущности в виде мнемоники.
+	 * Проверка корректной HTML сущности в виде имени.
 	 */
 	@Test
-	public void isHtmlEntityMnemonicCorrect()
+	public void isHtmlEntityNameCorrect()
 	{
-		assertTrue(StringRegexp.isHtmlEntityMnemonic("&dd;"));
-		assertTrue(StringRegexp.isHtmlEntityMnemonic("&dollar;"));
-		assertTrue(StringRegexp.isHtmlEntityMnemonic("&DownArrowBar;"));
-		assertTrue(StringRegexp.isHtmlEntityMnemonic("&ecir;"));
-		assertTrue(StringRegexp.isHtmlEntityMnemonic("&DD;"));
-		assertTrue(StringRegexp.isHtmlEntityMnemonic("&frac14;"));
+		assertTrue(StringRegexp.isHtmlEntityName("&dd;"));
+		assertTrue(StringRegexp.isHtmlEntityName("&dollar;"));
+		assertTrue(StringRegexp.isHtmlEntityName("&DownArrowBar;"));
+		assertTrue(StringRegexp.isHtmlEntityName("&ecir;"));
+		assertTrue(StringRegexp.isHtmlEntityName("&DD;"));
+		assertTrue(StringRegexp.isHtmlEntityName("&frac14;"));
 	}
 
 	/**
-	 * Проверка некорректной HTML сущности в виде мнемоники.
+	 * Проверка некорректной HTML сущности в виде имени.
 	 */
 	@Test
-	public void isHtmlEntityMnemonicNotCorrect()
+	public void isHtmlEntityNameNotCorrect()
 	{
-		assertFalse(StringRegexp.isHtmlEntityMnemonic(""));
-		assertFalse(StringRegexp.isHtmlEntityMnemonic(" "));
+		assertFalse(StringRegexp.isHtmlEntityName(""));
+		assertFalse(StringRegexp.isHtmlEntityName(" "));
 
-		assertFalse(StringRegexp.isHtmlEntityMnemonic("34546&DownArrowBar;"));
+		assertFalse(StringRegexp.isHtmlEntityName("34546&DownArrowBar;"));
 
-		assertFalse(StringRegexp.isHtmlEntityMnemonic("&"));
-		assertFalse(StringRegexp.isHtmlEntityMnemonic(";"));
-		assertFalse(StringRegexp.isHtmlEntityMnemonic("&;"));
-		assertFalse(StringRegexp.isHtmlEntityMnemonic("&d;"));
-		assertFalse(StringRegexp.isHtmlEntityMnemonic("ecir;"));
-		assertFalse(StringRegexp.isHtmlEntityMnemonic("&ecir"));
-		assertFalse(StringRegexp.isHtmlEntityMnemonic("&3124;"));
-		assertFalse(StringRegexp.isHtmlEntityMnemonic("&1DownArrowBar;"));
+		assertFalse(StringRegexp.isHtmlEntityName("&"));
+		assertFalse(StringRegexp.isHtmlEntityName(";"));
+		assertFalse(StringRegexp.isHtmlEntityName("&;"));
+		assertFalse(StringRegexp.isHtmlEntityName("&d;"));
+		assertFalse(StringRegexp.isHtmlEntityName("ecir;"));
+		assertFalse(StringRegexp.isHtmlEntityName("&ecir"));
+		assertFalse(StringRegexp.isHtmlEntityName("&3124;"));
+		assertFalse(StringRegexp.isHtmlEntityName("&1DownArrowBar;"));
 	}
 
 	/**
@@ -1785,12 +1785,12 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка поиска HTML сущностей в виде мнемоники.
+	 * Проверка поиска HTML-сущностей в виде имени.
 	 */
 	@Test
-	public void findHtmlEntityMnemonic()
+	public void findHtmlEntityName()
 	{
-		String[] htmlEntityMnemonic = {
+		String[] htmlEntityName = {
 			"&frac14;",
 			"&amp;",
 			"&commat;",
@@ -1823,11 +1823,11 @@ public class StringRegexpTest
 			У меня есть вопрос, на который ты не дашь мне ответ.
 			""";
 
-		assertArrayEquals(htmlEntityMnemonic, StringRegexp.findHtmlEntityMnemonic(string).toArray());
+		assertArrayEquals(htmlEntityName, StringRegexp.findHtmlEntityName(string).toArray());
 	}
 
 	/**
-	 * Проверка поиска HTML сущностей в виде числа.
+	 * Проверка поиска HTML-сущностей в виде числа.
 	 */
 	@Test
 	public void findHtmlEntityNumeric()
@@ -1877,7 +1877,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка поиска HTML сущностей в виде unicode.
+	 * Проверка поиска HTML-сущностей в виде unicode.
 	 */
 	@Test
 	public void findHtmlEntityUnicode()

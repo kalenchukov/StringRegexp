@@ -217,20 +217,20 @@ public class RegexpTest
 	 * Проверка групп.
 	 */
 	@Test
-	public void testRegexpHtmlEntityMnemonic()
+	public void testRegexpHtmlEntityName()
 	{
 		String string = "&DownArrowBar;";
 
 		Pattern pattern = Pattern.compile(
-			Regexp.HTML_ENTITY_MNEMONIC.getPattern(),
+			Regexp.HTML_ENTITY_NAME.getPattern(),
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
 		Matcher matcher = pattern.matcher(string);
 
 		assertTrue(matcher.find());
 
-		assertEquals("&DownArrowBar;", matcher.group(Regexp.HTML_ENTITY_MNEMONIC.getGroup()));
-		assertEquals("DownArrowBar", matcher.group("mnemonic"));
+		assertEquals("&DownArrowBar;", matcher.group(Regexp.HTML_ENTITY_NAME.getGroup()));
+		assertEquals("DownArrowBar", matcher.group("name"));
 	}
 
 	/**

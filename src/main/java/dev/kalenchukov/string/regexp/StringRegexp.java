@@ -210,14 +210,14 @@ public class StringRegexp
 	}
 
 	/**
-	 * Проверяет, является ли строка HTML сущностью в виде мнемоники.
+	 * Проверяет, является ли строка HTML сущностью в виде имени.
 	 *
 	 * @param string Строка
-	 * @return {@code True}, если строка является HTML сущностью в виде мнемоники, иначе {@code false}.
+	 * @return {@code True}, если строка является HTML сущностью в виде имени, иначе {@code false}.
 	 */
-	public static boolean isHtmlEntityMnemonic(@NotNull final String string)
+	public static boolean isHtmlEntityName(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.HTML_ENTITY_MNEMONIC, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.is(string, Regexp.HTML_ENTITY_NAME, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -363,20 +363,20 @@ public class StringRegexp
 	}
 
 	/**
-	 * Выполняет поиск HTML сущностей в виде мнемоники.
+	 * Выполняет поиск HTML-сущностей в виде имени.
 	 *
 	 * @param string Строка.
-	 * @return Коллекцию с найденными HTML сущностями в виде мнемоники.
+	 * @return Коллекцию с найденными HTML сущностями в виде имени.
 	 */
 	@Unmodifiable
 	@NotNull
-	public static List<@NotNull String> findHtmlEntityMnemonic(@NotNull final String string)
+	public static List<@NotNull String> findHtmlEntityName(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.HTML_ENTITY_MNEMONIC, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.find(string, Regexp.HTML_ENTITY_NAME, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
-	 * Выполняет поиск HTML сущностей в виде числа.
+	 * Выполняет поиск HTML-сущностей в виде числа.
 	 *
 	 * @param string Строка.
 	 * @return Коллекцию с найденными HTML сущностями в виде числа.
@@ -389,7 +389,7 @@ public class StringRegexp
 	}
 
 	/**
-	 * Выполняет поиск HTML сущностей в виде unicode.
+	 * Выполняет поиск HTML-сущностей в виде unicode.
 	 *
 	 * @param string Строка.
 	 * @return Коллекцию с найденными HTML сущностями в виде unicode.

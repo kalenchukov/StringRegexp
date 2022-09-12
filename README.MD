@@ -111,10 +111,10 @@ StringRegexp.isHtmlComment("<!-- Комментарий -->");
 // Результат выполнения: true
 ```
 
-#### Проверка HTML сущности в виде мнемоники
+#### Проверка HTML сущности в виде имени
 
 ```java
-StringRegexp.isHtmlEntityMnemonic("&asymp;");
+StringRegexp.isHtmlEntityвыполнения:nic("&asymp;");
 // Результат выполнения: true
 ```
 
@@ -510,7 +510,7 @@ StringRegexp.findCData(text);
 */
 ```
 
-#### Поиск HTML сущностей в виде мнемоники
+#### Поиск HTML-сущностей в виде имени
 
 ```java
 String text = """
@@ -522,7 +522,7 @@ String text = """
     Лишь окурки лежат на полу, да мусора ворох.
     """;
 
-StringRegexp.findHtmlEntityMnemonic(text);
+StringRegexp.findHtmlEntityName(text);
 /*
 Результат выполнения: 
 [
@@ -532,7 +532,7 @@ StringRegexp.findHtmlEntityMnemonic(text);
 */
 ```
 
-#### Поиск HTML сущностей в виде числа
+#### Поиск HTML-сущностей в виде числа
 
 ```java
 String text = """
@@ -556,7 +556,7 @@ StringRegexp.findHtmlEntityNumeric(text);
 */
 ```
 
-#### Поиск HTML сущностей в виде unicode
+#### Поиск HTML-сущностей в виде unicode
 
 ```java
 String text = """
