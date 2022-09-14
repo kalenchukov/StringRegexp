@@ -132,7 +132,7 @@ StringRegexp.isHtmlEntityтUnicode("&#X22C8;");
 // Результат выполнения: true
 ```
 
-#### Проверка HTML типа документа
+#### Проверка типа HTML документа
 
 ```java
 StringRegexp.isHtmlDoctype("<!DOCTYPE html>");
@@ -580,7 +580,7 @@ StringRegexp.findHtmlEntityUnicode(text);
 */
 ```
 
-#### Поиск HTML типа документа
+#### Поиск типа HTML документа
 
 ```java
 String text = """

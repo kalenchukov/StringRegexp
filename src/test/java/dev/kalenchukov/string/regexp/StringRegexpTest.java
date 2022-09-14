@@ -696,7 +696,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректной HTML типа документа.
+	 * Проверка корректной типа HTML документа.
 	 */
 	@Test
 	public void isHtmlDoctypeCorrect()
@@ -724,7 +724,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректной HTML типа документа.
+	 * Проверка некорректного типа HTML документа.
 	 */
 	@Test
 	public void isHtmlDoctypeNotCorrect()
@@ -1922,7 +1922,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка поиска HTML типов документа.
+	 * Проверка поиска типов HTML документа.
 	 */
 	@Test
 	public void findHtmlDoctype()

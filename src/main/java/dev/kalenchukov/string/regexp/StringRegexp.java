@@ -243,10 +243,10 @@ public class StringRegexp
 	}
 
 	/**
-	 * Проверяет, является ли строка HTML типом документа.
+	 * Проверяет, является ли строка типом HTML документа.
 	 *
 	 * @param string Строка
-	 * @return {@code True}, если строка является HTML типом документа, иначе {@code false}.
+	 * @return {@code True}, если строка является типом HTML документа, иначе {@code false}.
 	 */
 	public static boolean isHtmlDoctype(@NotNull final String string)
 	{
@@ -350,10 +350,10 @@ public class StringRegexp
 	}
 
 	/**
-	 * Выполняет поиск HTML типов документа.
+	 * Выполняет поиск типов HTML документа.
 	 *
 	 * @param string Строка.
-	 * @return Коллекцию с найденными HTML типами документа.
+	 * @return Коллекцию с найденными типами HTML документа.
 	 */
 	@Unmodifiable
 	@NotNull
