@@ -52,7 +52,11 @@ public class StringRegexp
 	 */
 	public static boolean isTelegram(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.TELEGRAM, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.is(
+			string,
+			Regexp.TELEGRAM,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -85,7 +89,11 @@ public class StringRegexp
 	 */
 	public static boolean isRgbHexIgnoreCase(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.RGB_HEX, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.is(
+			string,
+			Regexp.RGB_HEX,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -107,7 +115,11 @@ public class StringRegexp
 	 */
 	public static boolean isEmailAddress(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.EMAIL_ADDRESS, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.is(
+			string,
+			Regexp.EMAIL_ADDRESS,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -140,7 +152,11 @@ public class StringRegexp
 	 */
 	public static boolean isInet6AddressIgnoreCase(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.INET_6_ADDRESS, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.is(
+			string,
+			Regexp.INET_6_ADDRESS,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -206,7 +222,11 @@ public class StringRegexp
 	 */
 	public static boolean isHtmlComment(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.HTML_COMMENT, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+		return StringRegexp.is(
+			string,
+			Regexp.HTML_COMMENT,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL
+		);
 	}
 
 	/**
@@ -217,7 +237,11 @@ public class StringRegexp
 	 */
 	public static boolean isHtmlEntityName(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.HTML_ENTITY_NAME, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.is(
+			string,
+			Regexp.HTML_ENTITY_NAME,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -239,7 +263,11 @@ public class StringRegexp
 	 */
 	public static boolean isHtmlEntityUnicode(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.HTML_ENTITY_UNICODE, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.is(
+			string,
+			Regexp.HTML_ENTITY_UNICODE,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -250,7 +278,11 @@ public class StringRegexp
 	 */
 	public static boolean isHtmlDoctype(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.HTML_DOCTYPE, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+		return StringRegexp.is(
+			string,
+			Regexp.HTML_DOCTYPE,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL
+		);
 	}
 
 	/**
@@ -261,7 +293,11 @@ public class StringRegexp
 	 */
 	public static boolean isCData(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.CDATA, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+		return StringRegexp.is(
+			string,
+			Regexp.CDATA,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL
+		);
 	}
 
 	/**
@@ -272,7 +308,11 @@ public class StringRegexp
 	 */
 	public static boolean isHtmlEndTag(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.HTML_END_TAG, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.is(
+			string,
+			Regexp.HTML_END_TAG,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -283,7 +323,11 @@ public class StringRegexp
 	 */
 	public static boolean isHtmlStartTag(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.HTML_START_TAG, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+		return StringRegexp.is(
+			string,
+			Regexp.HTML_START_TAG,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL
+		);
 	}
 
 	/**
@@ -294,7 +338,11 @@ public class StringRegexp
 	 */
 	public static boolean isHtmlSelfClosingTag(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.HTML_SELF_CLOSING_TAG, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+		return StringRegexp.is(
+			string,
+			Regexp.HTML_SELF_CLOSING_TAG,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL
+		);
 	}
 
 	/**
@@ -307,7 +355,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findHtmlSelfClosingTag(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.HTML_SELF_CLOSING_TAG, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+		return StringRegexp.find(
+			string,
+			Regexp.HTML_SELF_CLOSING_TAG,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL
+		);
 	}
 
 	/**
@@ -320,7 +372,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findHtmlStartTag(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.HTML_START_TAG, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+		return StringRegexp.find(
+			string,
+			Regexp.HTML_START_TAG,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL
+		);
 	}
 
 	/**
@@ -333,7 +389,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findHtmlEndTag(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.HTML_END_TAG, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.find(
+			string,
+			Regexp.HTML_END_TAG,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -346,7 +406,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findCData(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.CDATA, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+		return StringRegexp.find(
+			string,
+			Regexp.CDATA,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL
+		);
 	}
 
 	/**
@@ -359,7 +423,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findHtmlDoctype(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.HTML_DOCTYPE, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+		return StringRegexp.find(
+			string,
+			Regexp.HTML_DOCTYPE,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL
+		);
 	}
 
 	/**
@@ -372,7 +440,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findHtmlEntityName(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.HTML_ENTITY_NAME, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.find(
+			string,
+			Regexp.HTML_ENTITY_NAME,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -398,7 +470,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findHtmlEntityUnicode(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.HTML_ENTITY_UNICODE, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.find(
+			string,
+			Regexp.HTML_ENTITY_UNICODE,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -411,7 +487,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findHtmlComment(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.HTML_COMMENT, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL);
+		return StringRegexp.find(
+			string,
+			Regexp.HTML_COMMENT,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE + Pattern.DOTALL
+		);
 	}
 
 	/**
@@ -424,7 +504,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findLetter(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.LETTER, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.find(
+			string,
+			Regexp.LETTER,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -437,7 +521,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findWord(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.WORD, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.find(
+			string,
+			Regexp.WORD,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -476,7 +564,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findTelegram(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.TELEGRAM, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.find(
+			string,
+			Regexp.TELEGRAM,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -489,7 +581,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findTag(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.TAG, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.find(
+			string,
+			Regexp.TAG,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -528,7 +624,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findRgbHexIgnoreCase(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.RGB_HEX, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.find(
+			string,
+			Regexp.RGB_HEX,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -580,7 +680,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findInet6AddressIgnoreCase(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.INET_6_ADDRESS, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.find(
+			string,
+			Regexp.INET_6_ADDRESS,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
@@ -593,7 +697,11 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findEmailAddress(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.EMAIL_ADDRESS, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.find(
+			string,
+			Regexp.EMAIL_ADDRESS,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
 	}
 
 	/**
