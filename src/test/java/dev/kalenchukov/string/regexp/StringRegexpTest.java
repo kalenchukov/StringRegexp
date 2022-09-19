@@ -434,6 +434,66 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректного MAC адреса.
+	 */
+	@Test
+	public void isMacAddressCorrect()
+	{
+		assertTrue(StringRegexp.isMacAddress("00-EF-CD-EF-11-22"));
+		assertTrue(StringRegexp.isMacAddress("00:EF:CD:EF:11:22"));
+	}
+
+	/**
+	 * Проверка некорректного MAC адреса.
+	 */
+	@Test
+	public void isMacAddressNotCorrect()
+	{
+		assertFalse(StringRegexp.isMacAddress(""));
+		assertFalse(StringRegexp.isMacAddress(" "));
+
+		assertFalse(StringRegexp.isMacAddress("-00-EF-CD-EF-11-22"));
+		assertFalse(StringRegexp.isMacAddress("-00-EF-CD-EF-11-22-"));
+		assertFalse(StringRegexp.isMacAddress("00-EF-CD-EF-11-22-"));
+
+		assertFalse(StringRegexp.isMacAddress(":00:EF:CD:EF:11:22"));
+		assertFalse(StringRegexp.isMacAddress(":00:EF:CD:EF:11:22:"));
+		assertFalse(StringRegexp.isMacAddress("00:EF:CD:EF:11:22:"));
+
+		assertFalse(StringRegexp.isMacAddress("00:EF:CD:EF:11:2"));
+		assertFalse(StringRegexp.isMacAddress("00:EW:CD:EF:11:22"));
+		assertFalse(StringRegexp.isMacAddress("00:ef:CD:EF:11:22"));
+		assertFalse(StringRegexp.isMacAddress("00:EF:CD::EF:11:22"));
+		assertFalse(StringRegexp.isMacAddress("00:EF::EF:11:22"));
+	}
+
+	/**
+	 * Проверка корректного MAC адреса без учёта регистра букв.
+	 */
+	@Test
+	public void isMacAddressIgnoreCaseCorrect()
+	{
+		assertTrue(StringRegexp.isMacAddressIgnoreCase("00-EF-cd-EF-11-22"));
+		assertTrue(StringRegexp.isMacAddressIgnoreCase("00:ef:CD:EF:11:22"));
+	}
+
+	/**
+	 * Проверка некорректного MAC адреса без учёта регистра букв.
+	 */
+	@Test
+	public void isMacAddressIgnoreCaseNotCorrect()
+	{
+		assertFalse(StringRegexp.isMacAddressIgnoreCase(""));
+		assertFalse(StringRegexp.isMacAddressIgnoreCase(" "));
+
+		assertFalse(StringRegexp.isMacAddress("00:EF:CD:EF:11:2"));
+		assertFalse(StringRegexp.isMacAddress("00:ew:CD:EF:11:22"));
+		assertFalse(StringRegexp.isMacAddress("00:ef:CD:EF:11:22"));
+		assertFalse(StringRegexp.isMacAddress("00:EF:CD::ef:11:22"));
+		assertFalse(StringRegexp.isMacAddress("00:EF::ef:11:22"));
+	}
+
+	/**
 	 * Проверка корректного телеграм канала.
 	 */
 	@Test
@@ -1266,7 +1326,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка поиска RGB в шестнадцатеричной системе счисления.
+	 * Проверка поиска RGB в шестнадцатеричной системе счисления без учёта регистра.
 	 */
 	@Test
 	public void findRgbHexIgnoreCase()
@@ -1311,6 +1371,84 @@ public class StringRegexpTest
 			""";
 
 		assertArrayEquals(rgbHex, StringRegexp.findRgbHexIgnoreCase(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска MAC адресов.
+	 */
+	@Test
+	public void findMacAddress()
+	{
+		String[] macAddress = {
+			"00-EF-CD-EF-11-22",
+			"00:EF:CD:EF:11:22",
+			"00:EF:CD:DF:11:22",
+			"00-EF-CD-CE-11-22"
+		};
+
+		String string = """
+			В этом мотиве есть какая-то фальшь,
+			Но где найти 00-EF-CD-EF-11-22 тех, что услышат ее?
+			Подросший ребенок, воспитанный жизнью за шкафом,
+			Теперь ты видишь Солнце, возьми - 00:EF:CD:EF:11:22 это твое!
+			
+			Я объявляю свой дом
+			Безъядерной зоной!
+			Я объявляю свой двор
+			Безъядерной зоной!
+			Я объявляю свой город
+			Безъядерной зоной!
+			яю свой...00:EF:CD:DF:11:22
+			
+			Как не прочны стены наших квартир,
+			Но кто-то один не подставит за всех плечо.
+			Я вижу дом, я беру в руки мел,
+			Нет замка, но я владею ключом.
+			00-EF-CD-CE-11-22
+			Я объявляю свой дом
+			Безъядерной зоной!
+			Я объявляю свой двор
+			Безъядерной зоной!
+			Я объявляю свой город
+			Безъядерной зоной!
+			Я объявляю свой...
+			""";
+
+		assertArrayEquals(macAddress, StringRegexp.findMacAddress(string).toArray());
+	}
+
+	/**
+	 * Проверка поиска MAC адресов без учёта регистра.
+	 */
+	@Test
+	public void findMacAddressIgnoreCase()
+	{
+		String[] macAddress = {
+			"00-EF-CD-ef-11-22",
+			"00:EF:CD:EF:11:22",
+			"00:EF:cd:DF:11:22",
+			"00-ef-cd-ce-11-22"
+		};
+
+		String string = """
+			Я вижу, как волны смывают следы на песке
+			Я слышу, как ветер 00-EF-CD-ef-11-22 поет свою странную песню
+			Я слышу, как струны деревьев играют ее
+			Музыку волн 00:EF:CD:EF:11:22, музыку ветра
+			
+			Здесь трудно сказать, что такое асфальт
+			Здесь трудно сказать, что такое машина
+			Здесь нужно руками кидать воду вверх
+			Музыка волн, музыка ветра
+			00:EF:cd:DF:11:22
+			Кто из вас вспомнит о тех, кто сбился с дороги?
+			Кто из вас вспомнит о тех, кто смеялся и пел?
+			Кто из вас вспомнит, чувствуя холод приклада
+			Музыку волн, музыку ветра 00-ef-cd-ce-11-22?
+			Музыку волн, музыку ветра?
+			""";
+
+		assertArrayEquals(macAddress, StringRegexp.findMacAddressIgnoreCase(string).toArray());
 	}
 
 	/**
@@ -1449,7 +1587,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка поиска IP адресов шестой версии.
+	 * Проверка поиска IP адресов шестой версии без учёта регистра.
 	 */
 	@Test
 	public void findIpAddressVersion6IgnoreCase()

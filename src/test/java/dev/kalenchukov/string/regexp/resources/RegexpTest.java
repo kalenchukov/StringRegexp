@@ -157,6 +157,32 @@ public class RegexpTest
 	 * Проверка групп.
 	 */
 	@Test
+	public void testRegexpMacAddress()
+	{
+		String string = "00-eF-cd-Ef-11-22";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.MAC_ADDRESS.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("00-eF-cd-Ef-11-22", matcher.group(Regexp.MAC_ADDRESS.getGroup()));
+		assertEquals("-", matcher.group("separator"));
+		assertEquals("00", matcher.group("part1"));
+		assertEquals("eF", matcher.group("part2"));
+		assertEquals("cd", matcher.group("part3"));
+		assertEquals("Ef", matcher.group("part4"));
+		assertEquals("11", matcher.group("part5"));
+		assertEquals("22", matcher.group("part6"));
+	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
 	public void testRegexpTelegram()
 	{
 		String string = "@kalenchukov";

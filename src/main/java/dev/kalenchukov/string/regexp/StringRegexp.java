@@ -97,6 +97,32 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка MAC адресом.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является MAC адресом, иначе {@code false}.
+	 */
+	public static boolean isMacAddress(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.MAC_ADDRESS);
+	}
+
+	/**
+	 * Проверяет, является ли строка MAC адресом без учёта регистра букв.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является MAC адресом, иначе {@code false}.
+	 */
+	public static boolean isMacAddressIgnoreCase(@NotNull final String string)
+	{
+		return StringRegexp.is(
+			string,
+			Regexp.MAC_ADDRESS,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+	}
+
+	/**
 	 * Проверяет, является ли строка локализацией.
 	 *
 	 * @param string Строка
@@ -627,6 +653,36 @@ public class StringRegexp
 		return StringRegexp.find(
 			string,
 			Regexp.RGB_HEX,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+	}
+
+	/**
+	 * Выполняет поиск MAC адресов.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными MAC адресами.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findMacAddress(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.MAC_ADDRESS);
+	}
+
+	/**
+	 * Выполняет поиск MAC адресов без учётна регистра букв.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными MAC адресами.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findMacAddressIgnoreCase(@NotNull final String string)
+	{
+		return StringRegexp.find(
+			string,
+			Regexp.MAC_ADDRESS,
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
 	}
