@@ -338,43 +338,43 @@ public class StringRegexpTest
 	 * Проверка корректного RGB в числовом представлении.
 	 */
 	@Test
-	public void isRgbCorrect()
+	public void isRgbNumericCorrect()
 	{
-		assertTrue(StringRegexp.isRgb("215,200,166"));
-		assertTrue(StringRegexp.isRgb("0,0,0"));
+		assertTrue(StringRegexp.isRgbNumeric("215,200,166"));
+		assertTrue(StringRegexp.isRgbNumeric("0,0,0"));
 
-		assertTrue(StringRegexp.isRgb("215, 200, 166"));
-		assertTrue(StringRegexp.isRgb("0, 0, 0"));
+		assertTrue(StringRegexp.isRgbNumeric("215, 200, 166"));
+		assertTrue(StringRegexp.isRgbNumeric("0, 0, 0"));
 
-		assertTrue(StringRegexp.isRgb("255,155, 55"));
-		assertTrue(StringRegexp.isRgb("1,1,1"));
+		assertTrue(StringRegexp.isRgbNumeric("255,155, 55"));
+		assertTrue(StringRegexp.isRgbNumeric("1,1,1"));
 	}
 
 	/**
 	 * Проверка некорректного RGB в числовом представлении.
 	 */
 	@Test
-	public void isRgbNotCorrect()
+	public void isRgbNumericNotCorrect()
 	{
-		assertFalse(StringRegexp.isRgb(""));
-		assertFalse(StringRegexp.isRgb(" "));
+		assertFalse(StringRegexp.isRgbNumeric(""));
+		assertFalse(StringRegexp.isRgbNumeric(" "));
 
-		assertFalse(StringRegexp.isRgb("0,0"));
-		assertFalse(StringRegexp.isRgb("0"));
+		assertFalse(StringRegexp.isRgbNumeric("0,0"));
+		assertFalse(StringRegexp.isRgbNumeric("0"));
 
-		assertFalse(StringRegexp.isRgb("215,  200, 166"));
-		assertFalse(StringRegexp.isRgb("215, 200,  166"));
+		assertFalse(StringRegexp.isRgbNumeric("215,  200, 166"));
+		assertFalse(StringRegexp.isRgbNumeric("215, 200,  166"));
 
-		assertFalse(StringRegexp.isRgb("-1, 0, 0"));
-		assertFalse(StringRegexp.isRgb("0, -1, 0"));
-		assertFalse(StringRegexp.isRgb("0, 0, -1"));
+		assertFalse(StringRegexp.isRgbNumeric("-1, 0, 0"));
+		assertFalse(StringRegexp.isRgbNumeric("0, -1, 0"));
+		assertFalse(StringRegexp.isRgbNumeric("0, 0, -1"));
 
-		assertFalse(StringRegexp.isRgb("215,200,"));
-		assertFalse(StringRegexp.isRgb("1,1,1,"));
+		assertFalse(StringRegexp.isRgbNumeric("215,200,"));
+		assertFalse(StringRegexp.isRgbNumeric("1,1,1,"));
 
-		assertFalse(StringRegexp.isRgb("256,155,55"));
-		assertFalse(StringRegexp.isRgb("255,256,55"));
-		assertFalse(StringRegexp.isRgb("255,155,256"));
+		assertFalse(StringRegexp.isRgbNumeric("256,155,55"));
+		assertFalse(StringRegexp.isRgbNumeric("255,256,55"));
+		assertFalse(StringRegexp.isRgbNumeric("255,155,256"));
 	}
 
 	/**
@@ -1506,7 +1506,7 @@ public class StringRegexpTest
 	 * Проверка поиска RGB в числовом представлении.
 	 */
 	@Test
-	public void findRgb()
+	public void findRgbNumeric()
 	{
 		String[] rgb = {
 			"255,150,50",
@@ -1549,7 +1549,7 @@ public class StringRegexpTest
 			Играй!
 			""";
 
-		assertArrayEquals(rgb, StringRegexp.findRgb(string).toArray());
+		assertArrayEquals(rgb, StringRegexp.findRgbNumeric(string).toArray());
 	}
 
 	/**

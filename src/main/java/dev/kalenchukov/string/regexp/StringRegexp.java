@@ -65,9 +65,9 @@ public class StringRegexp
 	 * @param string Строка
 	 * @return {@code True}, если строка является RGB в числовом представлении, иначе {@code false}.
 	 */
-	public static boolean isRgb(@NotNull final String string)
+	public static boolean isRgbNumeric(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.RGB);
+		return StringRegexp.is(string, Regexp.RGB_NUMERIC);
 	}
 
 	/**
@@ -637,9 +637,9 @@ public class StringRegexp
 	 */
 	@Unmodifiable
 	@NotNull
-	public static List<@NotNull String> findRgb(@NotNull final String string)
+	public static List<@NotNull String> findRgbNumeric(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.RGB);
+		return StringRegexp.find(string, Regexp.RGB_NUMERIC);
 	}
 
 	/**

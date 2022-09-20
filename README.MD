@@ -16,7 +16,7 @@ StringRegexp.isLocalization("ru-RU");
 #### Проверка RGB в числовом представлении
 
 ```java
-StringRegexp.isRgb("250,150,50");
+StringRegexp.isRgbNumeric("250,150,50");
 // Результат выполнения: true
 ```
 
@@ -224,7 +224,7 @@ String text = """
     Я полцарства отдам за коня
     """;
 
-StringRegexp.findRgb(text);
+StringRegexp.findRgbNumeric(text);
 /*
 Результат выполнения: 
 [

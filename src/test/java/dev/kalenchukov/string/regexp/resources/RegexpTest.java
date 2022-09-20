@@ -136,16 +136,16 @@ public class RegexpTest
 	 * Проверка групп.
 	 */
 	@Test
-	public void testRegexpRgb()
+	public void testRegexpRgbNumeric()
 	{
 		String string = "215,200,166";
 
-		Pattern pattern = Pattern.compile(Regexp.RGB.getPattern());
+		Pattern pattern = Pattern.compile(Regexp.RGB_NUMERIC.getPattern());
 		Matcher matcher = pattern.matcher(string);
 
 		assertTrue(matcher.find());
 
-		assertEquals("215,200,166", matcher.group(Regexp.RGB.getGroup()));
+		assertEquals("215,200,166", matcher.group(Regexp.RGB_NUMERIC.getGroup()));
 		assertEquals("215", matcher.group("red"));
 		assertEquals("200", matcher.group("green"));
 		assertEquals("166", matcher.group("blue"));
