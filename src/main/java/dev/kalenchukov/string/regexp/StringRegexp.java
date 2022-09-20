@@ -149,6 +149,21 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка доменным именем.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является доменным именем, иначе {@code false}.
+	 */
+	public static boolean isDomain(@NotNull final String string)
+	{
+		return StringRegexp.is(
+			string,
+			Regexp.DOMAIN,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+	}
+
+	/**
 	 * Проверяет, является ли строка IP адресом четвёртой версии.
 	 *
 	 * @param string Строка
@@ -756,6 +771,23 @@ public class StringRegexp
 		return StringRegexp.find(
 			string,
 			Regexp.EMAIL_ADDRESS,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+	}
+
+	/**
+	 * Выполняет поиск доменных имён.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными доменными именами.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findDomain(@NotNull final String string)
+	{
+		return StringRegexp.find(
+			string,
+			Regexp.DOMAIN,
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
 	}

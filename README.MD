@@ -62,6 +62,13 @@ StringRegexp.isEmailAddress("aleksey.kalenchukov@yandex.ru");
 // Результат выполнения: true
 ```
 
+#### Проверка доменного имени
+
+```java
+StringRegexp.isDomain("kalenchukov.dev");
+// Результат выполнения: true
+```
+
 #### Проверка IP адреса четвёртой версии
 
 ```java
@@ -323,6 +330,29 @@ StringRegexp.findEmailAddress(text);
 [
     aleksey.kalenchukov@yandex.ru,
     123alekseykalenchukov@yandex.ru
+]
+*/
+```
+
+#### Поиск доменных имён
+
+```java
+String text = """
+    Зерна упали в землю, зерна просят дождя.
+    Им нужен дождь.
+    Разрежь мою грудь, kalenchukov.dev посмотри мне внутрь,
+    Ты увидишь, там все горит огнем.
+    Через день будет поздно, через час будет поздно,
+    Через миг будет уже не встать.
+    Если к дверям не подходят ключи,regexp.string.kalenchukov.dev вышиби двери плечом.
+    """;
+
+StringRegexp.findEmailAddress(text);
+/*
+Результат выполнения: 
+[
+    kalenchukov.dev,
+    regexp.string.kalenchukov.dev
 ]
 */
 ```

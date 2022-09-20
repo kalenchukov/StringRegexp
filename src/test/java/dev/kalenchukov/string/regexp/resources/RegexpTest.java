@@ -116,6 +116,26 @@ public class RegexpTest
 	 * Проверка групп.
 	 */
 	@Test
+	public void testRegexpDomain()
+	{
+		String string = "kalenchukov.dev";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.DOMAIN.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("kalenchukov.dev", matcher.group(Regexp.DOMAIN.getGroup()));
+		assertEquals("dev", matcher.group("tld"));
+	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
 	public void testRegexpRgb()
 	{
 		String string = "215,200,166";
