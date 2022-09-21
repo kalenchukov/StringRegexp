@@ -644,6 +644,19 @@ public class StringRegexp
 	}
 
 	/**
+	 * Выполняет поиск цифр троичной системы счисления.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными цифрами троичной системы счисления.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findDigitTernary(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.DIGIT_TERNARY);
+	}
+
+	/**
 	 * Выполняет поиск цифр десятеричной системы счисления.
 	 *
 	 * @param string Строка.
