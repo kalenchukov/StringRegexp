@@ -245,6 +245,17 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка цифрой восьмеричной системы счисления.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является цифрой восьмеричной системы счисления, иначе {@code false}.
+	 */
+	public static boolean isDigitOctal(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.DIGIT_OCTAL);
+	}
+
+	/**
 	 * Проверяет, является ли строка числом.
 	 *
 	 * @param string Строка

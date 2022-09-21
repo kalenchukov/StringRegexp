@@ -1182,6 +1182,26 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректной цифры восьмеричной системы счисления.
+	 */
+	@Test
+	public void isDigitOctalCorrect()
+	{
+		assertTrue(StringRegexp.isDigitOctal("01234567"));
+		assertTrue(StringRegexp.isDigitOctal("12014302101"));
+	}
+
+	/**
+	 * Проверка некорректной цифры восьмеричной системы счисления.
+	 */
+	@Test
+	public void isDigitOctalNotCorrect()
+	{
+		assertFalse(StringRegexp.isDigitOctal(""));
+		assertFalse(StringRegexp.isDigitOctal(" "));
+	}
+
+	/**
 	 * Проверка корректной цифры десятеричной системы счисления.
 	 */
 	@Test

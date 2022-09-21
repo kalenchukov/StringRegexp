@@ -114,14 +114,21 @@ StringRegexp.isDigitDecimal("0123456789");
 #### Проверка цифры двоичной системы счисления
 
 ```java
-StringRegexp.isDigitBinary("010001010");
+StringRegexp.isDigitBinary("01");
 // Результат выполнения: true
 ```
 
 #### Проверка цифры троичной системы счисления
 
 ```java
-StringRegexp.isDigitTernary("2010020210120");
+StringRegexp.isDigitTernary("012");
+// Результат выполнения: true
+```
+
+#### Проверка цифры восьмеричной системы счисления
+
+```java
+StringRegexp.isDigitOctal("01234567");
 // Результат выполнения: true
 ```
 
