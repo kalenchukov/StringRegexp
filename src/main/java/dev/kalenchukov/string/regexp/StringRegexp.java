@@ -670,6 +670,23 @@ public class StringRegexp
 	}
 
 	/**
+	 * Выполняет поиск цифр двенадцатеричной системы счисления.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными цифрами двенадцатеричной системы счисления.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findDigitDuodecimal(@NotNull final String string)
+	{
+		return StringRegexp.find(
+			string,
+			Regexp.DIGIT_DUODECIMAL,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+	}
+
+	/**
 	 * Выполняет поиск цифр десятеричной системы счисления.
 	 *
 	 * @param string Строка.
