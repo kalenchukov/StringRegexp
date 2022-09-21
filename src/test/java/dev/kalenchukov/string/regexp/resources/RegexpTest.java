@@ -468,6 +468,22 @@ public class RegexpTest
 	 * Проверка групп.
 	 */
 	@Test
+	public void testRegexpDigitTernary()
+	{
+		String string = "210210210210";
+
+		Pattern pattern = Pattern.compile(Regexp.DIGIT_TERNARY.getPattern());
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("210210210210", matcher.group(Regexp.DIGIT_TERNARY.getGroup()));
+	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
 	public void testRegexpDigitDecimal()
 	{
 		String string = "0123";
