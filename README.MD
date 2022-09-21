@@ -139,6 +139,13 @@ StringRegexp.isDigitDuodecimal("0123456789AB");
 // Результат выполнения: true
 ```
 
+#### Проверка цифры шестнадцатеричной системы счисления
+
+```java
+StringRegexp.isDigitHexadecimal("0123456789ABCDEF");
+// Результат выполнения: true
+```
+
 #### Проверка числа
 
 ```java

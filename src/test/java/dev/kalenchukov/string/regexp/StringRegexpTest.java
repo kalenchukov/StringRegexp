@@ -1202,27 +1202,6 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректной цифры двенадцатеричной системы счисления.
-	 */
-	@Test
-	public void isDigitDuodecimalCorrect()
-	{
-		assertTrue(StringRegexp.isDigitDuodecimal("0123456789AB"));
-		assertTrue(StringRegexp.isDigitDuodecimal("0123456789ab"));
-		assertTrue(StringRegexp.isDigitDuodecimal("120143023649aB101"));
-	}
-
-	/**
-	 * Проверка некорректной цифры двенадцатеричной системы счисления.
-	 */
-	@Test
-	public void isDigitDuodecimalNotCorrect()
-	{
-		assertFalse(StringRegexp.isDigitDuodecimal(""));
-		assertFalse(StringRegexp.isDigitDuodecimal(" "));
-	}
-
-	/**
 	 * Проверка корректной цифры десятеричной системы счисления.
 	 */
 	@Test
@@ -1246,6 +1225,48 @@ public class StringRegexpTest
 		assertFalse(StringRegexp.isDigitDecimal("1.1"));
 		assertFalse(StringRegexp.isDigitDecimal("1a1"));
 		assertFalse(StringRegexp.isDigitDecimal("1a"));
+	}
+
+	/**
+	 * Проверка корректной цифры двенадцатеричной системы счисления.
+	 */
+	@Test
+	public void isDigitDuodecimalCorrect()
+	{
+		assertTrue(StringRegexp.isDigitDuodecimal("0123456789AB"));
+		assertTrue(StringRegexp.isDigitDuodecimal("0123456789ab"));
+		assertTrue(StringRegexp.isDigitDuodecimal("120143023649aB101"));
+	}
+
+	/**
+	 * Проверка некорректной цифры двенадцатеричной системы счисления.
+	 */
+	@Test
+	public void isDigitDuodecimalNotCorrect()
+	{
+		assertFalse(StringRegexp.isDigitDuodecimal(""));
+		assertFalse(StringRegexp.isDigitDuodecimal(" "));
+	}
+
+	/**
+	 * Проверка корректной цифры шестнадцатеричной системы счисления.
+	 */
+	@Test
+	public void isDigitHexadecimalCorrect()
+	{
+		assertTrue(StringRegexp.isDigitHexadecimal("0123456789ABCDEF"));
+		assertTrue(StringRegexp.isDigitHexadecimal("0123456789abbcdef"));
+		assertTrue(StringRegexp.isDigitHexadecimal("120ef143023649aB10cd1"));
+	}
+
+	/**
+	 * Проверка некорректной цифры шестнадцатеричной системы счисления.
+	 */
+	@Test
+	public void isDigitHexadecimalNotCorrect()
+	{
+		assertFalse(StringRegexp.isDigitHexadecimal(""));
+		assertFalse(StringRegexp.isDigitHexadecimal(" "));
 	}
 
 	/**
