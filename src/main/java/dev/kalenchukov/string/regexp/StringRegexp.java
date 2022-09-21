@@ -581,6 +581,19 @@ public class StringRegexp
 	}
 
 	/**
+	 * Выполняет поиск цифр двоичной системы счисления.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными цифрами двоичной системы счисления.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findDigitBinary(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.DIGIT_BINARY);
+	}
+
+	/**
 	 * Выполняет поиск цифр десятеричной системы счисления.
 	 *
 	 * @param string Строка.
