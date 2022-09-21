@@ -452,6 +452,22 @@ public class RegexpTest
 	 * Проверка групп.
 	 */
 	@Test
+	public void testRegexpDigitBinary()
+	{
+		String string = "0101010101";
+
+		Pattern pattern = Pattern.compile(Regexp.DIGIT_BINARY.getPattern());
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("0101010101", matcher.group(Regexp.DIGIT_BINARY.getGroup()));
+	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
 	public void testRegexpDigitDecimal()
 	{
 		String string = "0123";

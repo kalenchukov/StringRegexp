@@ -212,6 +212,17 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка цифрой двоичной системы счисления.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является цифрой двоичной системы счисления, иначе {@code false}.
+	 */
+	public static boolean isDigitBinary(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.DIGIT_BINARY);
+	}
+
+	/**
 	 * Проверяет, является ли строка цифрой десятеричной системы счисления.
 	 *
 	 * @param string Строка

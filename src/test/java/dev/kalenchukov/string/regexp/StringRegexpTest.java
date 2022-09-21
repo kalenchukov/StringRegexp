@@ -1103,6 +1103,33 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректной цифры двоичной системы счисления.
+	 */
+	@Test
+	public void isDigitBinaryCorrect()
+	{
+		assertTrue(StringRegexp.isDigitBinary("0"));
+		assertTrue(StringRegexp.isDigitBinary("1"));
+		assertTrue(StringRegexp.isDigitBinary("01010101"));
+		assertTrue(StringRegexp.isDigitBinary("1010101"));
+	}
+
+	/**
+	 * Проверка некорректной цифры двоичной системы счисления.
+	 */
+	@Test
+	public void isDigitBinaryNotCorrect()
+	{
+		assertFalse(StringRegexp.isDigitBinary(""));
+		assertFalse(StringRegexp.isDigitBinary(" "));
+
+		assertFalse(StringRegexp.isDigitBinary("1.0"));
+		assertFalse(StringRegexp.isDigitBinary("012"));
+		assertFalse(StringRegexp.isDigitBinary("1a0"));
+		assertFalse(StringRegexp.isDigitBinary("0a"));
+	}
+
+	/**
 	 * Проверка корректной цифры десятеричной системы счисления.
 	 */
 	@Test
