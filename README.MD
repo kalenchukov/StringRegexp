@@ -4,6 +4,176 @@
 
 ## Использование
 
+### Получение шаблона регулярного выражения
+
+#### IP-адрес четвёртой версии
+
+```java
+Regexp.INET_4_ADDRESS;
+```
+
+#### IP-адрес шестой версии
+
+```java
+Regexp.INET_6_ADDRESS;
+```
+
+#### MAC-адрес
+
+```java
+Regexp.MAC_ADDRESS;
+```
+
+#### Адрес электронной почты
+
+```java
+Regexp.EMAIL_ADDRESS;
+```
+
+#### Домен
+
+```java
+Regexp.DOMAIN;
+```
+
+#### Локализация
+
+```java
+Regexp.LOCALIZATION;
+```
+
+#### RGB в числовом представлении
+
+```java
+Regexp.RGB_NUMERIC;
+```
+
+#### RGB в шестнадцатеричной системе счисления
+
+```java
+Regexp.RGB_HEX;
+```
+
+#### Телеграм канал
+
+```java
+Regexp.TELEGRAM;
+```
+
+#### Метка
+
+```java
+Regexp.TAG;
+```
+
+#### Цифра двоичной системы счисления
+
+```java
+Regexp.DIGIT_BINARY;
+```
+
+#### Цифра троичной системы счисления
+
+```java
+Regexp.DIGIT_TERNARY;
+```
+
+#### Цифра восьмеричной системы счисления
+
+```java
+Regexp.DIGIT_OCTAL;
+```
+
+#### Цифра десятеричной системы счисления
+
+```java
+Regexp.DIGIT_DECIMAL;
+```
+
+#### Цифра двенадцатеричной системы счисления
+
+```java
+Regexp.DIGIT_DUODECIMAL;
+```
+
+#### Цифра шестнадцатеричной системы счисления
+
+```java
+Regexp.DIGIT_HEXADECIMAL;
+```
+
+#### Число десятеричной системы счисления
+
+```java
+Regexp.NUMBER;
+```
+
+#### Слово
+
+```java
+Regexp.WORD;
+```
+
+#### Буква
+
+```java
+Regexp.LETTER;
+```
+
+#### Область CDATA
+
+```java
+Regexp.CDATA;
+```
+
+#### Самозакрывающийся HTML-тег
+
+```java
+Regexp.HTML_SELF_CLOSING_TAG;
+```
+
+#### Открывающий HTML-тег
+
+```java
+Regexp.HTML_START_TAG;
+```
+
+#### Закрывающий HTML-тег
+
+```java
+Regexp.HTML_END_TAG;
+```
+
+#### HTML-комментарий
+
+```java
+Regexp.HTML_COMMENT;
+```
+
+#### Тип HTML-документа
+
+```java
+Regexp.HTML_DOCTYPE;
+```
+
+#### HTML-сущность в виде имени
+
+```java
+Regexp.HTML_ENTITY_NAME;
+```
+
+#### HTML-сущность в виде unicode
+
+```java
+Regexp.HTML_ENTITY_UNICODE;
+```
+
+#### HTML-сущность в виде числа
+
+```java
+Regexp.HTML_ENTITY_NUMERIC;
+```
+
 ### Проверка
 
 #### Проверка локализации
@@ -34,14 +204,14 @@ StringRegexp.isRgbHexIgnoreCase("#fffFFF");
 // Результат выполнения: true
 ```
 
-#### Проверка MAC адреса
+#### Проверка MAC-адреса
 
 ```java
 StringRegexp.isMacAddress("00:EF:CD:EF:11:22");
 // Результат выполнения: true
 ```
 
-#### Проверка MAC адреса без учёта регистра букв
+#### Проверка MAC-адреса без учёта регистра букв
 
 ```java
 StringRegexp.isMacAddressIgnoreCase("00-eF-cd-Ef-11-22");
@@ -69,21 +239,21 @@ StringRegexp.isDomain("kalenchukov.dev");
 // Результат выполнения: true
 ```
 
-#### Проверка IP адреса четвёртой версии
+#### Проверка IP-адреса четвёртой версии
 
 ```java
 StringRegexp.isInet4Address("192.168.1.1");
 // Результат выполнения: true
 ```
 
-#### Проверка IP адреса шестой версии
+#### Проверка IP-адреса шестой версии
 
 ```java
 StringRegexp.isInet6Address("EF98:3:0:0:0:0:2F3B:7654");
 // Результат выполнения: true
 ```
 
-#### Проверка IP адреса шестой версии без учёта регистра букв
+#### Проверка IP-адреса шестой версии без учёта регистра букв
 
 ```java
 StringRegexp.isInet6AddressIgnoreCase("ef98:3:0:0:0:0:2F3B:7654");
@@ -309,7 +479,7 @@ StringRegexp.findRgbHexIgnoreCase(text);
 */
 ```
 
-#### Поиск MAC адресов
+#### Поиск MAC-адресов
 
 ```java
 String text = """
@@ -329,7 +499,7 @@ StringRegexp.findMacAddress(text);
 */
 ```
 
-#### Поиск MAC адресов без учёта регистра букв
+#### Поиск MAC-адресов без учёта регистра букв
 
 ```java
 String text = """
@@ -392,7 +562,7 @@ StringRegexp.findEmailAddress(text);
 */
 ```
 
-#### Поиск IP адресов четвёртой версии
+#### Поиск IP-адресов четвёртой версии
 
 ```java
 String text = """
@@ -412,7 +582,7 @@ StringRegexp.findInet4Address(text);
 */
 ```
 
-#### Поиск IP адресов шестой версии
+#### Поиск IP-адресов шестой версии
 
 ```java
 String text = """
@@ -432,7 +602,7 @@ StringRegexp.findInet6Address(text);
 */
 ```
 
-#### Поиск IP адресов шестой версии без учёта регистра букв
+#### Поиск IP-адресов шестой версии без учёта регистра букв
 
 ```java
 String text = """

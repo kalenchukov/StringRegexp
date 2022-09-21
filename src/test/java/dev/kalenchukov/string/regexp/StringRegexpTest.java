@@ -105,7 +105,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного IP адреса четвёртой версии.
+	 * Проверка корректного IP-адреса четвёртой версии.
 	 */
 	@Test
 	public void isIpAddressVersion4Correct()
@@ -116,7 +116,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного IP адреса четвёртой версии.
+	 * Проверка некорректного IP-адреса четвёртой версии.
 	 */
 	@Test
 	public void isIpAddressVersion4NotCorrect()
@@ -139,7 +139,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка поиска IP адресов четвёртой версии.
+	 * Проверка поиска IP-адресов четвёртой версии.
 	 */
 	@Test
 	public void findIpAddressVersion4()
@@ -186,7 +186,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного IP адреса шестой версии.
+	 * Проверка корректного IP-адреса шестой версии.
 	 */
 	@Test
 	public void isIpAddressVersion6Correct()
@@ -195,7 +195,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного IP адреса шестой версии.
+	 * Проверка некорректного IP-адреса шестой версии.
 	 */
 	@Test
 	public void isIpAddressVersion6NotCorrect()
@@ -204,7 +204,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного IP адреса шестой версии без учёта регистра букв.
+	 * Проверка корректного IP-адреса шестой версии без учёта регистра букв.
 	 */
 	@Test
 	public void isIpAddressVersion6IgnoreCaseCorrect()
@@ -239,7 +239,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного IP адреса шестой версии без учёта регистра букв.
+	 * Проверка некорректного IP-адреса шестой версии без учёта регистра букв.
 	 */
 	@Test
 	public void isIpAddressVersion6IgnoreCaseNotCorrect()
@@ -459,7 +459,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного MAC адреса.
+	 * Проверка корректного MAC-адреса.
 	 */
 	@Test
 	public void isMacAddressCorrect()
@@ -469,7 +469,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного MAC адреса.
+	 * Проверка некорректного MAC-адреса.
 	 */
 	@Test
 	public void isMacAddressNotCorrect()
@@ -493,7 +493,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного MAC адреса без учёта регистра букв.
+	 * Проверка корректного MAC-адреса без учёта регистра букв.
 	 */
 	@Test
 	public void isMacAddressIgnoreCaseCorrect()
@@ -503,7 +503,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного MAC адреса без учёта регистра букв.
+	 * Проверка некорректного MAC-адреса без учёта регистра букв.
 	 */
 	@Test
 	public void isMacAddressIgnoreCaseNotCorrect()
@@ -1566,7 +1566,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка поиска MAC адресов.
+	 * Проверка поиска MAC-адресов.
 	 */
 	@Test
 	public void findMacAddress()
@@ -1610,7 +1610,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка поиска MAC адресов без учёта регистра.
+	 * Проверка поиска MAC-адресов без учёта регистра.
 	 */
 	@Test
 	public void findMacAddressIgnoreCase()
@@ -1736,7 +1736,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка поиска IP адресов шестой версии.
+	 * Проверка поиска IP-адресов шестой версии.
 	 */
 	@Test
 	public void findIpAddressVersion6()
@@ -1779,7 +1779,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка поиска IP адресов шестой версии без учёта регистра.
+	 * Проверка поиска IP-адресов шестой версии без учёта регистра.
 	 */
 	@Test
 	public void findIpAddressVersion6IgnoreCase()

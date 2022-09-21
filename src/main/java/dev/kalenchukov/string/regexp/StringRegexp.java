@@ -97,10 +97,10 @@ public class StringRegexp
 	}
 
 	/**
-	 * Проверяет, является ли строка MAC адресом.
+	 * Проверяет, является ли строка MAC-адресом.
 	 *
 	 * @param string Строка
-	 * @return {@code True}, если строка является MAC адресом, иначе {@code false}.
+	 * @return {@code True}, если строка является MAC-адресом, иначе {@code false}.
 	 */
 	public static boolean isMacAddress(@NotNull final String string)
 	{
@@ -108,10 +108,10 @@ public class StringRegexp
 	}
 
 	/**
-	 * Проверяет, является ли строка MAC адресом без учёта регистра букв.
+	 * Проверяет, является ли строка MAC-адресом без учёта регистра букв.
 	 *
 	 * @param string Строка
-	 * @return {@code True}, если строка является MAC адресом, иначе {@code false}.
+	 * @return {@code True}, если строка является MAC-адресом, иначе {@code false}.
 	 */
 	public static boolean isMacAddressIgnoreCase(@NotNull final String string)
 	{
@@ -164,10 +164,10 @@ public class StringRegexp
 	}
 
 	/**
-	 * Проверяет, является ли строка IP адресом четвёртой версии.
+	 * Проверяет, является ли строка IP-адресом четвёртой версии.
 	 *
 	 * @param string Строка
-	 * @return {@code True}, если строка является IP адресом четвёртой версии, иначе {@code false}.
+	 * @return {@code True}, если строка является IP-адресом четвёртой версии, иначе {@code false}.
 	 */
 	public static boolean isInet4Address(@NotNull final String string)
 	{
@@ -175,10 +175,10 @@ public class StringRegexp
 	}
 
 	/**
-	 * Проверяет, является ли строка IP адресом шестой версии.
+	 * Проверяет, является ли строка IP-адресом шестой версии.
 	 *
 	 * @param string Строка
-	 * @return {@code True}, если строка является IP адресом шестой версии, иначе {@code false}.
+	 * @return {@code True}, если строка является IP-адресом шестой версии, иначе {@code false}.
 	 */
 	public static boolean isInet6Address(@NotNull final String string)
 	{
@@ -186,10 +186,10 @@ public class StringRegexp
 	}
 
 	/**
-	 * Проверяет, является ли строка IP адресом шестой версии без учёта регистра букв.
+	 * Проверяет, является ли строка IP-адресом шестой версии без учёта регистра букв.
 	 *
 	 * @param string Строка
-	 * @return {@code True}, если строка является IP адресом шестой версии, иначе {@code false}.
+	 * @return {@code True}, если строка является IP-адресом шестой версии, иначе {@code false}.
 	 */
 	public static boolean isInet6AddressIgnoreCase(@NotNull final String string)
 	{
@@ -807,10 +807,10 @@ public class StringRegexp
 	}
 
 	/**
-	 * Выполняет поиск MAC адресов.
+	 * Выполняет поиск MAC-адресов.
 	 *
 	 * @param string Строка.
-	 * @return Коллекцию с найденными MAC адресами.
+	 * @return Коллекцию с найденными MAC-адресами.
 	 */
 	@Unmodifiable
 	@NotNull
@@ -820,10 +820,10 @@ public class StringRegexp
 	}
 
 	/**
-	 * Выполняет поиск MAC адресов без учётна регистра букв.
+	 * Выполняет поиск MAC-адресов без учётна регистра букв.
 	 *
 	 * @param string Строка.
-	 * @return Коллекцию с найденными MAC адресами.
+	 * @return Коллекцию с найденными MAC-адресами.
 	 */
 	@Unmodifiable
 	@NotNull
@@ -850,10 +850,10 @@ public class StringRegexp
 	}
 
 	/**
-	 * Выполняет поиск IP адресов четвёртой версии.
+	 * Выполняет поиск IP-адресов четвёртой версии.
 	 *
 	 * @param string Строка.
-	 * @return Коллекцию с найденными IP адресами четвёртой версии.
+	 * @return Коллекцию с найденными IP-адресами четвёртой версии.
 	 */
 	@Unmodifiable
 	@NotNull
@@ -863,10 +863,10 @@ public class StringRegexp
 	}
 
 	/**
-	 * Выполняет поиск IP адресов шестой версии.
+	 * Выполняет поиск IP-адресов шестой версии.
 	 *
 	 * @param string Строка.
-	 * @return Коллекцию с найденными IP адресами шестой версии.
+	 * @return Коллекцию с найденными IP-адресами шестой версии.
 	 */
 	@Unmodifiable
 	@NotNull
@@ -876,10 +876,10 @@ public class StringRegexp
 	}
 
 	/**
-	 * Выполняет поиск IP адресов шестой версии без учёта регистра букв.
+	 * Выполняет поиск IP-адресов шестой версии без учёта регистра букв.
 	 *
 	 * @param string Строка.
-	 * @return Коллекцию с найденными IP адресами шестой версии.
+	 * @return Коллекцию с найденными IP-адресами шестой версии.
 	 */
 	@Unmodifiable
 	@NotNull
