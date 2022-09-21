@@ -452,16 +452,16 @@ public class RegexpTest
 	 * Проверка групп.
 	 */
 	@Test
-	public void testRegexpDigit()
+	public void testRegexpDigitDecimal()
 	{
 		String string = "0123";
 
-		Pattern pattern = Pattern.compile(Regexp.DIGIT.getPattern());
+		Pattern pattern = Pattern.compile(Regexp.DIGIT_DECIMAL.getPattern());
 		Matcher matcher = pattern.matcher(string);
 
 		assertTrue(matcher.find());
 
-		assertEquals("0123", matcher.group(Regexp.DIGIT.getGroup()));
+		assertEquals("0123", matcher.group(Regexp.DIGIT_DECIMAL.getGroup()));
 	}
 
 	/**

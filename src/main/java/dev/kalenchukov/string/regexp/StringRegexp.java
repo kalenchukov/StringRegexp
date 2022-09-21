@@ -212,14 +212,14 @@ public class StringRegexp
 	}
 
 	/**
-	 * Проверяет, является ли строка цифрой.
+	 * Проверяет, является ли строка цифрой десятеричной системы счисления.
 	 *
 	 * @param string Строка
-	 * @return {@code True}, если строка является цифрой, иначе {@code false}.
+	 * @return {@code True}, если строка является цифрой десятеричной системы счисления, иначе {@code false}.
 	 */
-	public static boolean isDigit(@NotNull final String string)
+	public static boolean isDigitDecimal(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.DIGIT);
+		return StringRegexp.is(string, Regexp.DIGIT_DECIMAL);
 	}
 
 	/**
@@ -570,16 +570,16 @@ public class StringRegexp
 	}
 
 	/**
-	 * Выполняет поиск цифр.
+	 * Выполняет поиск цифр десятеричной системы счисления.
 	 *
 	 * @param string Строка.
-	 * @return Коллекцию с найденными цифрами.
+	 * @return Коллекцию с найденными цифрами десятеричной системы счисления.
 	 */
 	@Unmodifiable
 	@NotNull
-	public static List<@NotNull String> findDigit(@NotNull final String string)
+	public static List<@NotNull String> findDigitDecimal(@NotNull final String string)
 	{
-		return StringRegexp.find(string, Regexp.DIGIT);
+		return StringRegexp.find(string, Regexp.DIGIT_DECIMAL);
 	}
 
 	/**

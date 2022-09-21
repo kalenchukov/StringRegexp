@@ -104,10 +104,10 @@ StringRegexp.isWord("Красно-жёлтые");
 // Результат выполнения: true
 ```
 
-#### Проверка цифры
+#### Проверка цифры десятеричной системы счисления
 
 ```java
-StringRegexp.isDigit("0123456789");
+StringRegexp.isDigitDecimal("0123456789");
 // Результат выполнения: true
 ```
 
@@ -457,7 +457,7 @@ StringRegexp.findTag(text);
 */
 ```
 
-#### Поиск цифр
+#### Поиск цифр десятеричной системы счисления
 
 ```java
 String text = """
@@ -467,7 +467,7 @@ String text = """
     Ты идешь не спеша, не спеша...
     """;
 
-StringRegexp.findDigit(text);
+StringRegexp.findDigitDecimal(text);
 /*
 Результат выполнения: 
 [

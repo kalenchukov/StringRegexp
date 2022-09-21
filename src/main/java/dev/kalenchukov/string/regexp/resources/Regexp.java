@@ -282,7 +282,7 @@ public enum Regexp
 	 *     </ul>
 	 * </p>
 	 */
-	DIGIT("digit", """
+	DIGIT_DECIMAL("digit", """
 		(?<digit>
 			[0-9]+
 		)

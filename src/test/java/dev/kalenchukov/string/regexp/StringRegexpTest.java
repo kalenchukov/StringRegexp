@@ -1103,29 +1103,29 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректной цифры.
+	 * Проверка корректной цифры десятеричной системы счисления.
 	 */
 	@Test
-	public void isDigitCorrect()
+	public void isDigitDecimalCorrect()
 	{
-		assertTrue(StringRegexp.isDigit("0"));
-		assertTrue(StringRegexp.isDigit("0123"));
-		assertTrue(StringRegexp.isDigit("6516166848498494"));
+		assertTrue(StringRegexp.isDigitDecimal("0"));
+		assertTrue(StringRegexp.isDigitDecimal("0123"));
+		assertTrue(StringRegexp.isDigitDecimal("6516166848498494"));
 	}
 
 	/**
-	 * Проверка некорректной цифры.
+	 * Проверка некорректной цифры десятеричной системы счисления.
 	 */
 	@Test
-	public void isDigitNotCorrect()
+	public void isDigitDecimalNotCorrect()
 	{
-		assertFalse(StringRegexp.isDigit(""));
-		assertFalse(StringRegexp.isDigit(" "));
+		assertFalse(StringRegexp.isDigitDecimal(""));
+		assertFalse(StringRegexp.isDigitDecimal(" "));
 
-		assertFalse(StringRegexp.isDigit("1.1"));
-		assertFalse(StringRegexp.isDigit("1.1"));
-		assertFalse(StringRegexp.isDigit("1a1"));
-		assertFalse(StringRegexp.isDigit("1a"));
+		assertFalse(StringRegexp.isDigitDecimal("1.1"));
+		assertFalse(StringRegexp.isDigitDecimal("1.1"));
+		assertFalse(StringRegexp.isDigitDecimal("1a1"));
+		assertFalse(StringRegexp.isDigitDecimal("1a"));
 	}
 
 	/**
@@ -1727,12 +1727,12 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка поиска цифр.
+	 * Проверка поиска цифр десятеричной системы счисления.
 	 */
 	@Test
-	public void findDigit()
+	public void findDigitDecimal()
 	{
-		String[] digit = {
+		String[] digitDecimal = {
 			"0",
 			"12",
 			"123",
@@ -1762,7 +1762,7 @@ public class StringRegexpTest
 			О, но это не любовь...0123456789
 			""";
 
-		assertArrayEquals(digit, StringRegexp.findDigit(string).toArray());
+		assertArrayEquals(digitDecimal, StringRegexp.findDigitDecimal(string).toArray());
 	}
 
 	/**
