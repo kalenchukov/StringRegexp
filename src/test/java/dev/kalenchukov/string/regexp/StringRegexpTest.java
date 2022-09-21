@@ -335,6 +335,31 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка домена.
+	 */
+	@Test
+	public void isDomainCorrect()
+	{
+		assertTrue(StringRegexp.isDomain("kalenchukov.dev"));
+		assertTrue(StringRegexp.isDomain("regexp.string.kalenchukov.dev"));
+		assertTrue(StringRegexp.isDomain("aleksey.123.kalenchukov.ru"));
+		assertTrue(StringRegexp.isDomain("123.aleksey.kalenchukov.ru"));
+	}
+
+	/**
+	 * Проверка домена.
+	 */
+	@Test
+	public void isDomainNotCorrect()
+	{
+		assertFalse(StringRegexp.isDomain(""));
+		assertFalse(StringRegexp.isDomain(" "));
+
+		assertFalse(StringRegexp.isDomain("kalenchukov,dev"));
+		assertFalse(StringRegexp.isDomain("regexp.string.kalenchukov.d"));
+	}
+
+	/**
 	 * Проверка корректного RGB в числовом представлении.
 	 */
 	@Test
