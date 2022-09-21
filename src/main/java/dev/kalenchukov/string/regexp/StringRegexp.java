@@ -657,6 +657,19 @@ public class StringRegexp
 	}
 
 	/**
+	 * Выполняет поиск цифр восьмеричной системы счисления.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными цифрами восьмеричной системы счисления.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findDigitOctal(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.DIGIT_OCTAL);
+	}
+
+	/**
 	 * Выполняет поиск цифр десятеричной системы счисления.
 	 *
 	 * @param string Строка.
