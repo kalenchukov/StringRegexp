@@ -687,6 +687,23 @@ public class StringRegexp
 	}
 
 	/**
+	 * Выполняет поиск цифр шестнадцатеричной системы счисления.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными цифрами шестнадцатеричной системы счисления.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findDigitHexadecimal(@NotNull final String string)
+	{
+		return StringRegexp.find(
+			string,
+			Regexp.DIGIT_HEXADECIMAL,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+	}
+
+	/**
 	 * Выполняет поиск цифр десятеричной системы счисления.
 	 *
 	 * @param string Строка.
