@@ -516,6 +516,25 @@ public class RegexpTest
 	 * Проверка групп.
 	 */
 	@Test
+	public void testRegexpDigitDuodecimal()
+	{
+		String string = "8819a861bB14Aab04ab519a2baA3b7a9B";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.DIGIT_DUODECIMAL.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("8819a861bB14Aab04ab519a2baA3b7a9B", matcher.group(Regexp.DIGIT_DUODECIMAL.getGroup()));
+	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
 	public void testRegexpNumber()
 	{
 		String string = "1.100";
