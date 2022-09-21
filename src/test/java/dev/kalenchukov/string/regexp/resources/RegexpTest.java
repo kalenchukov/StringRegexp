@@ -484,6 +484,22 @@ public class RegexpTest
 	 * Проверка групп.
 	 */
 	@Test
+	public void testRegexpDigitOctal()
+	{
+		String string = "65016716501710651467106";
+
+		Pattern pattern = Pattern.compile(Regexp.DIGIT_OCTAL.getPattern());
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("65016716501710651467106", matcher.group(Regexp.DIGIT_OCTAL.getGroup()));
+	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
 	public void testRegexpDigitDecimal()
 	{
 		String string = "0123";
