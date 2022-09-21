@@ -535,6 +535,25 @@ public class RegexpTest
 	 * Проверка групп.
 	 */
 	@Test
+	public void testRegexpDigitHexadecimal()
+	{
+		String string = "0123456789ABCDEF";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.DIGIT_HEXADECIMAL.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("0123456789ABCDEF", matcher.group(Regexp.DIGIT_HEXADECIMAL.getGroup()));
+	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
 	public void testRegexpNumber()
 	{
 		String string = "1.100";
