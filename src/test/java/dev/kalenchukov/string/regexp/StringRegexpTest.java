@@ -1155,6 +1155,33 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректной цифры троичной системы счисления.
+	 */
+	@Test
+	public void isDigitTernaryCorrect()
+	{
+		assertTrue(StringRegexp.isDigitTernary("0"));
+		assertTrue(StringRegexp.isDigitTernary("1"));
+		assertTrue(StringRegexp.isDigitTernary("2"));
+		assertTrue(StringRegexp.isDigitTernary("0101201012"));
+		assertTrue(StringRegexp.isDigitTernary("120102101"));
+	}
+
+	/**
+	 * Проверка некорректной цифры троичной системы счисления.
+	 */
+	@Test
+	public void isDigitTernaryNotCorrect()
+	{
+		assertFalse(StringRegexp.isDigitTernary(""));
+		assertFalse(StringRegexp.isDigitTernary(" "));
+
+		assertFalse(StringRegexp.isDigitTernary("1.0"));
+		assertFalse(StringRegexp.isDigitTernary("1a0"));
+		assertFalse(StringRegexp.isDigitTernary("0a"));
+	}
+
+	/**
 	 * Проверка корректной цифры десятеричной системы счисления.
 	 */
 	@Test

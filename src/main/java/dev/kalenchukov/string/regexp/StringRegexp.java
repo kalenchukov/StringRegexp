@@ -234,6 +234,17 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка цифрой троичной системы счисления.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является цифрой троичной системы счисления, иначе {@code false}.
+	 */
+	public static boolean isDigitTernary(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.DIGIT_TERNARY);
+	}
+
+	/**
 	 * Проверяет, является ли строка числом.
 	 *
 	 * @param string Строка
