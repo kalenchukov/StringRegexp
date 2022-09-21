@@ -1202,6 +1202,27 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректной цифры двенадцатеричной системы счисления.
+	 */
+	@Test
+	public void isDigitDuodecimalCorrect()
+	{
+		assertTrue(StringRegexp.isDigitDuodecimal("0123456789AB"));
+		assertTrue(StringRegexp.isDigitDuodecimal("0123456789ab"));
+		assertTrue(StringRegexp.isDigitDuodecimal("120143023649aB101"));
+	}
+
+	/**
+	 * Проверка некорректной цифры двенадцатеричной системы счисления.
+	 */
+	@Test
+	public void isDigitDuodecimalNotCorrect()
+	{
+		assertFalse(StringRegexp.isDigitDuodecimal(""));
+		assertFalse(StringRegexp.isDigitDuodecimal(" "));
+	}
+
+	/**
 	 * Проверка корректной цифры десятеричной системы счисления.
 	 */
 	@Test

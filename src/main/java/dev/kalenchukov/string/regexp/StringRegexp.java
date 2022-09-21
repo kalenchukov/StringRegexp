@@ -256,6 +256,20 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка цифрой двенадцатеричной системы счисления.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является цифрой двенадцатеричной системы счисления, иначе {@code false}.
+	 */
+	public static boolean isDigitDuodecimal(@NotNull final String string)
+	{
+		return StringRegexp.is(
+			string, Regexp.DIGIT_DUODECIMAL,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+	}
+
+	/**
 	 * Проверяет, является ли строка числом.
 	 *
 	 * @param string Строка
