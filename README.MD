@@ -565,7 +565,7 @@ String text = """
     Если к дверям не подходят ключи,regexp.string.kalenchukov.dev вышиби двери плечом.
     """;
 
-StringRegexp.findEmailAddress(text);
+StringRegexp.findDomain(text);
 /*
 Результат выполнения: 
 [
