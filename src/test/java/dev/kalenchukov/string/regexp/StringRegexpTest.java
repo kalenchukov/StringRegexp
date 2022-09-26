@@ -1500,6 +1500,51 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка поиска URL HTTP.
+	 */
+	@Test
+	public void findUrlHttp()
+	{
+		String[] domain = {
+			"http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme",
+			"https://kalenchukov.dev/#readme",
+			"https://www.kalenchukov.dev/string/regexp/",
+			"http://kalenchukov.dev/?isUrlHttp=test123"
+		};
+
+		String string = """
+			Тот, кто в пятнадцать лет убежал из дома
+			Вряд ли поймёт http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme того, кто учился в спецшколе
+			Тот, у кого есть хороший жизненный план
+			Вряд ли будет https://kalenchukov.dev/#readme думать о чём-то другом
+			
+			Мы пьём чай в старых квартирах
+			Ждём лета в старых квартирах
+			В старых квартирах, где есть свет
+			Газ, телефон, горячая вода
+			Радиоточка, пол, паркет
+			Санузел раздельный, дом кирпичный
+			Одна семья, две семьи, три семьи
+			Много подсобных помещений
+			Первый и последний не предлагать
+			Рядом с метро, центр
+			https://www.kalenchukov.dev/string/regexp/
+			Все говорят, что мы вместе
+			Все говорят, но немногие знают в каком,
+			А из наших труб идёт необычный дым
+			Стой, опасная зона, работа мозга
+			
+			Бошетунмай, бошетунмай
+			Бошетунмай,http://kalenchukov.dev/?isUrlHttp=test123 бошетунмай
+			Бошетунмай, бошетунмай
+			Бошетунмай, бошетунмай
+			Бошетунмай, бошетунмай
+			""";
+
+		assertArrayEquals(domain, StringRegexp.findUrlHttp(string).toArray());
+	}
+
+	/**
 	 * Проверка поиска RGB в шестнадцатеричной системе счисления.
 	 */
 	@Test

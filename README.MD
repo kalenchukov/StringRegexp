@@ -575,6 +575,26 @@ StringRegexp.findDomain(text);
 */
 ```
 
+#### Поиск URL HTTP
+
+```java
+String text = """
+    Тот, кто в пятнадцать лет убежал из дома
+    Вряд ли поймёт http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme того, кто учился в спецшколе
+    Тот, у кого есть хороший жизненный план
+    Вряд ли будет https://kalenchukov.dev/#readme думать о чём-то другом
+    """;
+
+StringRegexp.findUrlHttp(text);
+/*
+Результат выполнения: 
+[
+    "http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme",
+    "https://kalenchukov.dev/#readme"
+]
+*/
+```
+
 #### Поиск IP-адресов четвёртой версии
 
 ```java

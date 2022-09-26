@@ -942,6 +942,23 @@ public class StringRegexp
 	}
 
 	/**
+	 * Выполняет поиск URL HTTP.
+	 *
+	 * @param string Строка.
+	 * @return Коллекцию с найденными URL HTTP.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findUrlHttp(@NotNull final String string)
+	{
+		return StringRegexp.find(
+			string,
+			Regexp.URL_HTTP,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+	}
+
+	/**
 	 * Проверяет, является ли строка значением.
 	 *
 	 * @param regexp Регулярное выражение.
