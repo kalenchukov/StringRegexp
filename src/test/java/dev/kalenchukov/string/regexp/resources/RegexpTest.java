@@ -136,6 +136,31 @@ public class RegexpTest
 	 * Проверка групп.
 	 */
 	@Test
+	public void testRegexpUrlHttp()
+	{
+		String string = "http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#anchor";
+
+		Pattern pattern = Pattern.compile(
+			Regexp.URL_HTTP.getPattern(),
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(string);
+
+		assertTrue(matcher.find());
+
+		assertEquals("http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#anchor", matcher.group(Regexp.URL_HTTP.getGroup()));
+		assertEquals("http", matcher.group("protocol"));
+		assertEquals("kalenchukov.dev", matcher.group("domain"));
+		assertEquals("dev", matcher.group("tld"));
+		assertEquals("hello/world/", matcher.group("path"));
+		assertEquals("java=18&hello=world123", matcher.group("param"));
+		assertEquals("anchor", matcher.group("anchor"));
+	}
+
+	/**
+	 * Проверка групп.
+	 */
+	@Test
 	public void testRegexpRgbNumeric()
 	{
 		String string = "215,200,166";

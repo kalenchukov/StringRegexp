@@ -30,6 +30,12 @@ Regexp.MAC_ADDRESS;
 Regexp.EMAIL_ADDRESS;
 ```
 
+#### HTTP URL
+
+```java
+Regexp.URL_HTTP;
+```
+
 #### Домен
 
 ```java
