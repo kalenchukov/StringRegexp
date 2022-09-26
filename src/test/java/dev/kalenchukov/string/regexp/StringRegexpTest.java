@@ -360,6 +360,36 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка URL HTTP.
+	 */
+	@Test
+	public void isUrlHttp()
+	{
+		assertTrue(StringRegexp.isUrlHttp("http://kalenchukov.dev/hello/world/?java=18&hello=world123#anchor"));
+		assertTrue(StringRegexp.isUrlHttp("https://kalenchukov.dev/hello/world/?java=18&hello=world123#anchor"));
+
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world?java=18&hello=world123#anchor"));
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#anchor"));
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#"));
+
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/?java=18&hello=world123"));
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/?java=18&hello="));
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/?java=18&"));
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/?java=18"));
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/?"));
+
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/"));
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world"));
+
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/"));
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev"));
+
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world"));
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/?java=18&hello=world123#anchor"));
+		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/#anchor"));
+	}
+
+	/**
 	 * Проверка корректного RGB в числовом представлении.
 	 */
 	@Test

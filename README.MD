@@ -245,6 +245,13 @@ StringRegexp.isDomain("kalenchukov.dev");
 // Результат выполнения: true
 ```
 
+#### Проверка URL HTTP
+
+```java
+StringRegexp.isUrlHttp("http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme");
+// Результат выполнения: true
+```
+
 #### Проверка IP-адреса четвёртой версии
 
 ```java

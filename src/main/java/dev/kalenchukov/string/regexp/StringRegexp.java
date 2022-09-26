@@ -164,6 +164,21 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка HTTP URL.
+	 *
+	 * @param string Строка
+	 * @return {@code True}, если строка является HTTP URL, иначе {@code false}.
+	 */
+	public static boolean isUrlHttp(@NotNull final String string)
+	{
+		return StringRegexp.is(
+			string,
+			Regexp.URL_HTTP,
+			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+	}
+
+	/**
 	 * Проверяет, является ли строка IP-адресом четвёртой версии.
 	 *
 	 * @param string Строка
