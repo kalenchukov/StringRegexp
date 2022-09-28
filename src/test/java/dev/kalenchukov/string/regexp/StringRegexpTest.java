@@ -982,16 +982,11 @@ public class StringRegexpTest
 		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input/"));
 		assertFalse(StringRegexp.isHtmlSelfClosingTag("input/>"));
 
-		assertFalse(StringRegexp.isHtmlSelfClosingTag("<inp-ut/>"));
-		assertFalse(StringRegexp.isHtmlSelfClosingTag("<inp_ut/>"));
-
 		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input id=='input-id'/>"));
 		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input id = = 'input-id'/>"));
 
 		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input id=''input-id'/>"));
 		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input id='input-id''/>"));
-
-		assertFalse(StringRegexp.isHtmlSelfClosingTag("<input id=input=id/>"));
 
 		assertFalse(StringRegexp.isHtmlSelfClosingTag("""
 			<link
@@ -1077,16 +1072,11 @@ public class StringRegexpTest
 		assertFalse(StringRegexp.isHtmlStartTag("<input"));
 		assertFalse(StringRegexp.isHtmlStartTag("input>"));
 
-		assertFalse(StringRegexp.isHtmlStartTag("<inp-ut>"));
-		assertFalse(StringRegexp.isHtmlStartTag("<inp_ut>"));
-
 		assertFalse(StringRegexp.isHtmlStartTag("<input id=='input-id'>"));
 		assertFalse(StringRegexp.isHtmlStartTag("<input id = = 'input-id'>"));
 
 		assertFalse(StringRegexp.isHtmlStartTag("<input id=''input-id'>"));
 		assertFalse(StringRegexp.isHtmlStartTag("<input id='input-id''>"));
-
-		assertFalse(StringRegexp.isHtmlStartTag("<input id=input=id>"));
 
 		assertFalse(StringRegexp.isHtmlStartTag("""
 			<link

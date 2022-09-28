@@ -418,13 +418,8 @@ public class RegexpTest
 		);
 		assertEquals("input", matcher.group("name"));
 		assertEquals(
-			"content=\"width=device-width, initial-scale=1, user-scalable=0\"",
-			matcher.group("param")
-		);
-		assertEquals("content", matcher.group("paramName"));
-		assertEquals(
-			"\"width=device-width, initial-scale=1, user-scalable=0\"",
-			matcher.group("paramValue")
+			"name=viewport content=\"width=device-width, initial-scale=1, user-scalable=0\"",
+			matcher.group("params")
 		);
 	}
 
@@ -449,8 +444,9 @@ public class RegexpTest
 			matcher.group(Regexp.HTML_START_TAG.getGroup())
 		);
 		assertEquals("meta", matcher.group("name"));
-		assertEquals("content", matcher.group("paramName"));
-		assertEquals("\"width=device-width, initial-scale=1, user-scalable=0\"", matcher.group("paramValue"));
+		assertEquals(
+			"name=viewport content=\"width=device-width, initial-scale=1, user-scalable=0\"",
+			matcher.group("params"));
 	}
 
 	/**
