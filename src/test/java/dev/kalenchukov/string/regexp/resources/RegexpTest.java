@@ -418,7 +418,7 @@ public class RegexpTest
 		);
 		assertEquals("input", matcher.group("name"));
 		assertEquals(
-			"name=viewport content=\"width=device-width, initial-scale=1, user-scalable=0\"",
+			" name=viewport content=\"width=device-width, initial-scale=1, user-scalable=0\"",
 			matcher.group("params")
 		);
 	}
@@ -445,7 +445,7 @@ public class RegexpTest
 		);
 		assertEquals("meta", matcher.group("name"));
 		assertEquals(
-			"name=viewport content=\"width=device-width, initial-scale=1, user-scalable=0\"",
+			" name=viewport content=\"width=device-width, initial-scale=1, user-scalable=0\"",
 			matcher.group("params"));
 	}
 
