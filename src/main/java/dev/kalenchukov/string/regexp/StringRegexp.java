@@ -40,7 +40,7 @@ import java.util.regex.Pattern;
 public class StringRegexp
 {
 	/**
-	 * Конструктор для {@code StringRegexp} запрещающий создавать объект класса.
+	 * Конструктор для {@code StringRegexp}.
 	 */
 	private StringRegexp() {}
 
