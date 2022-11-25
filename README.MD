@@ -1092,14 +1092,6 @@ StringRegexp.findHtmlSelfClosingTag(text);
 */
 ```
 
-## Установка
-
-Для установки этого проекта, введите в терминале:
-
-```bash
-git clone https://github.com/kalenchukov/StringRegexp.git
-```
-
 ## Версии
 
 Доступные [версии](https://github.com/kalenchukov/StringRegexp/releases).
