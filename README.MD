@@ -1091,11 +1091,3 @@ StringRegexp.findHtmlSelfClosingTag(text);
 ]
 */
 ```
-
-## Версии
-
-Доступные [версии](https://github.com/kalenchukov/StringRegexp/releases).
-
-## Лицензия
-
-[MIT](https://opensource.org/licenses/MIT)
