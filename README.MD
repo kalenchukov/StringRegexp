@@ -1104,10 +1104,6 @@ git clone https://github.com/kalenchukov/StringRegexp.git
 
 Доступные [версии](https://github.com/kalenchukov/StringRegexp/releases).
 
-## Авторы
-
-[Алексей Каленчуков](https://github.com/kalenchukov)
-
 ## Лицензия
 
 [MIT](https://opensource.org/licenses/MIT)
