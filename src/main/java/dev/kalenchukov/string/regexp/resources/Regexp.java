@@ -738,7 +738,7 @@ public enum Regexp
 	/**
 	 * Конструктор для {@code Regexp}.
 	 *
-	 * @param pattern Шаблон регулярного выражения.
+	 * @param pattern шаблон регулярного выражения.
 	 */
 	Regexp(@NotNull final String group, @NotNull final String pattern)
 	{
@@ -749,7 +749,7 @@ public enum Regexp
 	/**
 	 * Возвращает основную группу регулярного выражения.
 	 *
-	 * @return Основную группу регулярного выражения.
+	 * @return основную группу регулярного выражения.
 	 */
 	@NotNull
 	public String getGroup()
@@ -760,7 +760,7 @@ public enum Regexp
 	/**
 	 * Возвращает шаблон регулярного выражения.
 	 *
-	 * @return Шаблон регулярного выражения.
+	 * @return шаблон регулярного выражения.
 	 */
 	@NotNull
 	public String getPattern()
