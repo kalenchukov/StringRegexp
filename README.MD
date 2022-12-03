@@ -78,6 +78,12 @@ Regexp.COUNTRY_CODE_ALPHA2;
 Regexp.COUNTRY_CODE_ALPHA3;
 ```
 
+#### Трёхцифровой код страны
+
+```java
+Regexp.COUNTRY_CODE_NUMERIC3;
+```
+
 #### Метка
 
 ```java
