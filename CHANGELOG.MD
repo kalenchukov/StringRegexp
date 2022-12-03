@@ -3,6 +3,7 @@
 ## vX.X.X - XX.XX.XXXX
 
 ### Добавлено
+* Добавлено регулярное выражение Regexp.COUNTRY_CODE_ALPHA2.
 * Добавлен AUTHOR.MD.
 * Добавлен INSTALL.MD.
 * Добавлен CHANGELOG.MD.
