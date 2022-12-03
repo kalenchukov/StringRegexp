@@ -47,7 +47,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка именем телеграм канала.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является именем телеграм канала, иначе {@code false}.
 	 */
 	public static boolean isTelegram(@NotNull final String string)
@@ -62,7 +62,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка RGB в числовом представлении.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является RGB в числовом представлении, иначе {@code false}.
 	 */
 	public static boolean isRgbNumeric(@NotNull final String string)
@@ -73,7 +73,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка двухбуквенным кодом страны.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является двухбуквенным кодом страны, иначе {@code false}.
 	 */
 	public static boolean isCountryCodeAlpha2(@NotNull final String string)
@@ -84,7 +84,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка трёхбуквенным кодом страны.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является трёхбуквенным кодом страны, иначе {@code false}.
 	 */
 	public static boolean isCountryCodeAlpha3(@NotNull final String string)
@@ -93,9 +93,20 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка трёхцифровым кодом страны.
+	 *
+	 * @param string строка.
+	 * @return {@code true}, если строка является трёхцифровым кодом страны, иначе {@code false}.
+	 */
+	public static boolean isCountryCodeNumeric3(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.COUNTRY_CODE_NUMERIC3);
+	}
+
+	/**
 	 * Проверяет, является ли строка RGB в шестнадцатеричной системе счисления.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является RGB в шестнадцатеричной системе счисления, иначе {@code false}.
 	 */
 	public static boolean isRgbHex(@NotNull final String string)
@@ -106,7 +117,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка RGB в шестнадцатеричной системе счисления без учёта регистра букв.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является RGB в шестнадцатеричной системе счисления, иначе {@code false}.
 	 */
 	public static boolean isRgbHexIgnoreCase(@NotNull final String string)
@@ -121,7 +132,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка MAC-адресом.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является MAC-адресом, иначе {@code false}.
 	 */
 	public static boolean isMacAddress(@NotNull final String string)
@@ -132,7 +143,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка MAC-адресом без учёта регистра букв.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является MAC-адресом, иначе {@code false}.
 	 */
 	public static boolean isMacAddressIgnoreCase(@NotNull final String string)
@@ -147,7 +158,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка локализацией.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является локализацией, иначе {@code false}.
 	 */
 	public static boolean isLocalization(@NotNull final String string)
@@ -158,7 +169,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка адресом электронной почты.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является адресом электронной почты, иначе {@code false}.
 	 */
 	public static boolean isEmailAddress(@NotNull final String string)
@@ -173,7 +184,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка доменным именем.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является доменным именем, иначе {@code false}.
 	 */
 	public static boolean isDomain(@NotNull final String string)
@@ -188,7 +199,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка HTTP URL.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является HTTP URL, иначе {@code false}.
 	 */
 	public static boolean isUrlHttp(@NotNull final String string)
@@ -203,7 +214,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка IP-адресом четвёртой версии.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является IP-адресом четвёртой версии, иначе {@code false}.
 	 */
 	public static boolean isInet4Address(@NotNull final String string)
@@ -214,7 +225,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка IP-адресом шестой версии.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является IP-адресом шестой версии, иначе {@code false}.
 	 */
 	public static boolean isInet6Address(@NotNull final String string)
@@ -225,7 +236,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка IP-адресом шестой версии без учёта регистра букв.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является IP-адресом шестой версии, иначе {@code false}.
 	 */
 	public static boolean isInet6AddressIgnoreCase(@NotNull final String string)
@@ -240,7 +251,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка меткой.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является меткой, иначе {@code false}.
 	 */
 	public static boolean isTag(@NotNull final String string)
@@ -251,7 +262,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка цифрой двоичной системы счисления.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является цифрой двоичной системы счисления, иначе {@code false}.
 	 */
 	public static boolean isDigitBinary(@NotNull final String string)
@@ -262,7 +273,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка цифрой десятеричной системы счисления.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является цифрой десятеричной системы счисления, иначе {@code false}.
 	 */
 	public static boolean isDigitDecimal(@NotNull final String string)
@@ -273,7 +284,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка цифрой троичной системы счисления.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является цифрой троичной системы счисления, иначе {@code false}.
 	 */
 	public static boolean isDigitTernary(@NotNull final String string)
@@ -284,7 +295,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка цифрой восьмеричной системы счисления.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является цифрой восьмеричной системы счисления, иначе {@code false}.
 	 */
 	public static boolean isDigitOctal(@NotNull final String string)
@@ -295,7 +306,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка цифрой двенадцатеричной системы счисления.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является цифрой двенадцатеричной системы счисления, иначе {@code false}.
 	 */
 	public static boolean isDigitDuodecimal(@NotNull final String string)
@@ -309,7 +320,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка цифрой шестнадцатеричной системы счисления.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является цифрой шестнадцатеричной системы счисления, иначе {@code false}.
 	 */
 	public static boolean isDigitHexadecimal(@NotNull final String string)
@@ -323,7 +334,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка числом.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является числом, иначе {@code false}.
 	 */
 	public static boolean isNumber(@NotNull final String string)
@@ -334,7 +345,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка словом.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является словом, иначе {@code false}.
 	 */
 	public static boolean isWord(@NotNull final String string)
@@ -345,7 +356,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка буквой.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является буквой, иначе {@code false}.
 	 */
 	public static boolean isLetter(@NotNull final String string)
@@ -356,7 +367,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка HTML комментарием.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является HTML комментарием, иначе {@code false}.
 	 */
 	public static boolean isHtmlComment(@NotNull final String string)
@@ -371,7 +382,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка HTML сущностью в виде имени.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является HTML сущностью в виде имени, иначе {@code false}.
 	 */
 	public static boolean isHtmlEntityName(@NotNull final String string)
@@ -386,7 +397,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка HTML сущностью в виде числа.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является HTML сущностью в виде числа, иначе {@code false}.
 	 */
 	public static boolean isHtmlEntityNumeric(@NotNull final String string)
@@ -397,7 +408,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка HTML сущностью в виде unicode.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является HTML сущностью в виде unicode, иначе {@code false}.
 	 */
 	public static boolean isHtmlEntityUnicode(@NotNull final String string)
@@ -412,7 +423,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка типом HTML документа.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является типом HTML документа, иначе {@code false}.
 	 */
 	public static boolean isHtmlDoctype(@NotNull final String string)
@@ -427,7 +438,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка областью CDATA.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является областью CDATA, иначе {@code false}.
 	 */
 	public static boolean isCData(@NotNull final String string)
@@ -442,7 +453,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка закрывающим HTML тегом.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является закрывающим HTML тегом, иначе {@code false}.
 	 */
 	public static boolean isHtmlEndTag(@NotNull final String string)
@@ -457,7 +468,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка открывающим HTML тегом.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является открывающим HTML тегом, иначе {@code false}.
 	 */
 	public static boolean isHtmlStartTag(@NotNull final String string)
@@ -472,7 +483,7 @@ public class StringRegexp
 	/**
 	 * Проверяет, является ли строка самозакрывающимся HTML тегом.
 	 *
-	 * @param string строка
+	 * @param string строка.
 	 * @return {@code true}, если строка является самозакрывающимся HTML тегом, иначе {@code false}.
 	 */
 	public static boolean isHtmlSelfClosingTag(@NotNull final String string)
@@ -487,7 +498,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск самозакрывающихся HTML тегов.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными самозакрывающихся HTML тегами.
 	 */
 	@Unmodifiable
@@ -504,7 +515,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск открывающих HTML тегов.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными открывающими HTML тегами.
 	 */
 	@Unmodifiable
@@ -521,7 +532,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск закрывающих HTML тегов.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными закрывающими HTML тегами.
 	 */
 	@Unmodifiable
@@ -538,7 +549,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск областей CDATA.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными областями CDATA.
 	 */
 	@Unmodifiable
@@ -555,7 +566,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск типов HTML документа.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными типами HTML документа.
 	 */
 	@Unmodifiable
@@ -572,7 +583,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск HTML-сущностей в виде имени.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными HTML сущностями в виде имени.
 	 */
 	@Unmodifiable
@@ -589,7 +600,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск HTML-сущностей в виде числа.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными HTML сущностями в виде числа.
 	 */
 	@Unmodifiable
@@ -602,7 +613,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск HTML-сущностей в виде unicode.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными HTML сущностями в виде unicode.
 	 */
 	@Unmodifiable
@@ -619,7 +630,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск HTML комментариев.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными HTML комментариями.
 	 */
 	@Unmodifiable
@@ -636,7 +647,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск букв.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными буквами.
 	 */
 	@Unmodifiable
@@ -653,7 +664,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск слов.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными словами.
 	 */
 	@Unmodifiable
@@ -670,7 +681,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск цифр двоичной системы счисления.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными цифрами двоичной системы счисления.
 	 */
 	@Unmodifiable
@@ -683,7 +694,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск цифр троичной системы счисления.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными цифрами троичной системы счисления.
 	 */
 	@Unmodifiable
@@ -696,7 +707,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск цифр восьмеричной системы счисления.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными цифрами восьмеричной системы счисления.
 	 */
 	@Unmodifiable
@@ -709,7 +720,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск цифр двенадцатеричной системы счисления.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными цифрами двенадцатеричной системы счисления.
 	 */
 	@Unmodifiable
@@ -726,7 +737,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск цифр шестнадцатеричной системы счисления.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными цифрами шестнадцатеричной системы счисления.
 	 */
 	@Unmodifiable
@@ -743,7 +754,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск цифр десятеричной системы счисления.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными цифрами десятеричной системы счисления.
 	 */
 	@Unmodifiable
@@ -756,7 +767,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск чисел.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными числами.
 	 */
 	@Unmodifiable
@@ -769,7 +780,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск имён телеграм каналов.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными именами телеграм каналов.
 	 */
 	@Unmodifiable
@@ -786,7 +797,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск меток.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными метками.
 	 */
 	@Unmodifiable
@@ -803,7 +814,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск RGB в числовом представлении.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными RGB в числовом представлении.
 	 */
 	@Unmodifiable
@@ -816,7 +827,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск RGB в шестнадцатеричной системе счисления.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными RGB в шестнадцатеричной системе счисления.
 	 */
 	@Unmodifiable
@@ -829,7 +840,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск RGB в шестнадцатеричной системе счисления без учётна регистра букв.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными RGB в шестнадцатеричной системе счисления.
 	 */
 	@Unmodifiable
@@ -846,7 +857,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск MAC-адресов.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными MAC-адресами.
 	 */
 	@Unmodifiable
@@ -859,7 +870,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск MAC-адресов без учётна регистра букв.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными MAC-адресами.
 	 */
 	@Unmodifiable
@@ -876,7 +887,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск локализаций.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными локализациями.
 	 */
 	@Unmodifiable
@@ -889,7 +900,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск IP-адресов четвёртой версии.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными IP-адресами четвёртой версии.
 	 */
 	@Unmodifiable
@@ -902,7 +913,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск IP-адресов шестой версии.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными IP-адресами шестой версии.
 	 */
 	@Unmodifiable
@@ -915,7 +926,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск IP-адресов шестой версии без учёта регистра букв.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными IP-адресами шестой версии.
 	 */
 	@Unmodifiable
@@ -932,7 +943,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск адресов электронной почты.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными адресами электронной почты.
 	 */
 	@Unmodifiable
@@ -949,7 +960,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск доменных имён.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными доменными именами.
 	 */
 	@Unmodifiable
@@ -966,7 +977,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск URL HTTP.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными URL HTTP.
 	 */
 	@Unmodifiable
@@ -984,7 +995,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка значением.
 	 *
 	 * @param regexp регулярное выражение.
-	 * @param string строка.
+	 * @param string строка..
 	 * @return {@code true}, если строка является значением, иначе {@code false}.
 	 */
 	private static boolean is(@NotNull final String string, @NotNull final Regexp regexp)
@@ -997,7 +1008,7 @@ public class StringRegexp
 	 *
 	 * @param regexp регулярное выражение.
 	 * @param flags флаги регулярного выражения.
-	 * @param string строка.
+	 * @param string строка..
 	 * @return {@code true}, если строка является значением, иначе {@code false}.
 	 */
 	private static boolean is(@NotNull final String string,
@@ -1013,7 +1024,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск значений.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @return коллекцию с найденными значениями.
 	 */
 	@Unmodifiable
@@ -1026,7 +1037,7 @@ public class StringRegexp
 	/**
 	 * Выполняет поиск значений.
 	 *
-	 * @param string строка.
+	 * @param string строка..
 	 * @param flags флаги регулярного выражения.
 	 * @return коллекцию с найденными значениями.
 	 */

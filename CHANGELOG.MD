@@ -8,6 +8,7 @@
 * Добавлено регулярное выражение Regexp.COUNTRY_CODE_NUMERIC.
 * Добавлен метод StringRegexp.isCountryCodeAlpha2(String).
 * Добавлен метод StringRegexp.isCountryCodeAlpha3(String).
+* Добавлен метод StringRegexp.isCountryCodeNumeric3(String).
 * Добавлен AUTHOR.MD.
 * Добавлен INSTALL.MD.
 * Добавлен CHANGELOG.MD.

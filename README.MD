@@ -221,6 +221,13 @@ StringRegexp.isCountryCodeAlpha3("RUS");
 // Результат выполнения: true
 ```
 
+#### Проверка трёхциферного кода страны
+
+```java
+StringRegexp.isCountryCodeNumeric3("643");
+// Результат выполнения: true
+```
+
 #### Проверка RGB в числовом представлении
 
 ```java
