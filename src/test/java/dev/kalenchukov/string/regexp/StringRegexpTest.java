@@ -460,6 +460,33 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректного трёхбуквенного кода страны.
+	 */
+	@Test
+	public void isCountryCodeAlpha3Correct()
+	{
+		assertTrue(StringRegexp.isCountryCodeAlpha3("RUS"));
+		assertTrue(StringRegexp.isCountryCodeAlpha3("BLR"));
+	}
+
+	/**
+	 * Проверка некорректного трёхбуквенного кода страны.
+	 */
+	@Test
+	public void isCountryCodeAlpha3NotCorrect()
+	{
+		assertFalse(StringRegexp.isCountryCodeAlpha3(""));
+		assertFalse(StringRegexp.isCountryCodeAlpha3(" "));
+
+		assertFalse(StringRegexp.isCountryCodeAlpha3("rus"));
+
+		assertFalse(StringRegexp.isCountryCodeAlpha3("rub"));
+
+		assertFalse(StringRegexp.isCountryCodeAlpha3("#RUS"));
+		assertFalse(StringRegexp.isCountryCodeAlpha3("0RUS"));
+	}
+
+	/**
 	 * Проверка корректного RGB в шестнадцатеричной системе счисления.
 	 */
 	@Test
