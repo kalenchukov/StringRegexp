@@ -4,6 +4,7 @@
 
 ### Добавлено
 * Добавлено регулярное выражение Regexp.COUNTRY_CODE_ALPHA2.
+* Добавлено регулярное выражение Regexp.COUNTRY_CODE_ALPHA3.
 * Добавлен метод StringRegexp.isCountryCodeAlpha2(String).
 * Добавлен AUTHOR.MD.
 * Добавлен INSTALL.MD.

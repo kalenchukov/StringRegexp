@@ -72,6 +72,12 @@ Regexp.TELEGRAM;
 Regexp.COUNTRY_CODE_ALPHA2;
 ```
 
+#### Трёхбуквенный код страны
+
+```java
+Regexp.COUNTRY_CODE_ALPHA3;
+```
+
 #### Метка
 
 ```java
