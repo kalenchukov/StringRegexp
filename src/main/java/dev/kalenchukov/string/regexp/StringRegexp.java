@@ -838,6 +838,19 @@ public class StringRegexp
 	}
 
 	/**
+	 * Выполняет поиск трёхциферного кода страны.
+	 *
+	 * @param string строка.
+	 * @return коллекцию с найденными трёхциферными кодами стран.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findCountryCodeNumeric3(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.COUNTRY_CODE_NUMERIC3);
+	}
+
+	/**
 	 * Выполняет поиск RGB в числовом представлении.
 	 *
 	 * @param string строка.
