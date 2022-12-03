@@ -433,6 +433,33 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка корректного двухбуквенного кода страны.
+	 */
+	@Test
+	public void isCountryCodeAlpha2Correct()
+	{
+		assertTrue(StringRegexp.isCountryCodeAlpha2("RU"));
+		assertTrue(StringRegexp.isCountryCodeAlpha2("BY"));
+	}
+
+	/**
+	 * Проверка некорректного двухбуквенного кода страны.
+	 */
+	@Test
+	public void isCountryCodeAlpha2NotCorrect()
+	{
+		assertFalse(StringRegexp.isCountryCodeAlpha2(""));
+		assertFalse(StringRegexp.isCountryCodeAlpha2(" "));
+
+		assertFalse(StringRegexp.isCountryCodeAlpha2("ru"));
+
+		assertFalse(StringRegexp.isCountryCodeAlpha2("rub"));
+
+		assertFalse(StringRegexp.isCountryCodeAlpha2("#RU"));
+		assertFalse(StringRegexp.isCountryCodeAlpha2("0RU"));
+	}
+
+	/**
 	 * Проверка корректного RGB в шестнадцатеричной системе счисления.
 	 */
 	@Test

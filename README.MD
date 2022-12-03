@@ -66,6 +66,12 @@ Regexp.RGB_HEX;
 Regexp.TELEGRAM;
 ```
 
+#### Двухбуквенный код страны
+
+```java
+Regexp.COUNTRY_CODE_ALPHA2;
+```
+
 #### Метка
 
 ```java
@@ -186,6 +192,13 @@ Regexp.HTML_ENTITY_NUMERIC;
 
 ```java
 StringRegexp.isLocalization("ru-RU");
+// Результат выполнения: true
+```
+
+#### Проверка двухбуквенного кода страны
+
+```java
+StringRegexp.isCountryCodeAlpha2("RU");
 // Результат выполнения: true
 ```
 

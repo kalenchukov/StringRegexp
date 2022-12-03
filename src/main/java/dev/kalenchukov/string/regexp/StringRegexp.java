@@ -71,6 +71,17 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка двухбуквенным кодом страны.
+	 *
+	 * @param string строка
+	 * @return {@code true}, если строка является двухбуквенным кодом страны, иначе {@code false}.
+	 */
+	public static boolean isCountryCodeAlpha2(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.COUNTRY_CODE_ALPHA2);
+	}
+
+	/**
 	 * Проверяет, является ли строка RGB в шестнадцатеричной системе счисления.
 	 *
 	 * @param string строка
