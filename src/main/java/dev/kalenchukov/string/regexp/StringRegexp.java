@@ -825,6 +825,19 @@ public class StringRegexp
 	}
 
 	/**
+	 * Выполняет поиск трёхбуквенного кода страны.
+	 *
+	 * @param string строка.
+	 * @return коллекцию с найденными трёхбуквенными кодами стран.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findCountryCodeAlpha3(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.COUNTRY_CODE_ALPHA3);
+	}
+
+	/**
 	 * Выполняет поиск RGB в числовом представлении.
 	 *
 	 * @param string строка.

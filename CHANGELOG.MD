@@ -10,6 +10,7 @@
 * Добавлен метод StringRegexp.isCountryCodeAlpha3(String).
 * Добавлен метод StringRegexp.isCountryCodeNumeric3(String).
 * Добавлен метод StringRegexp.findCountryCodeAlpha2(String).
+* Добавлен метод StringRegexp.findCountryCodeAlpha3(String).
 * Добавлен AUTHOR.MD.
 * Добавлен INSTALL.MD.
 * Добавлен CHANGELOG.MD.
