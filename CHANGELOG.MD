@@ -1,5 +1,36 @@
 # Журнал изменений
 
+## vX.X.X - XX.XX.XXXX
+
+### Удалено
+* Удалено регулярное выражение Regexp.CDATA.
+* Удалено регулярное выражение Regexp.HTML_SELF_CLOSING_TAG.
+* Удалено регулярное выражение Regexp.HTML_START_TAG.
+* Удалено регулярное выражение Regexp.HTML_END_TAG.
+* Удалено регулярное выражение Regexp.HTML_COMMENT.
+* Удалено регулярное выражение Regexp.HTML_DOCTYPE.
+* Удалено регулярное выражение Regexp.HTML_ENTITY_NAME.
+* Удалено регулярное выражение Regexp.HTML_ENTITY_UNICODE.
+* Удалено регулярное выражение Regexp.HTML_ENTITY_NUMERIC.
+* Удалён метод StringRegexp.isCData()
+* Удалён метод StringRegexp.isHtmlComment()
+* Удалён метод StringRegexp.isHtmlDoctype()
+* Удалён метод StringRegexp.isHtmlEndTag()
+* Удалён метод StringRegexp.isHtmlEntityName()
+* Удалён метод StringRegexp.isHtmlEntityNumeric()
+* Удалён метод StringRegexp.isHtmlEntityUnicode()
+* Удалён метод StringRegexp.isHtmlSelfClosingTag()
+* Удалён метод StringRegexp.isHtmlStartTag()
+* Удалён метод StringRegexp.findCData()
+* Удалён метод StringRegexp.findHtmlComment()
+* Удалён метод StringRegexp.findHtmlDoctype()
+* Удалён метод StringRegexp.findHtmlEndTag()
+* Удалён метод StringRegexp.findHtmlEntityName()
+* Удалён метод StringRegexp.findHtmlEntityNumeric()
+* Удалён метод StringRegexp.findHtmlEntityUnicode()
+* Удалён метод StringRegexp.findHtmlSelfClosingTag()
+* Удалён метод StringRegexp.findHtmlStartTag()
+
 ## v1.4.0 - 03.12.2022
 
 ### Добавлено
