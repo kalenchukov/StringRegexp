@@ -1,337 +1,282 @@
 # StringRegexp
-
 Операции над строками с помощью регулярных выражений.
 
 ## Использование
-
 ### Получение шаблона регулярного выражения
-
 #### IP-адрес четвёртой версии
-
 ```java
 Regexp.INET_4_ADDRESS;
 ```
 
 #### IP-адрес шестой версии
-
 ```java
 Regexp.INET_6_ADDRESS;
 ```
 
 #### MAC-адрес
-
 ```java
 Regexp.MAC_ADDRESS;
 ```
 
 #### Адрес электронной почты
-
 ```java
 Regexp.EMAIL_ADDRESS;
 ```
 
 #### HTTP URL
-
 ```java
 Regexp.URL_HTTP;
 ```
 
 #### Домен
-
 ```java
 Regexp.DOMAIN;
 ```
 
 #### Локализация
-
 ```java
 Regexp.LOCALIZATION;
 ```
 
 #### RGB в числовом представлении
-
 ```java
 Regexp.RGB_NUMERIC;
 ```
 
 #### RGB в шестнадцатеричной системе счисления
-
 ```java
 Regexp.RGB_HEX;
 ```
 
 #### Телеграм канал
-
 ```java
 Regexp.TELEGRAM;
 ```
 
 #### Двухбуквенный код страны
-
 ```java
 Regexp.COUNTRY_CODE_ALPHA2;
 ```
 
 #### Трёхбуквенный код страны
-
 ```java
 Regexp.COUNTRY_CODE_ALPHA3;
 ```
 
 #### Трёхцифровой код страны
-
 ```java
 Regexp.COUNTRY_CODE_NUMERIC3;
 ```
 
 #### Метка
-
 ```java
 Regexp.TAG;
 ```
 
 #### Цифра двоичной системы счисления
-
 ```java
 Regexp.DIGIT_BINARY;
 ```
 
 #### Цифра троичной системы счисления
-
 ```java
 Regexp.DIGIT_TERNARY;
 ```
 
 #### Цифра восьмеричной системы счисления
-
 ```java
 Regexp.DIGIT_OCTAL;
 ```
 
 #### Цифра десятеричной системы счисления
-
 ```java
 Regexp.DIGIT_DECIMAL;
 ```
 
 #### Цифра двенадцатеричной системы счисления
-
 ```java
 Regexp.DIGIT_DUODECIMAL;
 ```
 
 #### Цифра шестнадцатеричной системы счисления
-
 ```java
 Regexp.DIGIT_HEXADECIMAL;
 ```
 
 #### Число десятеричной системы счисления
-
 ```java
 Regexp.NUMBER;
 ```
 
 #### Слово
-
 ```java
 Regexp.WORD;
 ```
 
 #### Буква
-
 ```java
 Regexp.LETTER;
 ```
 
 ### Проверка
-
 #### Проверка локализации
-
 ```java
 StringRegexp.isLocalization("ru-RU");
 // Результат выполнения: true
 ```
 
 #### Проверка двухбуквенного кода страны
-
 ```java
 StringRegexp.isCountryCodeAlpha2("RU");
 // Результат выполнения: true
 ```
 
 #### Проверка трёхбуквенного кода страны
-
 ```java
 StringRegexp.isCountryCodeAlpha3("RUS");
 // Результат выполнения: true
 ```
 
 #### Проверка трёхциферного кода страны
-
 ```java
 StringRegexp.isCountryCodeNumeric3("643");
 // Результат выполнения: true
 ```
 
 #### Проверка RGB в числовом представлении
-
 ```java
 StringRegexp.isRgbNumeric("250,150,50");
 // Результат выполнения: true
 ```
 
 #### Проверка RGB в шестнадцатеричной системе счисления
-
 ```java
 StringRegexp.isRgbHex("#FFFFFF");
 // Результат выполнения: true
 ```
 
 #### Проверка RGB в шестнадцатеричной системе счисления без учёта регистра букв
-
 ```java
 StringRegexp.isRgbHexIgnoreCase("#fffFFF");
 // Результат выполнения: true
 ```
 
 #### Проверка MAC-адреса
-
 ```java
 StringRegexp.isMacAddress("00:EF:CD:EF:11:22");
 // Результат выполнения: true
 ```
 
 #### Проверка MAC-адреса без учёта регистра букв
-
 ```java
 StringRegexp.isMacAddressIgnoreCase("00-eF-cd-Ef-11-22");
 // Результат выполнения: true
 ```
 
 #### Проверка телеграм канала
-
 ```java
 StringRegexp.isTelegram("@kalenchukov");
 // Результат выполнения: true
 ```
 
 #### Проверка адреса электронной почты
-
 ```java
 StringRegexp.isEmailAddress("aleksey.kalenchukov@yandex.ru");
 // Результат выполнения: true
 ```
 
 #### Проверка доменного имени
-
 ```java
 StringRegexp.isDomain("kalenchukov.dev");
 // Результат выполнения: true
 ```
 
 #### Проверка URL HTTP
-
 ```java
 StringRegexp.isUrlHttp("http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme");
 // Результат выполнения: true
 ```
 
 #### Проверка IP-адреса четвёртой версии
-
 ```java
 StringRegexp.isInet4Address("192.168.1.1");
 // Результат выполнения: true
 ```
 
 #### Проверка IP-адреса шестой версии
-
 ```java
 StringRegexp.isInet6Address("EF98:3:0:0:0:0:2F3B:7654");
 // Результат выполнения: true
 ```
 
 #### Проверка IP-адреса шестой версии без учёта регистра букв
-
 ```java
 StringRegexp.isInet6AddressIgnoreCase("ef98:3:0:0:0:0:2F3B:7654");
 // Результат выполнения: true
 ```
 
 #### Проверка метки
-
 ```java
 StringRegexp.isTag("#tag");
 // Результат выполнения: true
 ```
 
 #### Проверка слова
-
 ```java
 StringRegexp.isWord("Красно-жёлтые");
 // Результат выполнения: true
 ```
 
 #### Проверка цифры двоичной системы счисления
-
 ```java
 StringRegexp.isDigitBinary("01");
 // Результат выполнения: true
 ```
 
 #### Проверка цифры троичной системы счисления
-
 ```java
 StringRegexp.isDigitTernary("012");
 // Результат выполнения: true
 ```
 
 #### Проверка цифры восьмеричной системы счисления
-
 ```java
 StringRegexp.isDigitOctal("01234567");
 // Результат выполнения: true
 ```
 
 #### Проверка цифры десятеричной системы счисления
-
 ```java
 StringRegexp.isDigitDecimal("0123456789");
 // Результат выполнения: true
 ```
 
 #### Проверка цифры двенадцатеричной системы счисления
-
 ```java
 StringRegexp.isDigitDuodecimal("0123456789AB");
 // Результат выполнения: true
 ```
 
 #### Проверка цифры шестнадцатеричной системы счисления
-
 ```java
 StringRegexp.isDigitHexadecimal("0123456789ABCDEF");
 // Результат выполнения: true
 ```
 
 #### Проверка числа
-
 ```java
 StringRegexp.isNumber("0.100");
 // Результат выполнения: true
 ```
 
 #### Проверка буквы
-
 ```java
 StringRegexp.isLetter("Ы");
 // Результат выполнения: true
 ```
 
 ### Поиск
-
 #### Поиск локализаций
-
 ```java
 String text = """
     Застоялся мой поезд в депо.
@@ -351,7 +296,6 @@ StringRegexp.findLocalization(text);
 ```
 
 #### Поиск RGB в числовом представлении
-
 ```java
 String text = """
     Наши реки бедны водой
@@ -375,7 +319,6 @@ StringRegexp.findRgbNumeric(text);
 ```
 
 #### Поиск RGB в шестнадцатеричной системе счисления
-
 ```java
 String text = """
     Крыши домов дрожат под тяжестью дней
@@ -395,7 +338,6 @@ StringRegexp.findRgbHex(text);
 ```
 
 #### Поиск RGB в шестнадцатеричной системе счисления без учёта регистра букв
-
 ```java
 String text = """
     Застоялся мой #fffFFF поезд в депо.
@@ -415,7 +357,6 @@ StringRegexp.findRgbHexIgnoreCase(text);
 ```
 
 #### Поиск MAC-адресов
-
 ```java
 String text = """
     В этом мотиве есть какая-то фальшь,
@@ -435,7 +376,6 @@ StringRegexp.findMacAddress(text);
 ```
 
 #### Поиск MAC-адресов без учёта регистра букв
-
 ```java
 String text = """
     Я вижу, как волны смывают следы на песке
@@ -455,7 +395,6 @@ StringRegexp.findMacAddressIgnoreCase(text);
 ```
 
 #### Поиск адресов электронной почты
-
 ```java
 String text = """
     И я должен прийти к девяти, на работу свою, aleksey.kalenchukov@yandex.ru
@@ -475,7 +414,6 @@ StringRegexp.findEmailAddress(text);
 ```
 
 #### Поиск доменных имён
-
 ```java
 String text = """
     Зерна упали в землю, зерна просят дождя.
@@ -498,7 +436,6 @@ StringRegexp.findDomain(text);
 ```
 
 #### Поиск URL HTTP
-
 ```java
 String text = """
     Тот, кто в пятнадцать лет убежал из дома
@@ -518,7 +455,6 @@ StringRegexp.findUrlHttp(text);
 ```
 
 #### Поиск IP-адресов четвёртой версии
-
 ```java
 String text = """
     День как день,10.222.170.80 только ты почему-то грустишь.
@@ -538,7 +474,6 @@ StringRegexp.findInet4Address(text);
 ```
 
 #### Поиск IP-адресов шестой версии
-
 ```java
 String text = """
     В последнее время я редко был дома,
@@ -558,7 +493,6 @@ StringRegexp.findInet6Address(text);
 ```
 
 #### Поиск IP-адресов шестой версии без учёта регистра букв
-
 ```java
 String text = """
     За окнами солнце, за окнами свет - это день.
@@ -578,7 +512,6 @@ StringRegexp.findInet6AddressIgnoreCase(text);
 ```
 
 #### Поиск телеграм каналов
-
 ```java
 String text = """
     Ты часто проходишь мимо, не видя меня
@@ -598,7 +531,6 @@ StringRegexp.findTelegram(text);
 ```
 
 #### Поиск двухбуквенных кодов стран
-
 ```java
 String text = """
     О-o, это странное место Камчатка
@@ -626,7 +558,6 @@ StringRegexp.findCountryCodeAlpha2(text);
 ```
 
 #### Поиск трёхбуквенных кодов стран
-
 ```java
 String text = """
     Каждый день ты приходишь домой, когда темно.
@@ -649,7 +580,6 @@ StringRegexp.findCountryCodeAlpha3(text);
 ```
 
 #### Поиск трёхциферных кодов стран
-
 ```java
 String text = """
     Стань птицей, живущей в моём небе
@@ -673,7 +603,6 @@ StringRegexp.findCountryCodeNumeric3(text);
 ```
 
 #### Поиск меток
-
 ```java
 String text = """
     Гуляю. Я один гуляю.
@@ -693,7 +622,6 @@ StringRegexp.findTag(text);
 ```
 
 #### Поиск цифр двоичной системы счисления
-
 ```java
 String text = """
     Мы хотим видеть 010101 дальше, чем окна дома напротив
@@ -713,7 +641,6 @@ StringRegexp.findDigitBinary(text);
 ```
 
 #### Поиск цифр троичной системы счисления
-
 ```java
 String text = """
     Струн провода, ток по рукам,
@@ -734,7 +661,6 @@ StringRegexp.findDigitTernary(text);
 ```
 
 #### Поиск цифр восьмеричной системы счисления
-
 ```java
 String text = """
     Над землёй мороз, что ни тронь - всё лёд.
@@ -754,7 +680,6 @@ StringRegexp.findDigitOctal(text);
 ```
 
 #### Поиск цифр десятеричной системы счисления
-
 ```java
 String text = """
     Ты часто проходишь 0 мимо, не видя меня,
@@ -774,7 +699,6 @@ StringRegexp.findDigitDecimal(text);
 ```
 
 #### Поиск цифр двенадцатеричной системы счисления
-
 ```java
 String text = """
     Крыши домов дрожат под тяжестью дней
@@ -794,7 +718,6 @@ StringRegexp.findDigitDuodecimal(text);
 ```
 
 #### Поиск цифр шестнадцатеричной системы счисления
-
 ```java
 String text = """
     На холодной земле стоит город большой.
@@ -814,7 +737,6 @@ StringRegexp.findDigitHexadecimal(text);
 ```
 
 #### Поиск чисел
-
 ```java
 String text = """
     Ночь коротка, цель далека;
@@ -834,7 +756,6 @@ StringRegexp.findNumber(text);
 ```
 
 #### Поиск слов
-
 ```java
 String text = """
     Красно-жёлтые дни.
@@ -863,7 +784,6 @@ StringRegexp.findWord(text);
 ```
 
 #### Поиск букв
-
 ```java
 String text = """
     Малыш

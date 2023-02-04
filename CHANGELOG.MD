@@ -1,7 +1,5 @@
 # Журнал изменений
-
 ## vX.X.X - XX.XX.XXXX
-
 ### Удалено
 * Удалено регулярное выражение Regexp.CDATA.
 * Удалено регулярное выражение Regexp.HTML_SELF_CLOSING_TAG.
@@ -32,7 +30,6 @@
 * Удалён метод StringRegexp.findHtmlStartTag()
 
 ## v1.4.0 - 03.12.2022
-
 ### Добавлено
 * Добавлено регулярное выражение Regexp.COUNTRY_CODE_ALPHA2.
 * Добавлено регулярное выражение Regexp.COUNTRY_CODE_ALPHA3.
@@ -54,7 +51,6 @@
 *
 
 ## v1.3.0 - 16.10.2022
-
 ### Добавлено
 * Добавлен метод StringRegexp.findDigitBinary(String).
 * Добавлен метод StringRegexp.findDigitDuodecimal(String).
@@ -92,12 +88,10 @@
 * Исправлен баг в регулярном выражении Regexp.HTML_START_TAG.
 
 ## v1.2.1 - 14.09.2022
-
 ### Изменено
 * Переименовано Regexp.HTML_ENTITY_MNEMONIC -> Regexp.HTML_ENTITY_NAME.
 
 ## v1.2.0 - 12.09.2022
-
 ### Добавлено
 * Добавлен метод StringRegexp.findCData(String).
 * Добавлен метод StringRegexp.findHtmlComment(String).
@@ -128,7 +122,6 @@
 * Исправлен баг в Regexp.HTML_ENTITY_NUMERIC.
 
 ## v1.1.0 - 31.08.2022
-
 ### Добавлено
 * Добавлен метод StringRegexp.isDigit(String).
 * Добавлен метод StringRegexp.findDigit(String).
