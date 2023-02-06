@@ -58,7 +58,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#INET_4_ADDRESS}.
 	 */
 	@Test
-	public void testRegexpGroupInetAddressVersion4()
+	public void testRegexpGroupInet4Address()
 	{
 		String value = "192.168.1.100";
 
@@ -78,7 +78,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#INET_6_ADDRESS}.
 	 */
 	@Test
-	public void testRegexpGroupInetAddressVersion6()
+	public void testRegexpGroupInet6Address()
 	{
 		String value = "2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D";
 

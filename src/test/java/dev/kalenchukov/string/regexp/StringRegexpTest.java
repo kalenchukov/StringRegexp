@@ -25,6 +25,8 @@
 package dev.kalenchukov.string.regexp;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,847 +38,723 @@ public class StringRegexpTest
 	/**
 	 * Проверка метода {@link StringRegexp#isLocalization(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsLocalization()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"ru-RU"
+	})
+	public void testIsLocalization(String value)
 	{
-		assertTrue(StringRegexp.isLocalization("ru-RU"));
+		assertTrue(StringRegexp.isLocalization(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isLocalization(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsLocalizationNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"RU-RU", "RU-ru", "ru-ru",
+		"ru", "RU"
+	})
+	public void testIsLocalizationNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isLocalization(""));
-		assertFalse(StringRegexp.isLocalization(" "));
-
-		assertFalse(StringRegexp.isLocalization("RU-RU"));
-		assertFalse(StringRegexp.isLocalization("RU-ru"));
-		assertFalse(StringRegexp.isLocalization("ru-ru"));
-
-		assertFalse(StringRegexp.isLocalization("ru"));
-		assertFalse(StringRegexp.isLocalization("RU"));
+		assertFalse(StringRegexp.isLocalization(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isInet4Address(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsIpAddressVersion4()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"192.168.1.1", "1.1.1.1", "0.0.0.0"
+	})
+	public void testIsInet4Address(String value)
 	{
-		assertTrue(StringRegexp.isInet4Address("192.168.1.1"));
-		assertTrue(StringRegexp.isInet4Address("1.1.1.1"));
-		assertTrue(StringRegexp.isInet4Address("0.0.0.0"));
+		assertTrue(StringRegexp.isInet4Address(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isInet4Address(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsIpAddressVersion4NotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"1.1.1.1.", ".6.6.6.6",
+		"2.2.2.2.2", "3", "4.", "5.5",
+		"257.168.1.1", "192.257.1.1", "192.168.257.1", "192.168.1.256",
+	})
+	public void testIsInet4AddressNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isInet4Address(""));
-		assertFalse(StringRegexp.isInet4Address(" "));
-
-		assertFalse(StringRegexp.isInet4Address("1.1.1.1."));
-		assertFalse(StringRegexp.isInet4Address(".6.6.6.6"));
-
-		assertFalse(StringRegexp.isInet4Address("2.2.2.2.2"));
-		assertFalse(StringRegexp.isInet4Address("3"));
-		assertFalse(StringRegexp.isInet4Address("4."));
-		assertFalse(StringRegexp.isInet4Address("5.5"));
-
-		assertFalse(StringRegexp.isInet4Address("257.168.1.1"));
-		assertFalse(StringRegexp.isInet4Address("192.257.1.1"));
-		assertFalse(StringRegexp.isInet4Address("192.168.257.1"));
-		assertFalse(StringRegexp.isInet4Address("192.168.1.256"));
+		assertFalse(StringRegexp.isInet4Address(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isInet6Address(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsIpAddressVersion6()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D"
+	})
+	public void testIsInet6Address(String value)
 	{
-		assertTrue(StringRegexp.isInet6Address("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D"));
+		assertTrue(StringRegexp.isInet6Address(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isInet6Address(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsIpAddressVersion6NotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D"
+	})
+	public void testIsInet6AddressNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isInet6Address("2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D"));
+		assertFalse(StringRegexp.isInet6Address(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isInet6AddressIgnoreCase(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsIpAddressVersion6IgnoreCase()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D",
+		"2001:0db8:0000:0000:0000:0000:ae21:AD12", "0000:0000:0000:0000:0000:0000:ae21:AD12",
+		"2001:0DB8:0000:0000:0000:0000:ae21:1", "2001:0DB8:0000:1:0000:0000:ae21:AD12",
+		"1:0000:0000:0000:0000:0000:ae21:AD12",
+		"::0DB8:11A3:09D7:1F34:8A2E:07a0:765D", "0DB8:11A3:09D7:1F34::07a0:765D",
+		"2001:0DB8:11A3:09D7:1F34:07a0:07A0::",
+		"::ae21:AD12", "AD12::ae21::",
+		"2001::", "::2001",
+		"::",
+		"::1", "1::",
+		"EF98:3:0:0:0:0:2F3B:7654", "EF98:3::2f3b:7654", "2001:DB8::ae21:AD12",
+	})
+	public void testIsInet6AddressIgnoreCase(String value)
 	{
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D"));
-
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001:0db8:0000:0000:0000:0000:ae21:AD12"));
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("0000:0000:0000:0000:0000:0000:ae21:AD12"));
-
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001:0DB8:0000:0000:0000:0000:ae21:1"));
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001:0DB8:0000:1:0000:0000:ae21:AD12"));
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("1:0000:0000:0000:0000:0000:ae21:AD12"));
-
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("::0DB8:11A3:09D7:1F34:8A2E:07a0:765D"));
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("0DB8:11A3:09D7:1F34::07a0:765D"));
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001:0DB8:11A3:09D7:1F34:07a0:07A0::"));
-
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("::ae21:AD12"));
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("AD12::ae21::"));
-
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001::"));
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("::2001"));
-
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("::"));
-
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("::1"));
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("1::"));
-
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("EF98:3:0:0:0:0:2F3B:7654"));
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("EF98:3::2f3b:7654"));
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001:DB8::ae21:AD12"));
+		assertTrue(StringRegexp.isInet6AddressIgnoreCase(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isInet6AddressIgnoreCase(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsIpAddressVersion6IgnoreCaseNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"1000", "1000:", ":1000",
+		":", ":::", "::::",
+		"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D:765D",
+		":0db8:11a3:09d7:1f34:8A2E:07A0:765D", "2001:0db8:11a3:09d7:1F34:8A2E:07A0:",
+		":::0db8:11a3:09d7:1f34:8A2E:07A0:765D", "2001:0db8:11a3:09d7:1F34:8A2E:07A0:::",
+		"::::0db8:11a3:09d7:1F34:8A2E:07A0:765D", "0db8:11a3:09d7::::1f34:8A2E:07A0:765D",
+		"2001:0db8:11a3:09d7:1F34:8A2E:07A0::::",
+		":0db8:11a3:09d7:1f34:8A2E:07A0:765D:1000", "1000:2001:0db8:11a3:09D7:1F34:8A2E:07A0:",
+		":0db8:11a3:09d7:1f34:8A2E:07A0:765D:1", "1:2001:0db8:11a3:09d7:1f34:8A2E:07A0:",
+		"::0db8:11a3:09d7:1f34:8A2E:07A0:765D:1", "1:2001:0db8:11a3:09d7:1f34:8A2E:07A0::",
+		":::0db8:11a3:09d7:1f34:8a2e:07A0:765D:1", "1:2001:0db8:11a3:09d7:1F34:8A2E:07A0:::",
+		"0db8:11a3::::8A2E:07A0:765D", "0db8:11a3::::::8A2E:07A0:765D"
+	})
+	public void testIsInet6AddressIgnoreCaseNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase(""));
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase(" "));
-
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("1000"));
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("1000:"));
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":1000"));
-
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":"));
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":::"));
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("::::"));
-
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D:765D"));
-
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":0db8:11a3:09d7:1f34:8A2E:07A0:765D"));
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("2001:0db8:11a3:09d7:1F34:8A2E:07A0:"));
-
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":::0db8:11a3:09d7:1f34:8A2E:07A0:765D"));
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("2001:0db8:11a3:09d7:1F34:8A2E:07A0:::"));
-
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("::::0db8:11a3:09d7:1F34:8A2E:07A0:765D"));
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("0db8:11a3:09d7::::1f34:8A2E:07A0:765D"));
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("2001:0db8:11a3:09d7:1F34:8A2E:07A0::::"));
-
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":0db8:11a3:09d7:1f34:8A2E:07A0:765D:1000"));
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("1000:2001:0db8:11a3:09D7:1F34:8A2E:07A0:"));
-
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":0db8:11a3:09d7:1f34:8A2E:07A0:765D:1"));
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("1:2001:0db8:11a3:09d7:1f34:8A2E:07A0:"));
-
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("::0db8:11a3:09d7:1f34:8A2E:07A0:765D:1"));
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("1:2001:0db8:11a3:09d7:1f34:8A2E:07A0::"));
-
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase(":::0db8:11a3:09d7:1f34:8a2e:07A0:765D:1"));
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("1:2001:0db8:11a3:09d7:1F34:8A2E:07A0:::"));
-
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("0db8:11a3::::8A2E:07A0:765D"));
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase("0db8:11a3::::::8A2E:07A0:765D"));
+		assertFalse(StringRegexp.isInet6AddressIgnoreCase(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isEmailAddress(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsEmailAddress()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"aleksey.kalenchukov@yandex.ru", "aleksey.kalenchukov_@yandex.ru",
+		"_aleksey.kalenchukov_@yandex.ru", "-aleksey.kalenchukov-@yandex.ru",
+		"aleksey.kalenchukov@mail.yandex.ru", "alekseykalenchukov@yandex.ru",
+		"aleksey.kalenchukov@yandex.com", "aleksey-kalenchukov@yandex.ru",
+		"aleksey_kalenchukov@yandex.ru", "AlekseyKalenchukov@yandex.ru",
+		"АлексейКаленчуков@яндекс.ру", "a.k@yandex.ru",
+		"k@yandex.ru", "kalenchukov@yandex.ru",
+		"kalenchukov@y.ru", "aleksey.kalenchukovkalenchukovkalenchukovkalenchukovkalenchukov@yandex.ru",
+		"aleksey123.kalenchukov123@123yandex.ru", "aleksey.kalenchukov@123.yandex.ru",
+		"123aleksey.kalenchukov@123.yandex.ru", "123.456@123.ru", "123456@123.ru"
+	})
+	public void testIsEmailAddress(String value)
 	{
-		assertTrue(StringRegexp.isEmailAddress("aleksey.kalenchukov@yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("aleksey.kalenchukov_@yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("_aleksey.kalenchukov_@yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("-aleksey.kalenchukov-@yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("aleksey.kalenchukov@mail.yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("alekseykalenchukov@yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("aleksey.kalenchukov@yandex.com"));
-		assertTrue(StringRegexp.isEmailAddress("aleksey-kalenchukov@yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("aleksey_kalenchukov@yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("AlekseyKalenchukov@yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("АлексейКаленчуков@яндекс.ру"));
-		assertTrue(StringRegexp.isEmailAddress("a.k@yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("k@yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("kalenchukov@yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("kalenchukov@y.ru"));
-		assertTrue(StringRegexp.isEmailAddress("aleksey.kalenchukovkalenchukovkalenchukovkalenchukovkalenchukov@yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("aleksey123.kalenchukov123@123yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("aleksey.kalenchukov@123.yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("123aleksey.kalenchukov@123.yandex.ru"));
-		assertTrue(StringRegexp.isEmailAddress("123.456@123.ru"));
-		assertTrue(StringRegexp.isEmailAddress("123456@123.ru"));
+		assertTrue(StringRegexp.isEmailAddress(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isEmailAddress(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsEmailAddressNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		".aleksey.kalenchukov@yandex.ru", "aleksey.kalenchukov.@yandex.ru", "aleksey..kalenchukov@yandex.ru",
+		"aleksey.kalenchukov@yandex", "aleksey.kalenchukov@yandex..ru", "aleksey.kalenchukov.yandex.ru",
+		"aleksey.kalenchukov@yandex.r", "aleksey.kalenchukov@-yandex.ru",
+		"aleksey.kalenchukovkalenchukovkalenchukovkalenchukovkalenchukovkalenchukov@yandex.ru",
+	})
+	public void testIsEmailAddressNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isEmailAddress(""));
-		assertFalse(StringRegexp.isEmailAddress(" "));
-
-		assertFalse(StringRegexp.isEmailAddress(".aleksey.kalenchukov@yandex.ru"));
-		assertFalse(StringRegexp.isEmailAddress("aleksey.kalenchukov.@yandex.ru"));
-		assertFalse(StringRegexp.isEmailAddress("aleksey..kalenchukov@yandex.ru"));
-
-		assertFalse(StringRegexp.isEmailAddress("aleksey.kalenchukov@yandex"));
-		assertFalse(StringRegexp.isEmailAddress("aleksey.kalenchukov@yandex..ru"));
-		assertFalse(StringRegexp.isEmailAddress("aleksey.kalenchukov.yandex.ru"));
-		assertFalse(StringRegexp.isEmailAddress("aleksey.kalenchukov@yandex.r"));
-		assertFalse(StringRegexp.isEmailAddress("aleksey.kalenchukov@-yandex.ru"));
-
-		assertFalse(StringRegexp.isEmailAddress("aleksey.kalenchukovkalenchukovkalenchukovkalenchukovkalenchukovkalenchukov@yandex.ru"));
+		assertFalse(StringRegexp.isEmailAddress(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isDomain(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsDomain()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"kalenchukov.dev", "regexp.string.kalenchukov.dev",
+		"aleksey.123.kalenchukov.ru", "123.aleksey.kalenchukov.ru"
+	})
+	public void testIsDomain(String value)
 	{
-		assertTrue(StringRegexp.isDomain("kalenchukov.dev"));
-		assertTrue(StringRegexp.isDomain("regexp.string.kalenchukov.dev"));
-		assertTrue(StringRegexp.isDomain("aleksey.123.kalenchukov.ru"));
-		assertTrue(StringRegexp.isDomain("123.aleksey.kalenchukov.ru"));
+		assertTrue(StringRegexp.isDomain(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isDomain(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsDomainNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"kalenchukov,dev", "regexp.string.kalenchukov.d"
+	})
+	public void testIsDomainNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isDomain(""));
-		assertFalse(StringRegexp.isDomain(" "));
-
-		assertFalse(StringRegexp.isDomain("kalenchukov,dev"));
-		assertFalse(StringRegexp.isDomain("regexp.string.kalenchukov.d"));
+		assertFalse(StringRegexp.isDomain(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isUrlHttp(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsUrlHttp()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"http://kalenchukov.dev/hello/world/?java=18&hello=world123#anchor",
+		"https://kalenchukov.dev/hello/world/?java=18&hello=world123#anchor",
+		"http://www.kalenchukov.dev/hello/world?java=18&hello=world123#anchor",
+		"http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#anchor",
+		"http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#",
+		"http://www.kalenchukov.dev/hello/world/?java=18&hello=world123",
+		"http://www.kalenchukov.dev/hello/world/?java=18&hello=",
+		"http://www.kalenchukov.dev/hello/world/?java=18&",
+		"http://www.kalenchukov.dev/hello/world/?java=18",
+		"http://www.kalenchukov.dev/hello/world/?",
+		"http://www.kalenchukov.dev/hello/world/",
+		"http://www.kalenchukov.dev/hello/world",
+		"http://www.kalenchukov.dev/",
+		"http://www.kalenchukov.dev",
+		"http://www.kalenchukov.dev/hello/world",
+		"http://www.kalenchukov.dev/?java=18&hello=world123#anchor",
+		"http://www.kalenchukov.dev/#anchor"
+	})
+	public void testIsUrlHttp(String value)
 	{
-		assertTrue(StringRegexp.isUrlHttp("http://kalenchukov.dev/hello/world/?java=18&hello=world123#anchor"));
-		assertTrue(StringRegexp.isUrlHttp("https://kalenchukov.dev/hello/world/?java=18&hello=world123#anchor"));
-
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world?java=18&hello=world123#anchor"));
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#anchor"));
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#"));
-
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/?java=18&hello=world123"));
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/?java=18&hello="));
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/?java=18&"));
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/?java=18"));
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/?"));
-
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world/"));
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world"));
-
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/"));
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev"));
-
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/hello/world"));
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/?java=18&hello=world123#anchor"));
-		assertTrue(StringRegexp.isUrlHttp("http://www.kalenchukov.dev/#anchor"));
+		assertTrue(StringRegexp.isUrlHttp(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isRgbNumeric(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsRgbNumeric()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"215,200,166", "0,0,0",
+		"215, 200, 166", "0, 0, 0",
+		"255,155, 55", "1,1,1"
+	})
+	public void testIsRgbNumeric(String value)
 	{
-		assertTrue(StringRegexp.isRgbNumeric("215,200,166"));
-		assertTrue(StringRegexp.isRgbNumeric("0,0,0"));
-
-		assertTrue(StringRegexp.isRgbNumeric("215, 200, 166"));
-		assertTrue(StringRegexp.isRgbNumeric("0, 0, 0"));
-
-		assertTrue(StringRegexp.isRgbNumeric("255,155, 55"));
-		assertTrue(StringRegexp.isRgbNumeric("1,1,1"));
+		assertTrue(StringRegexp.isRgbNumeric(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isRgbNumeric(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsRgbNumericNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"0,0", "0",
+		"215,  200, 166", "215, 200,  166",
+		"-1, 0, 0", "0, -1, 0", "0, 0, -1",
+		"215,200,", "1,1,1,",
+		"256,155,55", "255,256,55", "255,155,256"
+	})
+	public void testIsRgbNumericNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isRgbNumeric(""));
-		assertFalse(StringRegexp.isRgbNumeric(" "));
-
-		assertFalse(StringRegexp.isRgbNumeric("0,0"));
-		assertFalse(StringRegexp.isRgbNumeric("0"));
-
-		assertFalse(StringRegexp.isRgbNumeric("215,  200, 166"));
-		assertFalse(StringRegexp.isRgbNumeric("215, 200,  166"));
-
-		assertFalse(StringRegexp.isRgbNumeric("-1, 0, 0"));
-		assertFalse(StringRegexp.isRgbNumeric("0, -1, 0"));
-		assertFalse(StringRegexp.isRgbNumeric("0, 0, -1"));
-
-		assertFalse(StringRegexp.isRgbNumeric("215,200,"));
-		assertFalse(StringRegexp.isRgbNumeric("1,1,1,"));
-
-		assertFalse(StringRegexp.isRgbNumeric("256,155,55"));
-		assertFalse(StringRegexp.isRgbNumeric("255,256,55"));
-		assertFalse(StringRegexp.isRgbNumeric("255,155,256"));
+		assertFalse(StringRegexp.isRgbNumeric(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha2(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsCountryCodeAlpha2()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"RU", "BY"
+	})
+	public void testIsCountryCodeAlpha2(String value)
 	{
-		assertTrue(StringRegexp.isCountryCodeAlpha2("RU"));
-		assertTrue(StringRegexp.isCountryCodeAlpha2("BY"));
+		assertTrue(StringRegexp.isCountryCodeAlpha2(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha2(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsCountryCodeAlpha2NotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ", "ru", "rub", "#RU", "0RU"
+	})
+	public void testIsCountryCodeAlpha2NotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isCountryCodeAlpha2(""));
-		assertFalse(StringRegexp.isCountryCodeAlpha2(" "));
-
-		assertFalse(StringRegexp.isCountryCodeAlpha2("ru"));
-
-		assertFalse(StringRegexp.isCountryCodeAlpha2("rub"));
-
-		assertFalse(StringRegexp.isCountryCodeAlpha2("#RU"));
-		assertFalse(StringRegexp.isCountryCodeAlpha2("0RU"));
+		assertFalse(StringRegexp.isCountryCodeAlpha2(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha3(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsCountryCodeAlpha3()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"RUS", "BLR"
+	})
+	public void testIsCountryCodeAlpha3(String value)
 	{
-		assertTrue(StringRegexp.isCountryCodeAlpha3("RUS"));
-		assertTrue(StringRegexp.isCountryCodeAlpha3("BLR"));
+		assertTrue(StringRegexp.isCountryCodeAlpha3(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha3(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsCountryCodeAlpha3NotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ", "rus", "rub", "#RUS", "0RUS"
+	})
+	public void testIsCountryCodeAlpha3NotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isCountryCodeAlpha3(""));
-		assertFalse(StringRegexp.isCountryCodeAlpha3(" "));
-
-		assertFalse(StringRegexp.isCountryCodeAlpha3("rus"));
-
-		assertFalse(StringRegexp.isCountryCodeAlpha3("rub"));
-
-		assertFalse(StringRegexp.isCountryCodeAlpha3("#RUS"));
-		assertFalse(StringRegexp.isCountryCodeAlpha3("0RUS"));
+		assertFalse(StringRegexp.isCountryCodeAlpha3(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isCountryCodeNumeric3(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsCountryCodeNumeric3()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"052", "112", "643"
+	})
+	public void testIsCountryCodeNumeric3(String value)
 	{
-		assertTrue(StringRegexp.isCountryCodeNumeric3("052"));
-		assertTrue(StringRegexp.isCountryCodeNumeric3("112"));
-		assertTrue(StringRegexp.isCountryCodeNumeric3("643"));
+		assertTrue(StringRegexp.isCountryCodeNumeric3(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isCountryCodeNumeric3(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsCountryCodeNumeric3NotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ", "52", "0052", "#643"
+	})
+	public void testIsCountryCodeNumeric3NotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isCountryCodeNumeric3(""));
-		assertFalse(StringRegexp.isCountryCodeNumeric3(" "));
-
-		assertFalse(StringRegexp.isCountryCodeNumeric3("52"));
-
-		assertFalse(StringRegexp.isCountryCodeNumeric3("0052"));
-
-		assertFalse(StringRegexp.isCountryCodeNumeric3("#643"));
+		assertFalse(StringRegexp.isCountryCodeNumeric3(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isRgbHex(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsRgbHex()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"#FFFFFF", "#ABCDEF",
+		"#000000", "#123456"
+	})
+	public void testIsRgbHex(String value)
 	{
-		assertTrue(StringRegexp.isRgbHex("#FFFFFF"));
-		assertTrue(StringRegexp.isRgbHex("#ABCDEF"));
-
-		assertTrue(StringRegexp.isRgbHex("#000000"));
-		assertTrue(StringRegexp.isRgbHex("#123456"));
+		assertTrue(StringRegexp.isRgbHex(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isRgbHex(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsRgbHexNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"FFFFFF",
+		"#23394W", "#ARDBZG"
+	})
+	public void testIsRgbHexNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isRgbHex(""));
-		assertFalse(StringRegexp.isRgbHex(" "));
-
-		assertFalse(StringRegexp.isRgbHex("FFFFFF"));
-
-		assertFalse(StringRegexp.isRgbHex("#23394W"));
-		assertFalse(StringRegexp.isRgbHex("#ARDBZG"));
+		assertFalse(StringRegexp.isRgbHex(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isRgbHexIgnoreCase(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsRgbHexIgnoreCase()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"#fffFFF", "#abcDEF",
+		"#000000", "#123456"
+	})
+	public void testIsRgbHexIgnoreCase(String value)
 	{
-		assertTrue(StringRegexp.isRgbHexIgnoreCase("#fffFFF"));
-		assertTrue(StringRegexp.isRgbHexIgnoreCase("#abcDEF"));
-
-		assertTrue(StringRegexp.isRgbHexIgnoreCase("#000000"));
-		assertTrue(StringRegexp.isRgbHexIgnoreCase("#123456"));
+		assertTrue(StringRegexp.isRgbHexIgnoreCase(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isRgbHexIgnoreCase(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsRgbHexIgnoreCaseNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"fffFFF",
+		"#23394w", "#ardBZG"
+	})
+	public void testIsRgbHexIgnoreCaseNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isRgbHexIgnoreCase(""));
-		assertFalse(StringRegexp.isRgbHexIgnoreCase(" "));
-
-		assertFalse(StringRegexp.isRgbHexIgnoreCase("fffFFF"));
-
-		assertFalse(StringRegexp.isRgbHexIgnoreCase("#23394w"));
-		assertFalse(StringRegexp.isRgbHexIgnoreCase("#ardBZG"));
+		assertFalse(StringRegexp.isRgbHexIgnoreCase(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isMacAddress(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsMacAddress()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"00-EF-CD-EF-11-22", "00:EF:CD:EF:11:22"
+	})
+	public void testIsMacAddress(String value)
 	{
-		assertTrue(StringRegexp.isMacAddress("00-EF-CD-EF-11-22"));
-		assertTrue(StringRegexp.isMacAddress("00:EF:CD:EF:11:22"));
+		assertTrue(StringRegexp.isMacAddress(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isMacAddress(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsMacAddressNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"-00-EF-CD-EF-11-22", "-00-EF-CD-EF-11-22-", "00-EF-CD-EF-11-22-",
+		":00:EF:CD:EF:11:22", ":00:EF:CD:EF:11:22:", "00:EF:CD:EF:11:22:",
+		"00:EF:CD:EF:11:2", "00:EW:CD:EF:11:22", "00:ef:CD:EF:11:22", "00:EF:CD::EF:11:22", "00:EF::EF:11:22",
+	})
+	public void testIsMacAddressNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isMacAddress(""));
-		assertFalse(StringRegexp.isMacAddress(" "));
-
-		assertFalse(StringRegexp.isMacAddress("-00-EF-CD-EF-11-22"));
-		assertFalse(StringRegexp.isMacAddress("-00-EF-CD-EF-11-22-"));
-		assertFalse(StringRegexp.isMacAddress("00-EF-CD-EF-11-22-"));
-
-		assertFalse(StringRegexp.isMacAddress(":00:EF:CD:EF:11:22"));
-		assertFalse(StringRegexp.isMacAddress(":00:EF:CD:EF:11:22:"));
-		assertFalse(StringRegexp.isMacAddress("00:EF:CD:EF:11:22:"));
-
-		assertFalse(StringRegexp.isMacAddress("00:EF:CD:EF:11:2"));
-		assertFalse(StringRegexp.isMacAddress("00:EW:CD:EF:11:22"));
-		assertFalse(StringRegexp.isMacAddress("00:ef:CD:EF:11:22"));
-		assertFalse(StringRegexp.isMacAddress("00:EF:CD::EF:11:22"));
-		assertFalse(StringRegexp.isMacAddress("00:EF::EF:11:22"));
+		assertFalse(StringRegexp.isMacAddress(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isMacAddressIgnoreCase(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsMacAddressIgnoreCase()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"00-EF-cd-EF-11-22", "00:ef:CD:EF:11:22"
+	})
+	public void testIsMacAddressIgnoreCase(String value)
 	{
-		assertTrue(StringRegexp.isMacAddressIgnoreCase("00-EF-cd-EF-11-22"));
-		assertTrue(StringRegexp.isMacAddressIgnoreCase("00:ef:CD:EF:11:22"));
+		assertTrue(StringRegexp.isMacAddressIgnoreCase(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isMacAddressIgnoreCase(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsMacAddressIgnoreCaseNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"00:EF:CD:EF:11:2", "00:ew:CD:EF:11:22",
+		"00:EF:CD::ef:11:22", "00:EF::ef:11:22"
+	})
+	public void testIsMacAddressIgnoreCaseNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isMacAddressIgnoreCase(""));
-		assertFalse(StringRegexp.isMacAddressIgnoreCase(" "));
-
-		assertFalse(StringRegexp.isMacAddress("00:EF:CD:EF:11:2"));
-		assertFalse(StringRegexp.isMacAddress("00:ew:CD:EF:11:22"));
-		assertFalse(StringRegexp.isMacAddress("00:ef:CD:EF:11:22"));
-		assertFalse(StringRegexp.isMacAddress("00:EF:CD::ef:11:22"));
-		assertFalse(StringRegexp.isMacAddress("00:EF::ef:11:22"));
+		assertFalse(StringRegexp.isMacAddressIgnoreCase(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isTelegram(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsTelegram()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"@kalenchukov", "@Kalenchukov", "@KALENCHUKOV",
+		"@kalen_chukov", "@kalenchukov_", "@_kalenchukov",
+	})
+	public void testIsTelegram(String value)
 	{
-		assertTrue(StringRegexp.isTelegram("@kalenchukov"));
-		assertTrue(StringRegexp.isTelegram("@Kalenchukov"));
-		assertTrue(StringRegexp.isTelegram("@KALENCHUKOV"));
-
-		assertTrue(StringRegexp.isTelegram("@kalen_chukov"));
-		assertTrue(StringRegexp.isTelegram("@kalenchukov_"));
-		assertTrue(StringRegexp.isTelegram("@_kalenchukov"));
+		assertTrue(StringRegexp.isTelegram(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isTelegram(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsTelegramNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"kalenchukov",
+		"@kalenchukov.", "@kalenchukov-", "@kalenchukov+",
+		"@kalen-chukov",
+	})
+	public void testIsTelegramNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isTelegram(""));
-		assertFalse(StringRegexp.isTelegram(" "));
-
-		assertFalse(StringRegexp.isTelegram("kalenchukov"));
-
-		assertFalse(StringRegexp.isTelegram("@kalenchukov."));
-		assertFalse(StringRegexp.isTelegram("@kalenchukov-"));
-		assertFalse(StringRegexp.isTelegram("@kalenchukov+"));
-
-		assertFalse(StringRegexp.isTelegram("@kalen-chukov"));
+		assertFalse(StringRegexp.isTelegram(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isTag(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsTag()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"#tag", "#Tag", "#TAG",
+		"#ta_g",
+		"#123tag", "#tag123", "#tag_123",
+		"#тег", "#тег123", "#тег_123",
+	})
+	public void testIsTag(String value)
 	{
-		assertTrue(StringRegexp.isTag("#tag"));
-		assertTrue(StringRegexp.isTag("#Tag"));
-		assertTrue(StringRegexp.isTag("#TAG"));
-
-		assertTrue(StringRegexp.isTag("#ta_g"));
-
-		assertTrue(StringRegexp.isTag("#123tag"));
-		assertTrue(StringRegexp.isTag("#tag123"));
-		assertTrue(StringRegexp.isTag("#tag_123"));
-
-		assertTrue(StringRegexp.isTag("#тег"));
-		assertTrue(StringRegexp.isTag("#тег123"));
-		assertTrue(StringRegexp.isTag("#тег_123"));
+		assertTrue(StringRegexp.isTag(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isTag(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsTagNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"tag",
+		"#t", "#ta",
+		"#tag.", "#tag-", "#ta-g", "#tag+tag",
+		"#_tag", "#tag_",
+		"#_", "#__", "#___",
+		"#123", "#123_", "#_123",
+	})
+	public void testIsTagNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isTag(""));
-		assertFalse(StringRegexp.isTag(" "));
-
-		assertFalse(StringRegexp.isTag("tag"));
-
-		assertFalse(StringRegexp.isTag("#t"));
-		assertFalse(StringRegexp.isTag("#ta"));
-
-		assertFalse(StringRegexp.isTag("#tag."));
-		assertFalse(StringRegexp.isTag("#tag-"));
-		assertFalse(StringRegexp.isTag("#ta-g"));
-		assertFalse(StringRegexp.isTag("#tag+tag"));
-
-		assertFalse(StringRegexp.isTag("#_tag"));
-		assertFalse(StringRegexp.isTag("#tag_"));
-
-		assertFalse(StringRegexp.isTag("#_"));
-		assertFalse(StringRegexp.isTag("#__"));
-		assertFalse(StringRegexp.isTag("#___"));
-
-		assertFalse(StringRegexp.isTag("#123"));
-		assertFalse(StringRegexp.isTag("#123_"));
-		assertFalse(StringRegexp.isTag("#_123"));
+		assertFalse(StringRegexp.isTag(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isDigitBinary(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsDigitBinary()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"0", "1", "01010101", "1010101"
+	})
+	public void testIsDigitBinary(String value)
 	{
-		assertTrue(StringRegexp.isDigitBinary("0"));
-		assertTrue(StringRegexp.isDigitBinary("1"));
-		assertTrue(StringRegexp.isDigitBinary("01010101"));
-		assertTrue(StringRegexp.isDigitBinary("1010101"));
+		assertTrue(StringRegexp.isDigitBinary(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isDigitBinary(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsDigitBinaryNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"1.0", "012", "1a0", "0a"
+	})
+	public void testIsDigitBinaryNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isDigitBinary(""));
-		assertFalse(StringRegexp.isDigitBinary(" "));
-
-		assertFalse(StringRegexp.isDigitBinary("1.0"));
-		assertFalse(StringRegexp.isDigitBinary("012"));
-		assertFalse(StringRegexp.isDigitBinary("1a0"));
-		assertFalse(StringRegexp.isDigitBinary("0a"));
+		assertFalse(StringRegexp.isDigitBinary(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isDigitTernary(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsDigitTernary()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"0", "1", "2", "0101201012", "120102101"
+	})
+	public void testIsDigitTernary(String value)
 	{
-		assertTrue(StringRegexp.isDigitTernary("0"));
-		assertTrue(StringRegexp.isDigitTernary("1"));
-		assertTrue(StringRegexp.isDigitTernary("2"));
-		assertTrue(StringRegexp.isDigitTernary("0101201012"));
-		assertTrue(StringRegexp.isDigitTernary("120102101"));
+		assertTrue(StringRegexp.isDigitTernary(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isDigitTernary(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsDigitTernaryNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"1.0", "1a0", "0a"
+	})
+	public void testIsDigitTernaryNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isDigitTernary(""));
-		assertFalse(StringRegexp.isDigitTernary(" "));
-
-		assertFalse(StringRegexp.isDigitTernary("1.0"));
-		assertFalse(StringRegexp.isDigitTernary("1a0"));
-		assertFalse(StringRegexp.isDigitTernary("0a"));
+		assertFalse(StringRegexp.isDigitTernary(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isDigitOctal(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsDigitOctal()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"01234567", "12014302101"
+	})
+	public void testIsDigitOctal(String value)
 	{
-		assertTrue(StringRegexp.isDigitOctal("01234567"));
-		assertTrue(StringRegexp.isDigitOctal("12014302101"));
+		assertTrue(StringRegexp.isDigitOctal(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isDigitOctal(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsDigitOctalNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " "
+	})
+	public void testIsDigitOctalNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isDigitOctal(""));
-		assertFalse(StringRegexp.isDigitOctal(" "));
+		assertFalse(StringRegexp.isDigitOctal(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isDigitDecimal(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsDigitDecimal()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"0", "0123", "6516166848498494"
+	})
+	public void testIsDigitDecimal(String value)
 	{
-		assertTrue(StringRegexp.isDigitDecimal("0"));
-		assertTrue(StringRegexp.isDigitDecimal("0123"));
-		assertTrue(StringRegexp.isDigitDecimal("6516166848498494"));
+		assertTrue(StringRegexp.isDigitDecimal(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isDigitDecimal(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsDigitDecimalNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"1.1", "1.1", "1a1", "1a"
+	})
+	public void testIsDigitDecimalNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isDigitDecimal(""));
-		assertFalse(StringRegexp.isDigitDecimal(" "));
-
-		assertFalse(StringRegexp.isDigitDecimal("1.1"));
-		assertFalse(StringRegexp.isDigitDecimal("1.1"));
-		assertFalse(StringRegexp.isDigitDecimal("1a1"));
-		assertFalse(StringRegexp.isDigitDecimal("1a"));
+		assertFalse(StringRegexp.isDigitDecimal(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isDigitDuodecimal(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsDigitDuodecimal()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"0123456789AB", "0123456789ab", "120143023649aB101"
+	})
+	public void testIsDigitDuodecimal(String value)
 	{
-		assertTrue(StringRegexp.isDigitDuodecimal("0123456789AB"));
-		assertTrue(StringRegexp.isDigitDuodecimal("0123456789ab"));
-		assertTrue(StringRegexp.isDigitDuodecimal("120143023649aB101"));
+		assertTrue(StringRegexp.isDigitDuodecimal(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isDigitDuodecimal(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsDigitDuodecimalNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " "
+	})
+	public void testIsDigitDuodecimalNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isDigitDuodecimal(""));
-		assertFalse(StringRegexp.isDigitDuodecimal(" "));
+		assertFalse(StringRegexp.isDigitDuodecimal(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isDigitHexadecimal(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsDigitHexadecimal()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"0123456789ABCDEF", "0123456789abbcdef", "120ef143023649aB10cd1"
+	})
+	public void testIsDigitHexadecimal(String value)
 	{
-		assertTrue(StringRegexp.isDigitHexadecimal("0123456789ABCDEF"));
-		assertTrue(StringRegexp.isDigitHexadecimal("0123456789abbcdef"));
-		assertTrue(StringRegexp.isDigitHexadecimal("120ef143023649aB10cd1"));
+		assertTrue(StringRegexp.isDigitHexadecimal(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isDigitHexadecimal(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsDigitHexadecimalNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " "
+	})
+	public void testIsDigitHexadecimalNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isDigitHexadecimal(""));
-		assertFalse(StringRegexp.isDigitHexadecimal(" "));
+		assertFalse(StringRegexp.isDigitHexadecimal(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isNumber(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsNumber()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"0", "100",
+		"0.1", "0,1",
+		"1.100", "1,100",
+		"1,100,123", "1.100.123",
+	})
+	public void testIsNumber(String value)
 	{
-		assertTrue(StringRegexp.isNumber("0"));
-		assertTrue(StringRegexp.isNumber("100"));
-
-		assertTrue(StringRegexp.isNumber("0.1"));
-		assertTrue(StringRegexp.isNumber("0,1"));
-
-		assertTrue(StringRegexp.isNumber("1.100"));
-		assertTrue(StringRegexp.isNumber("1,100"));
-
-		assertTrue(StringRegexp.isNumber("1,100,123"));
-		assertTrue(StringRegexp.isNumber("1.100.123"));
+		assertTrue(StringRegexp.isNumber(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isNumber(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsNumberNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		".", ",",
+		".1", ",2",
+		"3,", "4.",
+		"1. 1", "1, 1",
+		"1. 100", "1, 100",
+		"1 .100", "1 ,100",
+		"1 . 100", "1 , 100",
+		"1,100, 123", "1.100. 123"
+	})
+	public void testIsNumberNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isNumber(""));
-		assertFalse(StringRegexp.isNumber(" "));
-
-		assertFalse(StringRegexp.isNumber("."));
-		assertFalse(StringRegexp.isNumber(","));
-
-		assertFalse(StringRegexp.isNumber(".1"));
-		assertFalse(StringRegexp.isNumber(",2"));
-
-		assertFalse(StringRegexp.isNumber("3,"));
-		assertFalse(StringRegexp.isNumber("4."));
-
-		assertFalse(StringRegexp.isNumber("1. 1"));
-		assertFalse(StringRegexp.isNumber("1, 1"));
-
-		assertFalse(StringRegexp.isNumber("1. 100"));
-		assertFalse(StringRegexp.isNumber("1, 100"));
-
-		assertFalse(StringRegexp.isNumber("1 .100"));
-		assertFalse(StringRegexp.isNumber("1 ,100"));
-
-		assertFalse(StringRegexp.isNumber("1 . 100"));
-		assertFalse(StringRegexp.isNumber("1 , 100"));
-
-		assertFalse(StringRegexp.isNumber("1,100, 123"));
-		assertFalse(StringRegexp.isNumber("1.100. 123"));
+		assertFalse(StringRegexp.isNumber(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isWord(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsWord()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"привет", "ПРИВЕТ",
+		"Hello", "WoRlD",
+		"Hello-World"
+
+	})
+	public void testIsWord(String value)
 	{
-		assertTrue(StringRegexp.isWord("привет"));
-		assertTrue(StringRegexp.isWord("ПРИВЕТ"));
-
-		assertTrue(StringRegexp.isWord("Hello"));
-		assertTrue(StringRegexp.isWord("WoRlD"));
-
-		assertTrue(StringRegexp.isWord("Hello-World"));
+		assertTrue(StringRegexp.isWord(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isWord(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsWordNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"-привет", "привет-",
+		" привет", "привет ",
+		"Hello- World", "Hello -World", "Hello - World"
+	})
+	public void testIsWordNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isWord(""));
-		assertFalse(StringRegexp.isWord(" "));
-
-		assertFalse(StringRegexp.isWord("-привет"));
-		assertFalse(StringRegexp.isWord("привет-"));
-
-		assertFalse(StringRegexp.isWord(" привет"));
-		assertFalse(StringRegexp.isWord("привет "));
-
-		assertFalse(StringRegexp.isWord("Hello- World"));
-		assertFalse(StringRegexp.isWord("Hello -World"));
-		assertFalse(StringRegexp.isWord("Hello - World"));
+		assertFalse(StringRegexp.isWord(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isLetter(String)} с корректным значением.
 	 */
-	@Test
-	public void testIsLetter()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"А", "Ж", "W", "Z"
+	})
+	public void testIsLetter(String value)
 	{
-		assertTrue(StringRegexp.isLetter("А"));
-		assertTrue(StringRegexp.isLetter("Ж"));
-
-		assertTrue(StringRegexp.isLetter("W"));
-		assertTrue(StringRegexp.isLetter("Z"));
+		assertTrue(StringRegexp.isLetter(value));
 	}
 
 	/**
 	 * Проверка метода {@link StringRegexp#isLetter(String)} с некорректными значениями.
 	 */
-	@Test
-	public void testIsLetterNotCorrect()
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"", " ",
+		"-", "0", "?"
+	})
+	public void testIsLetterNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isLetter(""));
-		assertFalse(StringRegexp.isLetter(" "));
-
-		assertFalse(StringRegexp.isLetter("-"));
-		assertFalse(StringRegexp.isLetter("0"));
-		assertFalse(StringRegexp.isLetter("?"));
+		assertFalse(StringRegexp.isLetter(value));
 	}
 
 	/**
@@ -1285,7 +1163,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findInet4Address(String)} с корректным значением.
 	 */
 	@Test
-	public void testFindIpAddressVersion4()
+	public void testFindInet4Address()
 	{
 		String[] inet4Address = {
 			"192.168.1.1",
@@ -1424,7 +1302,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findInet6Address(String)} с корректным значением.
 	 */
 	@Test
-	public void testFindIpAddressVersion6()
+	public void testFindInet6Address()
 	{
 		String[] inet6Address = {
 			"2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D",
@@ -1467,7 +1345,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findInet6AddressIgnoreCase(String)} с корректным значением.
 	 */
 	@Test
-	public void testFindIpAddressVersion6IgnoreCase()
+	public void testFindInet6AddressIgnoreCase()
 	{
 		String[] inet6Address = {
 			"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D",
