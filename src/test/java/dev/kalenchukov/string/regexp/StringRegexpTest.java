@@ -28,22 +28,25 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Класс проверки методов класса {@link StringRegexp}.
+ */
 public class StringRegexpTest
 {
 	/**
-	 * Проверка корректной локализации.
+	 * Проверка метода {@link StringRegexp#isLocalization(String)} с корректным значением.
 	 */
 	@Test
-	public void isLocalizationCorrect()
+	public void testIsLocalization()
 	{
 		assertTrue(StringRegexp.isLocalization("ru-RU"));
 	}
 
 	/**
-	 * Проверка некорректной локализации.
+	 * Проверка метода {@link StringRegexp#isLocalization(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isLocalizationNotCorrect()
+	public void testIsLocalizationNotCorrect()
 	{
 		assertFalse(StringRegexp.isLocalization(""));
 		assertFalse(StringRegexp.isLocalization(" "));
@@ -57,58 +60,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка поиска локализаций.
+	 * Проверка метода {@link StringRegexp#isInet4Address(String)} с корректным значением.
 	 */
 	@Test
-	public void findLocalization()
-	{
-		String[] localization = {
-			"ru-RU",
-			"en-EN",
-			"by-BY",
-			"it-IT"
-		};
-
-		String string = """
-			Застоялся мой поезд в депо.
-			Снова я уезжаю. Пора...
-			На пороге ветер заждался меня.
-			На пороге осень — моя сестра.ru-RU
-			
-			После красно-желтых дней начнется и кончится зима.
-			Горе ты мое от ума, не печалься, гляди веселей.
-			И я вернусь домой со щитом, а, может быть, на щите,
-			В серебре, а, может быть, в нищете, но как можно скорей.
-			
-			Расскажи мне о тех, кто устал
-			От безжалостных уличных драм
-			И о храме из разбитых сердец
-			И о тех, кто идет в этот храм.
-			
-			После красно-желтых дней начнется и кончится зима.
-			Горе ты мое от ума,en-EN не печалься, гляди веселей.
-			И я вернусь домой со щитом, а, может быть, на щите,
-			В серебре, а, by-BY может быть, в нищете, но как можно скорей.
-			
-			А мне приснилось: миром правит любовь,
-			А мне приснилось:it-IT миром правит мечта.
-			И над этим прекрасно горит звезда,
-			Я проснулся и понял — беда...
-			
-			После красно-желтых дней начнется и кончится зима.
-			Горе ты мое от ума, не печалься, гляди веселей.
-			И я вернусь домой со щитом, а, может быть, на щите,
-			В серебре, а, может быть, в нищете, но как можно скорей.
-			""";
-
-		assertArrayEquals(localization, StringRegexp.findLocalization(string).toArray());
-	}
-
-	/**
-	 * Проверка корректного IP-адреса четвёртой версии.
-	 */
-	@Test
-	public void isIpAddressVersion4Correct()
+	public void testIsIpAddressVersion4()
 	{
 		assertTrue(StringRegexp.isInet4Address("192.168.1.1"));
 		assertTrue(StringRegexp.isInet4Address("1.1.1.1"));
@@ -116,10 +71,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного IP-адреса четвёртой версии.
+	 * Проверка метода {@link StringRegexp#isInet4Address(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isIpAddressVersion4NotCorrect()
+	public void testIsIpAddressVersion4NotCorrect()
 	{
 		assertFalse(StringRegexp.isInet4Address(""));
 		assertFalse(StringRegexp.isInet4Address(" "));
@@ -139,75 +94,28 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка поиска IP-адресов четвёртой версии.
+	 * Проверка метода {@link StringRegexp#isInet6Address(String)} с корректным значением.
 	 */
 	@Test
-	public void findIpAddressVersion4()
-	{
-		String[] inet4Address = {
-			"192.168.1.1",
-			"1.1.1.1",
-			"0.0.0.0",
-			"10.222.170.80"
-		};
-
-		String string = """
-			День как день, только ты почему-то грустишь.
-			И вокруг все поют, только ты один молчишь.
-			Потерял аппетит и не 192.168.1.1 хочешь сходить в кино.
-			Ты идешь в магазин, чтобы купить вино.
-			
-			Солнце светит и растет трава,
-			Но тебе она не нужна.
-			Все не так и все не то,
-			Когда твоя девушка больна 1.1.1.1
-			Когда твоя девушка больна
-			Когда больна.
-			
-			Ты идешь в магазин, головою поник,
-			Как будто иссяк чистый горный родник.
-			Она где-то лежит,0.0.0.0 ест мед и пьет аспирин,
-			И вот ты идешь на вечеринку один.
-			
-			Солнце светит и растет трава,
-			Но тебе она не нужна.
-			Все не так и все не то,
-			Когда твоя девушка больна.
-			На вечеринку -10.222.170.80 один.
-			Когда твоя девушка больна.
-			На вечеринку - один.
-			Когда твоя девушка больна.
-			
-			Когда твоя девушка больна.
-			Когда твоя девушка больна.
-			""";
-
-		assertArrayEquals(inet4Address, StringRegexp.findInet4Address(string).toArray());
-	}
-
-	/**
-	 * Проверка корректного IP-адреса шестой версии.
-	 */
-	@Test
-	public void isIpAddressVersion6Correct()
+	public void testIsIpAddressVersion6()
 	{
 		assertTrue(StringRegexp.isInet6Address("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D"));
 	}
 
 	/**
-	 * Проверка некорректного IP-адреса шестой версии.
+	 * Проверка метода {@link StringRegexp#isInet6Address(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isIpAddressVersion6NotCorrect()
+	public void testIsIpAddressVersion6NotCorrect()
 	{
 		assertFalse(StringRegexp.isInet6Address("2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D"));
 	}
 
 	/**
-	 * Проверка корректного IP-адреса шестой версии без учёта регистра букв.
+	 * Проверка метода {@link StringRegexp#isInet6AddressIgnoreCase(String)} с корректным значением.
 	 */
 	@Test
-	public void isIpAddressVersion6IgnoreCaseCorrect()
+	public void testIsIpAddressVersion6IgnoreCase()
 	{
 		assertTrue(StringRegexp.isInet6AddressIgnoreCase("2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D"));
 
@@ -239,10 +147,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного IP-адреса шестой версии без учёта регистра букв.
+	 * Проверка метода {@link StringRegexp#isInet6AddressIgnoreCase(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isIpAddressVersion6IgnoreCaseNotCorrect()
+	public void testIsIpAddressVersion6IgnoreCaseNotCorrect()
 	{
 		assertFalse(StringRegexp.isInet6AddressIgnoreCase(""));
 		assertFalse(StringRegexp.isInet6AddressIgnoreCase(" "));
@@ -284,10 +192,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного адреса электронной почты.
+	 * Проверка метода {@link StringRegexp#isEmailAddress(String)} с корректным значением.
 	 */
 	@Test
-	public void isEmailAddressCorrect()
+	public void testIsEmailAddress()
 	{
 		assertTrue(StringRegexp.isEmailAddress("aleksey.kalenchukov@yandex.ru"));
 		assertTrue(StringRegexp.isEmailAddress("aleksey.kalenchukov_@yandex.ru"));
@@ -313,10 +221,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного адреса электронной почты.
+	 * Проверка метода {@link StringRegexp#isEmailAddress(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isEmailAddressNotCorrect()
+	public void testIsEmailAddressNotCorrect()
 	{
 		assertFalse(StringRegexp.isEmailAddress(""));
 		assertFalse(StringRegexp.isEmailAddress(" "));
@@ -335,10 +243,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка домена.
+	 * Проверка метода {@link StringRegexp#isDomain(String)} с корректным значением.
 	 */
 	@Test
-	public void isDomainCorrect()
+	public void testIsDomain()
 	{
 		assertTrue(StringRegexp.isDomain("kalenchukov.dev"));
 		assertTrue(StringRegexp.isDomain("regexp.string.kalenchukov.dev"));
@@ -347,10 +255,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка домена.
+	 * Проверка метода {@link StringRegexp#isDomain(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isDomainNotCorrect()
+	public void testIsDomainNotCorrect()
 	{
 		assertFalse(StringRegexp.isDomain(""));
 		assertFalse(StringRegexp.isDomain(" "));
@@ -360,10 +268,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка URL HTTP.
+	 * Проверка метода {@link StringRegexp#isUrlHttp(String)} с корректным значением.
 	 */
 	@Test
-	public void isUrlHttp()
+	public void testIsUrlHttp()
 	{
 		assertTrue(StringRegexp.isUrlHttp("http://kalenchukov.dev/hello/world/?java=18&hello=world123#anchor"));
 		assertTrue(StringRegexp.isUrlHttp("https://kalenchukov.dev/hello/world/?java=18&hello=world123#anchor"));
@@ -390,10 +298,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного RGB в числовом представлении.
+	 * Проверка метода {@link StringRegexp#isRgbNumeric(String)} с корректным значением.
 	 */
 	@Test
-	public void isRgbNumericCorrect()
+	public void testIsRgbNumeric()
 	{
 		assertTrue(StringRegexp.isRgbNumeric("215,200,166"));
 		assertTrue(StringRegexp.isRgbNumeric("0,0,0"));
@@ -406,10 +314,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного RGB в числовом представлении.
+	 * Проверка метода {@link StringRegexp#isRgbNumeric(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isRgbNumericNotCorrect()
+	public void testIsRgbNumericNotCorrect()
 	{
 		assertFalse(StringRegexp.isRgbNumeric(""));
 		assertFalse(StringRegexp.isRgbNumeric(" "));
@@ -433,20 +341,20 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного двухбуквенного кода страны.
+	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha2(String)} с корректным значением.
 	 */
 	@Test
-	public void isCountryCodeAlpha2Correct()
+	public void testIsCountryCodeAlpha2()
 	{
 		assertTrue(StringRegexp.isCountryCodeAlpha2("RU"));
 		assertTrue(StringRegexp.isCountryCodeAlpha2("BY"));
 	}
 
 	/**
-	 * Проверка некорректного двухбуквенного кода страны.
+	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha2(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isCountryCodeAlpha2NotCorrect()
+	public void testIsCountryCodeAlpha2NotCorrect()
 	{
 		assertFalse(StringRegexp.isCountryCodeAlpha2(""));
 		assertFalse(StringRegexp.isCountryCodeAlpha2(" "));
@@ -460,20 +368,20 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного трёхбуквенного кода страны.
+	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha3(String)} с корректным значением.
 	 */
 	@Test
-	public void isCountryCodeAlpha3Correct()
+	public void testIsCountryCodeAlpha3()
 	{
 		assertTrue(StringRegexp.isCountryCodeAlpha3("RUS"));
 		assertTrue(StringRegexp.isCountryCodeAlpha3("BLR"));
 	}
 
 	/**
-	 * Проверка некорректного трёхбуквенного кода страны.
+	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha3(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isCountryCodeAlpha3NotCorrect()
+	public void testIsCountryCodeAlpha3NotCorrect()
 	{
 		assertFalse(StringRegexp.isCountryCodeAlpha3(""));
 		assertFalse(StringRegexp.isCountryCodeAlpha3(" "));
@@ -487,10 +395,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного трёхциферного кода страны.
+	 * Проверка метода {@link StringRegexp#isCountryCodeNumeric3(String)} с корректным значением.
 	 */
 	@Test
-	public void isCountryCodeNumeric3Correct()
+	public void testIsCountryCodeNumeric3()
 	{
 		assertTrue(StringRegexp.isCountryCodeNumeric3("052"));
 		assertTrue(StringRegexp.isCountryCodeNumeric3("112"));
@@ -498,10 +406,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного трёхциферного кода страны.
+	 * Проверка метода {@link StringRegexp#isCountryCodeNumeric3(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isCountryCodeNumeric3NotCorrect()
+	public void testIsCountryCodeNumeric3NotCorrect()
 	{
 		assertFalse(StringRegexp.isCountryCodeNumeric3(""));
 		assertFalse(StringRegexp.isCountryCodeNumeric3(" "));
@@ -514,10 +422,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного RGB в шестнадцатеричной системе счисления.
+	 * Проверка метода {@link StringRegexp#isRgbHex(String)} с корректным значением.
 	 */
 	@Test
-	public void isRgbHexCorrect()
+	public void testIsRgbHex()
 	{
 		assertTrue(StringRegexp.isRgbHex("#FFFFFF"));
 		assertTrue(StringRegexp.isRgbHex("#ABCDEF"));
@@ -527,10 +435,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного RGB в шестнадцатеричной системе счисления.
+	 * Проверка метода {@link StringRegexp#isRgbHex(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isRgbHexNotCorrect()
+	public void testIsRgbHexNotCorrect()
 	{
 		assertFalse(StringRegexp.isRgbHex(""));
 		assertFalse(StringRegexp.isRgbHex(" "));
@@ -542,10 +450,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного RGB в шестнадцатеричной системе счисления без учёта регистра букв.
+	 * Проверка метода {@link StringRegexp#isRgbHexIgnoreCase(String)} с корректным значением.
 	 */
 	@Test
-	public void isRgbHexIgnoreCaseCorrect()
+	public void testIsRgbHexIgnoreCase()
 	{
 		assertTrue(StringRegexp.isRgbHexIgnoreCase("#fffFFF"));
 		assertTrue(StringRegexp.isRgbHexIgnoreCase("#abcDEF"));
@@ -555,10 +463,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного RGB в шестнадцатеричной системе счисления без учёта регистра букв.
+	 * Проверка метода {@link StringRegexp#isRgbHexIgnoreCase(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isRgbHexIgnoreCaseNotCorrect()
+	public void testIsRgbHexIgnoreCaseNotCorrect()
 	{
 		assertFalse(StringRegexp.isRgbHexIgnoreCase(""));
 		assertFalse(StringRegexp.isRgbHexIgnoreCase(" "));
@@ -570,20 +478,20 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного MAC-адреса.
+	 * Проверка метода {@link StringRegexp#isMacAddress(String)} с корректным значением.
 	 */
 	@Test
-	public void isMacAddressCorrect()
+	public void testIsMacAddress()
 	{
 		assertTrue(StringRegexp.isMacAddress("00-EF-CD-EF-11-22"));
 		assertTrue(StringRegexp.isMacAddress("00:EF:CD:EF:11:22"));
 	}
 
 	/**
-	 * Проверка некорректного MAC-адреса.
+	 * Проверка метода {@link StringRegexp#isMacAddress(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isMacAddressNotCorrect()
+	public void testIsMacAddressNotCorrect()
 	{
 		assertFalse(StringRegexp.isMacAddress(""));
 		assertFalse(StringRegexp.isMacAddress(" "));
@@ -604,20 +512,20 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного MAC-адреса без учёта регистра букв.
+	 * Проверка метода {@link StringRegexp#isMacAddressIgnoreCase(String)} с корректным значением.
 	 */
 	@Test
-	public void isMacAddressIgnoreCaseCorrect()
+	public void testIsMacAddressIgnoreCase()
 	{
 		assertTrue(StringRegexp.isMacAddressIgnoreCase("00-EF-cd-EF-11-22"));
 		assertTrue(StringRegexp.isMacAddressIgnoreCase("00:ef:CD:EF:11:22"));
 	}
 
 	/**
-	 * Проверка некорректного MAC-адреса без учёта регистра букв.
+	 * Проверка метода {@link StringRegexp#isMacAddressIgnoreCase(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isMacAddressIgnoreCaseNotCorrect()
+	public void testIsMacAddressIgnoreCaseNotCorrect()
 	{
 		assertFalse(StringRegexp.isMacAddressIgnoreCase(""));
 		assertFalse(StringRegexp.isMacAddressIgnoreCase(" "));
@@ -630,10 +538,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного телеграм канала.
+	 * Проверка метода {@link StringRegexp#isTelegram(String)} с корректным значением.
 	 */
 	@Test
-	public void isTelegramCorrect()
+	public void testIsTelegram()
 	{
 		assertTrue(StringRegexp.isTelegram("@kalenchukov"));
 		assertTrue(StringRegexp.isTelegram("@Kalenchukov"));
@@ -645,10 +553,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного телеграм канала.
+	 * Проверка метода {@link StringRegexp#isTelegram(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isTelegramNotCorrect()
+	public void testIsTelegramNotCorrect()
 	{
 		assertFalse(StringRegexp.isTelegram(""));
 		assertFalse(StringRegexp.isTelegram(" "));
@@ -663,10 +571,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректной метки.
+	 * Проверка метода {@link StringRegexp#isTag(String)} с корректным значением.
 	 */
 	@Test
-	public void isTagCorrect()
+	public void testIsTag()
 	{
 		assertTrue(StringRegexp.isTag("#tag"));
 		assertTrue(StringRegexp.isTag("#Tag"));
@@ -684,10 +592,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректной метки.
+	 * Проверка метода {@link StringRegexp#isTag(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isTagNotCorrect()
+	public void testIsTagNotCorrect()
 	{
 		assertFalse(StringRegexp.isTag(""));
 		assertFalse(StringRegexp.isTag(" "));
@@ -715,10 +623,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректной цифры двоичной системы счисления.
+	 * Проверка метода {@link StringRegexp#isDigitBinary(String)} с корректным значением.
 	 */
 	@Test
-	public void isDigitBinaryCorrect()
+	public void testIsDigitBinary()
 	{
 		assertTrue(StringRegexp.isDigitBinary("0"));
 		assertTrue(StringRegexp.isDigitBinary("1"));
@@ -727,10 +635,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректной цифры двоичной системы счисления.
+	 * Проверка метода {@link StringRegexp#isDigitBinary(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isDigitBinaryNotCorrect()
+	public void testIsDigitBinaryNotCorrect()
 	{
 		assertFalse(StringRegexp.isDigitBinary(""));
 		assertFalse(StringRegexp.isDigitBinary(" "));
@@ -742,10 +650,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректной цифры троичной системы счисления.
+	 * Проверка метода {@link StringRegexp#isDigitTernary(String)} с корректным значением.
 	 */
 	@Test
-	public void isDigitTernaryCorrect()
+	public void testIsDigitTernary()
 	{
 		assertTrue(StringRegexp.isDigitTernary("0"));
 		assertTrue(StringRegexp.isDigitTernary("1"));
@@ -755,10 +663,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректной цифры троичной системы счисления.
+	 * Проверка метода {@link StringRegexp#isDigitTernary(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isDigitTernaryNotCorrect()
+	public void testIsDigitTernaryNotCorrect()
 	{
 		assertFalse(StringRegexp.isDigitTernary(""));
 		assertFalse(StringRegexp.isDigitTernary(" "));
@@ -769,30 +677,30 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректной цифры восьмеричной системы счисления.
+	 * Проверка метода {@link StringRegexp#isDigitOctal(String)} с корректным значением.
 	 */
 	@Test
-	public void isDigitOctalCorrect()
+	public void testIsDigitOctal()
 	{
 		assertTrue(StringRegexp.isDigitOctal("01234567"));
 		assertTrue(StringRegexp.isDigitOctal("12014302101"));
 	}
 
 	/**
-	 * Проверка некорректной цифры восьмеричной системы счисления.
+	 * Проверка метода {@link StringRegexp#isDigitOctal(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isDigitOctalNotCorrect()
+	public void testIsDigitOctalNotCorrect()
 	{
 		assertFalse(StringRegexp.isDigitOctal(""));
 		assertFalse(StringRegexp.isDigitOctal(" "));
 	}
 
 	/**
-	 * Проверка корректной цифры десятеричной системы счисления.
+	 * Проверка метода {@link StringRegexp#isDigitDecimal(String)} с корректным значением.
 	 */
 	@Test
-	public void isDigitDecimalCorrect()
+	public void testIsDigitDecimal()
 	{
 		assertTrue(StringRegexp.isDigitDecimal("0"));
 		assertTrue(StringRegexp.isDigitDecimal("0123"));
@@ -800,10 +708,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректной цифры десятеричной системы счисления.
+	 * Проверка метода {@link StringRegexp#isDigitDecimal(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isDigitDecimalNotCorrect()
+	public void testIsDigitDecimalNotCorrect()
 	{
 		assertFalse(StringRegexp.isDigitDecimal(""));
 		assertFalse(StringRegexp.isDigitDecimal(" "));
@@ -815,10 +723,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректной цифры двенадцатеричной системы счисления.
+	 * Проверка метода {@link StringRegexp#isDigitDuodecimal(String)} с корректным значением.
 	 */
 	@Test
-	public void isDigitDuodecimalCorrect()
+	public void testIsDigitDuodecimal()
 	{
 		assertTrue(StringRegexp.isDigitDuodecimal("0123456789AB"));
 		assertTrue(StringRegexp.isDigitDuodecimal("0123456789ab"));
@@ -826,20 +734,20 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректной цифры двенадцатеричной системы счисления.
+	 * Проверка метода {@link StringRegexp#isDigitDuodecimal(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isDigitDuodecimalNotCorrect()
+	public void testIsDigitDuodecimalNotCorrect()
 	{
 		assertFalse(StringRegexp.isDigitDuodecimal(""));
 		assertFalse(StringRegexp.isDigitDuodecimal(" "));
 	}
 
 	/**
-	 * Проверка корректной цифры шестнадцатеричной системы счисления.
+	 * Проверка метода {@link StringRegexp#isDigitHexadecimal(String)} с корректным значением.
 	 */
 	@Test
-	public void isDigitHexadecimalCorrect()
+	public void testIsDigitHexadecimal()
 	{
 		assertTrue(StringRegexp.isDigitHexadecimal("0123456789ABCDEF"));
 		assertTrue(StringRegexp.isDigitHexadecimal("0123456789abbcdef"));
@@ -847,20 +755,20 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректной цифры шестнадцатеричной системы счисления.
+	 * Проверка метода {@link StringRegexp#isDigitHexadecimal(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isDigitHexadecimalNotCorrect()
+	public void testIsDigitHexadecimalNotCorrect()
 	{
 		assertFalse(StringRegexp.isDigitHexadecimal(""));
 		assertFalse(StringRegexp.isDigitHexadecimal(" "));
 	}
 
 	/**
-	 * Проверка корректного числа.
+	 * Проверка метода {@link StringRegexp#isNumber(String)} с корректным значением.
 	 */
 	@Test
-	public void isNumberCorrect()
+	public void testIsNumber()
 	{
 		assertTrue(StringRegexp.isNumber("0"));
 		assertTrue(StringRegexp.isNumber("100"));
@@ -876,10 +784,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного числа.
+	 * Проверка метода {@link StringRegexp#isNumber(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isNumberNotCorrect()
+	public void testIsNumberNotCorrect()
 	{
 		assertFalse(StringRegexp.isNumber(""));
 		assertFalse(StringRegexp.isNumber(" "));
@@ -910,10 +818,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректного слова.
+	 * Проверка метода {@link StringRegexp#isWord(String)} с корректным значением.
 	 */
 	@Test
-	public void isWordCorrect()
+	public void testIsWord()
 	{
 		assertTrue(StringRegexp.isWord("привет"));
 		assertTrue(StringRegexp.isWord("ПРИВЕТ"));
@@ -925,10 +833,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректного слова.
+	 * Проверка метода {@link StringRegexp#isWord(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isWordNotCorrect()
+	public void testIsWordNotCorrect()
 	{
 		assertFalse(StringRegexp.isWord(""));
 		assertFalse(StringRegexp.isWord(" "));
@@ -945,10 +853,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка корректной буквы.
+	 * Проверка метода {@link StringRegexp#isLetter(String)} с корректным значением.
 	 */
 	@Test
-	public void isLetterCorrect()
+	public void testIsLetter()
 	{
 		assertTrue(StringRegexp.isLetter("А"));
 		assertTrue(StringRegexp.isLetter("Ж"));
@@ -958,10 +866,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка некорректной буквы.
+	 * Проверка метода {@link StringRegexp#isLetter(String)} с некорректными значениями.
 	 */
 	@Test
-	public void isLetterNotCorrect()
+	public void testIsLetterNotCorrect()
 	{
 		assertFalse(StringRegexp.isLetter(""));
 		assertFalse(StringRegexp.isLetter(" "));
@@ -972,10 +880,10 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка поиска адресов электронной почты.
+	 * Проверка метода {@link StringRegexp#findEmailAddress(String)} с корректным значением.
 	 */
 	@Test
-	public void findEmailAddress()
+	public void testFindEmailAddress()
 	{
 		String[] emailAddress = {
 			"aleksey.kalenchukov@yandex.ru",
@@ -984,7 +892,7 @@ public class StringRegexpTest
 			"123alekseykalenchukov@yandex.ru"
 		};
 
-		String string = """
+		String value = """
 			И я должен прийти к девяти, на работу свою,
 			Но сейчас уже без десяти, а я только встаю aleksey.kalenchukov@yandex.ru
 			На столе моем завтрак стоит, от него не уйти
@@ -1002,14 +910,14 @@ public class StringRegexpTest
 			Эх, 123alekseykalenchukov@yandex.ru ещё только без десяти, девять часов
 			""";
 
-		assertArrayEquals(emailAddress, StringRegexp.findEmailAddress(string).toArray());
+		assertArrayEquals(emailAddress, StringRegexp.findEmailAddress(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска доменных имён.
+	 * Проверка метода {@link StringRegexp#findDomain(String)} с корректным значением.
 	 */
 	@Test
-	public void findDomain()
+	public void testFindDomain()
 	{
 		String[] domain = {
 			"kalenchukov.dev",
@@ -1018,7 +926,7 @@ public class StringRegexpTest
 			"123.aleksey.kalenchukov.ru"
 		};
 
-		String string = """
+		String value = """
 			Зерна упали в землю, зерна просят дождя.
 			Им нужен дождь.
 			Разрежь мою грудь, kalenchukov.dev посмотри мне внутрь,
@@ -1053,14 +961,14 @@ public class StringRegexpTest
 			Мама, я знаю, мы все сошли с ума...
 			""";
 
-		assertArrayEquals(domain, StringRegexp.findDomain(string).toArray());
+		assertArrayEquals(domain, StringRegexp.findDomain(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска URL HTTP.
+	 * Проверка метода {@link StringRegexp#findUrlHttp(String)} с корректным значением.
 	 */
 	@Test
-	public void findUrlHttp()
+	public void testFindUrlHttp()
 	{
 		String[] domain = {
 			"http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme",
@@ -1069,7 +977,7 @@ public class StringRegexpTest
 			"http://kalenchukov.dev/?isUrlHttp=test123"
 		};
 
-		String string = """
+		String value = """
 			Тот, кто в пятнадцать лет убежал из дома
 			Вряд ли поймёт http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme того, кто учился в спецшколе
 			Тот, у кого есть хороший жизненный план
@@ -1098,21 +1006,21 @@ public class StringRegexpTest
 			Бошетунмай, бошетунмай
 			""";
 
-		assertArrayEquals(domain, StringRegexp.findUrlHttp(string).toArray());
+		assertArrayEquals(domain, StringRegexp.findUrlHttp(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска двухбуквенных кодов стран.
+	 * Проверка метода {@link StringRegexp#findCountryCodeAlpha2(String)} с корректным значением.
 	 */
 	@Test
-	public void findCountryCodeAlpha2()
+	public void testFindCountryCodeAlpha2()
 	{
 		String[] countryCodeAlpha2 = {
 			"RU",
 			"BY"
 		};
 
-		String string = """
+		String value = """
 			О-o, это странное место Камчатка
 			О-o, это сладкое слово «Камчатка»
 			Но на этой земле RU я не вижу тебя
@@ -1133,21 +1041,21 @@ public class StringRegexpTest
 			Ну и пусть...
 			""";
 
-		assertArrayEquals(countryCodeAlpha2, StringRegexp.findCountryCodeAlpha2(string).toArray());
+		assertArrayEquals(countryCodeAlpha2, StringRegexp.findCountryCodeAlpha2(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска трёхбуквенных кодов стран.
+	 * Проверка метода {@link StringRegexp#findCountryCodeAlpha3(String)} с корректным значением.
 	 */
 	@Test
-	public void findCountryCodeAlpha3()
+	public void testFindCountryCodeAlpha3()
 	{
 		String[] countryCodeAlpha3 = {
 			"RUS",
 			"BLR"
 		};
 
-		String string = """
+		String value = """
 			Каждый день ты приходишь домой, когда темно.
 			Каждый день RUS долго едешь в метро, когда темно.
 			А она живет в центре всех городов,
@@ -1166,14 +1074,14 @@ public class StringRegexpTest
 			Проснись, это любовь...
 			""";
 
-		assertArrayEquals(countryCodeAlpha3, StringRegexp.findCountryCodeAlpha3(string).toArray());
+		assertArrayEquals(countryCodeAlpha3, StringRegexp.findCountryCodeAlpha3(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска трёхциферных кодов стран.
+	 * Проверка метода {@link StringRegexp#findCountryCodeNumeric3(String)} с корректным значением.
 	 */
 	@Test
-	public void findCountryCodeNumeric3()
+	public void testFindCountryCodeNumeric3()
 	{
 		String[] countryCodeNumeric3 = {
 			"052",
@@ -1181,7 +1089,7 @@ public class StringRegexpTest
 			"112"
 		};
 
-		String string = """
+		String value = """
 			Стань птицей, живущей в моём небе
 			Помни, что нет 052 тюрьмы страшнее, чем в голове
 			Стань птицей, не думай о хлебе
@@ -1196,14 +1104,14 @@ public class StringRegexpTest
 			Я стану словами
 			""";
 
-		assertArrayEquals(countryCodeNumeric3, StringRegexp.findCountryCodeNumeric3(string).toArray());
+		assertArrayEquals(countryCodeNumeric3, StringRegexp.findCountryCodeNumeric3(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска RGB в шестнадцатеричной системе счисления.
+	 * Проверка метода {@link StringRegexp#findRgbHex(String)} с корректным значением.
 	 */
 	@Test
-	public void findRgbHex()
+	public void testFindRgbHex()
 	{
 		String[] rgbHex = {
 			"#FFFFFF",
@@ -1212,7 +1120,7 @@ public class StringRegexpTest
 			"#1A2B3C"
 		};
 
-		String string = """
+		String value = """
 			Крыши домов дрожат под тяжестью дней
 			Небесный пастух пасёт #FFFFFF облака
 			Город стреляет в ночь дробью огней
@@ -1244,14 +1152,14 @@ public class StringRegexpTest
 			Спокойная ночь
 			""";
 
-		assertArrayEquals(rgbHex, StringRegexp.findRgbHex(string).toArray());
+		assertArrayEquals(rgbHex, StringRegexp.findRgbHex(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска RGB в шестнадцатеричной системе счисления без учёта регистра.
+	 * Проверка метода {@link StringRegexp#findRgbHexIgnoreCase(String)} с корректным значением.
 	 */
 	@Test
-	public void findRgbHexIgnoreCase()
+	public void testFindRgbHexIgnoreCase()
 	{
 		String[] rgbHex = {
 			"#fffFFF",
@@ -1260,7 +1168,7 @@ public class StringRegexpTest
 			"#1a2B3C"
 		};
 
-		String string = """
+		String value = """
 			Застоялся мой #fffFFF поезд в депо.
 			Снова я уезжаю. Пора...
 			На пороге ветер заждался меня.
@@ -1292,14 +1200,14 @@ public class StringRegexpTest
 			В серебре, а, может быть, в нищете, но как можно скорей.
 			""";
 
-		assertArrayEquals(rgbHex, StringRegexp.findRgbHexIgnoreCase(string).toArray());
+		assertArrayEquals(rgbHex, StringRegexp.findRgbHexIgnoreCase(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска MAC-адресов.
+	 * Проверка метода {@link StringRegexp#findMacAddress(String)} с корректным значением.
 	 */
 	@Test
-	public void findMacAddress()
+	public void testFindMacAddress()
 	{
 		String[] macAddress = {
 			"00-EF-CD-EF-11-22",
@@ -1308,7 +1216,7 @@ public class StringRegexpTest
 			"00-EF-CD-CE-11-22"
 		};
 
-		String string = """
+		String value = """
 			В этом мотиве есть какая-то фальшь,
 			Но где найти 00-EF-CD-EF-11-22 тех, что услышат ее?
 			Подросший ребенок, воспитанный жизнью за шкафом,
@@ -1336,14 +1244,14 @@ public class StringRegexpTest
 			Я объявляю свой...
 			""";
 
-		assertArrayEquals(macAddress, StringRegexp.findMacAddress(string).toArray());
+		assertArrayEquals(macAddress, StringRegexp.findMacAddress(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска MAC-адресов без учёта регистра.
+	 * Проверка метода {@link StringRegexp#findMacAddressIgnoreCase(String)} с корректным значением.
 	 */
 	@Test
-	public void findMacAddressIgnoreCase()
+	public void testFindMacAddressIgnoreCase()
 	{
 		String[] macAddress = {
 			"00-EF-CD-ef-11-22",
@@ -1352,7 +1260,7 @@ public class StringRegexpTest
 			"00-ef-cd-ce-11-22"
 		};
 
-		String string = """
+		String value = """
 			Я вижу, как волны смывают следы на песке
 			Я слышу, как ветер 00-EF-CD-ef-11-22 поет свою странную песню
 			Я слышу, как струны деревьев играют ее
@@ -1370,14 +1278,61 @@ public class StringRegexpTest
 			Музыку волн, музыку ветра?
 			""";
 
-		assertArrayEquals(macAddress, StringRegexp.findMacAddressIgnoreCase(string).toArray());
+		assertArrayEquals(macAddress, StringRegexp.findMacAddressIgnoreCase(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска RGB в числовом представлении.
+	 * Проверка метода {@link StringRegexp#findInet4Address(String)} с корректным значением.
 	 */
 	@Test
-	public void findRgbNumeric()
+	public void testFindIpAddressVersion4()
+	{
+		String[] inet4Address = {
+			"192.168.1.1",
+			"1.1.1.1",
+			"0.0.0.0",
+			"10.222.170.80"
+		};
+
+		String value = """
+			День как день, только ты почему-то грустишь.
+			И вокруг все поют, только ты один молчишь.
+			Потерял аппетит и не 192.168.1.1 хочешь сходить в кино.
+			Ты идешь в магазин, чтобы купить вино.
+			
+			Солнце светит и растет трава,
+			Но тебе она не нужна.
+			Все не так и все не то,
+			Когда твоя девушка больна 1.1.1.1
+			Когда твоя девушка больна
+			Когда больна.
+			
+			Ты идешь в магазин, головою поник,
+			Как будто иссяк чистый горный родник.
+			Она где-то лежит,0.0.0.0 ест мед и пьет аспирин,
+			И вот ты идешь на вечеринку один.
+			
+			Солнце светит и растет трава,
+			Но тебе она не нужна.
+			Все не так и все не то,
+			Когда твоя девушка больна.
+			На вечеринку -10.222.170.80 один.
+			Когда твоя девушка больна.
+			На вечеринку - один.
+			Когда твоя девушка больна.
+			
+			Когда твоя девушка больна.
+			Когда твоя девушка больна.
+			""";
+
+		assertArrayEquals(inet4Address, StringRegexp.findInet4Address(value).toArray());
+	}
+
+	/**
+	 * Проверка метода {@link StringRegexp#findRgbNumeric(String)} с корректным значением.
+	 */
+	@Test
+	public void testFindRgbNumeric()
 	{
 		String[] rgb = {
 			"255,150,50",
@@ -1386,7 +1341,7 @@ public class StringRegexpTest
 			"113,13,3"
 		};
 
-		String string = """
+		String value = """
 			Наши реки бедны водой
 			В наших окнах 255,150,50 не видно дня
 			Наше утро похоже на ночь
@@ -1420,14 +1375,14 @@ public class StringRegexpTest
 			Играй!
 			""";
 
-		assertArrayEquals(rgb, StringRegexp.findRgbNumeric(string).toArray());
+		assertArrayEquals(rgb, StringRegexp.findRgbNumeric(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска телеграм каналов.
+	 * Проверка метода {@link StringRegexp#findTelegram(String)} с корректным значением.
 	 */
 	@Test
-	public void findTelegram()
+	public void testFindTelegram()
 	{
 		String[] telegram = {
 			"@kalenchukov",
@@ -1436,7 +1391,7 @@ public class StringRegexpTest
 			"@kalen_CHUKOV"
 		};
 
-		String string = """
+		String value = """
 			Ты часто проходишь мимо, не видя меня
 			С кем-то другим, я стою не дыша @kalenchukov
 			Я знаю, что ты живешь в соседнем дворе
@@ -1462,14 +1417,14 @@ public class StringRegexpTest
 			Ооооу, но это не любовь...
 			""";
 
-		assertArrayEquals(telegram, StringRegexp.findTelegram(string).toArray());
+		assertArrayEquals(telegram, StringRegexp.findTelegram(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска IP-адресов шестой версии.
+	 * Проверка метода {@link StringRegexp#findInet6Address(String)} с корректным значением.
 	 */
 	@Test
-	public void findIpAddressVersion6()
+	public void testFindIpAddressVersion6()
 	{
 		String[] inet6Address = {
 			"2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D",
@@ -1478,7 +1433,7 @@ public class StringRegexpTest
 			"2001:DB8::AE21:AD12"
 		};
 
-		String string = """
+		String value = """
 			В последнее время я редко был дома,
 			Так что даже отвыкли звонить мне друзья.
 			В разъездах, разгулах 2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D конца лета симптомы
@@ -1505,14 +1460,14 @@ public class StringRegexpTest
 			И не в силах сказать,2001:DB8::AE21:AD12 что принес этот год.
 			""";
 
-		assertArrayEquals(inet6Address, StringRegexp.findInet6Address(string).toArray());
+		assertArrayEquals(inet6Address, StringRegexp.findInet6Address(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска IP-адресов шестой версии без учёта регистра.
+	 * Проверка метода {@link StringRegexp#findInet6AddressIgnoreCase(String)} с корректным значением.
 	 */
 	@Test
-	public void findIpAddressVersion6IgnoreCase()
+	public void testFindIpAddressVersion6IgnoreCase()
 	{
 		String[] inet6Address = {
 			"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D",
@@ -1521,7 +1476,7 @@ public class StringRegexpTest
 			"2001:db8::AE21:AD12"
 		};
 
-		String string = """
+		String value = """
 			За окнами солнце, за окнами свет - это день.
 			Ну, а я всегда 2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D любил ночь.
 			И это мое дело - любить ночь,
@@ -1553,14 +1508,14 @@ public class StringRegexpTest
 			И я не знаю,2001:db8::AE21:AD12 как мне прожить следующий день.
 			""";
 
-		assertArrayEquals(inet6Address, StringRegexp.findInet6AddressIgnoreCase(string).toArray());
+		assertArrayEquals(inet6Address, StringRegexp.findInet6AddressIgnoreCase(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска меток.
+	 * Проверка метода {@link StringRegexp#findTag(String)} с корректным значением.
 	 */
 	@Test
-	public void findTag()
+	public void testFindTag()
 	{
 		String[] tag = {
 			"#tag",
@@ -1569,7 +1524,7 @@ public class StringRegexpTest
 			"#ta_g"
 		};
 
-		String string = """
+		String value = """
 			Гуляю. Я один гуляю.
 			Что дальше делать, #tag я не знаю.
 			Нет дома. Никого нет дома #Tag.
@@ -1594,14 +1549,14 @@ public class StringRegexpTest
 			Я бездельник, у-у...
 			""";
 
-		assertArrayEquals(tag, StringRegexp.findTag(string).toArray());
+		assertArrayEquals(tag, StringRegexp.findTag(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска цифр двоичной системы счисления.
+	 * Проверка метода {@link StringRegexp#findDigitBinary(String)} с корректным значением.
 	 */
 	@Test
-	public void findDigitBinary()
+	public void testFindDigitBinary()
 	{
 		String[] digitBinary = {
 			"010101",
@@ -1610,7 +1565,7 @@ public class StringRegexpTest
 			"01010101"
 		};
 
-		String string = """
+		String value = """
 			Мы хотим видеть 010101 дальше, чем окна дома напротив
 			Мы хотим жить, мы живучи, как кошки
 			И вот мы пришли заявить о своих правах,1101 да
@@ -1638,14 +1593,14 @@ public class StringRegexpTest
 			Дальше действовать будем мы
 			""";
 
-		assertArrayEquals(digitBinary, StringRegexp.findDigitBinary(string).toArray());
+		assertArrayEquals(digitBinary, StringRegexp.findDigitBinary(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска цифр троичной системы счисления.
+	 * Проверка метода {@link StringRegexp#findDigitTernary(String)} с корректным значением.
 	 */
 	@Test
-	public void findDigitTernary()
+	public void testFindDigitTernary()
 	{
 		String[] digitTernary = {
 			"0101201",
@@ -1654,7 +1609,7 @@ public class StringRegexpTest
 			"010210101"
 		};
 
-		String string = """
+		String value = """
 			Струн провода, ток по рукам,
 			Телефон на все 0101201 голоса говорит: «Пока!» Пора...
 			И пальто на гвозде, шарф в рукаве
@@ -1682,14 +1637,14 @@ public class StringRegexpTest
 			Я скажу одно лишь слово: «Верь!»
 			""";
 
-		assertArrayEquals(digitTernary, StringRegexp.findDigitTernary(string).toArray());
+		assertArrayEquals(digitTernary, StringRegexp.findDigitTernary(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска цифр восьмеричной системы счисления.
+	 * Проверка метода {@link StringRegexp#findDigitOctal(String)} с корректным значением.
 	 */
 	@Test
-	public void findDigitOctal()
+	public void testFindDigitOctal()
 	{
 		String[] digitOctal = {
 			"010317201",
@@ -1698,7 +1653,7 @@ public class StringRegexpTest
 			"01021034567101"
 		};
 
-		String string = """
+		String value = """
 			Над землёй мороз, что ни тронь - всё лёд.
 			Лишь во сне моём,010317201 поёт капель.
 			А снег идёт стеной, а снег идёт весь день,
@@ -1728,14 +1683,14 @@ public class StringRegexpTest
 			То увидим в тех глазах солнца свет.
 			""";
 
-		assertArrayEquals(digitOctal, StringRegexp.findDigitOctal(string).toArray());
+		assertArrayEquals(digitOctal, StringRegexp.findDigitOctal(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска цифр восьмеричной системы счисления.
+	 * Проверка метода {@link StringRegexp#findDigitDuodecimal(String)} с корректным значением.
 	 */
 	@Test
-	public void findDigitDuodecimal()
+	public void testFindDigitDuodecimal()
 	{
 		String[] digitDuodecimal = {
 			"01031A9b7201",
@@ -1744,7 +1699,7 @@ public class StringRegexpTest
 			"B010A210394567101"
 		};
 
-		String string = """
+		String value = """
 			Крыши домов дрожат под тяжестью дней
 			Небесный пастух пасёт облака 01031A9b7201
 			Город стреляет в ночь дробью огней
@@ -1776,14 +1731,14 @@ public class StringRegexpTest
 			Спокойная ночь
 			""";
 
-		assertArrayEquals(digitDuodecimal, StringRegexp.findDigitDuodecimal(string).toArray());
+		assertArrayEquals(digitDuodecimal, StringRegexp.findDigitDuodecimal(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска цифр шестнадцатеричной системы счисления.
+	 * Проверка метода {@link StringRegexp#findDigitHexadecimal(String)} с корректным значением.
 	 */
 	@Test
-	public void findDigitHexadecimal()
+	public void testFindDigitHexadecimal()
 	{
 		String[] digitHexadecimal = {
 			"0103f1A9b720d1",
@@ -1792,7 +1747,7 @@ public class StringRegexpTest
 			"B010A210cde3945f67101"
 		};
 
-		String string = """
+		String value = """
 			На холодной земле стоит город большой.
 			Там горят фонари, и машины гудят.
 			А над городом ночь, 0103f1A9b720d1 а над ночью луна,
@@ -1819,14 +1774,62 @@ public class StringRegexpTest
 			Так откуда взялась, печаль?
 			""";
 
-		assertArrayEquals(digitHexadecimal, StringRegexp.findDigitHexadecimal(string).toArray());
+		assertArrayEquals(digitHexadecimal, StringRegexp.findDigitHexadecimal(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска цифр десятеричной системы счисления.
+	 * Проверка метода {@link StringRegexp#findLocalization(String)} с корректным значением.
 	 */
 	@Test
-	public void findDigitDecimal()
+	public void testFindLocalization()
+	{
+		String[] localization = {
+			"ru-RU",
+			"en-EN",
+			"by-BY",
+			"it-IT"
+		};
+
+		String value = """
+			Застоялся мой поезд в депо.
+			Снова я уезжаю. Пора...
+			На пороге ветер заждался меня.
+			На пороге осень — моя сестра.ru-RU
+			
+			После красно-желтых дней начнется и кончится зима.
+			Горе ты мое от ума, не печалься, гляди веселей.
+			И я вернусь домой со щитом, а, может быть, на щите,
+			В серебре, а, может быть, в нищете, но как можно скорей.
+			
+			Расскажи мне о тех, кто устал
+			От безжалостных уличных драм
+			И о храме из разбитых сердец
+			И о тех, кто идет в этот храм.
+			
+			После красно-желтых дней начнется и кончится зима.
+			Горе ты мое от ума,en-EN не печалься, гляди веселей.
+			И я вернусь домой со щитом, а, может быть, на щите,
+			В серебре, а, by-BY может быть, в нищете, но как можно скорей.
+			
+			А мне приснилось: миром правит любовь,
+			А мне приснилось:it-IT миром правит мечта.
+			И над этим прекрасно горит звезда,
+			Я проснулся и понял — беда...
+			
+			После красно-желтых дней начнется и кончится зима.
+			Горе ты мое от ума, не печалься, гляди веселей.
+			И я вернусь домой со щитом, а, может быть, на щите,
+			В серебре, а, может быть, в нищете, но как можно скорей.
+			""";
+
+		assertArrayEquals(localization, StringRegexp.findLocalization(value).toArray());
+	}
+
+	/**
+	 * Проверка метода {@link StringRegexp#findDigitDecimal(String)} с корректным значением.
+	 */
+	@Test
+	public void testFindDigitDecimal()
 	{
 		String[] digitDecimal = {
 			"0",
@@ -1835,7 +1838,7 @@ public class StringRegexpTest
 			"0123456789"
 		};
 
-		String string = """
+		String value = """
 			Ты часто проходишь 0 мимо, не видя меня,
 			С кем-то другим, я стою не дыша.
 			Я знаю, что ты живешь в соседнем дворе,12
@@ -1858,14 +1861,14 @@ public class StringRegexpTest
 			О, но это не любовь...0123456789
 			""";
 
-		assertArrayEquals(digitDecimal, StringRegexp.findDigitDecimal(string).toArray());
+		assertArrayEquals(digitDecimal, StringRegexp.findDigitDecimal(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска числа.
+	 * Проверка метода {@link StringRegexp#findNumber(String)} с корректным значением.
 	 */
 	@Test
-	public void findNumber()
+	public void testFindNumber()
 	{
 		String[] number = {
 			"1.100",
@@ -1874,7 +1877,7 @@ public class StringRegexpTest
 			"1.222,123"
 		};
 
-		String string = """
+		String value = """
 			Ночь коротка, цель далека;
 			Ночью так часто 1.100 хочется пить,
 			Ты выходишь на кухню, но вода здесь горька;
@@ -1906,14 +1909,14 @@ public class StringRegexpTest
 			Здравствуй, последний герой!
 			""";
 
-		assertArrayEquals(number, StringRegexp.findNumber(string).toArray());
+		assertArrayEquals(number, StringRegexp.findNumber(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска цифр.
+	 * Проверка метода {@link StringRegexp#findWord(String)} с корректным значением.
 	 */
 	@Test
-	public void findWord()
+	public void testFindWord()
 	{
 		String[] word = {
 			"Красно-жёлтые",
@@ -1939,7 +1942,7 @@ public class StringRegexpTest
 			"сестра"
 		};
 
-		String string = """
+		String value = """
 			Красно-жёлтые дни.
 						
 			Застоялся мой поезд в депо.
@@ -1948,14 +1951,14 @@ public class StringRegexpTest
 			На пороге осень — моя сестра.
 			""";
 
-		assertArrayEquals(word, StringRegexp.findWord(string).toArray());
+		assertArrayEquals(word, StringRegexp.findWord(value).toArray());
 	}
 
 	/**
-	 * Проверка поиска букв.
+	 * Проверка метода {@link StringRegexp#findLetter(String)} с корректным значением.
 	 */
 	@Test
-	public void findLetter()
+	public void testFindLetter()
 	{
 		String[] letter = {
 			"М",
@@ -1965,10 +1968,10 @@ public class StringRegexpTest
 			"ш"
 		};
 
-		String string = """
+		String value = """
 			Малыш
 			""";
 
-		assertArrayEquals(letter, StringRegexp.findLetter(string).toArray());
+		assertArrayEquals(letter, StringRegexp.findLetter(value).toArray());
 	}
 }
