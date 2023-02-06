@@ -31,18 +31,21 @@ import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Класс проверки констант и методов перечисления {@link Regexp}.
+ */
 public class RegexpTest
 {
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#LOCALIZATION}.
 	 */
 	@Test
-	public void testRegexpLocalization()
+	public void testRegexpGroupLocalization()
 	{
-		String string = "ru-RU";
+		String value = "ru-RU";
 
 		Pattern pattern = Pattern.compile(Regexp.LOCALIZATION.getPattern());
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -52,15 +55,15 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#INET_4_ADDRESS}.
 	 */
 	@Test
-	public void testRegexpInetAddressVersion4()
+	public void testRegexpGroupInetAddressVersion4()
 	{
-		String string = "192.168.1.100";
+		String value = "192.168.1.100";
 
 		Pattern pattern = Pattern.compile(Regexp.INET_4_ADDRESS.getPattern());
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -72,18 +75,18 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#INET_6_ADDRESS}.
 	 */
 	@Test
-	public void testRegexpInetAddressVersion6()
+	public void testRegexpGroupInetAddressVersion6()
 	{
-		String string = "2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D";
+		String value = "2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D";
 
 		Pattern pattern = Pattern.compile(
 			Regexp.INET_6_ADDRESS.getPattern(),
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -91,18 +94,18 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#EMAIL_ADDRESS}.
 	 */
 	@Test
-	public void testRegexpEmailAddress()
+	public void testRegexpGroupEmailAddress()
 	{
-		String string = "aleksey.kalenchukov@yandex.ru";
+		String value = "aleksey.kalenchukov@yandex.ru";
 
 		Pattern pattern = Pattern.compile(
 			Regexp.EMAIL_ADDRESS.getPattern(),
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -113,18 +116,18 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#DOMAIN}.
 	 */
 	@Test
-	public void testRegexpDomain()
+	public void testRegexpGroupDomain()
 	{
-		String string = "kalenchukov.dev";
+		String value = "kalenchukov.dev";
 
 		Pattern pattern = Pattern.compile(
 			Regexp.DOMAIN.getPattern(),
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -133,18 +136,18 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#URL_HTTP}.
 	 */
 	@Test
-	public void testRegexpUrlHttp()
+	public void testRegexpGroupUrlHttp()
 	{
-		String string = "http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#anchor";
+		String value = "http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#anchor";
 
 		Pattern pattern = Pattern.compile(
 			Regexp.URL_HTTP.getPattern(),
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -158,15 +161,15 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#RGB_NUMERIC}.
 	 */
 	@Test
-	public void testRegexpRgbNumeric()
+	public void testRegexpGroupRgbNumeric()
 	{
-		String string = "215,200,166";
+		String value = "215,200,166";
 
 		Pattern pattern = Pattern.compile(Regexp.RGB_NUMERIC.getPattern());
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -177,18 +180,18 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#RGB_HEX}.
 	 */
 	@Test
-	public void testRegexpRgbHex()
+	public void testRegexpGroupRgbHex()
 	{
-		String string = "#ABCDEF";
+		String value = "#ABCDEF";
 
 		Pattern pattern = Pattern.compile(
 			Regexp.RGB_HEX.getPattern(),
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -199,18 +202,18 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#MAC_ADDRESS}.
 	 */
 	@Test
-	public void testRegexpMacAddress()
+	public void testRegexpGroupMacAddress()
 	{
-		String string = "00-eF-cd-Ef-11-22";
+		String value = "00-eF-cd-Ef-11-22";
 
 		Pattern pattern = Pattern.compile(
 			Regexp.MAC_ADDRESS.getPattern(),
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -225,18 +228,18 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#TELEGRAM}.
 	 */
 	@Test
-	public void testRegexpTelegram()
+	public void testRegexpGroupTelegram()
 	{
-		String string = "@kalenchukov";
+		String value = "@kalenchukov";
 
 		Pattern pattern = Pattern.compile(
 			Regexp.TELEGRAM.getPattern(),
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -245,18 +248,18 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#TAG}.
 	 */
 	@Test
-	public void testRegexpTag()
+	public void testRegexpGroupTag()
 	{
-		String string = "#tag";
+		String value = "#tag";
 
 		Pattern pattern = Pattern.compile(
 			Regexp.TAG.getPattern(),
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -265,15 +268,15 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#DIGIT_BINARY}.
 	 */
 	@Test
-	public void testRegexpDigitBinary()
+	public void testRegexpGroupDigitBinary()
 	{
-		String string = "0101010101";
+		String value = "0101010101";
 
 		Pattern pattern = Pattern.compile(Regexp.DIGIT_BINARY.getPattern());
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -281,15 +284,15 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#DIGIT_TERNARY}.
 	 */
 	@Test
-	public void testRegexpDigitTernary()
+	public void testRegexpGroupDigitTernary()
 	{
-		String string = "210210210210";
+		String value = "210210210210";
 
 		Pattern pattern = Pattern.compile(Regexp.DIGIT_TERNARY.getPattern());
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -297,15 +300,15 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#DIGIT_OCTAL}.
 	 */
 	@Test
-	public void testRegexpDigitOctal()
+	public void testRegexpGroupDigitOctal()
 	{
-		String string = "65016716501710651467106";
+		String value = "65016716501710651467106";
 
 		Pattern pattern = Pattern.compile(Regexp.DIGIT_OCTAL.getPattern());
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -313,15 +316,15 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#DIGIT_DECIMAL}.
 	 */
 	@Test
-	public void testRegexpDigitDecimal()
+	public void testRegexpGroupDigitDecimal()
 	{
-		String string = "0123";
+		String value = "0123";
 
 		Pattern pattern = Pattern.compile(Regexp.DIGIT_DECIMAL.getPattern());
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -329,18 +332,18 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#DIGIT_DUODECIMAL}.
 	 */
 	@Test
-	public void testRegexpDigitDuodecimal()
+	public void testRegexpGroupDigitDuodecimal()
 	{
-		String string = "8819a861bB14Aab04ab519a2baA3b7a9B";
+		String value = "8819a861bB14Aab04ab519a2baA3b7a9B";
 
 		Pattern pattern = Pattern.compile(
 			Regexp.DIGIT_DUODECIMAL.getPattern(),
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -348,18 +351,18 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#DIGIT_HEXADECIMAL}.
 	 */
 	@Test
-	public void testRegexpDigitHexadecimal()
+	public void testRegexpGroupDigitHexadecimal()
 	{
-		String string = "0123456789ABCDEF";
+		String value = "0123456789ABCDEF";
 
 		Pattern pattern = Pattern.compile(
 			Regexp.DIGIT_HEXADECIMAL.getPattern(),
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -367,15 +370,15 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#NUMBER}.
 	 */
 	@Test
-	public void testRegexpNumber()
+	public void testRegexpGroupNumber()
 	{
-		String string = "1.100";
+		String value = "1.100";
 
 		Pattern pattern = Pattern.compile(Regexp.NUMBER.getPattern());
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -383,18 +386,18 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#WORD}.
 	 */
 	@Test
-	public void testRegexpWord()
+	public void testRegexpGroupWord()
 	{
-		String string = "Привет";
+		String value = "Привет";
 
 		Pattern pattern = Pattern.compile(
 			Regexp.WORD.getPattern(),
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
@@ -402,18 +405,18 @@ public class RegexpTest
 	}
 
 	/**
-	 * Проверка групп.
+	 * Проверка групп константы {@link Regexp#LETTER}.
 	 */
 	@Test
-	public void testRegexpLetter()
+	public void testRegexpGroupLetter()
 	{
-		String string = "Ъ";
+		String value = "Ъ";
 
 		Pattern pattern = Pattern.compile(
 			Regexp.LETTER.getPattern(),
 			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 		);
-		Matcher matcher = pattern.matcher(string);
+		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
 
