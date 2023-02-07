@@ -36,7 +36,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class StringRegexpTest
 {
 	/**
-	 * Проверка метода {@link StringRegexp#isLocalization(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isLocalization(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -62,7 +62,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isInet4Address(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isInet4Address(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -89,7 +89,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isInet6Address(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isInet6Address(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -113,7 +113,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isInet6AddressIgnoreCase(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isInet6AddressIgnoreCase(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -159,7 +159,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isEmailAddress(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isEmailAddress(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -196,7 +196,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isDomain(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isDomain(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -222,7 +222,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isUrlHttp(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isUrlHttp(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -250,7 +250,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isRgbNumeric(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isRgbNumeric(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -281,7 +281,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha2(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha2(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -305,7 +305,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha3(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha3(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -329,7 +329,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isCountryCodeNumeric3(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isCountryCodeNumeric3(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -353,7 +353,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isRgbHex(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isRgbHex(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -380,7 +380,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isRgbHexIgnoreCase(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isRgbHexIgnoreCase(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -407,7 +407,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isMacAddress(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isMacAddress(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -434,7 +434,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isMacAddressIgnoreCase(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isMacAddressIgnoreCase(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -460,7 +460,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isTelegram(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isTelegram(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -488,7 +488,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isTag(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isTag(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -521,7 +521,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isDigitBinary(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isDigitBinary(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -546,7 +546,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isDigitTernary(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isDigitTernary(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -571,7 +571,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isDigitOctal(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isDigitOctal(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -595,7 +595,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isDigitDecimal(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isDigitDecimal(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -620,7 +620,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isDigitDuodecimal(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isDigitDuodecimal(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -644,7 +644,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isDigitHexadecimal(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isDigitHexadecimal(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -668,7 +668,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isNumber(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isNumber(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -703,7 +703,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isWord(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isWord(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -733,7 +733,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isLetter(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#isLetter(String)}.
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = {
@@ -758,7 +758,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findEmailAddress(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findEmailAddress(String)}.
 	 */
 	@Test
 	public void testFindEmailAddress()
@@ -792,7 +792,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findDomain(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findDomain(String)}.
 	 */
 	@Test
 	public void testFindDomain()
@@ -843,7 +843,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findUrlHttp(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findUrlHttp(String)}.
 	 */
 	@Test
 	public void testFindUrlHttp()
@@ -888,7 +888,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findCountryCodeAlpha2(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findCountryCodeAlpha2(String)}.
 	 */
 	@Test
 	public void testFindCountryCodeAlpha2()
@@ -923,7 +923,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findCountryCodeAlpha3(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findCountryCodeAlpha3(String)}.
 	 */
 	@Test
 	public void testFindCountryCodeAlpha3()
@@ -956,7 +956,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findCountryCodeNumeric3(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findCountryCodeNumeric3(String)}.
 	 */
 	@Test
 	public void testFindCountryCodeNumeric3()
@@ -986,7 +986,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findRgbHex(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findRgbHex(String)}.
 	 */
 	@Test
 	public void testFindRgbHex()
@@ -1034,7 +1034,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findRgbHexIgnoreCase(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findRgbHexIgnoreCase(String)}.
 	 */
 	@Test
 	public void testFindRgbHexIgnoreCase()
@@ -1082,7 +1082,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findMacAddress(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findMacAddress(String)}.
 	 */
 	@Test
 	public void testFindMacAddress()
@@ -1126,7 +1126,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findMacAddressIgnoreCase(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findMacAddressIgnoreCase(String)}.
 	 */
 	@Test
 	public void testFindMacAddressIgnoreCase()
@@ -1160,7 +1160,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findInet4Address(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findInet4Address(String)}.
 	 */
 	@Test
 	public void testFindInet4Address()
@@ -1207,7 +1207,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findRgbNumeric(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findRgbNumeric(String)}.
 	 */
 	@Test
 	public void testFindRgbNumeric()
@@ -1257,7 +1257,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findTelegram(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findTelegram(String)}.
 	 */
 	@Test
 	public void testFindTelegram()
@@ -1299,7 +1299,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findInet6Address(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findInet6Address(String)}.
 	 */
 	@Test
 	public void testFindInet6Address()
@@ -1342,7 +1342,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findInet6AddressIgnoreCase(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findInet6AddressIgnoreCase(String)}.
 	 */
 	@Test
 	public void testFindInet6AddressIgnoreCase()
@@ -1390,7 +1390,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findTag(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findTag(String)}.
 	 */
 	@Test
 	public void testFindTag()
@@ -1431,7 +1431,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findDigitBinary(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findDigitBinary(String)}.
 	 */
 	@Test
 	public void testFindDigitBinary()
@@ -1475,7 +1475,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findDigitTernary(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findDigitTernary(String)}.
 	 */
 	@Test
 	public void testFindDigitTernary()
@@ -1519,7 +1519,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findDigitOctal(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findDigitOctal(String)}.
 	 */
 	@Test
 	public void testFindDigitOctal()
@@ -1565,7 +1565,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findDigitDuodecimal(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findDigitDuodecimal(String)}.
 	 */
 	@Test
 	public void testFindDigitDuodecimal()
@@ -1613,7 +1613,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findDigitHexadecimal(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findDigitHexadecimal(String)}.
 	 */
 	@Test
 	public void testFindDigitHexadecimal()
@@ -1656,7 +1656,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findLocalization(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findLocalization(String)}.
 	 */
 	@Test
 	public void testFindLocalization()
@@ -1704,7 +1704,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findDigitDecimal(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findDigitDecimal(String)}.
 	 */
 	@Test
 	public void testFindDigitDecimal()
@@ -1743,7 +1743,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findNumber(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findNumber(String)}.
 	 */
 	@Test
 	public void testFindNumber()
@@ -1791,7 +1791,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findWord(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findWord(String)}.
 	 */
 	@Test
 	public void testFindWord()
@@ -1833,7 +1833,7 @@ public class StringRegexpTest
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#findLetter(String)} с корректным значением.
+	 * Проверка метода {@link StringRegexp#findLetter(String)}.
 	 */
 	@Test
 	public void testFindLetter()
