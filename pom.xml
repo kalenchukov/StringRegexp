@@ -30,7 +30,7 @@
 
 	<groupId>dev.kalenchukov</groupId>
 	<artifactId>string-regexp</artifactId>
-	<version>1.4.0</version>
+	<version>1.5.0</version>
 
 	<name>StringRegexp</name>
 	<description>Операции над строками с помощью регулярных выражений.</description>
