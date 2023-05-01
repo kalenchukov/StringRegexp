@@ -32,6 +32,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Класс проверки методов класса {@link StringRegexp}.
+ *
+ * @author Aleksey Kalenchukov
  */
 public class StringRegexpTest
 {

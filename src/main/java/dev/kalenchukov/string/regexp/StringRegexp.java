@@ -36,6 +36,8 @@ import java.util.regex.Pattern;
 
 /**
  * Класс содержит статические методы для проверки корректности строк с помощью регулярных выражений.
+ *
+ * @author Aleksey Kalenchukov
  */
 public class StringRegexp
 {
