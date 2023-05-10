@@ -175,6 +175,16 @@ StringRegexp.isRgbNumeric("250,150,50");
 true
 ```
 
+#### Проверка MD5-хеша
+```java
+StringRegexp.isMd5("D41D8CD98F00B204E9800998ECF8427E");
+```
+
+Результат выполнения:
+```
+true
+```
+
 #### Проверка RGB в шестнадцатеричной системе счисления
 ```java
 StringRegexp.isRgbHex("#FFFFFF");

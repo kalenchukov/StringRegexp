@@ -2,6 +2,7 @@
 ## vX.X.X - XX.XX.XXXX
 ### Добавлено
 * Добавлено регулярное выражение Regexp.MD5.
+* Добавлен метод StringRegexp.isMd5(String).
 
 ### Изменено
 *

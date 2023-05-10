@@ -355,6 +355,33 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка метода {@link StringRegexp#isMd5(String)}.
+	 */
+	@ParameterizedTest
+	@ValueSource(strings = {
+			"1BC29B36F623BA82AAF6724FD3B16718",
+			"D41D8CD98F00B204E9800998ECF8427E"
+	})
+	public void testIsMd5(String value)
+	{
+		assertTrue(StringRegexp.isMd5(value));
+	}
+
+	/**
+	 * Проверка метода {@link StringRegexp#isMd5(String)} с некорректными значениями.
+	 */
+	@ParameterizedTest
+	@ValueSource(strings = {
+			"", " ",
+			"1BC29B36F623BA82AAF6724FD3B1671",
+			"1bc29b36f623ba82aaf6724fd3b16718", "1bc29B36F623BA82AAF6724FD3B16718"
+	})
+	public void testIsMd5NotCorrect(String value)
+	{
+		assertFalse(StringRegexp.isMd5(value));
+	}
+
+	/**
 	 * Проверка метода {@link StringRegexp#isRgbHex(String)}.
 	 */
 	@ParameterizedTest
