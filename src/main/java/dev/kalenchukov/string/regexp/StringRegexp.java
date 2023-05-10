@@ -236,6 +236,21 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка md5 хешем без учёта регистра букв.
+	 *
+	 * @param string строка.
+	 * @return {@code true}, если строка является md5 хешем, иначе {@code false}.
+	 */
+	public static boolean isMd5IgnoreCase(@NotNull final String string)
+	{
+		return StringRegexp.is(
+				string,
+				Regexp.MD5,
+				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+	}
+
+	/**
 	 * Проверяет, является ли строка IP-адресом шестой версии.
 	 *
 	 * @param string строка.

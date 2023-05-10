@@ -185,6 +185,16 @@ StringRegexp.isMd5("D41D8CD98F00B204E9800998ECF8427E");
 true
 ```
 
+#### Проверка MD5-хеша без учёта регистра букв
+```java
+StringRegexp.isMd5IgnoreCase("D41D8CD98F00B204E9800998ECF8427E");
+```
+
+Результат выполнения:
+```
+true
+```
+
 #### Проверка RGB в шестнадцатеричной системе счисления
 ```java
 StringRegexp.isRgbHex("#FFFFFF");

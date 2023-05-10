@@ -382,6 +382,34 @@ public class StringRegexpTest
 	}
 
 	/**
+	 * Проверка метода {@link StringRegexp#isMd5IgnoreCase(String)}.
+	 */
+	@ParameterizedTest
+	@ValueSource(strings = {
+			"1BC29B36F623BA82AAF6724FD3B16718",
+			"1bc29b36f623ba82aaf6724fd3b16718",
+			"d41d8cd98f00b204E9800998ECF8427E"
+	})
+	public void testIsMd5IgnoreCase(String value)
+	{
+		assertTrue(StringRegexp.isMd5IgnoreCase(value));
+	}
+
+	/**
+	 * Проверка метода {@link StringRegexp#isMd5IgnoreCase(String)} с некорректными значениями.
+	 */
+	@ParameterizedTest
+	@ValueSource(strings = {
+			"", " ",
+			"1BC29B36F623BA82AAF6724FD3B1671", "1bc29b36f623ba82aaf6724fd3b1671",
+			"1bc29b36f623ba82af6724fd3b16718"
+	})
+	public void testIsMd5IgnoreCaseNotCorrect(String value)
+	{
+		assertFalse(StringRegexp.isMd5IgnoreCase(value));
+	}
+
+	/**
 	 * Проверка метода {@link StringRegexp#isRgbHex(String)}.
 	 */
 	@ParameterizedTest

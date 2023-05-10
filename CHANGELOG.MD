@@ -3,6 +3,7 @@
 ### Добавлено
 * Добавлено регулярное выражение Regexp.MD5.
 * Добавлен метод StringRegexp.isMd5(String).
+* Добавлен метод StringRegexp.isMd5IgnoreCase(String).
 
 ### Изменено
 *
