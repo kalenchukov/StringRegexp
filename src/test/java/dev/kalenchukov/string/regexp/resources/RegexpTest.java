@@ -136,6 +136,25 @@ public class RegexpTest
 	}
 
 	/**
+	 * Проверка групп константы {@link Regexp#MD5}.
+	 */
+	@Test
+	public void testGroupMd5()
+	{
+		String value = "1BC29B36F623BA82AAF6724FD3B16718";
+
+		Pattern pattern = Pattern.compile(
+				Regexp.MD5.getPattern(),
+				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+		);
+		Matcher matcher = pattern.matcher(value);
+
+		assertTrue(matcher.find());
+
+		assertEquals("1BC29B36F623BA82AAF6724FD3B16718", matcher.group(Regexp.MD5.getGroup()));
+	}
+
+	/**
 	 * Проверка групп константы {@link Regexp#DOMAIN}.
 	 */
 	@Test

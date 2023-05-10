@@ -34,6 +34,11 @@ Regexp.URL_HTTP;
 Regexp.DOMAIN;
 ```
 
+#### MD5-хеш
+```java
+Regexp.MD5;
+```
+
 #### Локализация
 ```java
 Regexp.LOCALIZATION;
