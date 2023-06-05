@@ -54,11 +54,7 @@ public class StringRegexp
 	 */
 	public static boolean isTelegram(@NotNull final String string)
 	{
-		return StringRegexp.is(
-			string,
-			Regexp.TELEGRAM,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.is(string, Regexp.TELEGRAM, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -124,11 +120,7 @@ public class StringRegexp
 	 */
 	public static boolean isRgbHexIgnoreCase(@NotNull final String string)
 	{
-		return StringRegexp.is(
-			string,
-			Regexp.RGB_HEX,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.is(string, Regexp.RGB_HEX, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -150,11 +142,7 @@ public class StringRegexp
 	 */
 	public static boolean isMacAddressIgnoreCase(@NotNull final String string)
 	{
-		return StringRegexp.is(
-			string,
-			Regexp.MAC_ADDRESS,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.is(string, Regexp.MAC_ADDRESS, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -176,11 +164,7 @@ public class StringRegexp
 	 */
 	public static boolean isEmailAddress(@NotNull final String string)
 	{
-		return StringRegexp.is(
-			string,
-			Regexp.EMAIL_ADDRESS,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.is(string, Regexp.EMAIL_ADDRESS, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -191,11 +175,7 @@ public class StringRegexp
 	 */
 	public static boolean isDomain(@NotNull final String string)
 	{
-		return StringRegexp.is(
-			string,
-			Regexp.DOMAIN,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.is(string, Regexp.DOMAIN, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -206,11 +186,7 @@ public class StringRegexp
 	 */
 	public static boolean isUrlHttp(@NotNull final String string)
 	{
-		return StringRegexp.is(
-			string,
-			Regexp.URL_HTTP,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.is(string, Regexp.URL_HTTP, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -243,11 +219,7 @@ public class StringRegexp
 	 */
 	public static boolean isMd5IgnoreCase(@NotNull final String string)
 	{
-		return StringRegexp.is(
-				string,
-				Regexp.MD5,
-				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.is(string, Regexp.MD5, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -269,11 +241,7 @@ public class StringRegexp
 	 */
 	public static boolean isInet6AddressIgnoreCase(@NotNull final String string)
 	{
-		return StringRegexp.is(
-			string,
-			Regexp.INET_6_ADDRESS,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.is(string, Regexp.INET_6_ADDRESS, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -284,7 +252,7 @@ public class StringRegexp
 	 */
 	public static boolean isTag(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.TAG, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.is(string, Regexp.TAG, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -339,10 +307,7 @@ public class StringRegexp
 	 */
 	public static boolean isDigitDuodecimal(@NotNull final String string)
 	{
-		return StringRegexp.is(
-			string, Regexp.DIGIT_DUODECIMAL,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.is(string, Regexp.DIGIT_DUODECIMAL, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -353,10 +318,7 @@ public class StringRegexp
 	 */
 	public static boolean isDigitHexadecimal(@NotNull final String string)
 	{
-		return StringRegexp.is(
-			string, Regexp.DIGIT_HEXADECIMAL,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.is(string, Regexp.DIGIT_HEXADECIMAL, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -378,7 +340,7 @@ public class StringRegexp
 	 */
 	public static boolean isWord(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.WORD, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.is(string, Regexp.WORD, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -389,7 +351,7 @@ public class StringRegexp
 	 */
 	public static boolean isLetter(@NotNull final String string)
 	{
-		return StringRegexp.is(string, Regexp.LETTER, Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE);
+		return StringRegexp.is(string, Regexp.LETTER, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -402,11 +364,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findLetter(@NotNull final String string)
 	{
-		return StringRegexp.find(
-			string,
-			Regexp.LETTER,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.find(string, Regexp.LETTER, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -419,11 +377,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findWord(@NotNull final String string)
 	{
-		return StringRegexp.find(
-			string,
-			Regexp.WORD,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.find(string, Regexp.WORD, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -475,11 +429,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findDigitDuodecimal(@NotNull final String string)
 	{
-		return StringRegexp.find(
-			string,
-			Regexp.DIGIT_DUODECIMAL,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.find(string, Regexp.DIGIT_DUODECIMAL, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -492,11 +442,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findDigitHexadecimal(@NotNull final String string)
 	{
-		return StringRegexp.find(
-			string,
-			Regexp.DIGIT_HEXADECIMAL,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.find(string, Regexp.DIGIT_HEXADECIMAL, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -535,11 +481,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findTelegram(@NotNull final String string)
 	{
-		return StringRegexp.find(
-			string,
-			Regexp.TELEGRAM,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.find(string, Regexp.TELEGRAM, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -552,11 +494,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findTag(@NotNull final String string)
 	{
-		return StringRegexp.find(
-			string,
-			Regexp.TAG,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.find(string, Regexp.TAG, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -634,11 +572,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findRgbHexIgnoreCase(@NotNull final String string)
 	{
-		return StringRegexp.find(
-			string,
-			Regexp.RGB_HEX,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.find(string, Regexp.RGB_HEX, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -664,11 +598,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findMacAddressIgnoreCase(@NotNull final String string)
 	{
-		return StringRegexp.find(
-			string,
-			Regexp.MAC_ADDRESS,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.find(string, Regexp.MAC_ADDRESS, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -720,11 +650,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findInet6AddressIgnoreCase(@NotNull final String string)
 	{
-		return StringRegexp.find(
-			string,
-			Regexp.INET_6_ADDRESS,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.find(string, Regexp.INET_6_ADDRESS, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -737,11 +663,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findEmailAddress(@NotNull final String string)
 	{
-		return StringRegexp.find(
-			string,
-			Regexp.EMAIL_ADDRESS,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.find(string, Regexp.EMAIL_ADDRESS, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -754,11 +676,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findDomain(@NotNull final String string)
 	{
-		return StringRegexp.find(
-			string,
-			Regexp.DOMAIN,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.find(string, Regexp.DOMAIN, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -771,11 +689,7 @@ public class StringRegexp
 	@NotNull
 	public static List<@NotNull String> findUrlHttp(@NotNull final String string)
 	{
-		return StringRegexp.find(
-			string,
-			Regexp.URL_HTTP,
-			Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
-		);
+		return StringRegexp.find(string, Regexp.URL_HTTP, Pattern.CASE_INSENSITIVE);
 	}
 
 	/**
@@ -802,7 +716,7 @@ public class StringRegexp
 							  @NotNull final Regexp regexp,
 							  @NotNull final Integer flags)
 	{
-		final Pattern pattern = Pattern.compile(regexp.getPattern(), flags);
+		final Pattern pattern = Pattern.compile(regexp.getPattern(), Pattern.UNICODE_CASE + flags);
 		final Matcher matcher = pattern.matcher(string);
 
 		return matcher.matches();
@@ -836,7 +750,7 @@ public class StringRegexp
 	{
 		final List<String> values = new ArrayList<>();
 
-		final Pattern pattern = Pattern.compile(regexp.getPattern(), flags);
+		final Pattern pattern = Pattern.compile(regexp.getPattern(), Pattern.UNICODE_CASE + flags);
 		final Matcher matcher = pattern.matcher(string);
 
 		while (matcher.find()) {
