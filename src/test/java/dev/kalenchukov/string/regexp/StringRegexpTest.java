@@ -44,7 +44,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"ru-RU"
 	})
-	public void testIsLocalization(String value)
+	public void isLocalization(String value)
 	{
 		assertTrue(StringRegexp.isLocalization(value));
 	}
@@ -58,7 +58,7 @@ public class StringRegexpTest
 		"RU-RU", "RU-ru", "ru-ru",
 		"ru", "RU"
 	})
-	public void testIsLocalizationNotCorrect(String value)
+	public void isLocalizationNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isLocalization(value));
 	}
@@ -70,7 +70,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"192.168.1.1", "1.1.1.1", "0.0.0.0"
 	})
-	public void testIsInet4Address(String value)
+	public void isInet4Address(String value)
 	{
 		assertTrue(StringRegexp.isInet4Address(value));
 	}
@@ -85,7 +85,7 @@ public class StringRegexpTest
 		"2.2.2.2.2", "3", "4.", "5.5",
 		"257.168.1.1", "192.257.1.1", "192.168.257.1", "192.168.1.256",
 	})
-	public void testIsInet4AddressNotCorrect(String value)
+	public void isInet4AddressNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isInet4Address(value));
 	}
@@ -97,7 +97,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D"
 	})
-	public void testIsInet6Address(String value)
+	public void isInet6Address(String value)
 	{
 		assertTrue(StringRegexp.isInet6Address(value));
 	}
@@ -109,7 +109,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D"
 	})
-	public void testIsInet6AddressNotCorrect(String value)
+	public void isInet6AddressNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isInet6Address(value));
 	}
@@ -131,7 +131,7 @@ public class StringRegexpTest
 		"::1", "1::",
 		"EF98:3:0:0:0:0:2F3B:7654", "EF98:3::2f3b:7654", "2001:DB8::ae21:AD12",
 	})
-	public void testIsInet6AddressIgnoreCase(String value)
+	public void isInet6AddressIgnoreCase(String value)
 	{
 		assertTrue(StringRegexp.isInet6AddressIgnoreCase(value));
 	}
@@ -155,7 +155,7 @@ public class StringRegexpTest
 		":::0db8:11a3:09d7:1f34:8a2e:07A0:765D:1", "1:2001:0db8:11a3:09d7:1F34:8A2E:07A0:::",
 		"0db8:11a3::::8A2E:07A0:765D", "0db8:11a3::::::8A2E:07A0:765D"
 	})
-	public void testIsInet6AddressIgnoreCaseNotCorrect(String value)
+	public void isInet6AddressIgnoreCaseNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isInet6AddressIgnoreCase(value));
 	}
@@ -176,7 +176,7 @@ public class StringRegexpTest
 		"aleksey123.kalenchukov123@123yandex.ru", "aleksey.kalenchukov@123.yandex.ru",
 		"123aleksey.kalenchukov@123.yandex.ru", "123.456@123.ru", "123456@123.ru"
 	})
-	public void testIsEmailAddress(String value)
+	public void isEmailAddress(String value)
 	{
 		assertTrue(StringRegexp.isEmailAddress(value));
 	}
@@ -192,7 +192,7 @@ public class StringRegexpTest
 		"aleksey.kalenchukov@yandex.r", "aleksey.kalenchukov@-yandex.ru",
 		"aleksey.kalenchukovkalenchukovkalenchukovkalenchukovkalenchukovkalenchukov@yandex.ru",
 	})
-	public void testIsEmailAddressNotCorrect(String value)
+	public void isEmailAddressNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isEmailAddress(value));
 	}
@@ -205,7 +205,7 @@ public class StringRegexpTest
 		"kalenchukov.dev", "regexp.string.kalenchukov.dev",
 		"aleksey.123.kalenchukov.ru", "123.aleksey.kalenchukov.ru"
 	})
-	public void testIsDomain(String value)
+	public void isDomain(String value)
 	{
 		assertTrue(StringRegexp.isDomain(value));
 	}
@@ -218,7 +218,7 @@ public class StringRegexpTest
 		"", " ",
 		"kalenchukov,dev", "regexp.string.kalenchukov.d"
 	})
-	public void testIsDomainNotCorrect(String value)
+	public void isDomainNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isDomain(value));
 	}
@@ -246,7 +246,7 @@ public class StringRegexpTest
 		"http://www.kalenchukov.dev/?java=18&hello=world123#anchor",
 		"http://www.kalenchukov.dev/#anchor"
 	})
-	public void testIsUrlHttp(String value)
+	public void isUrlHttp(String value)
 	{
 		assertTrue(StringRegexp.isUrlHttp(value));
 	}
@@ -260,7 +260,7 @@ public class StringRegexpTest
 		"215, 200, 166", "0, 0, 0",
 		"255,155, 55", "1,1,1"
 	})
-	public void testIsRgbNumeric(String value)
+	public void isRgbNumeric(String value)
 	{
 		assertTrue(StringRegexp.isRgbNumeric(value));
 	}
@@ -277,7 +277,7 @@ public class StringRegexpTest
 		"215,200,", "1,1,1,",
 		"256,155,55", "255,256,55", "255,155,256"
 	})
-	public void testIsRgbNumericNotCorrect(String value)
+	public void isRgbNumericNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isRgbNumeric(value));
 	}
@@ -289,7 +289,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"RU", "BY"
 	})
-	public void testIsCountryCodeAlpha2(String value)
+	public void isCountryCodeAlpha2(String value)
 	{
 		assertTrue(StringRegexp.isCountryCodeAlpha2(value));
 	}
@@ -301,7 +301,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"", " ", "ru", "rub", "#RU", "0RU"
 	})
-	public void testIsCountryCodeAlpha2NotCorrect(String value)
+	public void isCountryCodeAlpha2NotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isCountryCodeAlpha2(value));
 	}
@@ -313,7 +313,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"RUS", "BLR"
 	})
-	public void testIsCountryCodeAlpha3(String value)
+	public void isCountryCodeAlpha3(String value)
 	{
 		assertTrue(StringRegexp.isCountryCodeAlpha3(value));
 	}
@@ -325,7 +325,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"", " ", "rus", "rub", "#RUS", "0RUS"
 	})
-	public void testIsCountryCodeAlpha3NotCorrect(String value)
+	public void isCountryCodeAlpha3NotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isCountryCodeAlpha3(value));
 	}
@@ -337,7 +337,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"052", "112", "643"
 	})
-	public void testIsCountryCodeNumeric3(String value)
+	public void isCountryCodeNumeric3(String value)
 	{
 		assertTrue(StringRegexp.isCountryCodeNumeric3(value));
 	}
@@ -349,7 +349,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"", " ", "52", "0052", "#643"
 	})
-	public void testIsCountryCodeNumeric3NotCorrect(String value)
+	public void isCountryCodeNumeric3NotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isCountryCodeNumeric3(value));
 	}
@@ -362,7 +362,7 @@ public class StringRegexpTest
 			"1BC29B36F623BA82AAF6724FD3B16718",
 			"D41D8CD98F00B204E9800998ECF8427E"
 	})
-	public void testIsMd5(String value)
+	public void isMd5(String value)
 	{
 		assertTrue(StringRegexp.isMd5(value));
 	}
@@ -376,7 +376,7 @@ public class StringRegexpTest
 			"1BC29B36F623BA82AAF6724FD3B1671",
 			"1bc29b36f623ba82aaf6724fd3b16718", "1bc29B36F623BA82AAF6724FD3B16718"
 	})
-	public void testIsMd5NotCorrect(String value)
+	public void isMd5NotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isMd5(value));
 	}
@@ -390,7 +390,7 @@ public class StringRegexpTest
 			"1bc29b36f623ba82aaf6724fd3b16718",
 			"d41d8cd98f00b204E9800998ECF8427E"
 	})
-	public void testIsMd5IgnoreCase(String value)
+	public void isMd5IgnoreCase(String value)
 	{
 		assertTrue(StringRegexp.isMd5IgnoreCase(value));
 	}
@@ -404,7 +404,7 @@ public class StringRegexpTest
 			"1BC29B36F623BA82AAF6724FD3B1671", "1bc29b36f623ba82aaf6724fd3b1671",
 			"1bc29b36f623ba82af6724fd3b16718"
 	})
-	public void testIsMd5IgnoreCaseNotCorrect(String value)
+	public void isMd5IgnoreCaseNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isMd5IgnoreCase(value));
 	}
@@ -417,7 +417,7 @@ public class StringRegexpTest
 		"#FFFFFF", "#ABCDEF",
 		"#000000", "#123456"
 	})
-	public void testIsRgbHex(String value)
+	public void isRgbHex(String value)
 	{
 		assertTrue(StringRegexp.isRgbHex(value));
 	}
@@ -431,7 +431,7 @@ public class StringRegexpTest
 		"FFFFFF",
 		"#23394W", "#ARDBZG"
 	})
-	public void testIsRgbHexNotCorrect(String value)
+	public void isRgbHexNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isRgbHex(value));
 	}
@@ -444,7 +444,7 @@ public class StringRegexpTest
 		"#fffFFF", "#abcDEF",
 		"#000000", "#123456"
 	})
-	public void testIsRgbHexIgnoreCase(String value)
+	public void isRgbHexIgnoreCase(String value)
 	{
 		assertTrue(StringRegexp.isRgbHexIgnoreCase(value));
 	}
@@ -458,7 +458,7 @@ public class StringRegexpTest
 		"fffFFF",
 		"#23394w", "#ardBZG"
 	})
-	public void testIsRgbHexIgnoreCaseNotCorrect(String value)
+	public void isRgbHexIgnoreCaseNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isRgbHexIgnoreCase(value));
 	}
@@ -470,7 +470,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"00-EF-CD-EF-11-22", "00:EF:CD:EF:11:22"
 	})
-	public void testIsMacAddress(String value)
+	public void isMacAddress(String value)
 	{
 		assertTrue(StringRegexp.isMacAddress(value));
 	}
@@ -485,7 +485,7 @@ public class StringRegexpTest
 		":00:EF:CD:EF:11:22", ":00:EF:CD:EF:11:22:", "00:EF:CD:EF:11:22:",
 		"00:EF:CD:EF:11:2", "00:EW:CD:EF:11:22", "00:ef:CD:EF:11:22", "00:EF:CD::EF:11:22", "00:EF::EF:11:22",
 	})
-	public void testIsMacAddressNotCorrect(String value)
+	public void isMacAddressNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isMacAddress(value));
 	}
@@ -497,7 +497,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"00-EF-cd-EF-11-22", "00:ef:CD:EF:11:22"
 	})
-	public void testIsMacAddressIgnoreCase(String value)
+	public void isMacAddressIgnoreCase(String value)
 	{
 		assertTrue(StringRegexp.isMacAddressIgnoreCase(value));
 	}
@@ -511,7 +511,7 @@ public class StringRegexpTest
 		"00:EF:CD:EF:11:2", "00:ew:CD:EF:11:22",
 		"00:EF:CD::ef:11:22", "00:EF::ef:11:22"
 	})
-	public void testIsMacAddressIgnoreCaseNotCorrect(String value)
+	public void isMacAddressIgnoreCaseNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isMacAddressIgnoreCase(value));
 	}
@@ -524,7 +524,7 @@ public class StringRegexpTest
 		"@kalenchukov", "@Kalenchukov", "@KALENCHUKOV",
 		"@kalen_chukov", "@kalenchukov_", "@_kalenchukov",
 	})
-	public void testIsTelegram(String value)
+	public void isTelegram(String value)
 	{
 		assertTrue(StringRegexp.isTelegram(value));
 	}
@@ -539,7 +539,7 @@ public class StringRegexpTest
 		"@kalenchukov.", "@kalenchukov-", "@kalenchukov+",
 		"@kalen-chukov",
 	})
-	public void testIsTelegramNotCorrect(String value)
+	public void isTelegramNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isTelegram(value));
 	}
@@ -554,7 +554,7 @@ public class StringRegexpTest
 		"#123tag", "#tag123", "#tag_123",
 		"#тег", "#тег123", "#тег_123",
 	})
-	public void testIsTag(String value)
+	public void isTag(String value)
 	{
 		assertTrue(StringRegexp.isTag(value));
 	}
@@ -572,7 +572,7 @@ public class StringRegexpTest
 		"#_", "#__", "#___",
 		"#123", "#123_", "#_123",
 	})
-	public void testIsTagNotCorrect(String value)
+	public void isTagNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isTag(value));
 	}
@@ -584,7 +584,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"0", "1", "01010101", "1010101"
 	})
-	public void testIsDigitBinary(String value)
+	public void isDigitBinary(String value)
 	{
 		assertTrue(StringRegexp.isDigitBinary(value));
 	}
@@ -597,7 +597,7 @@ public class StringRegexpTest
 		"", " ",
 		"1.0", "012", "1a0", "0a"
 	})
-	public void testIsDigitBinaryNotCorrect(String value)
+	public void isDigitBinaryNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isDigitBinary(value));
 	}
@@ -609,7 +609,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"0", "1", "2", "0101201012", "120102101"
 	})
-	public void testIsDigitTernary(String value)
+	public void isDigitTernary(String value)
 	{
 		assertTrue(StringRegexp.isDigitTernary(value));
 	}
@@ -622,7 +622,7 @@ public class StringRegexpTest
 		"", " ",
 		"1.0", "1a0", "0a"
 	})
-	public void testIsDigitTernaryNotCorrect(String value)
+	public void isDigitTernaryNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isDigitTernary(value));
 	}
@@ -634,7 +634,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"01234567", "12014302101"
 	})
-	public void testIsDigitOctal(String value)
+	public void isDigitOctal(String value)
 	{
 		assertTrue(StringRegexp.isDigitOctal(value));
 	}
@@ -646,7 +646,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"", " "
 	})
-	public void testIsDigitOctalNotCorrect(String value)
+	public void isDigitOctalNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isDigitOctal(value));
 	}
@@ -658,7 +658,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"0", "0123", "6516166848498494"
 	})
-	public void testIsDigitDecimal(String value)
+	public void isDigitDecimal(String value)
 	{
 		assertTrue(StringRegexp.isDigitDecimal(value));
 	}
@@ -671,7 +671,7 @@ public class StringRegexpTest
 		"", " ",
 		"1.1", "1.1", "1a1", "1a"
 	})
-	public void testIsDigitDecimalNotCorrect(String value)
+	public void isDigitDecimalNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isDigitDecimal(value));
 	}
@@ -683,7 +683,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"0123456789AB", "0123456789ab", "120143023649aB101"
 	})
-	public void testIsDigitDuodecimal(String value)
+	public void isDigitDuodecimal(String value)
 	{
 		assertTrue(StringRegexp.isDigitDuodecimal(value));
 	}
@@ -695,7 +695,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"", " "
 	})
-	public void testIsDigitDuodecimalNotCorrect(String value)
+	public void isDigitDuodecimalNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isDigitDuodecimal(value));
 	}
@@ -707,7 +707,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"0123456789ABCDEF", "0123456789abbcdef", "120ef143023649aB10cd1"
 	})
-	public void testIsDigitHexadecimal(String value)
+	public void isDigitHexadecimal(String value)
 	{
 		assertTrue(StringRegexp.isDigitHexadecimal(value));
 	}
@@ -719,7 +719,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"", " "
 	})
-	public void testIsDigitHexadecimalNotCorrect(String value)
+	public void isDigitHexadecimalNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isDigitHexadecimal(value));
 	}
@@ -734,7 +734,7 @@ public class StringRegexpTest
 		"1.100", "1,100",
 		"1,100,123", "1.100.123",
 	})
-	public void testIsNumber(String value)
+	public void isNumber(String value)
 	{
 		assertTrue(StringRegexp.isNumber(value));
 	}
@@ -754,7 +754,7 @@ public class StringRegexpTest
 		"1 . 100", "1 , 100",
 		"1,100, 123", "1.100. 123"
 	})
-	public void testIsNumberNotCorrect(String value)
+	public void isNumberNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isNumber(value));
 	}
@@ -769,7 +769,7 @@ public class StringRegexpTest
 		"Hello-World"
 
 	})
-	public void testIsWord(String value)
+	public void isWord(String value)
 	{
 		assertTrue(StringRegexp.isWord(value));
 	}
@@ -784,7 +784,7 @@ public class StringRegexpTest
 		" привет", "привет ",
 		"Hello- World", "Hello -World", "Hello - World"
 	})
-	public void testIsWordNotCorrect(String value)
+	public void isWordNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isWord(value));
 	}
@@ -796,7 +796,7 @@ public class StringRegexpTest
 	@ValueSource(strings = {
 		"А", "Ж", "W", "Z"
 	})
-	public void testIsLetter(String value)
+	public void isLetter(String value)
 	{
 		assertTrue(StringRegexp.isLetter(value));
 	}
@@ -809,7 +809,7 @@ public class StringRegexpTest
 		"", " ",
 		"-", "0", "?"
 	})
-	public void testIsLetterNotCorrect(String value)
+	public void isLetterNotCorrect(String value)
 	{
 		assertFalse(StringRegexp.isLetter(value));
 	}
@@ -818,7 +818,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findEmailAddress(String)}.
 	 */
 	@Test
-	public void testFindEmailAddress()
+	public void findEmailAddress()
 	{
 		String[] emailAddress = {
 			"aleksey.kalenchukov@yandex.ru",
@@ -852,7 +852,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findDomain(String)}.
 	 */
 	@Test
-	public void testFindDomain()
+	public void findDomain()
 	{
 		String[] domain = {
 			"kalenchukov.dev",
@@ -903,7 +903,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findUrlHttp(String)}.
 	 */
 	@Test
-	public void testFindUrlHttp()
+	public void findUrlHttp()
 	{
 		String[] domain = {
 			"http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme",
@@ -948,7 +948,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findCountryCodeAlpha2(String)}.
 	 */
 	@Test
-	public void testFindCountryCodeAlpha2()
+	public void findCountryCodeAlpha2()
 	{
 		String[] countryCodeAlpha2 = {
 			"RU",
@@ -983,7 +983,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findCountryCodeAlpha3(String)}.
 	 */
 	@Test
-	public void testFindCountryCodeAlpha3()
+	public void findCountryCodeAlpha3()
 	{
 		String[] countryCodeAlpha3 = {
 			"RUS",
@@ -1016,7 +1016,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findCountryCodeNumeric3(String)}.
 	 */
 	@Test
-	public void testFindCountryCodeNumeric3()
+	public void findCountryCodeNumeric3()
 	{
 		String[] countryCodeNumeric3 = {
 			"052",
@@ -1046,7 +1046,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findRgbHex(String)}.
 	 */
 	@Test
-	public void testFindRgbHex()
+	public void findRgbHex()
 	{
 		String[] rgbHex = {
 			"#FFFFFF",
@@ -1094,7 +1094,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findRgbHexIgnoreCase(String)}.
 	 */
 	@Test
-	public void testFindRgbHexIgnoreCase()
+	public void findRgbHexIgnoreCase()
 	{
 		String[] rgbHex = {
 			"#fffFFF",
@@ -1142,7 +1142,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findMacAddress(String)}.
 	 */
 	@Test
-	public void testFindMacAddress()
+	public void findMacAddress()
 	{
 		String[] macAddress = {
 			"00-EF-CD-EF-11-22",
@@ -1186,7 +1186,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findMacAddressIgnoreCase(String)}.
 	 */
 	@Test
-	public void testFindMacAddressIgnoreCase()
+	public void findMacAddressIgnoreCase()
 	{
 		String[] macAddress = {
 			"00-EF-CD-ef-11-22",
@@ -1220,7 +1220,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findInet4Address(String)}.
 	 */
 	@Test
-	public void testFindInet4Address()
+	public void findInet4Address()
 	{
 		String[] inet4Address = {
 			"192.168.1.1",
@@ -1267,7 +1267,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findRgbNumeric(String)}.
 	 */
 	@Test
-	public void testFindRgbNumeric()
+	public void findRgbNumeric()
 	{
 		String[] rgb = {
 			"255,150,50",
@@ -1317,7 +1317,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findTelegram(String)}.
 	 */
 	@Test
-	public void testFindTelegram()
+	public void findTelegram()
 	{
 		String[] telegram = {
 			"@kalenchukov",
@@ -1359,7 +1359,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findInet6Address(String)}.
 	 */
 	@Test
-	public void testFindInet6Address()
+	public void findInet6Address()
 	{
 		String[] inet6Address = {
 			"2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D",
@@ -1402,7 +1402,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findInet6AddressIgnoreCase(String)}.
 	 */
 	@Test
-	public void testFindInet6AddressIgnoreCase()
+	public void findInet6AddressIgnoreCase()
 	{
 		String[] inet6Address = {
 			"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D",
@@ -1450,7 +1450,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findTag(String)}.
 	 */
 	@Test
-	public void testFindTag()
+	public void findTag()
 	{
 		String[] tag = {
 			"#tag",
@@ -1491,7 +1491,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findDigitBinary(String)}.
 	 */
 	@Test
-	public void testFindDigitBinary()
+	public void findDigitBinary()
 	{
 		String[] digitBinary = {
 			"010101",
@@ -1535,7 +1535,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findDigitTernary(String)}.
 	 */
 	@Test
-	public void testFindDigitTernary()
+	public void findDigitTernary()
 	{
 		String[] digitTernary = {
 			"0101201",
@@ -1579,7 +1579,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findDigitOctal(String)}.
 	 */
 	@Test
-	public void testFindDigitOctal()
+	public void findDigitOctal()
 	{
 		String[] digitOctal = {
 			"010317201",
@@ -1625,7 +1625,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findDigitDuodecimal(String)}.
 	 */
 	@Test
-	public void testFindDigitDuodecimal()
+	public void findDigitDuodecimal()
 	{
 		String[] digitDuodecimal = {
 			"01031A9b7201",
@@ -1673,7 +1673,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findDigitHexadecimal(String)}.
 	 */
 	@Test
-	public void testFindDigitHexadecimal()
+	public void findDigitHexadecimal()
 	{
 		String[] digitHexadecimal = {
 			"0103f1A9b720d1",
@@ -1716,7 +1716,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findLocalization(String)}.
 	 */
 	@Test
-	public void testFindLocalization()
+	public void findLocalization()
 	{
 		String[] localization = {
 			"ru-RU",
@@ -1764,7 +1764,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findDigitDecimal(String)}.
 	 */
 	@Test
-	public void testFindDigitDecimal()
+	public void findDigitDecimal()
 	{
 		String[] digitDecimal = {
 			"0",
@@ -1803,7 +1803,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findNumber(String)}.
 	 */
 	@Test
-	public void testFindNumber()
+	public void findNumber()
 	{
 		String[] number = {
 			"1.100",
@@ -1851,7 +1851,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findWord(String)}.
 	 */
 	@Test
-	public void testFindWord()
+	public void findWord()
 	{
 		String[] word = {
 			"Красно-жёлтые",
@@ -1893,7 +1893,7 @@ public class StringRegexpTest
 	 * Проверка метода {@link StringRegexp#findLetter(String)}.
 	 */
 	@Test
-	public void testFindLetter()
+	public void findLetter()
 	{
 		String[] letter = {
 			"М",

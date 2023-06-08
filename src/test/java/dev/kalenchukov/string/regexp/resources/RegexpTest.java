@@ -60,7 +60,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#LOCALIZATION}.
 	 */
 	@Test
-	public void testGroupLocalization()
+	public void groupLocalization()
 	{
 		String value = "ru-RU";
 
@@ -78,7 +78,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#INET_4_ADDRESS}.
 	 */
 	@Test
-	public void testGroupInet4Address()
+	public void groupInet4Address()
 	{
 		String value = "192.168.1.100";
 
@@ -98,7 +98,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#INET_6_ADDRESS}.
 	 */
 	@Test
-	public void testGroupInet6Address()
+	public void groupInet6Address()
 	{
 		String value = "2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D";
 
@@ -117,7 +117,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#EMAIL_ADDRESS}.
 	 */
 	@Test
-	public void testGroupEmailAddress()
+	public void groupEmailAddress()
 	{
 		String value = "aleksey.kalenchukov@yandex.ru";
 
@@ -139,7 +139,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#MD5}.
 	 */
 	@Test
-	public void testGroupMd5()
+	public void groupMd5()
 	{
 		String value = "1BC29B36F623BA82AAF6724FD3B16718";
 
@@ -158,7 +158,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#DOMAIN}.
 	 */
 	@Test
-	public void testGroupDomain()
+	public void groupDomain()
 	{
 		String value = "kalenchukov.dev";
 
@@ -178,7 +178,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#URL_HTTP}.
 	 */
 	@Test
-	public void testGroupUrlHttp()
+	public void groupUrlHttp()
 	{
 		String value = "http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#anchor";
 
@@ -203,7 +203,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#RGB_NUMERIC}.
 	 */
 	@Test
-	public void testGroupRgbNumeric()
+	public void groupRgbNumeric()
 	{
 		String value = "215,200,166";
 
@@ -222,7 +222,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#RGB_HEX}.
 	 */
 	@Test
-	public void testGroupRgbHex()
+	public void groupRgbHex()
 	{
 		String value = "#ABCDEF";
 
@@ -244,7 +244,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#MAC_ADDRESS}.
 	 */
 	@Test
-	public void testGroupMacAddress()
+	public void groupMacAddress()
 	{
 		String value = "00-eF-cd-Ef-11-22";
 
@@ -270,7 +270,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#TELEGRAM}.
 	 */
 	@Test
-	public void testGroupTelegram()
+	public void groupTelegram()
 	{
 		String value = "@kalenchukov";
 
@@ -290,7 +290,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#TAG}.
 	 */
 	@Test
-	public void testGroupTag()
+	public void groupTag()
 	{
 		String value = "#tag";
 
@@ -310,7 +310,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#DIGIT_BINARY}.
 	 */
 	@Test
-	public void testGroupDigitBinary()
+	public void groupDigitBinary()
 	{
 		String value = "0101010101";
 
@@ -326,7 +326,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#DIGIT_TERNARY}.
 	 */
 	@Test
-	public void testGroupDigitTernary()
+	public void groupDigitTernary()
 	{
 		String value = "210210210210";
 
@@ -342,7 +342,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#DIGIT_OCTAL}.
 	 */
 	@Test
-	public void testGroupDigitOctal()
+	public void groupDigitOctal()
 	{
 		String value = "65016716501710651467106";
 
@@ -358,7 +358,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#DIGIT_DECIMAL}.
 	 */
 	@Test
-	public void testGroupDigitDecimal()
+	public void groupDigitDecimal()
 	{
 		String value = "0123";
 
@@ -374,7 +374,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#DIGIT_DUODECIMAL}.
 	 */
 	@Test
-	public void testGroupDigitDuodecimal()
+	public void groupDigitDuodecimal()
 	{
 		String value = "8819a861bB14Aab04ab519a2baA3b7a9B";
 
@@ -393,7 +393,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#DIGIT_HEXADECIMAL}.
 	 */
 	@Test
-	public void testGroupDigitHexadecimal()
+	public void groupDigitHexadecimal()
 	{
 		String value = "0123456789ABCDEF";
 
@@ -412,7 +412,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#NUMBER}.
 	 */
 	@Test
-	public void testGroupNumber()
+	public void groupNumber()
 	{
 		String value = "1.100";
 
@@ -428,7 +428,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#WORD}.
 	 */
 	@Test
-	public void testGroupWord()
+	public void groupWord()
 	{
 		String value = "Привет";
 
@@ -447,7 +447,7 @@ public class RegexpTest
 	 * Проверка групп константы {@link Regexp#LETTER}.
 	 */
 	@Test
-	public void testGroupLetter()
+	public void groupLetter()
 	{
 		String value = "Ъ";
 
