@@ -44,7 +44,11 @@ public class RegexpTest
 	@Test
 	public void getGroup()
 	{
-		assertEquals("localization", Regexp.LOCALIZATION.getGroup());
+		String expected = "localization";
+
+		String actual = Regexp.LOCALIZATION.getGroup();
+
+		assertEquals(expected, actual);
 	}
 
 	/**
@@ -53,7 +57,9 @@ public class RegexpTest
 	@Test
 	public void getPattern()
 	{
-		assertTrue( Regexp.LOCALIZATION.getPattern().length() > 0);
+		String actual = Regexp.LOCALIZATION.getPattern();
+
+		assertFalse(actual.isEmpty());
 	}
 
 	/**
@@ -68,7 +74,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("ru-RU", matcher.group(Regexp.LOCALIZATION.getGroup()));
 		assertEquals("ru", matcher.group("language"));
 		assertEquals("RU", matcher.group("country"));
@@ -86,7 +91,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("192.168.1.100", matcher.group(Regexp.INET_4_ADDRESS.getGroup()));
 		assertEquals("192", matcher.group("part1"));
 		assertEquals("168", matcher.group("part2"));
@@ -109,7 +113,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D", matcher.group(Regexp.INET_6_ADDRESS.getGroup()));
 	}
 
@@ -128,7 +131,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("aleksey.kalenchukov@yandex.ru", matcher.group(Regexp.EMAIL_ADDRESS.getGroup()));
 		assertEquals("aleksey.kalenchukov", matcher.group("local"));
 		assertEquals("yandex.ru", matcher.group("domain"));
@@ -150,7 +152,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("1BC29B36F623BA82AAF6724FD3B16718", matcher.group(Regexp.MD5.getGroup()));
 	}
 
@@ -169,7 +170,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("kalenchukov.dev", matcher.group(Regexp.DOMAIN.getGroup()));
 		assertEquals("dev", matcher.group("tld"));
 	}
@@ -189,7 +189,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#anchor", matcher.group(Regexp.URL_HTTP.getGroup()));
 		assertEquals("http", matcher.group("protocol"));
 		assertEquals("kalenchukov.dev", matcher.group("domain"));
@@ -211,7 +210,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("215,200,166", matcher.group(Regexp.RGB_NUMERIC.getGroup()));
 		assertEquals("215", matcher.group("red"));
 		assertEquals("200", matcher.group("green"));
@@ -233,7 +231,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("#ABCDEF", matcher.group(Regexp.RGB_HEX.getGroup()));
 		assertEquals("AB", matcher.group("red"));
 		assertEquals("CD", matcher.group("green"));
@@ -255,7 +252,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("00-eF-cd-Ef-11-22", matcher.group(Regexp.MAC_ADDRESS.getGroup()));
 		assertEquals("-", matcher.group("separator"));
 		assertEquals("00", matcher.group("part1"));
@@ -281,7 +277,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("@kalenchukov", matcher.group(Regexp.TELEGRAM.getGroup()));
 		assertEquals("kalenchukov", matcher.group("name"));
 	}
@@ -301,7 +296,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("#tag", matcher.group(Regexp.TAG.getGroup()));
 		assertEquals("tag", matcher.group("name"));
 	}
@@ -318,7 +312,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("0101010101", matcher.group(Regexp.DIGIT_BINARY.getGroup()));
 	}
 
@@ -334,7 +327,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("210210210210", matcher.group(Regexp.DIGIT_TERNARY.getGroup()));
 	}
 
@@ -350,7 +342,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("65016716501710651467106", matcher.group(Regexp.DIGIT_OCTAL.getGroup()));
 	}
 
@@ -366,7 +357,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("0123", matcher.group(Regexp.DIGIT_DECIMAL.getGroup()));
 	}
 
@@ -385,7 +375,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("8819a861bB14Aab04ab519a2baA3b7a9B", matcher.group(Regexp.DIGIT_DUODECIMAL.getGroup()));
 	}
 
@@ -404,7 +393,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("0123456789ABCDEF", matcher.group(Regexp.DIGIT_HEXADECIMAL.getGroup()));
 	}
 
@@ -420,7 +408,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("1.100", matcher.group(Regexp.NUMBER.getGroup()));
 	}
 
@@ -439,7 +426,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("Привет", matcher.group(Regexp.WORD.getGroup()));
 	}
 
@@ -458,7 +444,6 @@ public class RegexpTest
 		Matcher matcher = pattern.matcher(value);
 
 		assertTrue(matcher.find());
-
 		assertEquals("Ъ", matcher.group(Regexp.LETTER.getGroup()));
 	}
 }

@@ -28,6 +28,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -46,7 +48,9 @@ public class StringRegexpTest
 	})
 	public void isLocalization(String value)
 	{
-		assertTrue(StringRegexp.isLocalization(value));
+		boolean actual = StringRegexp.isLocalization(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -60,7 +64,9 @@ public class StringRegexpTest
 	})
 	public void isLocalizationNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isLocalization(value));
+		boolean actual = StringRegexp.isLocalization(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -72,7 +78,9 @@ public class StringRegexpTest
 	})
 	public void isInet4Address(String value)
 	{
-		assertTrue(StringRegexp.isInet4Address(value));
+		boolean actual = StringRegexp.isInet4Address(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -87,7 +95,9 @@ public class StringRegexpTest
 	})
 	public void isInet4AddressNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isInet4Address(value));
+		boolean actual = StringRegexp.isInet4Address(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -99,7 +109,9 @@ public class StringRegexpTest
 	})
 	public void isInet6Address(String value)
 	{
-		assertTrue(StringRegexp.isInet6Address(value));
+		boolean actual = StringRegexp.isInet6Address(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -111,7 +123,9 @@ public class StringRegexpTest
 	})
 	public void isInet6AddressNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isInet6Address(value));
+		boolean actual = StringRegexp.isInet6Address(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -133,7 +147,9 @@ public class StringRegexpTest
 	})
 	public void isInet6AddressIgnoreCase(String value)
 	{
-		assertTrue(StringRegexp.isInet6AddressIgnoreCase(value));
+		boolean actual = StringRegexp.isInet6AddressIgnoreCase(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -157,7 +173,9 @@ public class StringRegexpTest
 	})
 	public void isInet6AddressIgnoreCaseNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isInet6AddressIgnoreCase(value));
+		boolean actual = StringRegexp.isInet6AddressIgnoreCase(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -178,7 +196,9 @@ public class StringRegexpTest
 	})
 	public void isEmailAddress(String value)
 	{
-		assertTrue(StringRegexp.isEmailAddress(value));
+		boolean actual = StringRegexp.isEmailAddress(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -194,7 +214,9 @@ public class StringRegexpTest
 	})
 	public void isEmailAddressNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isEmailAddress(value));
+		boolean actual = StringRegexp.isEmailAddress(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -207,7 +229,9 @@ public class StringRegexpTest
 	})
 	public void isDomain(String value)
 	{
-		assertTrue(StringRegexp.isDomain(value));
+		boolean actual = StringRegexp.isDomain(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -220,7 +244,9 @@ public class StringRegexpTest
 	})
 	public void isDomainNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isDomain(value));
+		boolean actual = StringRegexp.isDomain(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -248,7 +274,9 @@ public class StringRegexpTest
 	})
 	public void isUrlHttp(String value)
 	{
-		assertTrue(StringRegexp.isUrlHttp(value));
+		boolean actual = StringRegexp.isUrlHttp(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -262,7 +290,9 @@ public class StringRegexpTest
 	})
 	public void isRgbNumeric(String value)
 	{
-		assertTrue(StringRegexp.isRgbNumeric(value));
+		boolean actual = StringRegexp.isRgbNumeric(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -279,7 +309,9 @@ public class StringRegexpTest
 	})
 	public void isRgbNumericNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isRgbNumeric(value));
+		boolean actual = StringRegexp.isRgbNumeric(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -291,7 +323,9 @@ public class StringRegexpTest
 	})
 	public void isCountryCodeAlpha2(String value)
 	{
-		assertTrue(StringRegexp.isCountryCodeAlpha2(value));
+		boolean actual = StringRegexp.isCountryCodeAlpha2(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -303,7 +337,9 @@ public class StringRegexpTest
 	})
 	public void isCountryCodeAlpha2NotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isCountryCodeAlpha2(value));
+		boolean actual = StringRegexp.isCountryCodeAlpha2(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -315,7 +351,9 @@ public class StringRegexpTest
 	})
 	public void isCountryCodeAlpha3(String value)
 	{
-		assertTrue(StringRegexp.isCountryCodeAlpha3(value));
+		boolean actual = StringRegexp.isCountryCodeAlpha3(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -327,7 +365,9 @@ public class StringRegexpTest
 	})
 	public void isCountryCodeAlpha3NotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isCountryCodeAlpha3(value));
+		boolean actual = StringRegexp.isCountryCodeAlpha3(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -339,7 +379,9 @@ public class StringRegexpTest
 	})
 	public void isCountryCodeNumeric3(String value)
 	{
-		assertTrue(StringRegexp.isCountryCodeNumeric3(value));
+		boolean actual = StringRegexp.isCountryCodeNumeric3(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -351,7 +393,9 @@ public class StringRegexpTest
 	})
 	public void isCountryCodeNumeric3NotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isCountryCodeNumeric3(value));
+		boolean actual = StringRegexp.isCountryCodeNumeric3(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -364,7 +408,9 @@ public class StringRegexpTest
 	})
 	public void isMd5(String value)
 	{
-		assertTrue(StringRegexp.isMd5(value));
+		boolean actual = StringRegexp.isMd5(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -378,7 +424,9 @@ public class StringRegexpTest
 	})
 	public void isMd5NotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isMd5(value));
+		boolean actual = StringRegexp.isMd5(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -392,7 +440,9 @@ public class StringRegexpTest
 	})
 	public void isMd5IgnoreCase(String value)
 	{
-		assertTrue(StringRegexp.isMd5IgnoreCase(value));
+		boolean actual = StringRegexp.isMd5IgnoreCase(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -406,7 +456,9 @@ public class StringRegexpTest
 	})
 	public void isMd5IgnoreCaseNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isMd5IgnoreCase(value));
+		boolean actual = StringRegexp.isMd5IgnoreCase(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -419,7 +471,9 @@ public class StringRegexpTest
 	})
 	public void isRgbHex(String value)
 	{
-		assertTrue(StringRegexp.isRgbHex(value));
+		boolean actual = StringRegexp.isRgbHex(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -433,7 +487,9 @@ public class StringRegexpTest
 	})
 	public void isRgbHexNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isRgbHex(value));
+		boolean actual = StringRegexp.isRgbHex(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -446,7 +502,9 @@ public class StringRegexpTest
 	})
 	public void isRgbHexIgnoreCase(String value)
 	{
-		assertTrue(StringRegexp.isRgbHexIgnoreCase(value));
+		boolean actual = StringRegexp.isRgbHexIgnoreCase(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -460,7 +518,9 @@ public class StringRegexpTest
 	})
 	public void isRgbHexIgnoreCaseNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isRgbHexIgnoreCase(value));
+		boolean actual = StringRegexp.isRgbHexIgnoreCase(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -472,7 +532,9 @@ public class StringRegexpTest
 	})
 	public void isMacAddress(String value)
 	{
-		assertTrue(StringRegexp.isMacAddress(value));
+		boolean actual = StringRegexp.isMacAddress(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -487,7 +549,9 @@ public class StringRegexpTest
 	})
 	public void isMacAddressNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isMacAddress(value));
+		boolean actual = StringRegexp.isMacAddress(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -499,7 +563,9 @@ public class StringRegexpTest
 	})
 	public void isMacAddressIgnoreCase(String value)
 	{
-		assertTrue(StringRegexp.isMacAddressIgnoreCase(value));
+		boolean actual = StringRegexp.isMacAddressIgnoreCase(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -513,7 +579,9 @@ public class StringRegexpTest
 	})
 	public void isMacAddressIgnoreCaseNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isMacAddressIgnoreCase(value));
+		boolean actual = StringRegexp.isMacAddressIgnoreCase(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -526,7 +594,9 @@ public class StringRegexpTest
 	})
 	public void isTelegram(String value)
 	{
-		assertTrue(StringRegexp.isTelegram(value));
+		boolean actual = StringRegexp.isTelegram(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -541,7 +611,9 @@ public class StringRegexpTest
 	})
 	public void isTelegramNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isTelegram(value));
+		boolean actual = StringRegexp.isTelegram(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -556,7 +628,9 @@ public class StringRegexpTest
 	})
 	public void isTag(String value)
 	{
-		assertTrue(StringRegexp.isTag(value));
+		boolean actual = StringRegexp.isTag(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -574,7 +648,9 @@ public class StringRegexpTest
 	})
 	public void isTagNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isTag(value));
+		boolean actual = StringRegexp.isTag(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -586,7 +662,9 @@ public class StringRegexpTest
 	})
 	public void isDigitBinary(String value)
 	{
-		assertTrue(StringRegexp.isDigitBinary(value));
+		boolean actual = StringRegexp.isDigitBinary(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -599,7 +677,9 @@ public class StringRegexpTest
 	})
 	public void isDigitBinaryNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isDigitBinary(value));
+		boolean actual = StringRegexp.isDigitBinary(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -611,7 +691,9 @@ public class StringRegexpTest
 	})
 	public void isDigitTernary(String value)
 	{
-		assertTrue(StringRegexp.isDigitTernary(value));
+		boolean actual = StringRegexp.isDigitTernary(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -624,7 +706,9 @@ public class StringRegexpTest
 	})
 	public void isDigitTernaryNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isDigitTernary(value));
+		boolean actual = StringRegexp.isDigitTernary(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -636,7 +720,9 @@ public class StringRegexpTest
 	})
 	public void isDigitOctal(String value)
 	{
-		assertTrue(StringRegexp.isDigitOctal(value));
+		boolean actual = StringRegexp.isDigitOctal(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -648,7 +734,9 @@ public class StringRegexpTest
 	})
 	public void isDigitOctalNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isDigitOctal(value));
+		boolean actual = StringRegexp.isDigitOctal(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -660,7 +748,9 @@ public class StringRegexpTest
 	})
 	public void isDigitDecimal(String value)
 	{
-		assertTrue(StringRegexp.isDigitDecimal(value));
+		boolean actual = StringRegexp.isDigitDecimal(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -673,7 +763,9 @@ public class StringRegexpTest
 	})
 	public void isDigitDecimalNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isDigitDecimal(value));
+		boolean actual = StringRegexp.isDigitDecimal(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -685,7 +777,9 @@ public class StringRegexpTest
 	})
 	public void isDigitDuodecimal(String value)
 	{
-		assertTrue(StringRegexp.isDigitDuodecimal(value));
+		boolean actual = StringRegexp.isDigitDuodecimal(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -697,7 +791,9 @@ public class StringRegexpTest
 	})
 	public void isDigitDuodecimalNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isDigitDuodecimal(value));
+		boolean actual = StringRegexp.isDigitDuodecimal(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -709,7 +805,9 @@ public class StringRegexpTest
 	})
 	public void isDigitHexadecimal(String value)
 	{
-		assertTrue(StringRegexp.isDigitHexadecimal(value));
+		boolean actual = StringRegexp.isDigitHexadecimal(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -721,7 +819,9 @@ public class StringRegexpTest
 	})
 	public void isDigitHexadecimalNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isDigitHexadecimal(value));
+		boolean actual = StringRegexp.isDigitHexadecimal(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -736,7 +836,9 @@ public class StringRegexpTest
 	})
 	public void isNumber(String value)
 	{
-		assertTrue(StringRegexp.isNumber(value));
+		boolean actual = StringRegexp.isNumber(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -756,7 +858,9 @@ public class StringRegexpTest
 	})
 	public void isNumberNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isNumber(value));
+		boolean actual = StringRegexp.isNumber(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -771,7 +875,9 @@ public class StringRegexpTest
 	})
 	public void isWord(String value)
 	{
-		assertTrue(StringRegexp.isWord(value));
+		boolean actual = StringRegexp.isWord(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -786,7 +892,9 @@ public class StringRegexpTest
 	})
 	public void isWordNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isWord(value));
+		boolean actual = StringRegexp.isWord(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -798,7 +906,9 @@ public class StringRegexpTest
 	})
 	public void isLetter(String value)
 	{
-		assertTrue(StringRegexp.isLetter(value));
+		boolean actual = StringRegexp.isLetter(value);
+
+		assertTrue(actual);
 	}
 
 	/**
@@ -811,7 +921,9 @@ public class StringRegexpTest
 	})
 	public void isLetterNotCorrect(String value)
 	{
-		assertFalse(StringRegexp.isLetter(value));
+		boolean actual = StringRegexp.isLetter(value);
+
+		assertFalse(actual);
 	}
 
 	/**
@@ -820,7 +932,7 @@ public class StringRegexpTest
 	@Test
 	public void findEmailAddress()
 	{
-		String[] emailAddress = {
+		String[] expected = {
 			"aleksey.kalenchukov@yandex.ru",
 			"alekseyKalenchukov@yandex.ru",
 			"aleksey123kalenchukov@yandex.ru",
@@ -845,7 +957,9 @@ public class StringRegexpTest
 			Эх, 123alekseykalenchukov@yandex.ru ещё только без десяти, девять часов
 			""";
 
-		assertArrayEquals(emailAddress, StringRegexp.findEmailAddress(value).toArray());
+		List<String> actual = StringRegexp.findEmailAddress(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -854,7 +968,7 @@ public class StringRegexpTest
 	@Test
 	public void findDomain()
 	{
-		String[] domain = {
+		String[] expected = {
 			"kalenchukov.dev",
 			"regexp.string.kalenchukov.dev",
 			"aleksey.123.kalenchukov.ru",
@@ -896,7 +1010,9 @@ public class StringRegexpTest
 			Мама, я знаю, мы все сошли с ума...
 			""";
 
-		assertArrayEquals(domain, StringRegexp.findDomain(value).toArray());
+		List<String> actual = StringRegexp.findDomain(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -905,7 +1021,7 @@ public class StringRegexpTest
 	@Test
 	public void findUrlHttp()
 	{
-		String[] domain = {
+		String[] expected = {
 			"http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme",
 			"https://kalenchukov.dev/#readme",
 			"https://www.kalenchukov.dev/string/regexp/",
@@ -941,7 +1057,9 @@ public class StringRegexpTest
 			Бошетунмай, бошетунмай
 			""";
 
-		assertArrayEquals(domain, StringRegexp.findUrlHttp(value).toArray());
+		List<String> actual = StringRegexp.findUrlHttp(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -950,7 +1068,7 @@ public class StringRegexpTest
 	@Test
 	public void findCountryCodeAlpha2()
 	{
-		String[] countryCodeAlpha2 = {
+		String[] expected = {
 			"RU",
 			"BY"
 		};
@@ -976,7 +1094,9 @@ public class StringRegexpTest
 			Ну и пусть...
 			""";
 
-		assertArrayEquals(countryCodeAlpha2, StringRegexp.findCountryCodeAlpha2(value).toArray());
+		List<String> actual = StringRegexp.findCountryCodeAlpha2(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -985,7 +1105,7 @@ public class StringRegexpTest
 	@Test
 	public void findCountryCodeAlpha3()
 	{
-		String[] countryCodeAlpha3 = {
+		String[] expected = {
 			"RUS",
 			"BLR"
 		};
@@ -1009,7 +1129,9 @@ public class StringRegexpTest
 			Проснись, это любовь...
 			""";
 
-		assertArrayEquals(countryCodeAlpha3, StringRegexp.findCountryCodeAlpha3(value).toArray());
+		List<String> actual = StringRegexp.findCountryCodeAlpha3(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1018,7 +1140,7 @@ public class StringRegexpTest
 	@Test
 	public void findCountryCodeNumeric3()
 	{
-		String[] countryCodeNumeric3 = {
+		String[] expected = {
 			"052",
 			"643",
 			"112"
@@ -1039,7 +1161,9 @@ public class StringRegexpTest
 			Я стану словами
 			""";
 
-		assertArrayEquals(countryCodeNumeric3, StringRegexp.findCountryCodeNumeric3(value).toArray());
+		List<String> actual = StringRegexp.findCountryCodeNumeric3(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1048,7 +1172,7 @@ public class StringRegexpTest
 	@Test
 	public void findRgbHex()
 	{
-		String[] rgbHex = {
+		String[] expected = {
 			"#FFFFFF",
 			"#000000",
 			"#D0E9F8",
@@ -1087,7 +1211,9 @@ public class StringRegexpTest
 			Спокойная ночь
 			""";
 
-		assertArrayEquals(rgbHex, StringRegexp.findRgbHex(value).toArray());
+		List<String> actual = StringRegexp.findRgbHex(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1096,7 +1222,7 @@ public class StringRegexpTest
 	@Test
 	public void findRgbHexIgnoreCase()
 	{
-		String[] rgbHex = {
+		String[] expected = {
 			"#fffFFF",
 			"#000000",
 			"#d0e9F8",
@@ -1135,7 +1261,9 @@ public class StringRegexpTest
 			В серебре, а, может быть, в нищете, но как можно скорей.
 			""";
 
-		assertArrayEquals(rgbHex, StringRegexp.findRgbHexIgnoreCase(value).toArray());
+		List<String> actual = StringRegexp.findRgbHexIgnoreCase(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1144,7 +1272,7 @@ public class StringRegexpTest
 	@Test
 	public void findMacAddress()
 	{
-		String[] macAddress = {
+		String[] expected = {
 			"00-EF-CD-EF-11-22",
 			"00:EF:CD:EF:11:22",
 			"00:EF:CD:DF:11:22",
@@ -1179,7 +1307,9 @@ public class StringRegexpTest
 			Я объявляю свой...
 			""";
 
-		assertArrayEquals(macAddress, StringRegexp.findMacAddress(value).toArray());
+		List<String> actual = StringRegexp.findMacAddress(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1188,7 +1318,7 @@ public class StringRegexpTest
 	@Test
 	public void findMacAddressIgnoreCase()
 	{
-		String[] macAddress = {
+		String[] expected = {
 			"00-EF-CD-ef-11-22",
 			"00:EF:CD:EF:11:22",
 			"00:EF:cd:DF:11:22",
@@ -1213,7 +1343,9 @@ public class StringRegexpTest
 			Музыку волн, музыку ветра?
 			""";
 
-		assertArrayEquals(macAddress, StringRegexp.findMacAddressIgnoreCase(value).toArray());
+		List<String> actual = StringRegexp.findMacAddressIgnoreCase(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1222,7 +1354,7 @@ public class StringRegexpTest
 	@Test
 	public void findInet4Address()
 	{
-		String[] inet4Address = {
+		String[] expected = {
 			"192.168.1.1",
 			"1.1.1.1",
 			"0.0.0.0",
@@ -1260,7 +1392,9 @@ public class StringRegexpTest
 			Когда твоя девушка больна.
 			""";
 
-		assertArrayEquals(inet4Address, StringRegexp.findInet4Address(value).toArray());
+		List<String> actual = StringRegexp.findInet4Address(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1269,7 +1403,7 @@ public class StringRegexpTest
 	@Test
 	public void findRgbNumeric()
 	{
-		String[] rgb = {
+		String[] expected = {
 			"255,150,50",
 			"0, 0, 0",
 			"50, 50,50",
@@ -1310,7 +1444,9 @@ public class StringRegexpTest
 			Играй!
 			""";
 
-		assertArrayEquals(rgb, StringRegexp.findRgbNumeric(value).toArray());
+		List<String> actual = StringRegexp.findRgbNumeric(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1319,7 +1455,7 @@ public class StringRegexpTest
 	@Test
 	public void findTelegram()
 	{
-		String[] telegram = {
+		String[] expected = {
 			"@kalenchukov",
 			"@Kalenchukov",
 			"@KALENCHUKOV",
@@ -1352,7 +1488,9 @@ public class StringRegexpTest
 			Ооооу, но это не любовь...
 			""";
 
-		assertArrayEquals(telegram, StringRegexp.findTelegram(value).toArray());
+		List<String> actual = StringRegexp.findTelegram(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1361,7 +1499,7 @@ public class StringRegexpTest
 	@Test
 	public void findInet6Address()
 	{
-		String[] inet6Address = {
+		String[] expected = {
 			"2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D",
 			"AD12::AE21::",
 			"::AE21:AD12",
@@ -1395,7 +1533,9 @@ public class StringRegexpTest
 			И не в силах сказать,2001:DB8::AE21:AD12 что принес этот год.
 			""";
 
-		assertArrayEquals(inet6Address, StringRegexp.findInet6Address(value).toArray());
+		List<String> actual = StringRegexp.findInet6Address(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1404,7 +1544,7 @@ public class StringRegexpTest
 	@Test
 	public void findInet6AddressIgnoreCase()
 	{
-		String[] inet6Address = {
+		String[] expected = {
 			"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D",
 			"ad12::AE21::",
 			"::ae21:AD12",
@@ -1443,7 +1583,9 @@ public class StringRegexpTest
 			И я не знаю,2001:db8::AE21:AD12 как мне прожить следующий день.
 			""";
 
-		assertArrayEquals(inet6Address, StringRegexp.findInet6AddressIgnoreCase(value).toArray());
+		List<String> actual = StringRegexp.findInet6AddressIgnoreCase(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1452,7 +1594,7 @@ public class StringRegexpTest
 	@Test
 	public void findTag()
 	{
-		String[] tag = {
+		String[] expected = {
 			"#tag",
 			"#Tag",
 			"#TAG",
@@ -1484,7 +1626,9 @@ public class StringRegexpTest
 			Я бездельник, у-у...
 			""";
 
-		assertArrayEquals(tag, StringRegexp.findTag(value).toArray());
+		List<String> actual = StringRegexp.findTag(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1493,7 +1637,7 @@ public class StringRegexpTest
 	@Test
 	public void findDigitBinary()
 	{
-		String[] digitBinary = {
+		String[] expected = {
 			"010101",
 			"1101",
 			"10101",
@@ -1528,7 +1672,9 @@ public class StringRegexpTest
 			Дальше действовать будем мы
 			""";
 
-		assertArrayEquals(digitBinary, StringRegexp.findDigitBinary(value).toArray());
+		List<String> actual = StringRegexp.findDigitBinary(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1537,7 +1683,7 @@ public class StringRegexpTest
 	@Test
 	public void findDigitTernary()
 	{
-		String[] digitTernary = {
+		String[] expected = {
 			"0101201",
 			"11021",
 			"102101",
@@ -1572,7 +1718,9 @@ public class StringRegexpTest
 			Я скажу одно лишь слово: «Верь!»
 			""";
 
-		assertArrayEquals(digitTernary, StringRegexp.findDigitTernary(value).toArray());
+		List<String> actual = StringRegexp.findDigitTernary(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1581,7 +1729,7 @@ public class StringRegexpTest
 	@Test
 	public void findDigitOctal()
 	{
-		String[] digitOctal = {
+		String[] expected = {
 			"010317201",
 			"1160215",
 			"170241031",
@@ -1618,7 +1766,9 @@ public class StringRegexpTest
 			То увидим в тех глазах солнца свет.
 			""";
 
-		assertArrayEquals(digitOctal, StringRegexp.findDigitOctal(value).toArray());
+		List<String> actual = StringRegexp.findDigitOctal(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1627,7 +1777,7 @@ public class StringRegexpTest
 	@Test
 	public void findDigitDuodecimal()
 	{
-		String[] digitDuodecimal = {
+		String[] expected = {
 			"01031A9b7201",
 			"11602B15",
 			"17024A1031",
@@ -1666,7 +1816,9 @@ public class StringRegexpTest
 			Спокойная ночь
 			""";
 
-		assertArrayEquals(digitDuodecimal, StringRegexp.findDigitDuodecimal(value).toArray());
+		List<String> actual = StringRegexp.findDigitDuodecimal(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1675,7 +1827,7 @@ public class StringRegexpTest
 	@Test
 	public void findDigitHexadecimal()
 	{
-		String[] digitHexadecimal = {
+		String[] expected = {
 			"0103f1A9b720d1",
 			"1160de2B15",
 			"17024cA103d1",
@@ -1709,7 +1861,9 @@ public class StringRegexpTest
 			Так откуда взялась, печаль?
 			""";
 
-		assertArrayEquals(digitHexadecimal, StringRegexp.findDigitHexadecimal(value).toArray());
+		List<String> actual = StringRegexp.findDigitHexadecimal(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1718,7 +1872,7 @@ public class StringRegexpTest
 	@Test
 	public void findLocalization()
 	{
-		String[] localization = {
+		String[] expected = {
 			"ru-RU",
 			"en-EN",
 			"by-BY",
@@ -1757,7 +1911,9 @@ public class StringRegexpTest
 			В серебре, а, может быть, в нищете, но как можно скорей.
 			""";
 
-		assertArrayEquals(localization, StringRegexp.findLocalization(value).toArray());
+		List<String> actual = StringRegexp.findLocalization(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1766,7 +1922,7 @@ public class StringRegexpTest
 	@Test
 	public void findDigitDecimal()
 	{
-		String[] digitDecimal = {
+		String[] expected = {
 			"0",
 			"12",
 			"123",
@@ -1796,7 +1952,9 @@ public class StringRegexpTest
 			О, но это не любовь...0123456789
 			""";
 
-		assertArrayEquals(digitDecimal, StringRegexp.findDigitDecimal(value).toArray());
+		List<String> actual = StringRegexp.findDigitDecimal(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1805,7 +1963,7 @@ public class StringRegexpTest
 	@Test
 	public void findNumber()
 	{
-		String[] number = {
+		String[] expected = {
 			"1.100",
 			"0,1",
 			"1,000,00",
@@ -1844,7 +2002,9 @@ public class StringRegexpTest
 			Здравствуй, последний герой!
 			""";
 
-		assertArrayEquals(number, StringRegexp.findNumber(value).toArray());
+		List<String> actual = StringRegexp.findNumber(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1853,7 +2013,7 @@ public class StringRegexpTest
 	@Test
 	public void findWord()
 	{
-		String[] word = {
+		String[] expected = {
 			"Красно-жёлтые",
 			"дни",
 			"Застоялся",
@@ -1886,7 +2046,9 @@ public class StringRegexpTest
 			На пороге осень — моя сестра.
 			""";
 
-		assertArrayEquals(word, StringRegexp.findWord(value).toArray());
+		List<String> actual = StringRegexp.findWord(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 
 	/**
@@ -1895,7 +2057,7 @@ public class StringRegexpTest
 	@Test
 	public void findLetter()
 	{
-		String[] letter = {
+		String[] expected = {
 			"М",
 			"а",
 			"л",
@@ -1907,6 +2069,8 @@ public class StringRegexpTest
 			Малыш
 			""";
 
-		assertArrayEquals(letter, StringRegexp.findLetter(value).toArray());
+		List<String> actual = StringRegexp.findLetter(value);
+
+		assertArrayEquals(expected, actual.toArray());
 	}
 }
