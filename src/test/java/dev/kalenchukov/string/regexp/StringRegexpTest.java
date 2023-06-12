@@ -932,13 +932,6 @@ public class StringRegexpTest
 	@Test
 	public void findEmailAddress()
 	{
-		String[] expected = {
-			"aleksey.kalenchukov@yandex.ru",
-			"alekseyKalenchukov@yandex.ru",
-			"aleksey123kalenchukov@yandex.ru",
-			"123alekseykalenchukov@yandex.ru"
-		};
-
 		String value = """
 			И я должен прийти к девяти, на работу свою,
 			Но сейчас уже без десяти, а я только встаю aleksey.kalenchukov@yandex.ru
@@ -957,9 +950,16 @@ public class StringRegexpTest
 			Эх, 123alekseykalenchukov@yandex.ru ещё только без десяти, девять часов
 			""";
 
-		List<String> actual = StringRegexp.findEmailAddress(value);
+		String[] expectedArray = {
+			"aleksey.kalenchukov@yandex.ru",
+			"alekseyKalenchukov@yandex.ru",
+			"aleksey123kalenchukov@yandex.ru",
+			"123alekseykalenchukov@yandex.ru"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findEmailAddress(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -968,13 +968,6 @@ public class StringRegexpTest
 	@Test
 	public void findDomain()
 	{
-		String[] expected = {
-			"kalenchukov.dev",
-			"regexp.string.kalenchukov.dev",
-			"aleksey.123.kalenchukov.ru",
-			"123.aleksey.kalenchukov.ru"
-		};
-
 		String value = """
 			Зерна упали в землю, зерна просят дождя.
 			Им нужен дождь.
@@ -1010,9 +1003,16 @@ public class StringRegexpTest
 			Мама, я знаю, мы все сошли с ума...
 			""";
 
-		List<String> actual = StringRegexp.findDomain(value);
+		String[] expectedArray = {
+			"kalenchukov.dev",
+			"regexp.string.kalenchukov.dev",
+			"aleksey.123.kalenchukov.ru",
+			"123.aleksey.kalenchukov.ru"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findDomain(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1021,13 +1021,6 @@ public class StringRegexpTest
 	@Test
 	public void findUrlHttp()
 	{
-		String[] expected = {
-			"http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme",
-			"https://kalenchukov.dev/#readme",
-			"https://www.kalenchukov.dev/string/regexp/",
-			"http://kalenchukov.dev/?isUrlHttp=test123"
-		};
-
 		String value = """
 			Тот, кто в пятнадцать лет убежал из дома
 			Вряд ли поймёт http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme того, кто учился в спецшколе
@@ -1057,9 +1050,16 @@ public class StringRegexpTest
 			Бошетунмай, бошетунмай
 			""";
 
-		List<String> actual = StringRegexp.findUrlHttp(value);
+		String[] expectedArray = {
+			"http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme",
+			"https://kalenchukov.dev/#readme",
+			"https://www.kalenchukov.dev/string/regexp/",
+			"http://kalenchukov.dev/?isUrlHttp=test123"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findUrlHttp(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1068,11 +1068,6 @@ public class StringRegexpTest
 	@Test
 	public void findCountryCodeAlpha2()
 	{
-		String[] expected = {
-			"RU",
-			"BY"
-		};
-
 		String value = """
 			О-o, это странное место Камчатка
 			О-o, это сладкое слово «Камчатка»
@@ -1094,9 +1089,14 @@ public class StringRegexpTest
 			Ну и пусть...
 			""";
 
-		List<String> actual = StringRegexp.findCountryCodeAlpha2(value);
+		String[] expectedArray = {
+			"RU",
+			"BY"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findCountryCodeAlpha2(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1105,11 +1105,6 @@ public class StringRegexpTest
 	@Test
 	public void findCountryCodeAlpha3()
 	{
-		String[] expected = {
-			"RUS",
-			"BLR"
-		};
-
 		String value = """
 			Каждый день ты приходишь домой, когда темно.
 			Каждый день RUS долго едешь в метро, когда темно.
@@ -1129,9 +1124,14 @@ public class StringRegexpTest
 			Проснись, это любовь...
 			""";
 
-		List<String> actual = StringRegexp.findCountryCodeAlpha3(value);
+		String[] expectedArray = {
+			"RUS",
+			"BLR"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findCountryCodeAlpha3(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1140,12 +1140,6 @@ public class StringRegexpTest
 	@Test
 	public void findCountryCodeNumeric3()
 	{
-		String[] expected = {
-			"052",
-			"643",
-			"112"
-		};
-
 		String value = """
 			Стань птицей, живущей в моём небе
 			Помни, что нет 052 тюрьмы страшнее, чем в голове
@@ -1161,9 +1155,15 @@ public class StringRegexpTest
 			Я стану словами
 			""";
 
-		List<String> actual = StringRegexp.findCountryCodeNumeric3(value);
+		String[] expectedArray = {
+			"052",
+			"643",
+			"112"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findCountryCodeNumeric3(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1172,13 +1172,6 @@ public class StringRegexpTest
 	@Test
 	public void findRgbHex()
 	{
-		String[] expected = {
-			"#FFFFFF",
-			"#000000",
-			"#D0E9F8",
-			"#1A2B3C"
-		};
-
 		String value = """
 			Крыши домов дрожат под тяжестью дней
 			Небесный пастух пасёт #FFFFFF облака
@@ -1211,9 +1204,16 @@ public class StringRegexpTest
 			Спокойная ночь
 			""";
 
-		List<String> actual = StringRegexp.findRgbHex(value);
+		String[] expectedArray = {
+			"#FFFFFF",
+			"#000000",
+			"#D0E9F8",
+			"#1A2B3C"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findRgbHex(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1222,13 +1222,6 @@ public class StringRegexpTest
 	@Test
 	public void findRgbHexIgnoreCase()
 	{
-		String[] expected = {
-			"#fffFFF",
-			"#000000",
-			"#d0e9F8",
-			"#1a2B3C"
-		};
-
 		String value = """
 			Застоялся мой #fffFFF поезд в депо.
 			Снова я уезжаю. Пора...
@@ -1261,9 +1254,16 @@ public class StringRegexpTest
 			В серебре, а, может быть, в нищете, но как можно скорей.
 			""";
 
-		List<String> actual = StringRegexp.findRgbHexIgnoreCase(value);
+		String[] expectedArray = {
+			"#fffFFF",
+			"#000000",
+			"#d0e9F8",
+			"#1a2B3C"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findRgbHexIgnoreCase(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1272,13 +1272,6 @@ public class StringRegexpTest
 	@Test
 	public void findMacAddress()
 	{
-		String[] expected = {
-			"00-EF-CD-EF-11-22",
-			"00:EF:CD:EF:11:22",
-			"00:EF:CD:DF:11:22",
-			"00-EF-CD-CE-11-22"
-		};
-
 		String value = """
 			В этом мотиве есть какая-то фальшь,
 			Но где найти 00-EF-CD-EF-11-22 тех, что услышат ее?
@@ -1307,9 +1300,16 @@ public class StringRegexpTest
 			Я объявляю свой...
 			""";
 
-		List<String> actual = StringRegexp.findMacAddress(value);
+		String[] expectedArray = {
+			"00-EF-CD-EF-11-22",
+			"00:EF:CD:EF:11:22",
+			"00:EF:CD:DF:11:22",
+			"00-EF-CD-CE-11-22"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findMacAddress(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1318,13 +1318,6 @@ public class StringRegexpTest
 	@Test
 	public void findMacAddressIgnoreCase()
 	{
-		String[] expected = {
-			"00-EF-CD-ef-11-22",
-			"00:EF:CD:EF:11:22",
-			"00:EF:cd:DF:11:22",
-			"00-ef-cd-ce-11-22"
-		};
-
 		String value = """
 			Я вижу, как волны смывают следы на песке
 			Я слышу, как ветер 00-EF-CD-ef-11-22 поет свою странную песню
@@ -1343,9 +1336,16 @@ public class StringRegexpTest
 			Музыку волн, музыку ветра?
 			""";
 
-		List<String> actual = StringRegexp.findMacAddressIgnoreCase(value);
+		String[] expectedArray = {
+			"00-EF-CD-ef-11-22",
+			"00:EF:CD:EF:11:22",
+			"00:EF:cd:DF:11:22",
+			"00-ef-cd-ce-11-22"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findMacAddressIgnoreCase(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1354,13 +1354,6 @@ public class StringRegexpTest
 	@Test
 	public void findInet4Address()
 	{
-		String[] expected = {
-			"192.168.1.1",
-			"1.1.1.1",
-			"0.0.0.0",
-			"10.222.170.80"
-		};
-
 		String value = """
 			День как день, только ты почему-то грустишь.
 			И вокруг все поют, только ты один молчишь.
@@ -1392,9 +1385,16 @@ public class StringRegexpTest
 			Когда твоя девушка больна.
 			""";
 
-		List<String> actual = StringRegexp.findInet4Address(value);
+		String[] expectedArray = {
+			"192.168.1.1",
+			"1.1.1.1",
+			"0.0.0.0",
+			"10.222.170.80"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findInet4Address(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1403,13 +1403,6 @@ public class StringRegexpTest
 	@Test
 	public void findRgbNumeric()
 	{
-		String[] expected = {
-			"255,150,50",
-			"0, 0, 0",
-			"50, 50,50",
-			"113,13,3"
-		};
-
 		String value = """
 			Наши реки бедны водой
 			В наших окнах 255,150,50 не видно дня
@@ -1444,9 +1437,16 @@ public class StringRegexpTest
 			Играй!
 			""";
 
-		List<String> actual = StringRegexp.findRgbNumeric(value);
+		String[] expectedArray = {
+			"255,150,50",
+			"0, 0, 0",
+			"50, 50,50",
+			"113,13,3"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findRgbNumeric(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1455,13 +1455,6 @@ public class StringRegexpTest
 	@Test
 	public void findTelegram()
 	{
-		String[] expected = {
-			"@kalenchukov",
-			"@Kalenchukov",
-			"@KALENCHUKOV",
-			"@kalen_CHUKOV"
-		};
-
 		String value = """
 			Ты часто проходишь мимо, не видя меня
 			С кем-то другим, я стою не дыша @kalenchukov
@@ -1488,9 +1481,16 @@ public class StringRegexpTest
 			Ооооу, но это не любовь...
 			""";
 
-		List<String> actual = StringRegexp.findTelegram(value);
+		String[] expectedArray = {
+			"@kalenchukov",
+			"@Kalenchukov",
+			"@KALENCHUKOV",
+			"@kalen_CHUKOV"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findTelegram(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1499,13 +1499,6 @@ public class StringRegexpTest
 	@Test
 	public void findInet6Address()
 	{
-		String[] expected = {
-			"2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D",
-			"AD12::AE21::",
-			"::AE21:AD12",
-			"2001:DB8::AE21:AD12"
-		};
-
 		String value = """
 			В последнее время я редко был дома,
 			Так что даже отвыкли звонить мне друзья.
@@ -1533,9 +1526,16 @@ public class StringRegexpTest
 			И не в силах сказать,2001:DB8::AE21:AD12 что принес этот год.
 			""";
 
-		List<String> actual = StringRegexp.findInet6Address(value);
+		String[] expectedArray = {
+			"2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D",
+			"AD12::AE21::",
+			"::AE21:AD12",
+			"2001:DB8::AE21:AD12"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findInet6Address(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1544,13 +1544,6 @@ public class StringRegexpTest
 	@Test
 	public void findInet6AddressIgnoreCase()
 	{
-		String[] expected = {
-			"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D",
-			"ad12::AE21::",
-			"::ae21:AD12",
-			"2001:db8::AE21:AD12"
-		};
-
 		String value = """
 			За окнами солнце, за окнами свет - это день.
 			Ну, а я всегда 2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D любил ночь.
@@ -1583,9 +1576,16 @@ public class StringRegexpTest
 			И я не знаю,2001:db8::AE21:AD12 как мне прожить следующий день.
 			""";
 
-		List<String> actual = StringRegexp.findInet6AddressIgnoreCase(value);
+		String[] expectedArray = {
+			"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D",
+			"ad12::AE21::",
+			"::ae21:AD12",
+			"2001:db8::AE21:AD12"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findInet6AddressIgnoreCase(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1594,13 +1594,6 @@ public class StringRegexpTest
 	@Test
 	public void findTag()
 	{
-		String[] expected = {
-			"#tag",
-			"#Tag",
-			"#TAG",
-			"#ta_g"
-		};
-
 		String value = """
 			Гуляю. Я один гуляю.
 			Что дальше делать, #tag я не знаю.
@@ -1626,9 +1619,16 @@ public class StringRegexpTest
 			Я бездельник, у-у...
 			""";
 
-		List<String> actual = StringRegexp.findTag(value);
+		String[] expectedArray = {
+			"#tag",
+			"#Tag",
+			"#TAG",
+			"#ta_g"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findTag(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1637,13 +1637,6 @@ public class StringRegexpTest
 	@Test
 	public void findDigitBinary()
 	{
-		String[] expected = {
-			"010101",
-			"1101",
-			"10101",
-			"01010101"
-		};
-
 		String value = """
 			Мы хотим видеть 010101 дальше, чем окна дома напротив
 			Мы хотим жить, мы живучи, как кошки
@@ -1672,9 +1665,16 @@ public class StringRegexpTest
 			Дальше действовать будем мы
 			""";
 
-		List<String> actual = StringRegexp.findDigitBinary(value);
+		String[] expectedArray = {
+			"010101",
+			"1101",
+			"10101",
+			"01010101"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findDigitBinary(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1683,13 +1683,6 @@ public class StringRegexpTest
 	@Test
 	public void findDigitTernary()
 	{
-		String[] expected = {
-			"0101201",
-			"11021",
-			"102101",
-			"010210101"
-		};
-
 		String value = """
 			Струн провода, ток по рукам,
 			Телефон на все 0101201 голоса говорит: «Пока!» Пора...
@@ -1718,9 +1711,16 @@ public class StringRegexpTest
 			Я скажу одно лишь слово: «Верь!»
 			""";
 
-		List<String> actual = StringRegexp.findDigitTernary(value);
+		String[] expectedArray = {
+			"0101201",
+			"11021",
+			"102101",
+			"010210101"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findDigitTernary(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1729,13 +1729,6 @@ public class StringRegexpTest
 	@Test
 	public void findDigitOctal()
 	{
-		String[] expected = {
-			"010317201",
-			"1160215",
-			"170241031",
-			"01021034567101"
-		};
-
 		String value = """
 			Над землёй мороз, что ни тронь - всё лёд.
 			Лишь во сне моём,010317201 поёт капель.
@@ -1766,9 +1759,16 @@ public class StringRegexpTest
 			То увидим в тех глазах солнца свет.
 			""";
 
-		List<String> actual = StringRegexp.findDigitOctal(value);
+		String[] expectedArray = {
+			"010317201",
+			"1160215",
+			"170241031",
+			"01021034567101"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findDigitOctal(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1777,13 +1777,6 @@ public class StringRegexpTest
 	@Test
 	public void findDigitDuodecimal()
 	{
-		String[] expected = {
-			"01031A9b7201",
-			"11602B15",
-			"17024A1031",
-			"B010A210394567101"
-		};
-
 		String value = """
 			Крыши домов дрожат под тяжестью дней
 			Небесный пастух пасёт облака 01031A9b7201
@@ -1816,9 +1809,16 @@ public class StringRegexpTest
 			Спокойная ночь
 			""";
 
-		List<String> actual = StringRegexp.findDigitDuodecimal(value);
+		String[] expectedArray = {
+			"01031A9b7201",
+			"11602B15",
+			"17024A1031",
+			"B010A210394567101"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findDigitDuodecimal(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1827,13 +1827,6 @@ public class StringRegexpTest
 	@Test
 	public void findDigitHexadecimal()
 	{
-		String[] expected = {
-			"0103f1A9b720d1",
-			"1160de2B15",
-			"17024cA103d1",
-			"B010A210cde3945f67101"
-		};
-
 		String value = """
 			На холодной земле стоит город большой.
 			Там горят фонари, и машины гудят.
@@ -1861,9 +1854,16 @@ public class StringRegexpTest
 			Так откуда взялась, печаль?
 			""";
 
-		List<String> actual = StringRegexp.findDigitHexadecimal(value);
+		String[] expectedArray = {
+			"0103f1A9b720d1",
+			"1160de2B15",
+			"17024cA103d1",
+			"B010A210cde3945f67101"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findDigitHexadecimal(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1872,13 +1872,6 @@ public class StringRegexpTest
 	@Test
 	public void findLocalization()
 	{
-		String[] expected = {
-			"ru-RU",
-			"en-EN",
-			"by-BY",
-			"it-IT"
-		};
-
 		String value = """
 			Застоялся мой поезд в депо.
 			Снова я уезжаю. Пора...
@@ -1911,9 +1904,16 @@ public class StringRegexpTest
 			В серебре, а, может быть, в нищете, но как можно скорей.
 			""";
 
-		List<String> actual = StringRegexp.findLocalization(value);
+		String[] expectedArray = {
+			"ru-RU",
+			"en-EN",
+			"by-BY",
+			"it-IT"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findLocalization(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1922,13 +1922,6 @@ public class StringRegexpTest
 	@Test
 	public void findDigitDecimal()
 	{
-		String[] expected = {
-			"0",
-			"12",
-			"123",
-			"0123456789"
-		};
-
 		String value = """
 			Ты часто проходишь 0 мимо, не видя меня,
 			С кем-то другим, я стою не дыша.
@@ -1952,9 +1945,16 @@ public class StringRegexpTest
 			О, но это не любовь...0123456789
 			""";
 
-		List<String> actual = StringRegexp.findDigitDecimal(value);
+		String[] expectedArray = {
+			"0",
+			"12",
+			"123",
+			"0123456789"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findDigitDecimal(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -1963,13 +1963,6 @@ public class StringRegexpTest
 	@Test
 	public void findNumber()
 	{
-		String[] expected = {
-			"1.100",
-			"0,1",
-			"1,000,00",
-			"1.222,123"
-		};
-
 		String value = """
 			Ночь коротка, цель далека;
 			Ночью так часто 1.100 хочется пить,
@@ -2002,9 +1995,16 @@ public class StringRegexpTest
 			Здравствуй, последний герой!
 			""";
 
-		List<String> actual = StringRegexp.findNumber(value);
+		String[] expectedArray = {
+			"1.100",
+			"0,1",
+			"1,000,00",
+			"1.222,123"
+		};
 
-		assertArrayEquals(expected, actual.toArray());
+		List<String> actualList = StringRegexp.findNumber(value);
+
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -2013,7 +2013,16 @@ public class StringRegexpTest
 	@Test
 	public void findWord()
 	{
-		String[] expected = {
+		String value = """
+			Красно-жёлтые дни.
+
+			Застоялся мой поезд в депо.
+			Снова я уезжаю. Пора...
+			На пороге ветер заждался меня.
+			На пороге осень — моя сестра.
+			""";
+
+		String[] expectedArray = {
 			"Красно-жёлтые",
 			"дни",
 			"Застоялся",
@@ -2037,18 +2046,9 @@ public class StringRegexpTest
 			"сестра"
 		};
 
-		String value = """
-			Красно-жёлтые дни.
-						
-			Застоялся мой поезд в депо.
-			Снова я уезжаю. Пора...
-			На пороге ветер заждался меня.
-			На пороге осень — моя сестра.
-			""";
+		List<String> actualList = StringRegexp.findWord(value);
 
-		List<String> actual = StringRegexp.findWord(value);
-
-		assertArrayEquals(expected, actual.toArray());
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 
 	/**
@@ -2057,7 +2057,11 @@ public class StringRegexpTest
 	@Test
 	public void findLetter()
 	{
-		String[] expected = {
+		String value = """
+			Малыш
+			""";
+
+		String[] expectedArray = {
 			"М",
 			"а",
 			"л",
@@ -2065,12 +2069,8 @@ public class StringRegexpTest
 			"ш"
 		};
 
-		String value = """
-			Малыш
-			""";
+		List<String> actualList = StringRegexp.findLetter(value);
 
-		List<String> actual = StringRegexp.findLetter(value);
-
-		assertArrayEquals(expected, actual.toArray());
+		assertArrayEquals(expectedArray, actualList.toArray());
 	}
 }

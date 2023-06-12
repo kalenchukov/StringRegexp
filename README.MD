@@ -408,14 +408,14 @@ true
 ### Поиск
 #### Поиск локализаций
 ```java
-String text = """
+String value = """
     Застоялся мой поезд в депо.
     Снова я by-BY уезжаю. Пора...
     На пороге ветер заждался меня.
     На пороге осень — моя сестра.ru-RU
     """;
 
-StringRegexp.findLocalization(text);
+StringRegexp.findLocalization(value);
 ```
 
 Результат выполнения:
@@ -428,7 +428,7 @@ StringRegexp.findLocalization(text);
 
 #### Поиск RGB в числовом представлении
 ```java
-String text = """
+String value = """
     Наши реки бедны водой
     В наших окнах 255,150,50 не видно дня
     Наше утро похоже на ночь
@@ -439,7 +439,7 @@ String text = """
     Я полцарства отдам за коня
     """;
 
-StringRegexp.findRgbNumeric(text);
+StringRegexp.findRgbNumeric(value);
 ```
 
 Результат выполнения:
@@ -452,14 +452,14 @@ StringRegexp.findRgbNumeric(text);
 
 #### Поиск RGB в шестнадцатеричной системе счисления
 ```java
-String text = """
+String value = """
     Крыши домов дрожат под тяжестью дней
     Небесный пастух пасёт #FFFFFF облака
     Город стреляет в ночь дробью огней
     Но ночь сильней,#123456 её власть велика
     """;
 
-StringRegexp.findRgbHex(text);
+StringRegexp.findRgbHex(value);
 ```
 
 Результат выполнения:
@@ -472,14 +472,14 @@ StringRegexp.findRgbHex(text);
 
 #### Поиск RGB в шестнадцатеричной системе счисления без учёта регистра букв
 ```java
-String text = """
+String value = """
     Застоялся мой #fffFFF поезд в депо.
     Снова я уезжаю. Пора...
     На пороге ветер заждался меня.
     На пороге осень — моя сестра.#000000
     """;
 
-StringRegexp.findRgbHexIgnoreCase(text);
+StringRegexp.findRgbHexIgnoreCase(value);
 ```
 
 Результат выполнения:
@@ -492,14 +492,14 @@ StringRegexp.findRgbHexIgnoreCase(text);
 
 #### Поиск MAC-адресов
 ```java
-String text = """
+String value = """
     В этом мотиве есть какая-то фальшь,
     Но где найти 00-EF-CD-EF-11-22 тех, что услышат ее?
     Подросший ребенок, воспитанный жизнью за шкафом,
     Теперь ты видишь Солнце, возьми - 00:EF:CD:EF:11:22 это твое!
     """;
 
-StringRegexp.findMacAddress(text);
+StringRegexp.findMacAddress(value);
 ```
 
 Результат выполнения:
@@ -512,14 +512,14 @@ StringRegexp.findMacAddress(text);
 
 #### Поиск MAC-адресов без учёта регистра букв
 ```java
-String text = """
+String value = """
     Я вижу, как волны смывают следы на песке
     Я слышу, как ветер 00-EF-CD-ef-11-22 поет свою странную песню
     Я слышу, как струны деревьев играют ее
     Музыку волн 00:EF:CD:EF:11:22, музыку ветра
     """;
 
-StringRegexp.findMacAddressIgnoreCase(text);
+StringRegexp.findMacAddressIgnoreCase(value);
 ```
 
 Результат выполнения:
@@ -532,14 +532,14 @@ StringRegexp.findMacAddressIgnoreCase(text);
 
 #### Поиск адресов электронной почты
 ```java
-String text = """
+String value = """
     И я должен прийти к девяти, на работу свою, aleksey.kalenchukov@yandex.ru
     Но сейчас уже без десяти, а я только встаю
     На столе моем 123alekseykalenchukov@yandex.ru завтрак стоит, от него не уйти
     И наверное, я к девяти не смогу подойти
     """;
 
-StringRegexp.findEmailAddress(text);
+StringRegexp.findEmailAddress(value);
 ```
 
 Результат выполнения:
@@ -552,7 +552,7 @@ StringRegexp.findEmailAddress(text);
 
 #### Поиск доменных имён
 ```java
-String text = """
+String value = """
     Зерна упали в землю, зерна просят дождя.
     Им нужен дождь.
     Разрежь мою грудь, kalenchukov.dev посмотри мне внутрь,
@@ -562,7 +562,7 @@ String text = """
     Если к дверям не подходят ключи,regexp.string.kalenchukov.dev вышиби двери плечом.
     """;
 
-StringRegexp.findDomain(text);
+StringRegexp.findDomain(value);
 ```
 
 Результат выполнения:
@@ -575,14 +575,14 @@ StringRegexp.findDomain(text);
 
 #### Поиск URL HTTP
 ```java
-String text = """
+String value = """
     Тот, кто в пятнадцать лет убежал из дома
     Вряд ли поймёт http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme того, кто учился в спецшколе
     Тот, у кого есть хороший жизненный план
     Вряд ли будет https://kalenchukov.dev/#readme думать о чём-то другом
     """;
 
-StringRegexp.findUrlHttp(text);
+StringRegexp.findUrlHttp(value);
 ```
 
 Результат выполнения:
@@ -595,14 +595,14 @@ StringRegexp.findUrlHttp(text);
 
 #### Поиск IP-адресов четвёртой версии
 ```java
-String text = """
+String value = """
     День как день,10.222.170.80 только ты почему-то грустишь.
     И вокруг все поют, только ты один молчишь.
     Потерял аппетит и не 192.168.1.1 хочешь сходить в кино.
     Ты идешь в магазин, чтобы купить вино.
     """;
 
-StringRegexp.findInet4Address(text);
+StringRegexp.findInet4Address(value);
 ```
 
 Результат выполнения:
@@ -615,14 +615,14 @@ StringRegexp.findInet4Address(text);
 
 #### Поиск IP-адресов шестой версии
 ```java
-String text = """
+String value = """
     В последнее время я редко был дома,
     Так AD12::AE21:: что даже отвыкли звонить мне друзья.
     В разъездах, разгулах 2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D конца лета симптомы
     Совсем перестали вдруг мучить меня.
     """;
 
-StringRegexp.findInet6Address(text);
+StringRegexp.findInet6Address(value);
 ```
 
 Результат выполнения:
@@ -635,14 +635,14 @@ StringRegexp.findInet6Address(text);
 
 #### Поиск IP-адресов шестой версии без учёта регистра букв
 ```java
-String text = """
+String value = """
     За окнами солнце, за окнами свет - это день.
     Ну, а я всегда 2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D любил ночь.
     И это мое дело - любить ночь,
     И это мое право - ad12::AE21:: уйти в тень.
     """;
 
-StringRegexp.findInet6AddressIgnoreCase(text);
+StringRegexp.findInet6AddressIgnoreCase(value);
 ```
 
 Результат выполнения:
@@ -655,14 +655,14 @@ StringRegexp.findInet6AddressIgnoreCase(text);
 
 #### Поиск телеграм каналов
 ```java
-String text = """
+String value = """
     Ты часто проходишь мимо, не видя меня
     С кем-то другим, я стою не дыша @kalenchukov
     Я знаю, что ты живешь в соседнем дворе
     Ты идешь не спеша,@Kalenchukov не спеша...
     """;
 
-StringRegexp.findTelegram(text);
+StringRegexp.findTelegram(value);
 ```
 
 Результат выполнения:
@@ -675,7 +675,7 @@ StringRegexp.findTelegram(text);
 
 #### Поиск двухбуквенных кодов стран
 ```java
-String text = """
+String value = """
     О-o, это странное место Камчатка
     О-o, это сладкое слово «Камчатка»
     Но на этой земле RU я не вижу тебя
@@ -690,7 +690,7 @@ String text = """
     Ну и пусть...
     """;
 
-StringRegexp.findCountryCodeAlpha2(text);
+StringRegexp.findCountryCodeAlpha2(value);
 ```
 
 Результат выполнения:
@@ -703,7 +703,7 @@ StringRegexp.findCountryCodeAlpha2(text);
 
 #### Поиск трёхбуквенных кодов стран
 ```java
-String text = """
+String value = """
     Каждый день ты приходишь домой, когда темно.
     Каждый день RUS долго едешь в метро, когда темно.
     А она живет в центре всех городов,
@@ -713,7 +713,7 @@ String text = """
     Смотри, это любовь,
     """;
 
-StringRegexp.findCountryCodeAlpha3(text);
+StringRegexp.findCountryCodeAlpha3(value);
 ```
 
 Результат выполнения:
@@ -726,7 +726,7 @@ StringRegexp.findCountryCodeAlpha3(text);
 
 #### Поиск трёхциферных кодов стран
 ```java
-String text = """
+String value = """
     Стань птицей, живущей в моём небе
     Помни, что нет 052 тюрьмы страшнее, чем в голове
     Стань птицей, не думай о хлебе
@@ -736,7 +736,7 @@ String text = """
     Стань сердцем, бейся в моём теле
     """;
 
-StringRegexp.findCountryCodeNumeric3(text);
+StringRegexp.findCountryCodeNumeric3(value);
 ```
 
 Результат выполнения:
@@ -750,14 +750,14 @@ StringRegexp.findCountryCodeNumeric3(text);
 
 #### Поиск меток
 ```java
-String text = """
+String value = """
     Гуляю. Я один гуляю.
     Что дальше делать, #tag я не знаю.
     Нет дома. Никого нет дома #Tag.
     Я лишний, словно куча лома, у-у.
     """;
 
-StringRegexp.findTag(text);
+StringRegexp.findTag(value);
 ```
 
 Результат выполнения:
@@ -770,14 +770,14 @@ StringRegexp.findTag(text);
 
 #### Поиск цифр двоичной системы счисления
 ```java
-String text = """
+String value = """
     Мы хотим видеть 010101 дальше, чем окна дома напротив
     Мы хотим жить, мы живучи, как кошки
     И вот мы пришли заявить о своих правах,1101 да
     Слышишь шелест плащей? Это мы
     """;
 
-StringRegexp.findDigitBinary(text);
+StringRegexp.findDigitBinary(value);
 ```
 
 Результат выполнения:
@@ -790,7 +790,7 @@ StringRegexp.findDigitBinary(text);
 
 #### Поиск цифр троичной системы счисления
 ```java
-String text = """
+String value = """
     Струн провода, ток по рукам,
     Телефон на все 0101201 голоса говорит: «Пока!» Пора...
     И пальто на гвозде, шарф в рукаве
@@ -798,7 +798,7 @@ String text = """
     «Подожди до утра!» До утра...11021
     """;
 
-StringRegexp.findDigitTernary(text);
+StringRegexp.findDigitTernary(value);
 ```
 
 Результат выполнения:
@@ -811,14 +811,14 @@ StringRegexp.findDigitTernary(text);
 
 #### Поиск цифр восьмеричной системы счисления
 ```java
-String text = """
+String value = """
     Над землёй мороз, что ни тронь - всё лёд.
     Лишь во сне моём,010317201 поёт капель.
     А снег идёт стеной, а снег идёт весь день,
     А за той стеной - стоит Апрель.1160215
     """;
 
-StringRegexp.findDigitOctal(text);
+StringRegexp.findDigitOctal(value);
 ```
 
 Результат выполнения:
@@ -831,14 +831,14 @@ StringRegexp.findDigitOctal(text);
 
 #### Поиск цифр десятеричной системы счисления
 ```java
-String text = """
+String value = """
     Ты часто проходишь 0 мимо, не видя меня,
     С кем-то другим, я стою не дыша.
     Я знаю, что ты живешь в соседнем дворе,12
     Ты идешь не спеша, не спеша...
     """;
 
-StringRegexp.findDigitDecimal(text);
+StringRegexp.findDigitDecimal(value);
 ```
 
 Результат выполнения:
@@ -851,14 +851,14 @@ StringRegexp.findDigitDecimal(text);
 
 #### Поиск цифр двенадцатеричной системы счисления
 ```java
-String text = """
+String value = """
     Крыши домов дрожат под тяжестью дней
     Небесный пастух пасёт облака 01031A9b7201
     Город стреляет в ночь дробью огней
     Но ночь сильней,11602B15 её власть велика
     """;
 
-StringRegexp.findDigitDuodecimal(text);
+StringRegexp.findDigitDuodecimal(value);
 ```
 
 Результат выполнения:
@@ -871,14 +871,14 @@ StringRegexp.findDigitDuodecimal(text);
 
 #### Поиск цифр шестнадцатеричной системы счисления
 ```java
-String text = """
+String value = """
     На холодной земле стоит город большой.
     Там горят фонари, и машины гудят.
     А над городом ночь, 0103f1A9b720d1 а над ночью луна,
     И сегодня луна каплей крови красна.1160de2B15
     """;
 
-StringRegexp.findDigitHexadecimal(text);
+StringRegexp.findDigitHexadecimal(value);
 ```
 
 Результат выполнения:
@@ -891,14 +891,14 @@ StringRegexp.findDigitHexadecimal(text);
 
 #### Поиск чисел
 ```java
-String text = """
+String value = """
     Ночь коротка, цель далека;
     Ночью так часто 1.100 хочется пить,
     Ты выходишь на кухню, но вода здесь горька;
     Ты не можешь здесь спать, 0,1 ты не хочешь здесь жить.
     """;
 
-StringRegexp.findNumber(text);
+StringRegexp.findNumber(value);
 ```
 
 Результат выполнения:
@@ -911,14 +911,14 @@ StringRegexp.findNumber(text);
 
 #### Поиск слов
 ```java
-String text = """
+String value = """
     Красно-жёлтые дни.
 
     Застоялся мой поезд в депо.
     Снова я уезжаю. Пора...
     """;
 
-StringRegexp.findWord(text);
+StringRegexp.findWord(value);
 ```
 
 Результат выполнения:
@@ -940,11 +940,11 @@ StringRegexp.findWord(text);
 
 #### Поиск букв
 ```java
-String text = """
+String value = """
     Малыш
     """;
 
-StringRegexp.findLetter(text);
+StringRegexp.findLetter(value);
 ```
 
 Результат выполнения:
