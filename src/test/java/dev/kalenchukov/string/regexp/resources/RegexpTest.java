@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Класс проверки констант и методов перечисления {@link Regexp}.
@@ -49,7 +49,7 @@ public class RegexpTest
 
 		String actualGroup = regexp.getGroup();
 
-		assertEquals("localization", actualGroup);
+		assertThat(actualGroup).isEqualTo("localization");
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class RegexpTest
 
 		String actualPattern = regexp.getPattern();
 
-		assertFalse(actualPattern.isEmpty());
+		assertThat(actualPattern).isNotEmpty();
 	}
 
 	/**
@@ -82,15 +82,15 @@ public class RegexpTest
 			String value = "ru-RU";
 			Pattern pattern = Pattern.compile(Regexp.LOCALIZATION.getPattern(), Pattern.UNICODE_CASE);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup1 = matcher.group("localization");
 			String actualGroup2 = matcher.group("language");
 			String actualGroup3 = matcher.group("country");
 
-			assertEquals("ru-RU", actualGroup1);
-			assertEquals("ru", actualGroup2);
-			assertEquals("RU", actualGroup3);
+			assertThat(actualGroup1).isEqualTo("ru-RU");
+			assertThat(actualGroup2).isEqualTo("ru");
+			assertThat(actualGroup3).isEqualTo("RU");
 		}
 
 		/**
@@ -105,7 +105,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -117,7 +117,7 @@ public class RegexpTest
 			String value = "192.168.1.100";
 			Pattern pattern = Pattern.compile(Regexp.INET_4_ADDRESS.getPattern(), Pattern.UNICODE_CASE);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup1 = matcher.group("inet4Address");
 			String actualGroup2 = matcher.group("part1");
@@ -125,11 +125,11 @@ public class RegexpTest
 			String actualGroup4 = matcher.group("part3");
 			String actualGroup5 = matcher.group("part4");
 
-			assertEquals("192.168.1.100", actualGroup1);
-			assertEquals("192", actualGroup2);
-			assertEquals("168", actualGroup3);
-			assertEquals("1", actualGroup4);
-			assertEquals("100", actualGroup5);
+			assertThat(actualGroup1).isEqualTo("192.168.1.100");
+			assertThat(actualGroup2).isEqualTo("192");
+			assertThat(actualGroup3).isEqualTo("168");
+			assertThat(actualGroup4).isEqualTo("1");
+			assertThat(actualGroup5).isEqualTo("100");
 		}
 
 		/**
@@ -144,7 +144,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -159,11 +159,11 @@ public class RegexpTest
 				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 			);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup = matcher.group("inet6Address");
 
-			assertEquals("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D", actualGroup);
+			assertThat(actualGroup).isEqualTo("2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D");
 		}
 
 		/**
@@ -178,7 +178,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -193,17 +193,17 @@ public class RegexpTest
 				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 			);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup1 = matcher.group("emailAddress");
 			String actualGroup2 = matcher.group("local");
 			String actualGroup3 = matcher.group("domain");
 			String actualGroup4 = matcher.group("tld");
 
-			assertEquals("aleksey.kalenchukov@yandex.ru", actualGroup1);
-			assertEquals("aleksey.kalenchukov", actualGroup2);
-			assertEquals("yandex.ru", actualGroup3);
-			assertEquals("ru", actualGroup4);
+			assertThat(actualGroup1).isEqualTo("aleksey.kalenchukov@yandex.ru");
+			assertThat(actualGroup2).isEqualTo("aleksey.kalenchukov");
+			assertThat(actualGroup3).isEqualTo("yandex.ru");
+			assertThat(actualGroup4).isEqualTo("ru");
 		}
 
 		/**
@@ -218,7 +218,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -233,11 +233,11 @@ public class RegexpTest
 				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 			);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup = matcher.group("md5");
 
-			assertEquals("1BC29B36F623BA82AAF6724FD3B16718", actualGroup);
+			assertThat(actualGroup).isEqualTo("1BC29B36F623BA82AAF6724FD3B16718");
 		}
 
 		/**
@@ -252,7 +252,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -267,13 +267,13 @@ public class RegexpTest
 				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 			);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup1 = matcher.group("domain");
 			String actualGroup2 = matcher.group("tld");
 
-			assertEquals("kalenchukov.dev", actualGroup1);
-			assertEquals("dev", actualGroup2);
+			assertThat(actualGroup1).isEqualTo("kalenchukov.dev");
+			assertThat(actualGroup2).isEqualTo("dev");
 		}
 
 		/**
@@ -288,7 +288,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -303,7 +303,7 @@ public class RegexpTest
 				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 			);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup1 = matcher.group("url");
 			String actualGroup2 = matcher.group("protocol");
@@ -313,13 +313,13 @@ public class RegexpTest
 			String actualGroup6 = matcher.group("param");
 			String actualGroup7 = matcher.group("anchor");
 
-			assertEquals("http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#anchor", actualGroup1);
-			assertEquals("http", actualGroup2);
-			assertEquals("kalenchukov.dev", actualGroup3);
-			assertEquals("dev", actualGroup4);
-			assertEquals("hello/world/", actualGroup5);
-			assertEquals("java=18&hello=world123", actualGroup6);
-			assertEquals("anchor", actualGroup7);
+			assertThat(actualGroup1).isEqualTo("http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#anchor");
+			assertThat(actualGroup2).isEqualTo("http");
+			assertThat(actualGroup3).isEqualTo("kalenchukov.dev");
+			assertThat(actualGroup4).isEqualTo("dev");
+			assertThat(actualGroup5).isEqualTo("hello/world/");
+			assertThat(actualGroup6).isEqualTo("java=18&hello=world123");
+			assertThat(actualGroup7).isEqualTo("anchor");
 		}
 
 		/**
@@ -334,7 +334,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -346,17 +346,17 @@ public class RegexpTest
 			String value = "215,200,166";
 			Pattern pattern = Pattern.compile(Regexp.RGB_NUMERIC.getPattern(), Pattern.UNICODE_CASE);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup1 = matcher.group("rgb");
 			String actualGroup2 = matcher.group("red");
 			String actualGroup3 = matcher.group("green");
 			String actualGroup4 = matcher.group("blue");
 
-			assertEquals("215,200,166", actualGroup1);
-			assertEquals("215", actualGroup2);
-			assertEquals("200", actualGroup3);
-			assertEquals("166", actualGroup4);
+			assertThat(actualGroup1).isEqualTo("215,200,166");
+			assertThat(actualGroup2).isEqualTo("215");
+			assertThat(actualGroup3).isEqualTo("200");
+			assertThat(actualGroup4).isEqualTo("166");
 		}
 
 		/**
@@ -371,7 +371,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -386,17 +386,17 @@ public class RegexpTest
 				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 			);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup1 = matcher.group("rgb");
 			String actualGroup2 = matcher.group("red");
 			String actualGroup3 = matcher.group("green");
 			String actualGroup4 = matcher.group("blue");
 
-			assertEquals("#ABCDEF", actualGroup1);
-			assertEquals("AB", actualGroup2);
-			assertEquals("CD", actualGroup3);
-			assertEquals("EF", actualGroup4);
+			assertThat(actualGroup1).isEqualTo("#ABCDEF");
+			assertThat(actualGroup2).isEqualTo("AB");
+			assertThat(actualGroup3).isEqualTo("CD");
+			assertThat(actualGroup4).isEqualTo("EF");
 		}
 
 		/**
@@ -411,7 +411,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -426,7 +426,7 @@ public class RegexpTest
 				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 			);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup1 = matcher.group("macAddress");
 			String actualGroup2 = matcher.group("separator");
@@ -437,14 +437,14 @@ public class RegexpTest
 			String actualGroup7 = matcher.group("part5");
 			String actualGroup8 = matcher.group("part6");
 
-			assertEquals("00-eF-cd-Ef-11-22", actualGroup1);
-			assertEquals("-", actualGroup2);
-			assertEquals("00", actualGroup3);
-			assertEquals("eF", actualGroup4);
-			assertEquals("cd", actualGroup5);
-			assertEquals("Ef", actualGroup6);
-			assertEquals("11", actualGroup7);
-			assertEquals("22", actualGroup8);
+			assertThat(actualGroup1).isEqualTo("00-eF-cd-Ef-11-22");
+			assertThat(actualGroup2).isEqualTo("-");
+			assertThat(actualGroup3).isEqualTo("00");
+			assertThat(actualGroup4).isEqualTo("eF");
+			assertThat(actualGroup5).isEqualTo("cd");
+			assertThat(actualGroup6).isEqualTo("Ef");
+			assertThat(actualGroup7).isEqualTo("11");
+			assertThat(actualGroup8).isEqualTo("22");
 		}
 
 		/**
@@ -459,7 +459,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -474,13 +474,13 @@ public class RegexpTest
 				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 			);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup1 = matcher.group("telegram");
 			String actualGroup2 = matcher.group("name");
 
-			assertEquals("@kalenchukov", actualGroup1);
-			assertEquals("kalenchukov", actualGroup2);
+			assertThat(actualGroup1).isEqualTo("@kalenchukov");
+			assertThat(actualGroup2).isEqualTo("kalenchukov");
 		}
 
 		/**
@@ -495,7 +495,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -510,13 +510,13 @@ public class RegexpTest
 				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 			);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup1 = matcher.group("tag");
 			String actualGroup2 = matcher.group("name");
 
-			assertEquals("#tag", actualGroup1);
-			assertEquals("tag", actualGroup2);
+			assertThat(actualGroup1).isEqualTo("#tag");
+			assertThat(actualGroup2).isEqualTo("tag");
 		}
 
 		/**
@@ -531,7 +531,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -543,11 +543,11 @@ public class RegexpTest
 			String value = "0101010101";
 			Pattern pattern = Pattern.compile(Regexp.DIGIT_BINARY.getPattern(), Pattern.UNICODE_CASE);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup = matcher.group("digit");
 
-			assertEquals("0101010101", actualGroup);
+			assertThat(actualGroup).isEqualTo("0101010101");
 		}
 
 		/**
@@ -562,7 +562,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -574,11 +574,11 @@ public class RegexpTest
 			String value = "210210210210";
 			Pattern pattern = Pattern.compile(Regexp.DIGIT_TERNARY.getPattern(), Pattern.UNICODE_CASE);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup = matcher.group("digit");
 
-			assertEquals("210210210210", actualGroup);
+			assertThat(actualGroup).isEqualTo("210210210210");
 		}
 
 		/**
@@ -593,7 +593,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -605,11 +605,11 @@ public class RegexpTest
 			String value = "65016716501710651467106";
 			Pattern pattern = Pattern.compile(Regexp.DIGIT_OCTAL.getPattern(), Pattern.UNICODE_CASE);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup = matcher.group("digit");
 
-			assertEquals("65016716501710651467106", actualGroup);
+			assertThat(actualGroup).isEqualTo("65016716501710651467106");
 		}
 
 		/**
@@ -624,7 +624,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -636,11 +636,11 @@ public class RegexpTest
 			String value = "0123";
 			Pattern pattern = Pattern.compile(Regexp.DIGIT_DECIMAL.getPattern(), Pattern.UNICODE_CASE);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup = matcher.group("digit");
 
-			assertEquals("0123", actualGroup);
+			assertThat(actualGroup).isEqualTo("0123");
 		}
 
 		/**
@@ -655,7 +655,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -670,11 +670,11 @@ public class RegexpTest
 				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 			);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup = matcher.group("digit");
 
-			assertEquals("8819a861bB14Aab04ab519a2baA3b7a9B", actualGroup);
+			assertThat(actualGroup).isEqualTo("8819a861bB14Aab04ab519a2baA3b7a9B");
 		}
 
 		/**
@@ -689,7 +689,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -704,11 +704,11 @@ public class RegexpTest
 				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 			);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup = matcher.group("digit");
 
-			assertEquals("0123456789ABCDEF", actualGroup);
+			assertThat(actualGroup).isEqualTo("0123456789ABCDEF");
 		}
 
 		/**
@@ -723,7 +723,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -735,11 +735,11 @@ public class RegexpTest
 			String value = "1.100";
 			Pattern pattern = Pattern.compile(Regexp.NUMBER.getPattern(), Pattern.UNICODE_CASE);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup = matcher.group("number");
 
-			assertEquals("1.100", actualGroup);
+			assertThat(actualGroup).isEqualTo("1.100");
 		}
 
 		/**
@@ -754,7 +754,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -769,11 +769,11 @@ public class RegexpTest
 				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 			);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup = matcher.group("word");
 
-			assertEquals("Привет", actualGroup);
+			assertThat(actualGroup).isEqualTo("Привет");
 		}
 
 		/**
@@ -788,7 +788,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 
 		/**
@@ -803,11 +803,11 @@ public class RegexpTest
 				Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
 			);
 			Matcher matcher = pattern.matcher(value);
-			assertTrue(matcher.matches());
+			assertThat(matcher.matches()).isTrue();
 
 			String actualGroup = matcher.group("letter");
 
-			assertEquals("Ъ", actualGroup);
+			assertThat(actualGroup).isEqualTo("Ъ");
 		}
 
 		/**
@@ -822,7 +822,7 @@ public class RegexpTest
 
 			boolean actual = matcher.matches();
 
-			assertFalse(actual);
+			assertThat(actual).isFalse();
 		}
 	}
 }
