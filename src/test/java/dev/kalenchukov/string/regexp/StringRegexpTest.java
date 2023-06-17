@@ -24,6 +24,7 @@
 
 package dev.kalenchukov.string.regexp;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -40,890 +41,1215 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class StringRegexpTest
 {
 	/**
-	 * Проверка метода {@link StringRegexp#isLocalization(String)}.
+	 * Класс проверки метода {@link StringRegexp#isLocalization(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"ru-RU"
-	})
-	public void isLocalization(String value)
+	@Nested
+	public class IsLocalization
 	{
-		boolean actual = StringRegexp.isLocalization(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isLocalization(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"ru-RU"
+		})
+		public void isLocalization(String value)
+		{
+			boolean actual = StringRegexp.isLocalization(value);
 
-		assertThat(actual).isTrue();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isLocalization(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " ", "RU-RU", "RU-ru", "ru-ru", "ru", "RU"
+		})
+		public void isLocalizationNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isLocalization(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isLocalization(String)} с некорректными значениями.
+	 * Класс проверки метода {@link StringRegexp#isInet4Address(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"RU-RU", "RU-ru", "ru-ru",
-		"ru", "RU"
-	})
-	public void isLocalizationNotCorrect(String value)
+	@Nested
+	public class IsInet4Address
 	{
-		boolean actual = StringRegexp.isLocalization(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isInet4Address(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"192.168.1.1", "1.1.1.1", "0.0.0.0"
+		})
+		public void isInet4Address(String value)
+		{
+			boolean actual = StringRegexp.isInet4Address(value);
 
-		assertThat(actual).isFalse();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isInet4Address(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"",
+			" ",
+			"1.1.1.1.",
+			".6.6.6.6",
+			"2.2.2.2.2",
+			"3",
+			"4.",
+			"5.5",
+			"257.168.1.1",
+			"192.257.1.1",
+			"192.168.257.1",
+			"192.168.1.256",
+		})
+		public void isInet4AddressNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isInet4Address(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isInet4Address(String)}.
+	 * Класс проверки метода {@link StringRegexp#isInet6Address(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"192.168.1.1", "1.1.1.1", "0.0.0.0"
-	})
-	public void isInet4Address(String value)
+	@Nested
+	public class IsInet6Address
 	{
-		boolean actual = StringRegexp.isInet4Address(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isInet6Address(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D"
+		})
+		public void isInet6Address(String value)
+		{
+			boolean actual = StringRegexp.isInet6Address(value);
 
-		assertThat(actual).isTrue();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isInet6Address(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D"
+		})
+		public void isInet6AddressNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isInet6Address(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isInet4Address(String)} с некорректными значениями.
+	 * Класс проверки метода {@link StringRegexp#isInet6AddressIgnoreCase(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"1.1.1.1.", ".6.6.6.6",
-		"2.2.2.2.2", "3", "4.", "5.5",
-		"257.168.1.1", "192.257.1.1", "192.168.257.1", "192.168.1.256",
-	})
-	public void isInet4AddressNotCorrect(String value)
+	@Nested
+	public class IsInet6AddressIgnoreCase
 	{
-		boolean actual = StringRegexp.isInet4Address(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isInet6AddressIgnoreCase(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D",
+			"2001:0db8:0000:0000:0000:0000:ae21:AD12",
+			"0000:0000:0000:0000:0000:0000:ae21:AD12",
+			"2001:0DB8:0000:0000:0000:0000:ae21:1",
+			"2001:0DB8:0000:1:0000:0000:ae21:AD12",
+			"1:0000:0000:0000:0000:0000:ae21:AD12",
+			"::0DB8:11A3:09D7:1F34:8A2E:07a0:765D",
+			"0DB8:11A3:09D7:1F34::07a0:765D",
+			"2001:0DB8:11A3:09D7:1F34:07a0:07A0::",
+			"::ae21:AD12",
+			"AD12::ae21::",
+			"2001::",
+			"::2001",
+			"::",
+			"::1",
+			"1::",
+			"EF98:3:0:0:0:0:2F3B:7654",
+			"EF98:3::2f3b:7654",
+			"2001:DB8::ae21:AD12",
+		})
+		public void isInet6AddressIgnoreCase(String value)
+		{
+			boolean actual = StringRegexp.isInet6AddressIgnoreCase(value);
 
-		assertThat(actual).isFalse();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isInet6AddressIgnoreCase(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"",
+			" ",
+			"1000",
+			"1000:",
+			":1000",
+			":",
+			":::",
+			"::::",
+			"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D:765D",
+			":0db8:11a3:09d7:1f34:8A2E:07A0:765D",
+			"2001:0db8:11a3:09d7:1F34:8A2E:07A0:",
+			":::0db8:11a3:09d7:1f34:8A2E:07A0:765D",
+			"2001:0db8:11a3:09d7:1F34:8A2E:07A0:::",
+			"::::0db8:11a3:09d7:1F34:8A2E:07A0:765D",
+			"0db8:11a3:09d7::::1f34:8A2E:07A0:765D",
+			"2001:0db8:11a3:09d7:1F34:8A2E:07A0::::",
+			":0db8:11a3:09d7:1f34:8A2E:07A0:765D:1000",
+			"1000:2001:0db8:11a3:09D7:1F34:8A2E:07A0:",
+			":0db8:11a3:09d7:1f34:8A2E:07A0:765D:1",
+			"1:2001:0db8:11a3:09d7:1f34:8A2E:07A0:",
+			"::0db8:11a3:09d7:1f34:8A2E:07A0:765D:1",
+			"1:2001:0db8:11a3:09d7:1f34:8A2E:07A0::",
+			":::0db8:11a3:09d7:1f34:8a2e:07A0:765D:1",
+			"1:2001:0db8:11a3:09d7:1F34:8A2E:07A0:::",
+			"0db8:11a3::::8A2E:07A0:765D",
+			"0db8:11a3::::::8A2E:07A0:765D"
+		})
+		public void isInet6AddressIgnoreCaseNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isInet6AddressIgnoreCase(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isInet6Address(String)}.
+	 * Класс проверки метода {@link StringRegexp#isEmailAddress(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D"
-	})
-	public void isInet6Address(String value)
+	@Nested
+	public class IsEmailAddress
 	{
-		boolean actual = StringRegexp.isInet6Address(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isEmailAddress(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"aleksey.kalenchukov@yandex.ru",
+			"aleksey.kalenchukov_@yandex.ru",
+			"_aleksey.kalenchukov_@yandex.ru",
+			"-aleksey.kalenchukov-@yandex.ru",
+			"aleksey.kalenchukov@mail.yandex.ru",
+			"alekseykalenchukov@yandex.ru",
+			"aleksey.kalenchukov@yandex.com",
+			"aleksey-kalenchukov@yandex.ru",
+			"aleksey_kalenchukov@yandex.ru",
+			"AlekseyKalenchukov@yandex.ru",
+			"АлексейКаленчуков@яндекс.ру",
+			"a.k@yandex.ru",
+			"k@yandex.ru",
+			"kalenchukov@yandex.ru",
+			"kalenchukov@y.ru",
+			"aleksey.kalenchukovkalenchukovkalenchukovkalenchukovkalenchukov@yandex.ru",
+			"aleksey123.kalenchukov123@123yandex.ru",
+			"aleksey.kalenchukov@123.yandex.ru",
+			"123aleksey.kalenchukov@123.yandex.ru",
+			"123.456@123.ru",
+			"123456@123.ru"
+		})
+		public void isEmailAddress(String value)
+		{
+			boolean actual = StringRegexp.isEmailAddress(value);
 
-		assertThat(actual).isTrue();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isEmailAddress(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"",
+			" ",
+			".aleksey.kalenchukov@yandex.ru",
+			"aleksey.kalenchukov.@yandex.ru",
+			"aleksey..kalenchukov@yandex.ru",
+			"aleksey.kalenchukov@yandex",
+			"aleksey.kalenchukov@yandex..ru",
+			"aleksey.kalenchukov.yandex.ru",
+			"aleksey.kalenchukov@yandex.r",
+			"aleksey.kalenchukov@-yandex.ru",
+			"aleksey.kalenchukovkalenchukovkalenchukovkalenchukovkalenchukovkalenchukov@yandex.ru",
+		})
+		public void isEmailAddressNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isEmailAddress(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isInet6Address(String)} с некорректными значениями.
+	 * Класс проверки метода {@link StringRegexp#isDomain(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D"
-	})
-	public void isInet6AddressNotCorrect(String value)
+	@Nested
+	public class IsDomain
 	{
-		boolean actual = StringRegexp.isInet6Address(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isDomain(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"kalenchukov.dev",
+			"regexp.string.kalenchukov.dev",
+			"aleksey.123.kalenchukov.ru",
+			"123.aleksey.kalenchukov.ru"
+		})
+		public void isDomain(String value)
+		{
+			boolean actual = StringRegexp.isDomain(value);
 
-		assertThat(actual).isFalse();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isDomain(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " ", "kalenchukov,dev", "regexp.string.kalenchukov.d"
+		})
+		public void isDomainNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isDomain(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isInet6AddressIgnoreCase(String)}.
+	 * Класс проверки метода {@link StringRegexp#isUrlHttp(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D",
-		"2001:0db8:0000:0000:0000:0000:ae21:AD12", "0000:0000:0000:0000:0000:0000:ae21:AD12",
-		"2001:0DB8:0000:0000:0000:0000:ae21:1", "2001:0DB8:0000:1:0000:0000:ae21:AD12",
-		"1:0000:0000:0000:0000:0000:ae21:AD12",
-		"::0DB8:11A3:09D7:1F34:8A2E:07a0:765D", "0DB8:11A3:09D7:1F34::07a0:765D",
-		"2001:0DB8:11A3:09D7:1F34:07a0:07A0::",
-		"::ae21:AD12", "AD12::ae21::",
-		"2001::", "::2001",
-		"::",
-		"::1", "1::",
-		"EF98:3:0:0:0:0:2F3B:7654", "EF98:3::2f3b:7654", "2001:DB8::ae21:AD12",
-	})
-	public void isInet6AddressIgnoreCase(String value)
+	@Nested
+	public class IsUrlHttp
 	{
-		boolean actual = StringRegexp.isInet6AddressIgnoreCase(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isUrlHttp(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"http://kalenchukov.dev/hello/world/?java=18&hello=world123#anchor",
+			"https://kalenchukov.dev/hello/world/?java=18&hello=world123#anchor",
+			"http://www.kalenchukov.dev/hello/world?java=18&hello=world123#anchor",
+			"http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#anchor",
+			"http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#",
+			"http://www.kalenchukov.dev/hello/world/?java=18&hello=world123",
+			"http://www.kalenchukov.dev/hello/world/?java=18&hello=",
+			"http://www.kalenchukov.dev/hello/world/?java=18&",
+			"http://www.kalenchukov.dev/hello/world/?java=18",
+			"http://www.kalenchukov.dev/hello/world/?",
+			"http://www.kalenchukov.dev/hello/world/",
+			"http://www.kalenchukov.dev/hello/world",
+			"http://www.kalenchukov.dev/",
+			"http://www.kalenchukov.dev",
+			"http://www.kalenchukov.dev/hello/world",
+			"http://www.kalenchukov.dev/?java=18&hello=world123#anchor",
+			"http://www.kalenchukov.dev/#anchor"
+		})
+		public void isUrlHttp(String value)
+		{
+			boolean actual = StringRegexp.isUrlHttp(value);
 
-		assertThat(actual).isTrue();
+			assertThat(actual).isTrue();
+		}
+
+//		/**
+//		 * Проверка метода {@link StringRegexp#isUrlHttp(String)} с некорректными значениями.
+//		 */
+//		@ParameterizedTest
+//		@ValueSource(strings = {
+//			"http://kalenchukov.d",
+//			"https://kalenchukov.",
+//			"http://www.kalenchukov",
+//			"http://www.kalenchukov.dev",
+//			"://www.kalenchukov.dev",
+//			"http//www.kalenchukov.dev",
+//			"http://www..dev",
+//			"http:/www.kalenchukov.dev"
+//		})
+//		public void isUrlHttpNotCorrect(String value)
+//		{
+//			boolean actual = StringRegexp.isUrlHttp(value);
+//
+//			assertThat(actual).isFalse();
+//		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isInet6AddressIgnoreCase(String)} с некорректными значениями.
+	 * Класс проверки метода {@link StringRegexp#isRgbNumeric(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"1000", "1000:", ":1000",
-		":", ":::", "::::",
-		"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D:765D",
-		":0db8:11a3:09d7:1f34:8A2E:07A0:765D", "2001:0db8:11a3:09d7:1F34:8A2E:07A0:",
-		":::0db8:11a3:09d7:1f34:8A2E:07A0:765D", "2001:0db8:11a3:09d7:1F34:8A2E:07A0:::",
-		"::::0db8:11a3:09d7:1F34:8A2E:07A0:765D", "0db8:11a3:09d7::::1f34:8A2E:07A0:765D",
-		"2001:0db8:11a3:09d7:1F34:8A2E:07A0::::",
-		":0db8:11a3:09d7:1f34:8A2E:07A0:765D:1000", "1000:2001:0db8:11a3:09D7:1F34:8A2E:07A0:",
-		":0db8:11a3:09d7:1f34:8A2E:07A0:765D:1", "1:2001:0db8:11a3:09d7:1f34:8A2E:07A0:",
-		"::0db8:11a3:09d7:1f34:8A2E:07A0:765D:1", "1:2001:0db8:11a3:09d7:1f34:8A2E:07A0::",
-		":::0db8:11a3:09d7:1f34:8a2e:07A0:765D:1", "1:2001:0db8:11a3:09d7:1F34:8A2E:07A0:::",
-		"0db8:11a3::::8A2E:07A0:765D", "0db8:11a3::::::8A2E:07A0:765D"
-	})
-	public void isInet6AddressIgnoreCaseNotCorrect(String value)
+	@Nested
+	public class IsRgbNumeric
 	{
-		boolean actual = StringRegexp.isInet6AddressIgnoreCase(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isRgbNumeric(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"215,200,166", "0,0,0", "215, 200, 166", "0, 0, 0", "255,155, 55", "1,1,1"
+		})
+		public void isRgbNumeric(String value)
+		{
+			boolean actual = StringRegexp.isRgbNumeric(value);
 
-		assertThat(actual).isFalse();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isRgbNumeric(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"",
+			" ",
+			"0,0",
+			"0",
+			"215,  200, 166",
+			"215, 200,  166",
+			"-1, 0, 0",
+			"0, -1, 0",
+			"0, 0, -1",
+			"215,200,",
+			"1,1,1,",
+			"256,155,55",
+			"255,256,55",
+			"255,155,256"
+		})
+		public void isRgbNumericNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isRgbNumeric(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isEmailAddress(String)}.
+	 * Класс проверки метода {@link StringRegexp#isCountryCodeAlpha2(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"aleksey.kalenchukov@yandex.ru", "aleksey.kalenchukov_@yandex.ru",
-		"_aleksey.kalenchukov_@yandex.ru", "-aleksey.kalenchukov-@yandex.ru",
-		"aleksey.kalenchukov@mail.yandex.ru", "alekseykalenchukov@yandex.ru",
-		"aleksey.kalenchukov@yandex.com", "aleksey-kalenchukov@yandex.ru",
-		"aleksey_kalenchukov@yandex.ru", "AlekseyKalenchukov@yandex.ru",
-		"АлексейКаленчуков@яндекс.ру", "a.k@yandex.ru",
-		"k@yandex.ru", "kalenchukov@yandex.ru",
-		"kalenchukov@y.ru", "aleksey.kalenchukovkalenchukovkalenchukovkalenchukovkalenchukov@yandex.ru",
-		"aleksey123.kalenchukov123@123yandex.ru", "aleksey.kalenchukov@123.yandex.ru",
-		"123aleksey.kalenchukov@123.yandex.ru", "123.456@123.ru", "123456@123.ru"
-	})
-	public void isEmailAddress(String value)
+	@Nested
+	public class IsCountryCodeAlpha2
 	{
-		boolean actual = StringRegexp.isEmailAddress(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isCountryCodeAlpha2(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"RU", "BY"
+		})
+		public void isCountryCodeAlpha2(String value)
+		{
+			boolean actual = StringRegexp.isCountryCodeAlpha2(value);
 
-		assertThat(actual).isTrue();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isCountryCodeAlpha2(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " ", "ru", "rub", "#RU", "0RU"
+		})
+		public void isCountryCodeAlpha2NotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isCountryCodeAlpha2(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isEmailAddress(String)} с некорректными значениями.
+	 * Класс проверки метода {@link StringRegexp#isCountryCodeAlpha3(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		".aleksey.kalenchukov@yandex.ru", "aleksey.kalenchukov.@yandex.ru", "aleksey..kalenchukov@yandex.ru",
-		"aleksey.kalenchukov@yandex", "aleksey.kalenchukov@yandex..ru", "aleksey.kalenchukov.yandex.ru",
-		"aleksey.kalenchukov@yandex.r", "aleksey.kalenchukov@-yandex.ru",
-		"aleksey.kalenchukovkalenchukovkalenchukovkalenchukovkalenchukovkalenchukov@yandex.ru",
-	})
-	public void isEmailAddressNotCorrect(String value)
+	@Nested
+	public class IsCountryCodeAlpha3
 	{
-		boolean actual = StringRegexp.isEmailAddress(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isCountryCodeAlpha3(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"RUS", "BLR"
+		})
+		public void isCountryCodeAlpha3(String value)
+		{
+			boolean actual = StringRegexp.isCountryCodeAlpha3(value);
 
-		assertThat(actual).isFalse();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isCountryCodeAlpha3(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " ", "rus", "rub", "#RUS", "0RUS"
+		})
+		public void isCountryCodeAlpha3NotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isCountryCodeAlpha3(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isDomain(String)}.
+	 * Класс проверки метода {@link StringRegexp#isCountryCodeNumeric3(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"kalenchukov.dev", "regexp.string.kalenchukov.dev",
-		"aleksey.123.kalenchukov.ru", "123.aleksey.kalenchukov.ru"
-	})
-	public void isDomain(String value)
+	@Nested
+	public class IsCountryCodeNumeric3
 	{
-		boolean actual = StringRegexp.isDomain(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isCountryCodeNumeric3(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"052", "112", "643"
+		})
+		public void isCountryCodeNumeric3(String value)
+		{
+			boolean actual = StringRegexp.isCountryCodeNumeric3(value);
 
-		assertThat(actual).isTrue();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isCountryCodeNumeric3(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " ", "52", "0052", "#643"
+		})
+		public void isCountryCodeNumeric3NotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isCountryCodeNumeric3(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isDomain(String)} с некорректными значениями.
+	 * Класс проверки метода {@link StringRegexp#isMd5(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"kalenchukov,dev", "regexp.string.kalenchukov.d"
-	})
-	public void isDomainNotCorrect(String value)
+	@Nested
+	public class IsMd5
 	{
-		boolean actual = StringRegexp.isDomain(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isMd5(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"1BC29B36F623BA82AAF6724FD3B16718", "D41D8CD98F00B204E9800998ECF8427E"
+		})
+		public void isMd5(String value)
+		{
+			boolean actual = StringRegexp.isMd5(value);
 
-		assertThat(actual).isFalse();
-	}
+			assertThat(actual).isTrue();
+		}
 
-	/**
-	 * Проверка метода {@link StringRegexp#isUrlHttp(String)}.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"http://kalenchukov.dev/hello/world/?java=18&hello=world123#anchor",
-		"https://kalenchukov.dev/hello/world/?java=18&hello=world123#anchor",
-		"http://www.kalenchukov.dev/hello/world?java=18&hello=world123#anchor",
-		"http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#anchor",
-		"http://www.kalenchukov.dev/hello/world/?java=18&hello=world123#",
-		"http://www.kalenchukov.dev/hello/world/?java=18&hello=world123",
-		"http://www.kalenchukov.dev/hello/world/?java=18&hello=",
-		"http://www.kalenchukov.dev/hello/world/?java=18&",
-		"http://www.kalenchukov.dev/hello/world/?java=18",
-		"http://www.kalenchukov.dev/hello/world/?",
-		"http://www.kalenchukov.dev/hello/world/",
-		"http://www.kalenchukov.dev/hello/world",
-		"http://www.kalenchukov.dev/",
-		"http://www.kalenchukov.dev",
-		"http://www.kalenchukov.dev/hello/world",
-		"http://www.kalenchukov.dev/?java=18&hello=world123#anchor",
-		"http://www.kalenchukov.dev/#anchor"
-	})
-	public void isUrlHttp(String value)
-	{
-		boolean actual = StringRegexp.isUrlHttp(value);
-
-		assertThat(actual).isTrue();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isRgbNumeric(String)}.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"215,200,166", "0,0,0",
-		"215, 200, 166", "0, 0, 0",
-		"255,155, 55", "1,1,1"
-	})
-	public void isRgbNumeric(String value)
-	{
-		boolean actual = StringRegexp.isRgbNumeric(value);
-
-		assertThat(actual).isTrue();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isRgbNumeric(String)} с некорректными значениями.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"0,0", "0",
-		"215,  200, 166", "215, 200,  166",
-		"-1, 0, 0", "0, -1, 0", "0, 0, -1",
-		"215,200,", "1,1,1,",
-		"256,155,55", "255,256,55", "255,155,256"
-	})
-	public void isRgbNumericNotCorrect(String value)
-	{
-		boolean actual = StringRegexp.isRgbNumeric(value);
-
-		assertThat(actual).isFalse();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha2(String)}.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"RU", "BY"
-	})
-	public void isCountryCodeAlpha2(String value)
-	{
-		boolean actual = StringRegexp.isCountryCodeAlpha2(value);
-
-		assertThat(actual).isTrue();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha2(String)} с некорректными значениями.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ", "ru", "rub", "#RU", "0RU"
-	})
-	public void isCountryCodeAlpha2NotCorrect(String value)
-	{
-		boolean actual = StringRegexp.isCountryCodeAlpha2(value);
-
-		assertThat(actual).isFalse();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha3(String)}.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"RUS", "BLR"
-	})
-	public void isCountryCodeAlpha3(String value)
-	{
-		boolean actual = StringRegexp.isCountryCodeAlpha3(value);
-
-		assertThat(actual).isTrue();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isCountryCodeAlpha3(String)} с некорректными значениями.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ", "rus", "rub", "#RUS", "0RUS"
-	})
-	public void isCountryCodeAlpha3NotCorrect(String value)
-	{
-		boolean actual = StringRegexp.isCountryCodeAlpha3(value);
-
-		assertThat(actual).isFalse();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isCountryCodeNumeric3(String)}.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"052", "112", "643"
-	})
-	public void isCountryCodeNumeric3(String value)
-	{
-		boolean actual = StringRegexp.isCountryCodeNumeric3(value);
-
-		assertThat(actual).isTrue();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isCountryCodeNumeric3(String)} с некорректными значениями.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ", "52", "0052", "#643"
-	})
-	public void isCountryCodeNumeric3NotCorrect(String value)
-	{
-		boolean actual = StringRegexp.isCountryCodeNumeric3(value);
-
-		assertThat(actual).isFalse();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isMd5(String)}.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-			"1BC29B36F623BA82AAF6724FD3B16718",
-			"D41D8CD98F00B204E9800998ECF8427E"
-	})
-	public void isMd5(String value)
-	{
-		boolean actual = StringRegexp.isMd5(value);
-
-		assertThat(actual).isTrue();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isMd5(String)} с некорректными значениями.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
+		/**
+		 * Проверка метода {@link StringRegexp#isMd5(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
 			"", " ",
 			"1BC29B36F623BA82AAF6724FD3B1671",
 			"1bc29b36f623ba82aaf6724fd3b16718", "1bc29B36F623BA82AAF6724FD3B16718"
-	})
-	public void isMd5NotCorrect(String value)
-	{
-		boolean actual = StringRegexp.isMd5(value);
+		})
+		public void isMd5NotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isMd5(value);
 
-		assertThat(actual).isFalse();
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isMd5IgnoreCase(String)}.
+	 * Класс проверки метода {@link StringRegexp#isMd5IgnoreCase(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
+	@Nested
+	public class IsMd5IgnoreCase
+	{
+		/**
+		 * Проверка метода {@link StringRegexp#isMd5IgnoreCase(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
 			"1BC29B36F623BA82AAF6724FD3B16718",
 			"1bc29b36f623ba82aaf6724fd3b16718",
 			"d41d8cd98f00b204E9800998ECF8427E"
-	})
-	public void isMd5IgnoreCase(String value)
-	{
-		boolean actual = StringRegexp.isMd5IgnoreCase(value);
+		})
+		public void isMd5IgnoreCase(String value)
+		{
+			boolean actual = StringRegexp.isMd5IgnoreCase(value);
 
-		assertThat(actual).isTrue();
-	}
+			assertThat(actual).isTrue();
+		}
 
-	/**
-	 * Проверка метода {@link StringRegexp#isMd5IgnoreCase(String)} с некорректными значениями.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
+		/**
+		 * Проверка метода {@link StringRegexp#isMd5IgnoreCase(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
 			"", " ",
-			"1BC29B36F623BA82AAF6724FD3B1671", "1bc29b36f623ba82aaf6724fd3b1671",
+			"1BC29B36F623BA82AAF6724FD3B1671",
+			"1bc29b36f623ba82aaf6724fd3b1671",
 			"1bc29b36f623ba82af6724fd3b16718"
-	})
-	public void isMd5IgnoreCaseNotCorrect(String value)
-	{
-		boolean actual = StringRegexp.isMd5IgnoreCase(value);
+		})
+		public void isMd5IgnoreCaseNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isMd5IgnoreCase(value);
 
-		assertThat(actual).isFalse();
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isRgbHex(String)}.
+	 * Класс проверки метода {@link StringRegexp#isRgbHex(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"#FFFFFF", "#ABCDEF",
-		"#000000", "#123456"
-	})
-	public void isRgbHex(String value)
+	@Nested
+	public class IsRgbHex
 	{
-		boolean actual = StringRegexp.isRgbHex(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isRgbHex(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"#FFFFFF", "#ABCDEF", "#000000", "#123456"
+		})
+		public void isRgbHex(String value)
+		{
+			boolean actual = StringRegexp.isRgbHex(value);
 
-		assertThat(actual).isTrue();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isRgbHex(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " ", "FFFFFF", "#23394W", "#ARDBZG"
+		})
+		public void isRgbHexNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isRgbHex(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isRgbHex(String)} с некорректными значениями.
+	 * Класс проверки метода {@link StringRegexp#isRgbHexIgnoreCase(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"FFFFFF",
-		"#23394W", "#ARDBZG"
-	})
-	public void isRgbHexNotCorrect(String value)
+	@Nested
+	public class IsRgbHexIgnoreCase
 	{
-		boolean actual = StringRegexp.isRgbHex(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isRgbHexIgnoreCase(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"#fffFFF", "#abcDEF", "#000000", "#123456"
+		})
+		public void isRgbHexIgnoreCase(String value)
+		{
+			boolean actual = StringRegexp.isRgbHexIgnoreCase(value);
 
-		assertThat(actual).isFalse();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isRgbHexIgnoreCase(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " ", "fffFFF", "#23394w", "#ardBZG"
+		})
+		public void isRgbHexIgnoreCaseNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isRgbHexIgnoreCase(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isRgbHexIgnoreCase(String)}.
+	 * Класс проверки метода {@link StringRegexp#isMacAddress(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"#fffFFF", "#abcDEF",
-		"#000000", "#123456"
-	})
-	public void isRgbHexIgnoreCase(String value)
+	@Nested
+	public class IsMacAddress
 	{
-		boolean actual = StringRegexp.isRgbHexIgnoreCase(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isMacAddress(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"00-EF-CD-EF-11-22", "00:EF:CD:EF:11:22"
+		})
+		public void isMacAddress(String value)
+		{
+			boolean actual = StringRegexp.isMacAddress(value);
 
-		assertThat(actual).isTrue();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isMacAddress(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"",
+			" ",
+			"-00-EF-CD-EF-11-22",
+			"-00-EF-CD-EF-11-22-",
+			"00-EF-CD-EF-11-22-",
+			":00:EF:CD:EF:11:22",
+			":00:EF:CD:EF:11:22:",
+			"00:EF:CD:EF:11:22:",
+			"00:EF:CD:EF:11:2",
+			"00:EW:CD:EF:11:22",
+			"00:ef:CD:EF:11:22",
+			"00:EF:CD::EF:11:22",
+			"00:EF::EF:11:22",
+		})
+		public void isMacAddressNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isMacAddress(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isRgbHexIgnoreCase(String)} с некорректными значениями.
+	 * Класс проверки метода {@link StringRegexp#isMacAddressIgnoreCase(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"fffFFF",
-		"#23394w", "#ardBZG"
-	})
-	public void isRgbHexIgnoreCaseNotCorrect(String value)
+	@Nested
+	public class IsMacAddressIgnoreCase
 	{
-		boolean actual = StringRegexp.isRgbHexIgnoreCase(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isMacAddressIgnoreCase(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"00-EF-cd-EF-11-22", "00:ef:CD:EF:11:22"
+		})
+		public void isMacAddressIgnoreCase(String value)
+		{
+			boolean actual = StringRegexp.isMacAddressIgnoreCase(value);
 
-		assertThat(actual).isFalse();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isMacAddressIgnoreCase(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " ", "00:EF:CD:EF:11:2", "00:ew:CD:EF:11:22", "00:EF:CD::ef:11:22", "00:EF::ef:11:22"
+		})
+		public void isMacAddressIgnoreCaseNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isMacAddressIgnoreCase(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isMacAddress(String)}.
+	 * Класс проверки метода {@link StringRegexp#isTelegram(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"00-EF-CD-EF-11-22", "00:EF:CD:EF:11:22"
-	})
-	public void isMacAddress(String value)
+	@Nested
+	public class IsTelegram
 	{
-		boolean actual = StringRegexp.isMacAddress(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isTelegram(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"@kalenchukov", "@Kalenchukov", "@KALENCHUKOV", "@kalen_chukov", "@kalenchukov_", "@_kalenchukov"
+		})
+		public void isTelegram(String value)
+		{
+			boolean actual = StringRegexp.isTelegram(value);
 
-		assertThat(actual).isTrue();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isTelegram(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " ", "kalenchukov", "@kalenchukov.", "@kalenchukov-", "@kalenchukov+", "@kalen-chukov"
+		})
+		public void isTelegramNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isTelegram(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isMacAddress(String)} с некорректными значениями.
+	 * Класс проверки метода {@link StringRegexp#isTag(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"-00-EF-CD-EF-11-22", "-00-EF-CD-EF-11-22-", "00-EF-CD-EF-11-22-",
-		":00:EF:CD:EF:11:22", ":00:EF:CD:EF:11:22:", "00:EF:CD:EF:11:22:",
-		"00:EF:CD:EF:11:2", "00:EW:CD:EF:11:22", "00:ef:CD:EF:11:22", "00:EF:CD::EF:11:22", "00:EF::EF:11:22",
-	})
-	public void isMacAddressNotCorrect(String value)
+	@Nested
+	public class IsTag
 	{
-		boolean actual = StringRegexp.isMacAddress(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isTag(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"#tag", "#Tag", "#TAG", "#ta_g", "#123tag", "#tag123", "#tag_123", "#тег", "#тег123", "#тег_123"
+		})
+		public void isTag(String value)
+		{
+			boolean actual = StringRegexp.isTag(value);
 
-		assertThat(actual).isFalse();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isTag(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"",
+			" ",
+			"tag",
+			"#t",
+			"#ta",
+			"#tag.",
+			"#tag-",
+			"#ta-g",
+			"#tag+tag",
+			"#_tag",
+			"#tag_",
+			"#_",
+			"#__",
+			"#___",
+			"#123",
+			"#123_",
+			"#_123"
+		})
+		public void isTagNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isTag(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isMacAddressIgnoreCase(String)}.
+	 * Класс проверки метода {@link StringRegexp#isDigitBinary(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"00-EF-cd-EF-11-22", "00:ef:CD:EF:11:22"
-	})
-	public void isMacAddressIgnoreCase(String value)
+	@Nested
+	public class IsDigitBinary
 	{
-		boolean actual = StringRegexp.isMacAddressIgnoreCase(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isDigitBinary(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"0", "1", "01010101", "1010101"
+		})
+		public void isDigitBinary(String value)
+		{
+			boolean actual = StringRegexp.isDigitBinary(value);
 
-		assertThat(actual).isTrue();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isDigitBinary(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " ", "1.0", "012", "1a0", "0a"
+		})
+		public void isDigitBinaryNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isDigitBinary(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isMacAddressIgnoreCase(String)} с некорректными значениями.
+	 * Класс проверки метода {@link StringRegexp#isDigitTernary(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"00:EF:CD:EF:11:2", "00:ew:CD:EF:11:22",
-		"00:EF:CD::ef:11:22", "00:EF::ef:11:22"
-	})
-	public void isMacAddressIgnoreCaseNotCorrect(String value)
+	@Nested
+	public class IsDigitTernary
 	{
-		boolean actual = StringRegexp.isMacAddressIgnoreCase(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isDigitTernary(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"0", "1", "2", "0101201012", "120102101"
+		})
+		public void isDigitTernary(String value)
+		{
+			boolean actual = StringRegexp.isDigitTernary(value);
 
-		assertThat(actual).isFalse();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isDigitTernary(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " ", "1.0", "1a0", "0a"
+		})
+		public void isDigitTernaryNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isDigitTernary(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isTelegram(String)}.
+	 * Класс проверки метода {@link StringRegexp#isDigitOctal(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"@kalenchukov", "@Kalenchukov", "@KALENCHUKOV",
-		"@kalen_chukov", "@kalenchukov_", "@_kalenchukov",
-	})
-	public void isTelegram(String value)
+	@Nested
+	public class IsDigitOctal
 	{
-		boolean actual = StringRegexp.isTelegram(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isDigitOctal(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"01234567", "12014302101"
+		})
+		public void isDigitOctal(String value)
+		{
+			boolean actual = StringRegexp.isDigitOctal(value);
 
-		assertThat(actual).isTrue();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isDigitOctal(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " "
+		})
+		public void isDigitOctalNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isDigitOctal(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isTelegram(String)} с некорректными значениями.
+	 * Класс проверки метода {@link StringRegexp#isDigitDecimal(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"kalenchukov",
-		"@kalenchukov.", "@kalenchukov-", "@kalenchukov+",
-		"@kalen-chukov",
-	})
-	public void isTelegramNotCorrect(String value)
+	@Nested
+	public class IsDigitDecimal
 	{
-		boolean actual = StringRegexp.isTelegram(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isDigitDecimal(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"0", "0123", "6516166848498494"
+		})
+		public void isDigitDecimal(String value)
+		{
+			boolean actual = StringRegexp.isDigitDecimal(value);
 
-		assertThat(actual).isFalse();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isDigitDecimal(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " ", "1.1", "1.1", "1a1", "1a"
+		})
+		public void isDigitDecimalNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isDigitDecimal(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isTag(String)}.
+	 * Класс проверки метода {@link StringRegexp#isDigitDuodecimal(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"#tag", "#Tag", "#TAG",
-		"#ta_g",
-		"#123tag", "#tag123", "#tag_123",
-		"#тег", "#тег123", "#тег_123",
-	})
-	public void isTag(String value)
+	@Nested
+	public class IsDigitDuodecimal
 	{
-		boolean actual = StringRegexp.isTag(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isDigitDuodecimal(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"0123456789AB", "0123456789ab", "120143023649aB101"
+		})
+		public void isDigitDuodecimal(String value)
+		{
+			boolean actual = StringRegexp.isDigitDuodecimal(value);
 
-		assertThat(actual).isTrue();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isDigitDuodecimal(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " "
+		})
+		public void isDigitDuodecimalNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isDigitDuodecimal(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isTag(String)} с некорректными значениями.
+	 * Класс проверки метода {@link StringRegexp#isDigitHexadecimal(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"tag",
-		"#t", "#ta",
-		"#tag.", "#tag-", "#ta-g", "#tag+tag",
-		"#_tag", "#tag_",
-		"#_", "#__", "#___",
-		"#123", "#123_", "#_123",
-	})
-	public void isTagNotCorrect(String value)
+	@Nested
+	public class IsDigitHexadecimal
 	{
-		boolean actual = StringRegexp.isTag(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isDigitHexadecimal(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"0123456789ABCDEF", "0123456789abbcdef", "120ef143023649aB10cd1"
+		})
+		public void isDigitHexadecimal(String value)
+		{
+			boolean actual = StringRegexp.isDigitHexadecimal(value);
 
-		assertThat(actual).isFalse();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isDigitHexadecimal(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " "
+		})
+		public void isDigitHexadecimalNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isDigitHexadecimal(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isDigitBinary(String)}.
+	 * Класс проверки метода {@link StringRegexp#isNumber(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"0", "1", "01010101", "1010101"
-	})
-	public void isDigitBinary(String value)
+	@Nested
+	public class IsNumber
 	{
-		boolean actual = StringRegexp.isDigitBinary(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isNumber(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"0", "100", "0.1", "0,1", "1.100", "1,100", "1,100,123", "1.100.123",
+		})
+		public void isNumber(String value)
+		{
+			boolean actual = StringRegexp.isNumber(value);
 
-		assertThat(actual).isTrue();
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isNumber(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"",
+			" ",
+			".",
+			",",
+			".1",
+			",2",
+			"3,",
+			"4.",
+			"1. 1",
+			"1, 1",
+			"1. 100",
+			"1, 100",
+			"1 .100",
+			"1 ,100",
+			"1 . 100",
+			"1 , 100",
+			"1,100, 123",
+			"1.100. 123"
+		})
+		public void isNumberNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isNumber(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isDigitBinary(String)} с некорректными значениями.
+	 * Класс проверки метода {@link StringRegexp#isWord(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"1.0", "012", "1a0", "0a"
-	})
-	public void isDigitBinaryNotCorrect(String value)
+	@Nested
+	public class IsWord
 	{
-		boolean actual = StringRegexp.isDigitBinary(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isWord(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"привет", "ПРИВЕТ", "Hello", "WoRlD", "Hello-World"
 
-		assertThat(actual).isFalse();
+		})
+		public void isWord(String value)
+		{
+			boolean actual = StringRegexp.isWord(value);
+
+			assertThat(actual).isTrue();
+		}
+
+		/**
+		 * Проверка метода {@link StringRegexp#isWord(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " ", "-привет", "привет-", " привет", "привет ", "Hello- World", "Hello -World", "Hello - World"
+		})
+		public void isWordNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isWord(value);
+
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
-	 * Проверка метода {@link StringRegexp#isDigitTernary(String)}.
+	 * Класс проверки метода {@link StringRegexp#isLetter(String)}.
+	 *
+	 * @author Алексей Каленчуков
 	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"0", "1", "2", "0101201012", "120102101"
-	})
-	public void isDigitTernary(String value)
+	@Nested
+	public class IsLetter
 	{
-		boolean actual = StringRegexp.isDigitTernary(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isLetter(String)}.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"А", "Ж", "W", "Z"
+		})
+		public void isLetter(String value)
+		{
+			boolean actual = StringRegexp.isLetter(value);
 
-		assertThat(actual).isTrue();
-	}
+			assertThat(actual).isTrue();
+		}
 
-	/**
-	 * Проверка метода {@link StringRegexp#isDigitTernary(String)} с некорректными значениями.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"1.0", "1a0", "0a"
-	})
-	public void isDigitTernaryNotCorrect(String value)
-	{
-		boolean actual = StringRegexp.isDigitTernary(value);
+		/**
+		 * Проверка метода {@link StringRegexp#isLetter(String)} с некорректными значениями.
+		 */
+		@ParameterizedTest
+		@ValueSource(strings = {
+			"", " ", "-", "0", "?"
+		})
+		public void isLetterNotCorrect(String value)
+		{
+			boolean actual = StringRegexp.isLetter(value);
 
-		assertThat(actual).isFalse();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isDigitOctal(String)}.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"01234567", "12014302101"
-	})
-	public void isDigitOctal(String value)
-	{
-		boolean actual = StringRegexp.isDigitOctal(value);
-
-		assertThat(actual).isTrue();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isDigitOctal(String)} с некорректными значениями.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " "
-	})
-	public void isDigitOctalNotCorrect(String value)
-	{
-		boolean actual = StringRegexp.isDigitOctal(value);
-
-		assertThat(actual).isFalse();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isDigitDecimal(String)}.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"0", "0123", "6516166848498494"
-	})
-	public void isDigitDecimal(String value)
-	{
-		boolean actual = StringRegexp.isDigitDecimal(value);
-
-		assertThat(actual).isTrue();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isDigitDecimal(String)} с некорректными значениями.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"1.1", "1.1", "1a1", "1a"
-	})
-	public void isDigitDecimalNotCorrect(String value)
-	{
-		boolean actual = StringRegexp.isDigitDecimal(value);
-
-		assertThat(actual).isFalse();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isDigitDuodecimal(String)}.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"0123456789AB", "0123456789ab", "120143023649aB101"
-	})
-	public void isDigitDuodecimal(String value)
-	{
-		boolean actual = StringRegexp.isDigitDuodecimal(value);
-
-		assertThat(actual).isTrue();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isDigitDuodecimal(String)} с некорректными значениями.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " "
-	})
-	public void isDigitDuodecimalNotCorrect(String value)
-	{
-		boolean actual = StringRegexp.isDigitDuodecimal(value);
-
-		assertThat(actual).isFalse();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isDigitHexadecimal(String)}.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"0123456789ABCDEF", "0123456789abbcdef", "120ef143023649aB10cd1"
-	})
-	public void isDigitHexadecimal(String value)
-	{
-		boolean actual = StringRegexp.isDigitHexadecimal(value);
-
-		assertThat(actual).isTrue();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isDigitHexadecimal(String)} с некорректными значениями.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " "
-	})
-	public void isDigitHexadecimalNotCorrect(String value)
-	{
-		boolean actual = StringRegexp.isDigitHexadecimal(value);
-
-		assertThat(actual).isFalse();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isNumber(String)}.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"0", "100",
-		"0.1", "0,1",
-		"1.100", "1,100",
-		"1,100,123", "1.100.123",
-	})
-	public void isNumber(String value)
-	{
-		boolean actual = StringRegexp.isNumber(value);
-
-		assertThat(actual).isTrue();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isNumber(String)} с некорректными значениями.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		".", ",",
-		".1", ",2",
-		"3,", "4.",
-		"1. 1", "1, 1",
-		"1. 100", "1, 100",
-		"1 .100", "1 ,100",
-		"1 . 100", "1 , 100",
-		"1,100, 123", "1.100. 123"
-	})
-	public void isNumberNotCorrect(String value)
-	{
-		boolean actual = StringRegexp.isNumber(value);
-
-		assertThat(actual).isFalse();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isWord(String)}.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"привет", "ПРИВЕТ",
-		"Hello", "WoRlD",
-		"Hello-World"
-
-	})
-	public void isWord(String value)
-	{
-		boolean actual = StringRegexp.isWord(value);
-
-		assertThat(actual).isTrue();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isWord(String)} с некорректными значениями.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"-привет", "привет-",
-		" привет", "привет ",
-		"Hello- World", "Hello -World", "Hello - World"
-	})
-	public void isWordNotCorrect(String value)
-	{
-		boolean actual = StringRegexp.isWord(value);
-
-		assertThat(actual).isFalse();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isLetter(String)}.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"А", "Ж", "W", "Z"
-	})
-	public void isLetter(String value)
-	{
-		boolean actual = StringRegexp.isLetter(value);
-
-		assertThat(actual).isTrue();
-	}
-
-	/**
-	 * Проверка метода {@link StringRegexp#isLetter(String)} с некорректными значениями.
-	 */
-	@ParameterizedTest
-	@ValueSource(strings = {
-		"", " ",
-		"-", "0", "?"
-	})
-	public void isLetterNotCorrect(String value)
-	{
-		boolean actual = StringRegexp.isLetter(value);
-
-		assertThat(actual).isFalse();
+			assertThat(actual).isFalse();
+		}
 	}
 
 	/**
