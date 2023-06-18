@@ -31,6 +31,7 @@ import org.jetbrains.annotations.Unmodifiable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -714,7 +715,7 @@ public class StringRegexp
 	 */
 	private static boolean is(@NotNull final String string,
 							  @NotNull final Regexp regexp,
-							  @NotNull final Integer flags)
+							  final int flags)
 	{
 		final Pattern pattern = Pattern.compile(regexp.getPattern(), Pattern.UNICODE_CASE + flags);
 		final Matcher matcher = pattern.matcher(string);
@@ -746,7 +747,7 @@ public class StringRegexp
 	@NotNull
 	private static List<@NotNull String> find(@NotNull final String string,
 											  @NotNull final Regexp regexp,
-											  @NotNull final Integer flags)
+											  final int flags)
 	{
 		final List<String> values = new ArrayList<>();
 
