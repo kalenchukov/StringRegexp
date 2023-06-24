@@ -51,7 +51,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка именем телеграм канала.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является именем телеграм канала, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является именем телеграм канала, иначе {@code false}.
 	 */
 	public static boolean isTelegram(@NotNull final String string)
 	{
@@ -62,7 +62,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка RGB в числовом представлении.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является RGB в числовом представлении, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является RGB в числовом представлении, иначе {@code false}.
 	 */
 	public static boolean isRgbNumeric(@NotNull final String string)
 	{
@@ -73,7 +73,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка двухбуквенным кодом страны.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является двухбуквенным кодом страны, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является двухбуквенным кодом страны, иначе {@code false}.
 	 */
 	public static boolean isCountryCodeAlpha2(@NotNull final String string)
 	{
@@ -84,7 +84,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка трёхбуквенным кодом страны.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является трёхбуквенным кодом страны, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является трёхбуквенным кодом страны, иначе {@code false}.
 	 */
 	public static boolean isCountryCodeAlpha3(@NotNull final String string)
 	{
@@ -95,7 +95,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка трёхцифровым кодом страны.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является трёхцифровым кодом страны, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является трёхцифровым кодом страны, иначе {@code false}.
 	 */
 	public static boolean isCountryCodeNumeric3(@NotNull final String string)
 	{
@@ -106,7 +106,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка RGB в шестнадцатеричной системе счисления.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является RGB в шестнадцатеричной системе счисления, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является RGB в шестнадцатеричной системе счисления, иначе {@code false}.
 	 */
 	public static boolean isRgbHex(@NotNull final String string)
 	{
@@ -117,7 +117,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка RGB в шестнадцатеричной системе счисления без учёта регистра букв.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является RGB в шестнадцатеричной системе счисления, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является RGB в шестнадцатеричной системе счисления, иначе {@code false}.
 	 */
 	public static boolean isRgbHexIgnoreCase(@NotNull final String string)
 	{
@@ -128,7 +128,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка MAC-адресом.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является MAC-адресом, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является MAC-адресом, иначе {@code false}.
 	 */
 	public static boolean isMacAddress(@NotNull final String string)
 	{
@@ -139,7 +139,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка MAC-адресом без учёта регистра букв.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является MAC-адресом, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является MAC-адресом, иначе {@code false}.
 	 */
 	public static boolean isMacAddressIgnoreCase(@NotNull final String string)
 	{
@@ -150,7 +150,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка локализацией.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является локализацией, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является локализацией, иначе {@code false}.
 	 */
 	public static boolean isLocalization(@NotNull final String string)
 	{
@@ -161,7 +161,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка адресом электронной почты.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является адресом электронной почты, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является адресом электронной почты, иначе {@code false}.
 	 */
 	public static boolean isEmailAddress(@NotNull final String string)
 	{
@@ -172,7 +172,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка доменным именем.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является доменным именем, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является доменным именем, иначе {@code false}.
 	 */
 	public static boolean isDomain(@NotNull final String string)
 	{
@@ -183,7 +183,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка HTTP URL.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является HTTP URL, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является HTTP URL, иначе {@code false}.
 	 */
 	public static boolean isUrlHttp(@NotNull final String string)
 	{
@@ -194,7 +194,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка IP-адресом четвёртой версии.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является IP-адресом четвёртой версии, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является IP-адресом четвёртой версии, иначе {@code false}.
 	 */
 	public static boolean isInet4Address(@NotNull final String string)
 	{
@@ -205,7 +205,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка md5 хешем.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является md5 хешем, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является md5 хешем, иначе {@code false}.
 	 */
 	public static boolean isMd5(@NotNull final String string)
 	{
@@ -216,7 +216,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка md5 хешем без учёта регистра букв.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является md5 хешем, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является md5 хешем, иначе {@code false}.
 	 */
 	public static boolean isMd5IgnoreCase(@NotNull final String string)
 	{
@@ -227,7 +227,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка IP-адресом шестой версии.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является IP-адресом шестой версии, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является IP-адресом шестой версии, иначе {@code false}.
 	 */
 	public static boolean isInet6Address(@NotNull final String string)
 	{
@@ -238,7 +238,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка IP-адресом шестой версии без учёта регистра букв.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является IP-адресом шестой версии, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является IP-адресом шестой версии, иначе {@code false}.
 	 */
 	public static boolean isInet6AddressIgnoreCase(@NotNull final String string)
 	{
@@ -249,7 +249,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка меткой.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является меткой, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является меткой, иначе {@code false}.
 	 */
 	public static boolean isTag(@NotNull final String string)
 	{
@@ -260,7 +260,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка цифрой двоичной системы счисления.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является цифрой двоичной системы счисления, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является цифрой двоичной системы счисления, иначе {@code false}.
 	 */
 	public static boolean isDigitBinary(@NotNull final String string)
 	{
@@ -271,7 +271,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка цифрой десятеричной системы счисления.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является цифрой десятеричной системы счисления, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является цифрой десятеричной системы счисления, иначе {@code false}.
 	 */
 	public static boolean isDigitDecimal(@NotNull final String string)
 	{
@@ -282,7 +282,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка цифрой троичной системы счисления.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является цифрой троичной системы счисления, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является цифрой троичной системы счисления, иначе {@code false}.
 	 */
 	public static boolean isDigitTernary(@NotNull final String string)
 	{
@@ -293,7 +293,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка цифрой восьмеричной системы счисления.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является цифрой восьмеричной системы счисления, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является цифрой восьмеричной системы счисления, иначе {@code false}.
 	 */
 	public static boolean isDigitOctal(@NotNull final String string)
 	{
@@ -304,7 +304,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка цифрой двенадцатеричной системы счисления.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является цифрой двенадцатеричной системы счисления, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является цифрой двенадцатеричной системы счисления, иначе {@code false}.
 	 */
 	public static boolean isDigitDuodecimal(@NotNull final String string)
 	{
@@ -315,7 +315,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка цифрой шестнадцатеричной системы счисления.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является цифрой шестнадцатеричной системы счисления, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является цифрой шестнадцатеричной системы счисления, иначе {@code false}.
 	 */
 	public static boolean isDigitHexadecimal(@NotNull final String string)
 	{
@@ -326,7 +326,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка числом.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является числом, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является числом, иначе {@code false}.
 	 */
 	public static boolean isNumber(@NotNull final String string)
 	{
@@ -337,7 +337,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка словом.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является словом, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является словом, иначе {@code false}.
 	 */
 	public static boolean isWord(@NotNull final String string)
 	{
@@ -348,7 +348,7 @@ public class StringRegexp
 	 * Проверяет, является ли строка буквой.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если строка является буквой, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является буквой, иначе {@code false}.
 	 */
 	public static boolean isLetter(@NotNull final String string)
 	{
@@ -698,7 +698,7 @@ public class StringRegexp
 	 *
 	 * @param regexp регулярное выражение.
 	 * @param string строка.
-	 * @return {@code true}, если строка является значением, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является значением, иначе {@code false}.
 	 */
 	private static boolean is(@NotNull final String string, @NotNull final Regexp regexp)
 	{
@@ -711,7 +711,7 @@ public class StringRegexp
 	 * @param regexp регулярное выражение.
 	 * @param flags флаги регулярного выражения.
 	 * @param string строка.
-	 * @return {@code true}, если строка является значением, иначе {@code false}.
+	 * @return {@code true}, если {@code string} является значением, иначе {@code false}.
 	 */
 	private static boolean is(@NotNull final String string,
 							  @NotNull final Regexp regexp,
