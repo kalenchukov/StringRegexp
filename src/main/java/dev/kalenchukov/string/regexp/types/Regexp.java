@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package dev.kalenchukov.string.regexp.resources;
+package dev.kalenchukov.string.regexp.types;
 
 import org.jetbrains.annotations.NotNull;
 

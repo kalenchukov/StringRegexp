@@ -25,4 +25,4 @@
 /**
  * Предоставляет перечисления, необходимые для определения типов.
  */
-package dev.kalenchukov.string.regexp.resources;
+package dev.kalenchukov.string.regexp.types;

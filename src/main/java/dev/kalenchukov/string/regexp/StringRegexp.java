@@ -24,14 +24,13 @@
 
 package dev.kalenchukov.string.regexp;
 
-import dev.kalenchukov.string.regexp.resources.Regexp;
+import dev.kalenchukov.string.regexp.types.Regexp;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
