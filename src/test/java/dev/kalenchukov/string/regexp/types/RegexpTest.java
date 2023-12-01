@@ -97,7 +97,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#LOCALIZATION} с некорректным значением.
 		 */
 		@Test
-		public void localizationNotCorrect()
+		public void localizationWithValueInvalid()
 		{
 			String value = "ru/RU";
 			Pattern pattern = Pattern.compile(Regexp.LOCALIZATION.getPattern(), Pattern.UNICODE_CASE);
@@ -136,7 +136,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#INET_4_ADDRESS} с некорректным значением.
 		 */
 		@Test
-		public void inet4AddressNotCorrect()
+		public void inet4AddressWithValueInvalid()
 		{
 			String value = "f645654y45t34vtfd4";
 			Pattern pattern = Pattern.compile(Regexp.INET_4_ADDRESS.getPattern(), Pattern.UNICODE_CASE);
@@ -170,7 +170,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#INET_6_ADDRESS} с некорректным значением.
 		 */
 		@Test
-		public void inet6AddressNotCorrect()
+		public void inet6AddressWithValueInvalid()
 		{
 			String value = "vy45yg45tyf45t4f5";
 			Pattern pattern = Pattern.compile(Regexp.INET_6_ADDRESS.getPattern(), Pattern.UNICODE_CASE);
@@ -210,7 +210,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#EMAIL_ADDRESS} с некорректным значением.
 		 */
 		@Test
-		public void emailAddressNotCorrect()
+		public void emailAddressWithValueInvalid()
 		{
 			String value = "45f645g6y45hy45g5";
 			Pattern pattern = Pattern.compile(Regexp.EMAIL_ADDRESS.getPattern(), Pattern.UNICODE_CASE);
@@ -244,7 +244,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#MD5} с некорректным значением.
 		 */
 		@Test
-		public void md5NotCorrect()
+		public void md5WithValueInvalid()
 		{
 			String value = "34546457546nhgewrxs";
 			Pattern pattern = Pattern.compile(Regexp.MD5.getPattern(), Pattern.UNICODE_CASE);
@@ -280,7 +280,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#DOMAIN} с некорректным значением.
 		 */
 		@Test
-		public void domainNotCorrect()
+		public void domainWithValueInvalid()
 		{
 			String value = "54gy657h65u76";
 			Pattern pattern = Pattern.compile(Regexp.DOMAIN.getPattern(), Pattern.UNICODE_CASE);
@@ -326,7 +326,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#URL_HTTP} с некорректным значением.
 		 */
 		@Test
-		public void urlHttpNotCorrect()
+		public void urlHttpWithValueInvalid()
 		{
 			String value = "://www.kalenchukov.dev/h";
 			Pattern pattern = Pattern.compile(Regexp.URL_HTTP.getPattern(), Pattern.UNICODE_CASE);
@@ -363,7 +363,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#RGB_NUMERIC} с некорректным значением.
 		 */
 		@Test
-		public void rgbNumericNotCorrect()
+		public void rgbNumericWithValueInvalid()
 		{
 			String value = "45g657h65uj";
 			Pattern pattern = Pattern.compile(Regexp.RGB_NUMERIC.getPattern(), Pattern.UNICODE_CASE);
@@ -403,7 +403,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#RGB_HEX} с некорректным значением.
 		 */
 		@Test
-		public void rgbHexNotCorrect()
+		public void rgbHexWithValueInvalid()
 		{
 			String value = "45y65y65";
 			Pattern pattern = Pattern.compile(Regexp.RGB_HEX.getPattern(), Pattern.UNICODE_CASE);
@@ -451,7 +451,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#MAC_ADDRESS} с некорректным значением.
 		 */
 		@Test
-		public void macAddressNotCorrect()
+		public void macAddressWithValueInvalid()
 		{
 			String value = "00-eF-cdEf1122";
 			Pattern pattern = Pattern.compile(Regexp.MAC_ADDRESS.getPattern(), Pattern.UNICODE_CASE);
@@ -487,7 +487,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#TELEGRAM} с некорректным значением.
 		 */
 		@Test
-		public void telegramNotCorrect()
+		public void telegramWithValueInvalid()
 		{
 			String value = "45f645yg65y";
 			Pattern pattern = Pattern.compile(Regexp.TELEGRAM.getPattern(), Pattern.UNICODE_CASE);
@@ -523,7 +523,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#TAG} с некорректным значением.
 		 */
 		@Test
-		public void tagNotCorrect()
+		public void tagWithValueInvalid()
 		{
 			String value = "4v5y4vt";
 			Pattern pattern = Pattern.compile(Regexp.TAG.getPattern(), Pattern.UNICODE_CASE);
@@ -554,7 +554,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#DIGIT_BINARY} с некорректным значением.
 		 */
 		@Test
-		public void digitBinaryNotCorrect()
+		public void digitBinaryWithValueInvalid()
 		{
 			String value = "4f34tf45t45";
 			Pattern pattern = Pattern.compile(Regexp.DIGIT_BINARY.getPattern(), Pattern.UNICODE_CASE);
@@ -585,7 +585,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#DIGIT_TERNARY} с некорректным значением.
 		 */
 		@Test
-		public void digitTernaryNotCorrect()
+		public void digitTernaryWithValueInvalid()
 		{
 			String value = "4f6456f45y45dgf";
 			Pattern pattern = Pattern.compile(Regexp.DIGIT_TERNARY.getPattern(), Pattern.UNICODE_CASE);
@@ -616,7 +616,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#DIGIT_OCTAL} с некорректным значением.
 		 */
 		@Test
-		public void digitOctalNotCorrect()
+		public void digitOctalWithValueInvalid()
 		{
 			String value = "56vy56y46y545";
 			Pattern pattern = Pattern.compile(Regexp.DIGIT_OCTAL.getPattern(), Pattern.UNICODE_CASE);
@@ -647,7 +647,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#DIGIT_DECIMAL} с некорректным значением.
 		 */
 		@Test
-		public void digitDecimalNotCorrect()
+		public void digitDecimalWithValueInvalid()
 		{
 			String value = "45f65434d34ffd";
 			Pattern pattern = Pattern.compile(Regexp.DIGIT_DECIMAL.getPattern(), Pattern.UNICODE_CASE);
@@ -681,7 +681,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#DIGIT_DUODECIMAL} с некорректным значением.
 		 */
 		@Test
-		public void digitDuodecimalNotCorrect()
+		public void digitDuodecimalWithValueInvalid()
 		{
 			String value = "457N678H6734X3ZS2";
 			Pattern pattern = Pattern.compile(Regexp.DIGIT_DUODECIMAL.getPattern(), Pattern.UNICODE_CASE);
@@ -715,7 +715,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#DIGIT_HEXADECIMAL} с некорректным значением.
 		 */
 		@Test
-		public void digitHexadecimalNotCorrect()
+		public void digitHexadecimalWithValueInvalid()
 		{
 			String value = "345F45Y56G5";
 			Pattern pattern = Pattern.compile(Regexp.DIGIT_HEXADECIMAL.getPattern(), Pattern.UNICODE_CASE);
@@ -746,7 +746,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#NUMBER} с некорректным значением.
 		 */
 		@Test
-		public void numberNotCorrect()
+		public void numberWithValueInvalid()
 		{
 			String value = "asd";
 			Pattern pattern = Pattern.compile(Regexp.NUMBER.getPattern(), Pattern.UNICODE_CASE);
@@ -780,7 +780,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#WORD} с некорректным значением.
 		 */
 		@Test
-		public void wordNotCorrect()
+		public void wordWithValueInvalid()
 		{
 			String value = "34546";
 			Pattern pattern = Pattern.compile(Regexp.WORD.getPattern(), Pattern.UNICODE_CASE);
@@ -814,7 +814,7 @@ public class RegexpTest
 		 * Проверка константы {@link Regexp#LETTER} с некорректным значением.
 		 */
 		@Test
-		public void letterNotCorrect()
+		public void letterWithValueInvalid()
 		{
 			String value = "0";
 			Pattern pattern = Pattern.compile(Regexp.LETTER.getPattern(), Pattern.UNICODE_CASE);

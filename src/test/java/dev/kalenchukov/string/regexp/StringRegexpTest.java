@@ -77,7 +77,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " ", "RU-RU", "RU-ru", "ru-ru", "ru", "RU"
 			})
-			public void isLocalizationNotCorrect(String value)
+			public void isLocalizationValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isLocalization(value);
 
@@ -125,7 +125,7 @@ public class StringRegexpTest
 				"192.168.257.1",
 				"192.168.1.256",
 			})
-			public void isInet4AddressNotCorrect(String value)
+			public void isInet4AddressValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isInet4Address(value);
 
@@ -162,7 +162,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D"
 			})
-			public void isInet6AddressNotCorrect(String value)
+			public void isInet6AddressValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isInet6Address(value);
 
@@ -242,7 +242,7 @@ public class StringRegexpTest
 				"0db8:11a3::::8A2E:07A0:765D",
 				"0db8:11a3::::::8A2E:07A0:765D"
 			})
-			public void isInet6AddressIgnoreCaseNotCorrect(String value)
+			public void isInet6AddressIgnoreCaseValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isInet6AddressIgnoreCase(value);
 
@@ -309,7 +309,7 @@ public class StringRegexpTest
 				"aleksey.kalenchukov@-yandex.ru",
 				"aleksey.kalenchukovkalenchukovkalenchukovkalenchukovkalenchukovkalenchukov@yandex.ru",
 			})
-			public void isEmailAddressNotCorrect(String value)
+			public void isEmailAddressValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isEmailAddress(value);
 
@@ -349,7 +349,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " ", "kalenchukov,dev", "regexp.string.kalenchukov.d"
 			})
-			public void isDomainNotCorrect(String value)
+			public void isDomainValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isDomain(value);
 
@@ -409,7 +409,7 @@ public class StringRegexpTest
 			//			"http://www..dev",
 			//			"http:/www.kalenchukov.dev"
 			//		})
-			//		public void isUrlHttpNotCorrect(String value)
+			//		public void isUrlHttpValueInvalid(String value)
 			//		{
 			//			boolean actual = StringRegexp.isUrlHttp(value);
 			//
@@ -459,7 +459,7 @@ public class StringRegexpTest
 				"255,256,55",
 				"255,155,256"
 			})
-			public void isRgbNumericNotCorrect(String value)
+			public void isRgbNumericValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isRgbNumeric(value);
 
@@ -496,7 +496,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " ", "ru", "rub", "#RU", "0RU"
 			})
-			public void isCountryCodeAlpha2NotCorrect(String value)
+			public void isCountryCodeAlpha2ValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isCountryCodeAlpha2(value);
 
@@ -533,7 +533,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " ", "rus", "rub", "#RUS", "0RUS"
 			})
-			public void isCountryCodeAlpha3NotCorrect(String value)
+			public void isCountryCodeAlpha3ValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isCountryCodeAlpha3(value);
 
@@ -570,7 +570,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " ", "52", "0052", "#643"
 			})
-			public void isCountryCodeNumeric3NotCorrect(String value)
+			public void isCountryCodeNumeric3ValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isCountryCodeNumeric3(value);
 
@@ -611,7 +611,7 @@ public class StringRegexpTest
 				"1bc29b36f623ba82aaf6724fd3b16718",
 				"1bc29B36F623BA82AAF6724FD3B16718"
 			})
-			public void isMd5NotCorrect(String value)
+			public void isMd5ValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isMd5(value);
 
@@ -654,7 +654,7 @@ public class StringRegexpTest
 				"1bc29b36f623ba82aaf6724fd3b1671",
 				"1bc29b36f623ba82af6724fd3b16718"
 			})
-			public void isMd5IgnoreCaseNotCorrect(String value)
+			public void isMd5IgnoreCaseValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isMd5IgnoreCase(value);
 
@@ -691,7 +691,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " ", "FFFFFF", "#23394W", "#ARDBZG"
 			})
-			public void isRgbHexNotCorrect(String value)
+			public void isRgbHexValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isRgbHex(value);
 
@@ -728,7 +728,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " ", "fffFFF", "#23394w", "#ardBZG"
 			})
-			public void isRgbHexIgnoreCaseNotCorrect(String value)
+			public void isRgbHexIgnoreCaseValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isRgbHexIgnoreCase(value);
 
@@ -777,7 +777,7 @@ public class StringRegexpTest
 				"00:EF:CD::EF:11:22",
 				"00:EF::EF:11:22",
 			})
-			public void isMacAddressNotCorrect(String value)
+			public void isMacAddressValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isMacAddress(value);
 
@@ -814,7 +814,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " ", "00:EF:CD:EF:11:2", "00:ew:CD:EF:11:22", "00:EF:CD::ef:11:22", "00:EF::ef:11:22"
 			})
-			public void isMacAddressIgnoreCaseNotCorrect(String value)
+			public void isMacAddressIgnoreCaseValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isMacAddressIgnoreCase(value);
 
@@ -851,7 +851,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " ", "kalenchukov", "@kalenchukov.", "@kalenchukov-", "@kalenchukov+", "@kalen-chukov"
 			})
-			public void isTelegramNotCorrect(String value)
+			public void isTelegramValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isTelegram(value);
 
@@ -904,7 +904,7 @@ public class StringRegexpTest
 				"#123_",
 				"#_123"
 			})
-			public void isTagNotCorrect(String value)
+			public void isTagValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isTag(value);
 
@@ -941,7 +941,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " ", "1.0", "012", "1a0", "0a"
 			})
-			public void isDigitBinaryNotCorrect(String value)
+			public void isDigitBinaryValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isDigitBinary(value);
 
@@ -978,7 +978,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " ", "1.0", "1a0", "0a"
 			})
-			public void isDigitTernaryNotCorrect(String value)
+			public void isDigitTernaryValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isDigitTernary(value);
 
@@ -1015,7 +1015,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " "
 			})
-			public void isDigitOctalNotCorrect(String value)
+			public void isDigitOctalValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isDigitOctal(value);
 
@@ -1052,7 +1052,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " ", "1.1", "1.1", "1a1", "1a"
 			})
-			public void isDigitDecimalNotCorrect(String value)
+			public void isDigitDecimalValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isDigitDecimal(value);
 
@@ -1089,7 +1089,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " "
 			})
-			public void isDigitDuodecimalNotCorrect(String value)
+			public void isDigitDuodecimalValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isDigitDuodecimal(value);
 
@@ -1126,7 +1126,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " "
 			})
-			public void isDigitHexadecimalNotCorrect(String value)
+			public void isDigitHexadecimalValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isDigitHexadecimal(value);
 
@@ -1180,7 +1180,7 @@ public class StringRegexpTest
 				"1,100, 123",
 				"1.100. 123"
 			})
-			public void isNumberNotCorrect(String value)
+			public void isNumberValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isNumber(value);
 
@@ -1218,7 +1218,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " ", "-привет", "привет-", " привет", "привет ", "Hello- World", "Hello -World", "Hello - World"
 			})
-			public void isWordNotCorrect(String value)
+			public void isWordValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isWord(value);
 
@@ -1255,7 +1255,7 @@ public class StringRegexpTest
 			@ValueSource(strings = {
 				"", " ", "-", "0", "?"
 			})
-			public void isLetterNotCorrect(String value)
+			public void isLetterValueInvalid(String value)
 			{
 				boolean actual = StringRegexp.isLetter(value);
 
@@ -1293,7 +1293,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findEmailAddress(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1310,7 +1310,7 @@ public class StringRegexpTest
 				Через день будет поздно, через час будет поздно,
 				Через миг будет уже не встать.
 				Если к дверям не подходят ключи,regexp.string.kalenchukov.dev вышиби двери плечом.
-					
+
 				Мама, мы все тяжело больны...
 				Мама, я знаю, мы все сошли с ума...
 
@@ -1343,7 +1343,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findDomain(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1357,7 +1357,7 @@ public class StringRegexpTest
 				Вряд ли поймёт http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme того, кто учился в спецшколе
 				Тот, у кого есть хороший жизненный план
 				Вряд ли будет https://kalenchukov.dev/#readme думать о чём-то другом
-							
+
 				Мы пьём чай в старых квартирах
 				Ждём лета в старых квартирах
 				В старых квартирах, где есть свет
@@ -1373,7 +1373,7 @@ public class StringRegexpTest
 				Все говорят, но немногие знают в каком,
 				А из наших труб идёт необычный дым
 				Стой, опасная зона, работа мозга
-							
+
 				Бошетунмай, бошетунмай
 				Бошетунмай,http://kalenchukov.dev/?isUrlHttp=test123 бошетунмай
 				Бошетунмай, бошетунмай
@@ -1389,7 +1389,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findUrlHttp(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1423,7 +1423,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findCountryCodeAlpha2(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1455,7 +1455,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findCountryCodeAlpha3(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1483,7 +1483,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findCountryCodeNumeric3(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1497,27 +1497,27 @@ public class StringRegexpTest
 				Небесный пастух пасёт #FFFFFF облака
 				Город стреляет в ночь дробью огней
 				Но ночь сильней, её власть велика
-							
+
 				Тем, кто ложится спать
 				Спокойного сна, спокойная ночь
 				Тем, кто ложится спать, спокойного сна #000000
 				Спокойная ночь
-							
+
 				Я ждал это время, и вот это время пришло
 				Те, кто молчал перестали молчать
 				Те, кому нечего ждать, садятся в седло
 				Их не догнать, уже не догнать
-							
+
 				А тем, кто#D0E9F8 ложится спать
 				Спокойного сна, спокойная ночь
 				Тем, кто ложится спать, спокойного сна
 				Спокойная ночь
-							
+
 				Соседи приходят, им слышится стук копыт
 				Мешает уснуть, тревожит их сон
 				Те, кому нечего ждать, отправляются в путь
 				Те, кто спасён,#1A2B3C те, кто спасён
-							
+
 				А тем, кто ложится спать
 				Спокойного сна, спокойная ночь
 				Тем, кто ложится спать, спокойного сна
@@ -1528,7 +1528,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findRgbHex(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1542,27 +1542,27 @@ public class StringRegexpTest
 				Снова я уезжаю. Пора...
 				На пороге ветер заждался меня.
 				На пороге осень — моя сестра.#000000
-							
+
 				После красно-желтых дней начнется и кончится зима.
 				Горе ты мое от ума, не печалься, гляди веселей.
 				И я вернусь домой со щитом,#d0e9F8 а, может быть, на щите,
 				В серебре, а, может быть, в нищете, но как можно скорей.
-							
+
 				Расскажи мне о тех, кто устал
 				От безжалостных уличных драм
 				И о храме из разбитых сердец
 				И о тех, кто идет в этот храм.
-							
+
 				После красно-желтых дней начнется и кончится зима.
 				Горе ты мое от ума, не печалься, гляди веселей.
 				И я вернусь домой со щитом, а, может быть, на щите,
 				В серебре, а, может быть, в нищете, но как можно скорей.
-							
+
 				А мне приснилось: миром правит любовь,
 				А мне приснилось: миром правит мечта.
 				И над этим прекрасно горит звезда,
 				Я проснулся и понял — беда...#1a2B3C
-							
+
 				После красно-желтых дней начнется и кончится зима.
 				Горе ты мое от ума, не печалься, гляди веселей.
 				И я вернусь домой со щитом, а, может быть, на щите,
@@ -1573,7 +1573,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findRgbHexIgnoreCase(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1587,7 +1587,7 @@ public class StringRegexpTest
 				Но где найти 00-EF-CD-EF-11-22 тех, что услышат ее?
 				Подросший ребенок, воспитанный жизнью за шкафом,
 				Теперь ты видишь Солнце, возьми - 00:EF:CD:EF:11:22 это твое!
-							
+
 				Я объявляю свой дом
 				Безъядерной зоной!
 				Я объявляю свой двор
@@ -1595,7 +1595,7 @@ public class StringRegexpTest
 				Я объявляю свой город
 				Безъядерной зоной!
 				яю свой...00:EF:CD:DF:11:22
-							
+
 				Как не прочны стены наших квартир,
 				Но кто-то один не подставит за всех плечо.
 				Я вижу дом, я беру в руки мел,
@@ -1616,7 +1616,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findMacAddress(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1630,7 +1630,7 @@ public class StringRegexpTest
 				Я слышу, как ветер 00-EF-CD-ef-11-22 поет свою странную песню
 				Я слышу, как струны деревьев играют ее
 				Музыку волн 00:EF:CD:EF:11:22, музыку ветра
-							
+
 				Здесь трудно сказать, что такое асфальт
 				Здесь трудно сказать, что такое машина
 				Здесь нужно руками кидать воду вверх
@@ -1649,7 +1649,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findMacAddressIgnoreCase(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1663,19 +1663,19 @@ public class StringRegexpTest
 				И вокруг все поют, только ты один молчишь.
 				Потерял аппетит и не 192.168.1.1 хочешь сходить в кино.
 				Ты идешь в магазин, чтобы купить вино.
-							
+
 				Солнце светит и растет трава,
 				Но тебе она не нужна.
 				Все не так и все не то,
 				Когда твоя девушка больна 1.1.1.1
 				Когда твоя девушка больна
 				Когда больна.
-							
+
 				Ты идешь в магазин, головою поник,
 				Как будто иссяк чистый горный родник.
 				Она где-то лежит,0.0.0.0 ест мед и пьет аспирин,
 				И вот ты идешь на вечеринку один.
-							
+
 				Солнце светит и растет трава,
 				Но тебе она не нужна.
 				Все не так и все не то,
@@ -1684,7 +1684,7 @@ public class StringRegexpTest
 				Когда твоя девушка больна.
 				На вечеринку - один.
 				Когда твоя девушка больна.
-							
+
 				Когда твоя девушка больна.
 				Когда твоя девушка больна.
 				""";
@@ -1693,7 +1693,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findInet4Address(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1711,12 +1711,12 @@ public class StringRegexpTest
 				На часы, что полвека стоят
 				На до дыр зацелованный флаг
 				Я полцарства отдам за коня
-							
+
 				Играй!50, 50,50
 				Невесёлая песня моя
 				Играй!
 				Играй!
-							
+
 				Командиры Армии Лет
 				Мы теряли в бою день за днём
 				А когда мы разжигали огонь
@@ -1725,7 +1725,7 @@ public class StringRegexpTest
 				И гадаем на розе ветров
 				А когда приходит время вставать
 				Мы сидим, 113,13,3 мы ждём
-							
+
 				Играй!
 				Невесёлая песня моя
 				Играй!
@@ -1740,7 +1740,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findRgbNumeric(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1754,18 +1754,18 @@ public class StringRegexpTest
 				С кем-то другим, я стою не дыша @kalenchukov
 				Я знаю, что ты живешь в соседнем дворе
 				Ты идешь не спеша,@Kalenchukov не спеша...
-							
+
 				Ооооу, но это не любовь...
 				Ооооу, но это не любовь...
-							
+
 				А вечером я стою под твоим окном
 				Ты поливаешь цветы, поливаешь цветы
 				А я дотемна стою и сгораю огнем
 				И виной тому ты, только ты...@KALENCHUKOV
-							
+
 				Ооооу, но это не любовь...
 				Ооооу, но это не любовь...
-							
+
 				Научи меня всему тому, что умеешь ты
 				Я хочу это знать и уметь
 				Сделай так, чтобы сбылись все мои мечты
@@ -1779,7 +1779,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findTelegram(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1793,22 +1793,22 @@ public class StringRegexpTest
 				Так что даже отвыкли звонить мне друзья.
 				В разъездах, разгулах 2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D конца лета симптомы
 				Совсем перестали вдруг мучить меня.
-							
+
 				И я подумал что Осень - это тоже не плохо,
 				И что Осенью слякоть и сер первый снег, AD12::AE21::
 				И что холод ветров я буду чувствовать боком,
 				Опьяненный сознаньем того, что я человек.
-							
+
 				И этой Осенью много дней чьих-то рождений
 				И уж я постараюсь на них побывать,
 				::AE21:AD12 А потом, игнорируя лужи и слякоть,
 				Я приду домой пьяный и мешком повалюсь на кровать.
-							
+
 				И утром рано я встану и отправлюсь учиться,
 				И с похмелья я буду смеяться над всем.
 				Скоро будет Зима, чтоб в Весне раствориться,
 				А потом будет Лето - неизвестно зачем.
-							
+
 				И я начал за здравие, а кончу я плохо,
 				Написав наш порядковый номер - 600.
 				С чьих-то старых столов подбираю я крохи,
@@ -1821,7 +1821,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findInet6Address(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1835,27 +1835,27 @@ public class StringRegexpTest
 				Ну, а я всегда 2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D любил ночь.
 				И это мое дело - любить ночь,
 				И это мое право - ad12::AE21:: уйти в тень.
-							
+
 				Я люблю ночь за то, что в ней меньше машин,
 				Я люблю дым и пепел своих папирос,
 				Я люблю кухни за то, что они хранят тайны,
 				Я люблю свой дом, но вряд ли это всерьез.
-							
+
 				И эта ночь и ее электрический свет бьет мне в глаза,
 				И эта ночь и ее электрический дождь бьет мне в окно,
 				И эта ночь и ее электрический голос манит меня к себе,
 				И я не знаю, как мне прожить следующий день.
-							
+
 				Я один, но это не значит, что я одинок, ::ae21:AD12
 				Мой магнитофон хрипит о радостях дня,
 				Я помню, что завтра меня ждет несколько встреч,
 				И кофе в известном кафе согреет меня.
-							
+
 				И эта ночь и ее электрический свет бьет мне в глаза,
 				И эта ночь и ее электрический дождь бьет мне в окно,
 				И эта ночь и ее электрический голос манит меня к себе,
 				И я не знаю, как мне прожить следующий день.
-							
+
 				И эта ночь и ее электрический свет бьет мне в глаза,
 				И эта ночь и ее электрический дождь бьет мне в окно,
 				И эта ночь и ее электрический голос манит меня к себе,
@@ -1868,7 +1868,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findInet6AddressIgnoreCase(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1895,7 +1895,7 @@ public class StringRegexpTest
 				Припев:#ta_g
 				Я бездельник, о-о, мама, мама, я бездельник, у-у...
 				Я бездельник, о-о, мама, мама.
-				   
+
 				у-у... я бездельник, о-о, мама, мама.
 				Я бездельник, у-у...
 				Я бездельник, о-о, мама, мама, я бездельник, у-у...
@@ -1906,7 +1906,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findTag(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1920,7 +1920,7 @@ public class StringRegexpTest
 				Мы хотим жить, мы живучи, как кошки
 				И вот мы пришли заявить о своих правах,1101 да
 				Слышишь шелест плащей? Это мы
-							
+
 				Дальше действовать будем мы
 				Дальше действовать будем мы
 				Дальше действовать будем мы
@@ -1931,12 +1931,12 @@ public class StringRegexpTest
 				Нам уже стали тесны одежды,
 				Сшитые вами для нас одежды
 				И вот мы пришли сказать вам о том, что дальше...
-							
+
 				Дальше действовать будем мы
 				Дальше действовать будем мы
 				Дальше действовать будем мы 01010101
 				Дальше действовать будем мы
-							
+
 				Дальше действовать будем мы
 				Дальше действовать будем мы
 				Дальше действовать будем мы
@@ -1947,7 +1947,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findDigitBinary(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -1962,22 +1962,22 @@ public class StringRegexpTest
 				И пальто на гвозде, шарф в рукаве
 				И перчатки в карманах шепчут:
 				«Подожди до утра!» До утра...11021
-							
+
 				Но странный стук зовёт: «В дорогу!»
 				Может сердца, а может стук в дверь.
 				И, когда я обернусь на пороге,
 				Я скажу одно лишь слово:102101 «Верь!»
-							
+
 				И опять на вокзал, и опять к поездам,
 				И опять проводник выдаст бельё и чай,
 				И опять не усну, и опять сквозь грохот колёс
 				Мне послышится слово: «Прощай!»
-							
+
 				Но странный стук зовёт: «В дорогу!»
 				Может сердца, а может стук в дверь.
 				И,010210101 когда я обернусь на пороге,
 				Я скажу одно лишь слово: «Верь!»
-							
+
 				Но странный стук зовёт: «В дорогу!»
 				Может сердца, а может стук в дверь.
 				И, когда я обернусь на пороге,
@@ -1988,7 +1988,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findDigitTernary(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -2002,7 +2002,7 @@ public class StringRegexpTest
 				Лишь во сне моём,010317201 поёт капель.
 				А снег идёт стеной, а снег идёт весь день,
 				А за той стеной - стоит Апрель.1160215
-							
+
 				А он придёт и приведёт за собой Весну,
 				И рассеет серых туч войска,
 				А когда мы все посмотрим в глаза его,
@@ -2016,7 +2016,7 @@ public class StringRegexpTest
 				Лишь в груди горит звезда.
 				И умрёт Апрель, и родится вновь,
 				И придёт уже навсегда.
-							
+
 				А он придёт и приведёт за собой Весну,
 				И рассеет серых туч войска.01021034567101
 				А когда мы все посмотрим в глаза его,
@@ -2031,7 +2031,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findDigitOctal(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -2045,7 +2045,7 @@ public class StringRegexpTest
 				Небесный пастух пасёт облака 01031A9b7201
 				Город стреляет в ночь дробью огней
 				Но ночь сильней,11602B15 её власть велика
-							
+
 				Тем, кто ложится спать
 				Спокойного сна, спокойная ночь
 				Тем, кто ложится спать, спокойного сна
@@ -2055,17 +2055,17 @@ public class StringRegexpTest
 				Те, кто молчал перестали молчать
 				Те, кому нечего ждать, садятся в седло
 				Их не догнать, уже не догнать
-							
+
 				А тем, кто ложится спать
 				Спокойного сна, спокойная ночь
 				Тем, кто ложится спать, спокойного сна
 				Спокойная ночь
-							
+
 				Соседи приходят,B010A210394567101 им слышится стук копыт
 				Мешает уснуть, тревожит их сон
 				Те, кому нечего ждать, отправляются в путь
 				Те, кто спасён, те, кто спасён
-							
+
 				А тем, кто ложится спать
 				Спокойного сна, спокойная ночь
 				Тем, кто ложится спать, спокойного сна
@@ -2076,7 +2076,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findDigitDuodecimal(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -2090,22 +2090,22 @@ public class StringRegexpTest
 				Там горят фонари, и машины гудят.
 				А над городом ночь, 0103f1A9b720d1 а над ночью луна,
 				И сегодня луна каплей крови красна.1160de2B15
-							
+
 				Дом стоит, свет горит, из окна видна даль.
 				Так откуда взялась печаль?
 				И вроде, жив и здоров, и вроде жить, не тужить.
 				Так откуда взялась печаль?
-							
+
 				А вокруг благодать - 17024cA103d1 ни черта не видать,
 				А вокруг красота - не видать ни черта.
 				И все кричат: "Ура!" и все бегут вперед,
 				И над этим всем, новый день встает.
-							
+
 				Дом стоит, B010A210cde3945f67101 свет горит, из окна видна даль.
 				Так откуда взялась, печаль?
 				И вроде, жив и здоров, и вроде жить, не тужить.
 				Так откуда взялась, печаль?
-							
+
 				Дом стоит, свет горит, из окна видна даль.
 				Так откуда взялась, печаль?
 				И вроде, жив и здоров, и вроде жить, не тужить.
@@ -2116,7 +2116,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findDigitHexadecimal(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -2130,27 +2130,27 @@ public class StringRegexpTest
 				Снова я уезжаю. Пора...
 				На пороге ветер заждался меня.
 				На пороге осень — моя сестра.ru-RU
-							
+
 				После красно-желтых дней начнется и кончится зима.
 				Горе ты мое от ума, не печалься, гляди веселей.
 				И я вернусь домой со щитом, а, может быть, на щите,
 				В серебре, а, может быть, в нищете, но как можно скорей.
-							
+
 				Расскажи мне о тех, кто устал
 				От безжалостных уличных драм
 				И о храме из разбитых сердец
 				И о тех, кто идет в этот храм.
-							
+
 				После красно-желтых дней начнется и кончится зима.
 				Горе ты мое от ума,en-EN не печалься, гляди веселей.
 				И я вернусь домой со щитом, а, может быть, на щите,
 				В серебре, а, by-BY может быть, в нищете, но как можно скорей.
-							
+
 				А мне приснилось: миром правит любовь,
 				А мне приснилось:it-IT миром правит мечта.
 				И над этим прекрасно горит звезда,
 				Я проснулся и понял — беда...
-							
+
 				После красно-желтых дней начнется и кончится зима.
 				Горе ты мое от ума, не печалься, гляди веселей.
 				И я вернусь домой со щитом, а, может быть, на щите,
@@ -2161,7 +2161,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findLocalization(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -2175,21 +2175,21 @@ public class StringRegexpTest
 				С кем-то другим, я стою не дыша.
 				Я знаю, что ты живешь в соседнем дворе,12
 				Ты идешь не спеша, не спеша...
-							
+
 				О, но это не любовь...
-							
+
 				А вечером я стою под твоим окном,
 				Ты поливаешь цветы, поливаешь цветы.
 				А я дотемна стою и сгораю огнем,
 				123И виной тому ты, только ты...
-							
+
 				О, но это не любовь...
-							
+
 				Научи меня всему тому, что умеешь ты,
 				Я хочу это знать и уметь.
 				Сделай так, чтобы сбылись все мои мечты,
 				Мне нельзя больше ждать, я могу умереть...
-							
+
 				О, но это не любовь...0123456789
 				""";
 
@@ -2197,7 +2197,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findDigitDecimal(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -2211,27 +2211,27 @@ public class StringRegexpTest
 				Ночью так часто 1.100 хочется пить,
 				Ты выходишь на кухню, но вода здесь горька;
 				Ты не можешь здесь спать, 0,1 ты не хочешь здесь жить.
-							
+
 				Доброе утро, последний герой!
 				Доброе утро, — тебе, и таким, как ты!
 				Доброе утро, последний герой!
 				Здравствуй, последний герой!
-							
+
 				Ты хотел быть один — это быстро прошло,
 				Ты хотел быть один, но не смог быть один.
 				Твоя ноша легка, но немеет рука;
 				И ты встречаешь рассвет за игрой в «Дурака».
-							
+
 				Доброе утро, последний герой!
 				Доброе утро, —1,000,00 тебе, и таким, как ты!
 				Доброе утро, последний герой!
 				Здравствуй, последний герой!
-							
+
 				Утром ты стремишься скорее уйти,
 				Телефонный звонок, как команда «Вперёд!»
 				Ты уходишь туда, куда не хочешь идти;
 				Ты уходишь туда,1.222,123 но тебя там никто не ждёт!
-							
+
 				Доброе утро, последний герой!
 				Доброе утро, — тебе, и таким, как ты!
 				Доброе утро, последний герой!
@@ -2242,7 +2242,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findNumber(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -2267,7 +2267,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findWord(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 
 		/**
@@ -2284,7 +2284,7 @@ public class StringRegexpTest
 
 			List<String> actualList = StringRegexp.findLetter(value);
 
-			assertThat(actualList).containsSequence(expectedList);
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
 		}
 	}
 }
