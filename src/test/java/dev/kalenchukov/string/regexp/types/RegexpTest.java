@@ -26,6 +26,8 @@ package dev.kalenchukov.string.regexp.types;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -73,6 +75,197 @@ public class RegexpTest
 	@Nested
 	public class PatternRegexp
 	{
+		/**
+		 * Класс проверки регулярного выражения константы перечисления {@link Regexp#UUID}.
+		 *
+		 * @author Алексей Каленчуков
+		 */
+		@Nested
+		public class UUID
+		{
+			/**
+			 * Проверка регулярного выражения константы {@link Regexp#UUID} с корректными значениями.
+			 */
+			@ParameterizedTest
+			@ValueSource(strings = {
+				// На различный регистр цифр
+				"01234567-89ab-cdef-ABCD-EF0123456789",
+				"01234567-89AB-CDEF-ABCD-EF0123456789",
+				"01234567-89ab-cdef-abcd-ef0123456789",
+
+				// На все минимальные и максимальные цифры
+				"00000000-0000-0000-0000-000000000000",
+				"FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF"
+			})
+			public void uuidWithValid(final String value)
+			{
+				Pattern pattern = Pattern.compile(Regexp.UUID.getPattern(), Pattern.UNICODE_CASE);
+				Matcher matcher = pattern.matcher(value);
+
+				assertThat(matcher.matches()).isTrue();
+			}
+
+			/**
+			 * Проверка регулярного выражения константы {@link Regexp#UUID} с некорректными значениями.
+			 */
+			@ParameterizedTest
+			@ValueSource(strings = {
+				// Недобор цифр в разных группах
+				"0123456-89ab-cdef-ABCD-EF0123456789",
+				"01234567-89a-cdef-ABCD-EF0123456789",
+				"01234567-89ab-cde-ABCD-EF0123456789",
+				"01234567-89ab-cdef-ABC-EF0123456789",
+				"01234567-89ab-cdef-ABCD-EF012345678",
+
+				// Перебор цифр в разных группах
+				"012345678-89AB-CDEF-ABCD-EF0123456789",
+				"01234567-89AB0-CDEF-ABCD-EF0123456789",
+				"01234567-89AB-CDEF0-ABCD-EF0123456789",
+				"01234567-89AB-CDEF-ABCD0-EF0123456789",
+				"01234567-89AB-CDEF-ABCD-EF01234567890",
+
+				// Посторонние символы в разных группах
+				"0123.567-89ab-cdef-abcd-ef0123456789",
+				"01234567-89.b-cdef-abcd-ef0123456789",
+				"01234567-89ab-cd.f-abcd-ef0123456789",
+				"01234567-89ab-cdef-ab.d-ef0123456789",
+				"01234567-89ab-cdef-abcd-ef.123456789",
+
+				// Разделитель некорректный в разных группах
+				"01234567_89ab-cdef-ABCD-EF0123456789",
+				"01234567-89ab_cdef-ABCD-EF0123456789",
+				"01234567-89ab-cdef_ABCD-EF0123456789",
+				"01234567-89ab-cdef-ABCD_EF0123456789"
+
+			})
+			public void uuidWithInvalid(final String value)
+			{
+				Pattern pattern = Pattern.compile(Regexp.UUID.getPattern(), Pattern.UNICODE_CASE);
+				Matcher matcher = pattern.matcher(value);
+
+				assertThat(matcher.matches()).isFalse();
+			}
+
+			/**
+			 * Проверка основной группы регулярного выражения константы {@link Regexp#UUID}.
+			 */
+			@Test
+			public void uuidWithGroup()
+			{
+				String value = "01234567-89ab-cdef-ABCD-EF0123456789";
+				Pattern pattern = Pattern.compile(Regexp.UUID.getPattern(), Pattern.UNICODE_CASE);
+				Matcher matcher = pattern.matcher(value);
+
+				assertThat(matcher.matches()).isTrue();
+
+				String actualGroup = matcher.group("uuid");
+
+				assertThat(actualGroup).isEqualTo(value);
+			}
+
+			/**
+			 * Проверка разделителя регулярного выражения константы {@link Regexp#UUID}.
+			 */
+			@Test
+			public void uuidWithSeparator()
+			{
+				String value = "01234567-89ab-cdef-ABCD-EF0123456789";
+				Pattern pattern = Pattern.compile(Regexp.UUID.getPattern(), Pattern.UNICODE_CASE);
+				Matcher matcher = pattern.matcher(value);
+
+				assertThat(matcher.matches()).isTrue();
+
+				String actualSeparator = matcher.group("separator");
+
+				assertThat(actualSeparator).isEqualTo("-");
+			}
+
+			/**
+			 * Проверка первой группы регулярного выражения константы {@link Regexp#UUID}.
+			 */
+			@Test
+			public void uuidWithGroup1()
+			{
+				String value = "01234567-89ab-cdef-ABCD-EF0123456789";
+				Pattern pattern = Pattern.compile(Regexp.UUID.getPattern(), Pattern.UNICODE_CASE);
+				Matcher matcher = pattern.matcher(value);
+
+				assertThat(matcher.matches()).isTrue();
+
+				String actualGroup1 = matcher.group("group1");
+
+				assertThat(actualGroup1).isEqualTo("01234567");
+			}
+
+			/**
+			 * Проверка второй группы регулярного выражения константы {@link Regexp#UUID}.
+			 */
+			@Test
+			public void uuidWithGroup2()
+			{
+				String value = "01234567-89ab-cdef-ABCD-EF0123456789";
+				Pattern pattern = Pattern.compile(Regexp.UUID.getPattern(), Pattern.UNICODE_CASE);
+				Matcher matcher = pattern.matcher(value);
+
+				assertThat(matcher.matches()).isTrue();
+
+				String actualGroup2 = matcher.group("group2");
+
+				assertThat(actualGroup2).isEqualTo("89ab");
+			}
+
+			/**
+			 * Проверка третьей группы регулярного выражения константы {@link Regexp#UUID}.
+			 */
+			@Test
+			public void uuidWithGroup3()
+			{
+				String value = "01234567-89ab-cdef-ABCD-EF0123456789";
+				Pattern pattern = Pattern.compile(Regexp.UUID.getPattern(), Pattern.UNICODE_CASE);
+				Matcher matcher = pattern.matcher(value);
+
+				assertThat(matcher.matches()).isTrue();
+
+				String actualGroup3 = matcher.group("group3");
+
+				assertThat(actualGroup3).isEqualTo("cdef");
+			}
+
+			/**
+			 * Проверка четвёртой группы регулярного выражения константы {@link Regexp#UUID}.
+			 */
+			@Test
+			public void uuidWithGroup4()
+			{
+				String value = "01234567-89ab-cdef-ABCD-EF0123456789";
+				Pattern pattern = Pattern.compile(Regexp.UUID.getPattern(), Pattern.UNICODE_CASE);
+				Matcher matcher = pattern.matcher(value);
+
+				assertThat(matcher.matches()).isTrue();
+
+				String actualGroup4 = matcher.group("group4");
+
+				assertThat(actualGroup4).isEqualTo("ABCD");
+			}
+
+			/**
+			 * Проверка пятой группы регулярного выражения константы {@link Regexp#UUID}.
+			 */
+			@Test
+			public void uuidWithGroup5()
+			{
+				String value = "01234567-89ab-cdef-ABCD-EF0123456789";
+				Pattern pattern = Pattern.compile(Regexp.UUID.getPattern(), Pattern.UNICODE_CASE);
+				Matcher matcher = pattern.matcher(value);
+
+				assertThat(matcher.matches()).isTrue();
+
+				String actualGroup5 = matcher.group("group5");
+
+				assertThat(actualGroup5).isEqualTo("EF0123456789");
+			}
+		}
+
 		/**
 		 * Проверка регулярного выражения константы {@link Regexp#LOCALIZATION}.
 		 */

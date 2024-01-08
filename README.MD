@@ -39,6 +39,11 @@ Regexp.DOMAIN;
 Regexp.MD5;
 ```
 
+#### Универсальный уникальный идентификатор (UUID)
+```java
+Regexp.UUID;
+```
+
 #### Локализация
 ```java
 Regexp.LOCALIZATION;
