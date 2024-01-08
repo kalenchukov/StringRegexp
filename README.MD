@@ -200,6 +200,16 @@ StringRegexp.isMd5IgnoreCase("D41D8CD98F00B204E9800998ECF8427E");
 true
 ```
 
+#### Проверка универсального уникального идентификатора (UUID)
+```java
+StringRegexp.isUuid("123e4567-e89b-12d3-a456-426655440000");
+```
+
+Результат выполнения:
+```
+true
+```
+
 #### Проверка RGB в шестнадцатеричной системе счисления
 ```java
 StringRegexp.isRgbHex("#FFFFFF");

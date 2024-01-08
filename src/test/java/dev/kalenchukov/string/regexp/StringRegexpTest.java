@@ -579,6 +579,50 @@ public class StringRegexpTest
 		}
 
 		/**
+		 * Класс проверки метода {@link StringRegexp#isUuid(String)}.
+		 *
+		 * @author Алексей Каленчуков
+		 */
+		@Nested
+		public class IsUuid
+		{
+			/**
+			 * Проверка метода {@link StringRegexp#isUuid(String)} с корректными значениями.
+			 */
+			@ParameterizedTest
+			@ValueSource(strings = {
+				"01234567-89ab-cdef-ABCD-EF0123456789",
+				"01234567-89AB-CDEF-ABCD-EF0123456789",
+				"01234567-89ab-cdef-abcd-ef0123456789"
+			})
+			public void isUuidWithValueValid(String value)
+			{
+				boolean actual = StringRegexp.isUuid(value);
+
+				assertThat(actual).isTrue();
+			}
+
+			/**
+			 * Проверка метода {@link StringRegexp#isUuid(String)} с некорректными значениями.
+			 */
+			@ParameterizedTest
+			@ValueSource(strings = {
+				"",
+				" ",
+				"0123456-89ab-cdef-ABCD-EF0123456789",
+				"012345678-89AB-CDEF-ABCD-EF0123456789",
+				"0123.567-89ab-cdef-abcd-ef0123456789",
+				"01234567_89ab-cdef-ABCD-EF0123456789"
+			})
+			public void isUuidWithValueInvalid(String value)
+			{
+				boolean actual = StringRegexp.isUuid(value);
+
+				assertThat(actual).isFalse();
+			}
+		}
+
+		/**
 		 * Класс проверки метода {@link StringRegexp#isMd5(String)}.
 		 *
 		 * @author Алексей Каленчуков

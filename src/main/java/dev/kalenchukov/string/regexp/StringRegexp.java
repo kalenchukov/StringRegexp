@@ -223,6 +223,17 @@ public class StringRegexp
 	}
 
 	/**
+	 * Проверяет, является ли строка универсальным уникальным идентификатором (UUID).
+	 *
+	 * @param string строка.
+	 * @return {@code true}, если {@code string} является универсальным уникальным идентификатором (UUID), иначе {@code false}.
+	 */
+	public static boolean isUuid(@NotNull final String string)
+	{
+		return StringRegexp.is(string, Regexp.UUID);
+	}
+
+	/**
 	 * Проверяет, является ли строка IP-адресом шестой версии.
 	 *
 	 * @param string строка.
