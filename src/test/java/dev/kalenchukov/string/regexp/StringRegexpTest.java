@@ -1697,6 +1697,29 @@ public class StringRegexpTest
 		}
 
 		/**
+		 * Проверка метода {@link StringRegexp#findUuid(String)}.
+		 */
+		@Test
+		public void findUuid()
+		{
+			String value = """
+				Ты так любишь эти фильмы
+				Мне знакомы 123e4567-e89b-12d3-a456-426655440000 эти песни
+				Ты так любишь кинотеатры
+				Мы вряд ли сможем быть вместе 00000000-0000-0000-0000-000000000000
+				""";
+
+			List<String> expectedList = List.of(
+				"123e4567-e89b-12d3-a456-426655440000",
+				"00000000-0000-0000-0000-000000000000"
+			);
+
+			List<String> actualList = StringRegexp.findUuid(value);
+
+			assertThat(actualList).containsExactlyElementsOf(expectedList);
+		}
+
+		/**
 		 * Проверка метода {@link StringRegexp#findInet4Address(String)}.
 		 */
 		@Test

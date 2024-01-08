@@ -223,10 +223,10 @@ public class StringRegexp
 	}
 
 	/**
-	 * Проверяет, является ли строка универсальным уникальным идентификатором (UUID).
+	 * Проверяет, является ли строка UUID.
 	 *
 	 * @param string строка.
-	 * @return {@code true}, если {@code string} является универсальным уникальным идентификатором (UUID), иначе {@code false}.
+	 * @return {@code true}, если {@code string} является UUID, иначе {@code false}.
 	 */
 	public static boolean isUuid(@NotNull final String string)
 	{
@@ -623,6 +623,19 @@ public class StringRegexp
 	public static List<@NotNull String> findLocalization(@NotNull final String string)
 	{
 		return StringRegexp.find(string, Regexp.LOCALIZATION);
+	}
+
+	/**
+	 * Выполняет поиск UUID.
+	 *
+	 * @param string строка.
+	 * @return коллекцию с найденными UUID.
+	 */
+	@Unmodifiable
+	@NotNull
+	public static List<@NotNull String> findUuid(@NotNull final String string)
+	{
+		return StringRegexp.find(string, Regexp.UUID);
 	}
 
 	/**

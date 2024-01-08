@@ -4,6 +4,7 @@
 * Переименован пакет resources -> types.
 * Добавлено регулярное выражение Regexp.UUID.
 * Добавлен метод StringRegexp.isUuid(String).
+* Добавлен метод StringRegexp.findUuid(String).
 
 ## v1.7.0 - 08.07.2023
 ### Изменено
