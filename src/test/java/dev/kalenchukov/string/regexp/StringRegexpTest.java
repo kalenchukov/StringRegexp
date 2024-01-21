@@ -331,6 +331,9 @@ public class StringRegexpTest
 			@ParameterizedTest
 			@ValueSource(strings = {
 				"kalenchukov.dev",
+				"www.kalenchukov.dev",
+				"www.mywww.dev",
+				"www.my-www.dev",
 				"regexp.string.kalenchukov.dev",
 				"aleksey.123.kalenchukov.ru",
 				"123.aleksey.kalenchukov.ru"
@@ -347,7 +350,10 @@ public class StringRegexpTest
 			 */
 			@ParameterizedTest
 			@ValueSource(strings = {
-				"", " ", "kalenchukov,dev", "regexp.string.kalenchukov.d"
+				"", " ", "kalenchukov,dev", "regexp.string.kalenchukov.d",
+				"-kalenchukov.dev", ".kalenchukov.dev",
+				"kalenchukov.", "kalenchukov",
+				"www.kalenchukov"
 			})
 			public void isDomainWithValueInvalid(String value)
 			{
@@ -384,6 +390,8 @@ public class StringRegexpTest
 				"http://www.kalenchukov.dev/hello/world",
 				"http://www.kalenchukov.dev/",
 				"http://www.kalenchukov.dev",
+				"http://www.kalenchukov.www.dev",
+				"http://www.kalenchukov-www.dev",
 				"http://www.kalenchukov.dev/hello/world",
 				"http://www.kalenchukov.dev/?java=18&hello=world123#anchor",
 				"http://www.kalenchukov.dev/#anchor"
@@ -395,26 +403,26 @@ public class StringRegexpTest
 				assertThat(actual).isTrue();
 			}
 
-			//		/**
-			//		 * Проверка метода {@link StringRegexp#isUrlHttp(String)} с некорректными значениями.
-			//		 */
-			//		@ParameterizedTest
-			//		@ValueSource(strings = {
-			//			"http://kalenchukov.d",
-			//			"https://kalenchukov.",
-			//			"http://www.kalenchukov",
-			//			"http://www.kalenchukov.dev",
-			//			"://www.kalenchukov.dev",
-			//			"http//www.kalenchukov.dev",
-			//			"http://www..dev",
-			//			"http:/www.kalenchukov.dev"
-			//		})
-			//		public void isUrlHttpWithValueInvalid(String value)
-			//		{
-			//			boolean actual = StringRegexp.isUrlHttp(value);
-			//
-			//			assertThat(actual).isFalse();
-			//		}
+			/**
+			 * Проверка метода {@link StringRegexp#isUrlHttp(String)} с некорректными значениями.
+			 */
+			@ParameterizedTest
+			@ValueSource(strings = {
+				"http://kalenchukov.d",
+				"https://kalenchukov.",
+				"http://www.kalenchukov",
+				"://www.kalenchukov.dev",
+				"http//www.kalenchukov.dev",
+				"http://www..dev",
+				"http://www.dev",
+				"http:/www.kalenchukov.dev"
+			})
+			public void isUrlHttpWithValueInvalid(String value)
+			{
+				boolean actual = StringRegexp.isUrlHttp(value);
+
+				assertThat(actual).isFalse();
+			}
 		}
 
 		/**

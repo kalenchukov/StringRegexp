@@ -3,7 +3,6 @@
 * Добавлен метод StringRegexp.findMd5(String).
 * Добавлен метод StringRegexp.findMd5IgnoreCase(String).
 * Возможность получения список всех возможных групп регулярного выражения, а не только одну.
-* Сделать проверку метода StringRegexp.isUrlHttp(String) с некорректным значением.
 
 ## Можно сделать
 *

@@ -793,6 +793,26 @@ public class RegexpTest
 			}
 
 			/**
+			 * Проверка группы названия регулярного выражения константы {@link Regexp#DOMAIN}.
+			 */
+			@Test
+			public void domainWithGroupName()
+			{
+				String value = "kalenchukov.dev";
+				Pattern pattern = Pattern.compile(
+					Regexp.DOMAIN.getPattern(),
+					Pattern.UNICODE_CASE + Pattern.CASE_INSENSITIVE
+				);
+				Matcher matcher = pattern.matcher(value);
+
+				assertThat(matcher.matches()).isTrue();
+
+				String actualGroup2 = matcher.group("name");
+
+				assertThat(actualGroup2).isEqualTo("kalenchukov");
+			}
+
+			/**
 			 * Проверка группы TLD регулярного выражения константы {@link Regexp#DOMAIN}.
 			 */
 			@Test
