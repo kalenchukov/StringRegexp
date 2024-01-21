@@ -1316,6 +1316,35 @@ public class StringRegexpTest
 		public class FindEmailAddress
 		{
 			/**
+			 * Проверка метода {@link StringRegexp#findEmailAddress(String)} без корректных значений.
+			 */
+			@Test
+			public void findEmailAddressWithZeroValue()
+			{
+				String value = """
+					И я должен прийти к девяти, на работу свою,
+					Но сейчас уже без десяти, а я только встаю
+					На столе моем завтрак стоит, от него не уйти
+					И наверное, я к девяти не смогу подойти
+					Ещё только без десяти, девять часов
+					Ещё только без десяти, девять часов
+					В объяснительной я напишу, что был у врача,
+					А еще напишу, что часов, на пути не встречал
+					И пускай все ругают меня, на работе моей
+					И пускай все позорят меня, на работе моей
+					Ещё только без десяти, девять часов
+					Ещё только без десяти, девять часов
+					Ещё только без десяти, девять часов
+					Ещё только без десяти, девять часов
+					Эх, ещё только без десяти, девять часов
+					""";
+
+				List<String> actual = StringRegexp.findEmailAddress(value);
+
+				assertThat(actual).isEmpty();
+			}
+
+			/**
 			 * Проверка метода {@link StringRegexp#findEmailAddress(String)} с несколькими корректными значениями.
 			 */
 			@Test
@@ -1339,13 +1368,13 @@ public class StringRegexpTest
 					Эх, 123alekseykalenchukov@yandex.ru ещё только без десяти, девять часов
 					""";
 
-				List<String> expectedList = List.of("aleksey.kalenchukov@yandex.ru", "alekseyKalenchukov@yandex.ru",
+				List<String> expected = List.of("aleksey.kalenchukov@yandex.ru", "alekseyKalenchukov@yandex.ru",
 													"aleksey123kalenchukov@yandex.ru", "123alekseykalenchukov@yandex.ru"
 				);
 
-				List<String> actualList = StringRegexp.findEmailAddress(value);
+				List<String> actual = StringRegexp.findEmailAddress(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -1357,6 +1386,50 @@ public class StringRegexpTest
 		@Nested
 		public class FindDomain
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findDomain(String)} без корректных значений.
+			 */
+			@Test
+			public void findDomainWithZeroValue()
+			{
+				String value = """
+					Зерна упали в землю, зерна просят дождя.
+					Им нужен дождь.
+					Разрежь мою грудь, посмотри мне внутрь,
+					Ты увидишь, там все горит огнем.
+					Через день будет поздно, через час будет поздно,
+					Через миг будет уже не встать.
+					Если к дверям не подходят ключи, вышиби двери плечом.
+
+					Мама, мы все тяжело больны...
+					Мама, я знаю, мы все сошли с ума...
+
+					Сталь между пальцев, сжатый кулак.
+					Удар выше кисти, терзающий плоть,
+					Но вместо крови в жилах застыл яд, медленный яд.
+					Разрушенный мир, разбитые лбы, разломанный надвое хлеб.
+					И вот кто-то плачет, а кто-то молчит,
+					А кто-то так рад, кто-то так рад...
+					Мама, мы все тяжело больны...
+					Мама, я знаю, мы все сошли с ума...
+
+					Ты должен быть сильным, ты должен уметь сказать:
+					Руки прочь, прочь от меня!
+					Ты должен быть сильным, иначе зачем тебе быть.
+					Что будет стоить тысячи слов,
+					Когда важна будет крепость руки?
+					И вот ты стоишь на берегу и думаешь: "Плыть или не плыть?"
+
+					Мама, мы все тяжело больны...
+					Мама, я знаю, мы все сошли с ума...
+					Мама, мы все тяжело больны...
+					Мама, я знаю, мы все сошли с ума...
+					""";
+
+				List<String> actual = StringRegexp.findDomain(value);
+
+				assertThat(actual).isEmpty();
+			}
 			/**
 			 * Проверка метода {@link StringRegexp#findDomain(String)} с несколькими корректными значениями.
 			 */
@@ -1398,13 +1471,13 @@ public class StringRegexpTest
 					Мама, я знаю, мы все сошли с ума...
 					""";
 
-				List<String> expectedList = List.of("kalenchukov.dev", "regexp.string.kalenchukov.dev",
+				List<String> expected = List.of("kalenchukov.dev", "regexp.string.kalenchukov.dev",
 													"aleksey.123.kalenchukov.ru", "123.aleksey.kalenchukov.ru"
 				);
 
-				List<String> actualList = StringRegexp.findDomain(value);
+				List<String> actual = StringRegexp.findDomain(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -1416,6 +1489,46 @@ public class StringRegexpTest
 		@Nested
 		public class FindUrlHttp
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findUrlHttp(String)} без корректных значений.
+			 */
+			@Test
+			public void findUrlHttpWithZeroValue()
+			{
+				String value = """
+					Тот, кто в пятнадцать лет убежал из дома
+					Вряд ли поймёт того, кто учился в спецшколе
+					Тот, у кого есть хороший жизненный план
+					Вряд ли будет думать о чём-то другом
+
+					Мы пьём чай в старых квартирах
+					Ждём лета в старых квартирах
+					В старых квартирах, где есть свет
+					Газ, телефон, горячая вода
+					Радиоточка, пол, паркет
+					Санузел раздельный, дом кирпичный
+					Одна семья, две семьи, три семьи
+					Много подсобных помещений
+					Первый и последний не предлагать
+					Рядом с метро, центр
+					
+					Все говорят, что мы вместе
+					Все говорят, но немногие знают в каком,
+					А из наших труб идёт необычный дым
+					Стой, опасная зона, работа мозга
+
+					Бошетунмай, бошетунмай
+					Бошетунмай, бошетунмай
+					Бошетунмай, бошетунмай
+					Бошетунмай, бошетунмай
+					Бошетунмай, бошетунмай
+					""";
+
+				List<String> actual = StringRegexp.findUrlHttp(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findUrlHttp(String)} с несколькими корректными значениями.
 			 */
@@ -1451,15 +1564,15 @@ public class StringRegexpTest
 					Бошетунмай, бошетунмай
 					""";
 
-				List<String> expectedList = List.of(
+				List<String> expected = List.of(
 					"http://www.kalenchukov.dev/string/regexp/?java=18&isUrlHttp=test123#readme",
 					"https://kalenchukov.dev/#readme", "https://www.kalenchukov.dev/string/regexp/",
 					"http://kalenchukov.dev/?isUrlHttp=test123"
 				);
 
-				List<String> actualList = StringRegexp.findUrlHttp(value);
+				List<String> actual = StringRegexp.findUrlHttp(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -1471,6 +1584,38 @@ public class StringRegexpTest
 		@Nested
 		public class FindCountryCodeAlpha2
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findCountryCodeAlpha2(String)} без корректных значений.
+			 */
+			@Test
+			public void findCountryCodeAlpha2WithZeroValue()
+			{
+				String value = """
+					О-o, это странное место Камчатка
+					О-o, это сладкое слово «Камчатка»
+					Но на этой земле я не вижу тебя
+					Я не вижу твоих кораблей
+					Я не вижу реки, я не вижу моста
+					Ну и пусть...
+					О-o, это странное место Камчатка
+					О-o, это сладкое слово «Камчатка»
+					Я нашел здесь руду, я нашел здесь любовь
+					Я пытаюсь забыть, забываю и вновь
+					Вспоминаю собаку, она, как звезда
+					Ну и пусть...
+					О-o, это странное место Камчатка
+					О-o, это сладкое слово «Камчатка»
+					Я не вижу здесь их, я не вижу здесь нас
+					Я искал здесь вино, а нашел третий глаз
+					Мои руки из дуба, голова из свинца
+					Ну и пусть...
+					""";
+
+				List<String> actual = StringRegexp.findCountryCodeAlpha2(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findCountryCodeAlpha2(String)} с несколькими корректными значениями.
 			 */
@@ -1498,11 +1643,11 @@ public class StringRegexpTest
 					Ну и пусть...
 					""";
 
-				List<String> expectedList = List.of("RU", "BY");
+				List<String> expected = List.of("RU", "BY");
 
-				List<String> actualList = StringRegexp.findCountryCodeAlpha2(value);
+				List<String> actual = StringRegexp.findCountryCodeAlpha2(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -1514,6 +1659,36 @@ public class StringRegexpTest
 		@Nested
 		public class FindCountryCodeAlpha3
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findCountryCodeAlpha3(String)} без корректных значений.
+			 */
+			@Test
+			public void findCountryCodeAlpha3WithZeroValue()
+			{
+				String value = """
+					Каждый день ты приходишь домой, когда темно.
+					Каждый день долго едешь в метро, когда темно.
+					А она живет в центре всех городов,
+					И ты хочешь быть рядом,
+					Но надо ехать домой, уже темно.
+					Проснись, это любовь,
+					Смотри, это любовь,
+					Проснись, это любовь...
+					Твои родители давно уже спят, уже темно.
+					Ты не спишь, ты ждешь, а вдруг зазвонит телефон.
+					И ты готов отдать все за этот звонок,
+					Но она давно уже спит там,
+					В центре всех городов.
+					Проснись, это любовь,
+					Смотри, это любовь,
+					Проснись, это любовь...
+					""";
+
+				List<String> actual = StringRegexp.findCountryCodeAlpha3(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findCountryCodeAlpha3(String)} с несколькими корректными значениями.
 			 */
@@ -1539,11 +1714,11 @@ public class StringRegexpTest
 					Проснись, это любовь...
 					""";
 
-				List<String> expectedList = List.of("RUS", "BLR");
+				List<String> expected = List.of("RUS", "BLR");
 
-				List<String> actualList = StringRegexp.findCountryCodeAlpha3(value);
+				List<String> actual = StringRegexp.findCountryCodeAlpha3(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -1555,6 +1730,32 @@ public class StringRegexpTest
 		@Nested
 		public class FindCountryCodeNumeric3
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findCountryCodeNumeric3(String)} без корректных значений.
+			 */
+			@Test
+			public void findCountryCodeNumeric3WithZeroValue()
+			{
+				String value = """
+					Стань птицей, живущей в моём небе
+					Помни, что нет тюрьмы страшнее, чем в голове
+					Стань птицей, не думай о хлебе
+					Я стану дорогой
+					Я помню прозрачность воды моря
+					Я вижу прозрачность горящего газа
+					Стань сердцем, бейся в моём теле
+					Я стану кровью
+					Я буду делать всё, как умею
+					Стань книгой, ложись в мои руки
+					Стань песней, живи на моих губах
+					Я стану словами
+					""";
+
+				List<String> actual = StringRegexp.findCountryCodeNumeric3(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findCountryCodeNumeric3(String)} с несколькими корректными значениями.
 			 */
@@ -1576,11 +1777,11 @@ public class StringRegexpTest
 					Я стану словами
 					""";
 
-				List<String> expectedList = List.of("052", "643", "112");
+				List<String> expected = List.of("052", "643", "112");
 
-				List<String> actualList = StringRegexp.findCountryCodeNumeric3(value);
+				List<String> actual = StringRegexp.findCountryCodeNumeric3(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -1592,6 +1793,49 @@ public class StringRegexpTest
 		@Nested
 		public class FindRgbHex
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findRgbHex(String)} без корректных значений.
+			 */
+			@Test
+			public void findRgbHexWithZeroValue()
+			{
+				String value = """
+					Крыши домов дрожат под тяжестью дней
+					Небесный пастух пасёт облака
+					Город стреляет в ночь дробью огней
+					Но ночь сильней, её власть велика
+
+					Тем, кто ложится спать
+					Спокойного сна, спокойная ночь
+					Тем, кто ложится спать, спокойного сна
+					Спокойная ночь
+
+					Я ждал это время, и вот это время пришло
+					Те, кто молчал перестали молчать
+					Те, кому нечего ждать, садятся в седло
+					Их не догнать, уже не догнать
+
+					А тем, кто ложится спать
+					Спокойного сна, спокойная ночь
+					Тем, кто ложится спать, спокойного сна
+					Спокойная ночь
+
+					Соседи приходят, им слышится стук копыт
+					Мешает уснуть, тревожит их сон
+					Те, кому нечего ждать, отправляются в путь
+					Те, кто спасён, те, кто спасён
+
+					А тем, кто ложится спать
+					Спокойного сна, спокойная ночь
+					Тем, кто ложится спать, спокойного сна
+					Спокойная ночь
+					""";
+
+				List<String> actual = StringRegexp.findRgbHex(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findRgbHex(String)} с несколькими корректными значениями.
 			 */
@@ -1630,11 +1874,11 @@ public class StringRegexpTest
 					Спокойная ночь
 					""";
 
-				List<String> expectedList = List.of("#FFFFFF", "#000000", "#D0E9F8", "#1A2B3C");
+				List<String> expected = List.of("#FFFFFF", "#000000", "#D0E9F8", "#1A2B3C");
 
-				List<String> actualList = StringRegexp.findRgbHex(value);
+				List<String> actual = StringRegexp.findRgbHex(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -1646,6 +1890,49 @@ public class StringRegexpTest
 		@Nested
 		public class FindRgbHexIgnoreCase
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findRgbHexIgnoreCase(String)} без корректных значений.
+			 */
+			@Test
+			public void findRgbHexIgnoreCaseWithZeroValue()
+			{
+				String value = """
+					Застоялся мой поезд в депо.
+					Снова я уезжаю. Пора...
+					На пороге ветер заждался меня.
+					На пороге осень — моя сестра.
+
+					После красно-желтых дней начнется и кончится зима.
+					Горе ты мое от ума, не печалься, гляди веселей.
+					И я вернусь домой со щитом, а, может быть, на щите,
+					В серебре, а, может быть, в нищете, но как можно скорей.
+
+					Расскажи мне о тех, кто устал
+					От безжалостных уличных драм
+					И о храме из разбитых сердец
+					И о тех, кто идет в этот храм.
+
+					После красно-желтых дней начнется и кончится зима.
+					Горе ты мое от ума, не печалься, гляди веселей.
+					И я вернусь домой со щитом, а, может быть, на щите,
+					В серебре, а, может быть, в нищете, но как можно скорей.
+
+					А мне приснилось: миром правит любовь,
+					А мне приснилось: миром правит мечта.
+					И над этим прекрасно горит звезда,
+					Я проснулся и понял — беда...
+
+					После красно-желтых дней начнется и кончится зима.
+					Горе ты мое от ума, не печалься, гляди веселей.
+					И я вернусь домой со щитом, а, может быть, на щите,
+					В серебре, а, может быть, в нищете, но как можно скорей.
+					""";
+
+				List<String> actual = StringRegexp.findRgbHexIgnoreCase(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findRgbHexIgnoreCase(String)} с несколькими корректными значениями.
 			 */
@@ -1684,11 +1971,11 @@ public class StringRegexpTest
 					В серебре, а, может быть, в нищете, но как можно скорей.
 					""";
 
-				List<String> expectedList = List.of("#fffFFF", "#000000", "#d0e9F8", "#1a2B3C");
+				List<String> expected = List.of("#fffFFF", "#000000", "#d0e9F8", "#1a2B3C");
 
-				List<String> actualList = StringRegexp.findRgbHexIgnoreCase(value);
+				List<String> actual = StringRegexp.findRgbHexIgnoreCase(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -1700,6 +1987,45 @@ public class StringRegexpTest
 		@Nested
 		public class FindMacAddress
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findMacAddress(String)} без корректных значений.
+			 */
+			@Test
+			public void findMacAddressWithZeroValue()
+			{
+				String value = """
+					В этом мотиве есть какая-то фальшь,
+					Но где найти тех, что услышат ее?
+					Подросший ребенок, воспитанный жизнью за шкафом,
+					Теперь ты видишь Солнце, возьми - это твое!
+
+					Я объявляю свой дом
+					Безъядерной зоной!
+					Я объявляю свой двор
+					Безъядерной зоной!
+					Я объявляю свой город
+					Безъядерной зоной!
+					яю свой...
+
+					Как не прочны стены наших квартир,
+					Но кто-то один не подставит за всех плечо.
+					Я вижу дом, я беру в руки мел,
+					Нет замка, но я владею ключом.
+					
+					Я объявляю свой дом
+					Безъядерной зоной!
+					Я объявляю свой двор
+					Безъядерной зоной!
+					Я объявляю свой город
+					Безъядерной зоной!
+					Я объявляю свой...
+					""";
+
+				List<String> actual = StringRegexp.findMacAddress(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findMacAddress(String)} с несколькими корректными значениями.
 			 */
@@ -1734,13 +2060,13 @@ public class StringRegexpTest
 					Я объявляю свой...
 					""";
 
-				List<String> expectedList = List.of("00-EF-CD-EF-11-22", "00:EF:CD:EF:11:22", "00:EF:CD:DF:11:22",
+				List<String> expected = List.of("00-EF-CD-EF-11-22", "00:EF:CD:EF:11:22", "00:EF:CD:DF:11:22",
 													"00-EF-CD-CE-11-22"
 				);
 
-				List<String> actualList = StringRegexp.findMacAddress(value);
+				List<String> actual = StringRegexp.findMacAddress(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -1752,6 +2078,35 @@ public class StringRegexpTest
 		@Nested
 		public class FindMacAddressIgnoreCase
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findMacAddressIgnoreCase(String)} без корректных значений.
+			 */
+			@Test
+			public void findMacAddressIgnoreCaseWithZeroValue()
+			{
+				String value = """
+					Я вижу, как волны смывают следы на песке
+					Я слышу, как ветер поет свою странную песню
+					Я слышу, как струны деревьев играют ее
+					Музыку волн, музыку ветра
+
+					Здесь трудно сказать, что такое асфальт
+					Здесь трудно сказать, что такое машина
+					Здесь нужно руками кидать воду вверх
+					Музыка волн, музыка ветра
+					
+					Кто из вас вспомнит о тех, кто сбился с дороги?
+					Кто из вас вспомнит о тех, кто смеялся и пел?
+					Кто из вас вспомнит, чувствуя холод приклада
+					Музыку волн, музыку ветра?
+					Музыку волн, музыку ветра?
+					""";
+
+				List<String> actual = StringRegexp.findMacAddressIgnoreCase(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findMacAddressIgnoreCase(String)} с несколькими корректными значениями.
 			 */
@@ -1776,13 +2131,13 @@ public class StringRegexpTest
 					Музыку волн, музыку ветра?
 					""";
 
-				List<String> expectedList = List.of("00-EF-CD-ef-11-22", "00:EF:CD:EF:11:22", "00:EF:cd:DF:11:22",
+				List<String> expected = List.of("00-EF-CD-ef-11-22", "00:EF:CD:EF:11:22", "00:EF:cd:DF:11:22",
 													"00-ef-cd-ce-11-22"
 				);
 
-				List<String> actualList = StringRegexp.findMacAddressIgnoreCase(value);
+				List<String> actual = StringRegexp.findMacAddressIgnoreCase(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -1794,6 +2149,24 @@ public class StringRegexpTest
 		@Nested
 		public class FindUuid
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findUuid(String)} без корректных значений.
+			 */
+			@Test
+			public void findUuidWithZeroValue()
+			{
+				String value = """
+					Ты так любишь эти фильмы
+					Мне знакомы эти песни
+					Ты так любишь кинотеатры
+					Мы вряд ли сможем быть вместе
+					""";
+
+				List<String> actual = StringRegexp.findUuid(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findUuid(String)} с несколькими корректными значениями.
 			 */
@@ -1807,13 +2180,13 @@ public class StringRegexpTest
 					Мы вряд ли сможем быть вместе 00000000-0000-0000-0000-000000000000
 					""";
 
-				List<String> expectedList = List.of("123e4567-e89b-12d3-a456-426655440000",
+				List<String> expected = List.of("123e4567-e89b-12d3-a456-426655440000",
 													"00000000-0000-0000-0000-000000000000"
 				);
 
-				List<String> actualList = StringRegexp.findUuid(value);
+				List<String> actual = StringRegexp.findUuid(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -1825,6 +2198,48 @@ public class StringRegexpTest
 		@Nested
 		public class FindInet4Address
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findInet4Address(String)} без корректных значений.
+			 */
+			@Test
+			public void findInet4AddressWithZeroValue()
+			{
+				String value = """
+					День как день, только ты почему-то грустишь.
+					И вокруг все поют, только ты один молчишь.
+					Потерял аппетит и не хочешь сходить в кино.
+					Ты идешь в магазин, чтобы купить вино.
+
+					Солнце светит и растет трава,
+					Но тебе она не нужна.
+					Все не так и все не то,
+					Когда твоя девушка больна
+					Когда твоя девушка больна
+					Когда больна.
+
+					Ты идешь в магазин, головою поник,
+					Как будто иссяк чистый горный родник.
+					Она где-то лежит, ест мед и пьет аспирин,
+					И вот ты идешь на вечеринку один.
+
+					Солнце светит и растет трава,
+					Но тебе она не нужна.
+					Все не так и все не то,
+					Когда твоя девушка больна.
+					На вечеринку - один.
+					Когда твоя девушка больна.
+					На вечеринку - один.
+					Когда твоя девушка больна.
+
+					Когда твоя девушка больна.
+					Когда твоя девушка больна.
+					""";
+
+				List<String> actual = StringRegexp.findInet4Address(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findInet4Address(String)} с несколькими корректными значениями.
 			 */
@@ -1862,11 +2277,11 @@ public class StringRegexpTest
 					Когда твоя девушка больна.
 					""";
 
-				List<String> expectedList = List.of("192.168.1.1", "1.1.1.1", "0.0.0.0", "10.222.170.80");
+				List<String> expected = List.of("192.168.1.1", "1.1.1.1", "0.0.0.0", "10.222.170.80");
 
-				List<String> actualList = StringRegexp.findInet4Address(value);
+				List<String> actual = StringRegexp.findInet4Address(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -1878,6 +2293,51 @@ public class StringRegexpTest
 		@Nested
 		public class FindRgbNumeric
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findRgbNumeric(String)} без корректных значений.
+			 */
+			@Test
+			public void findRgbNumericWithZeroValue()
+			{
+				String value = """
+					Наши реки бедны водой
+					В наших окнах не видно дня
+					Наше утро похоже на ночь
+					Ну, а ночь — для меня
+					Глядя в жидкое зеркало луж
+					На часы, что полвека стоят
+					На до дыр зацелованный флаг
+					Я полцарства отдам за коня
+
+					Играй!
+					Невесёлая песня моя
+					Играй!
+					Играй!
+
+					Командиры Армии Лет
+					Мы теряли в бою день за днём
+					А когда мы разжигали огонь
+					Наш огонь тушили дождём
+					Мы сидим у разбитых корыт
+					И гадаем на розе ветров
+					А когда приходит время вставать
+					Мы сидим, мы ждём
+
+					Играй!
+					Невесёлая песня моя
+					Играй!
+					Играй!
+					Играй!
+					Невесёлая песня моя
+					Играй!
+					Играй!
+					""";
+
+				List<String> actual = StringRegexp.findRgbNumeric(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findRgbNumeric(String)} с несколькими корректными значениями.
 			 */
@@ -1918,11 +2378,11 @@ public class StringRegexpTest
 					Играй!
 					""";
 
-				List<String> expectedList = List.of("255,150,50", "0, 0, 0", "50, 50,50", "113,13,3");
+				List<String> expected = List.of("255,150,50", "0, 0, 0", "50, 50,50", "113,13,3");
 
-				List<String> actualList = StringRegexp.findRgbNumeric(value);
+				List<String> actual = StringRegexp.findRgbNumeric(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -1934,6 +2394,43 @@ public class StringRegexpTest
 		@Nested
 		public class FindTelegram
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findTelegram(String)} без корректных значений.
+			 */
+			@Test
+			public void findTelegramWithZeroValue()
+			{
+				String value = """
+					Ты часто проходишь мимо, не видя меня
+					С кем-то другим, я стою не дыша
+					Я знаю, что ты живешь в соседнем дворе
+					Ты идешь не спеша, не спеша...
+
+					Ооооу, но это не любовь...
+					Ооооу, но это не любовь...
+
+					А вечером я стою под твоим окном
+					Ты поливаешь цветы, поливаешь цветы
+					А я дотемна стою и сгораю огнем
+					И виной тому ты, только ты...
+
+					Ооооу, но это не любовь...
+					Ооооу, но это не любовь...
+
+					Научи меня всему тому, что умеешь ты
+					Я хочу это знать и уметь
+					Сделай так, чтобы сбылись все мои мечты
+					Мне нельзя больше ждать, я могу умереть...
+					
+					Ооооу, но это не любовь...
+					Ооооу, но это не любовь...
+					""";
+
+				List<String> actual = StringRegexp.findTelegram(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findTelegram(String)} с несколькими корректными значениями.
 			 */
@@ -1966,11 +2463,11 @@ public class StringRegexpTest
 					Ооооу, но это не любовь...
 					""";
 
-				List<String> expectedList = List.of("@kalenchukov", "@Kalenchukov", "@KALENCHUKOV", "@kalen_CHUKOV");
+				List<String> expected = List.of("@kalenchukov", "@Kalenchukov", "@KALENCHUKOV", "@kalen_CHUKOV");
 
-				List<String> actualList = StringRegexp.findTelegram(value);
+				List<String> actual = StringRegexp.findTelegram(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -1982,6 +2479,44 @@ public class StringRegexpTest
 		@Nested
 		public class FindInet6Address
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findInet6Address(String)} без корректных значений.
+			 */
+			@Test
+			public void findInet6AddressWithZeroValue()
+			{
+				String value = """
+					В последнее время я редко был дома,
+					Так что даже отвыкли звонить мне друзья.
+					В разъездах, разгулах конца лета симптомы
+					Совсем перестали вдруг мучить меня.
+
+					И я подумал что Осень - это тоже не плохо,
+					И что Осенью слякоть и сер первый снег,
+					И что холод ветров я буду чувствовать боком,
+					Опьяненный сознаньем того, что я человек.
+
+					И этой Осенью много дней чьих-то рождений
+					И уж я постараюсь на них побывать,
+					А потом, игнорируя лужи и слякоть,
+					Я приду домой пьяный и мешком повалюсь на кровать.
+
+					И утром рано я встану и отправлюсь учиться,
+					И с похмелья я буду смеяться над всем.
+					Скоро будет Зима, чтоб в Весне раствориться,
+					А потом будет Лето - неизвестно зачем.
+
+					И я начал за здравие, а кончу я плохо,
+					Написав наш порядковый номер - 600.
+					С чьих-то старых столов подбираю я крохи,
+					И не в силах сказать, что принес этот год.
+					""";
+
+				List<String> actual = StringRegexp.findInet6Address(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findInet6Address(String)} с несколькими корректными значениями.
 			 */
@@ -2015,16 +2550,16 @@ public class StringRegexpTest
 					И не в силах сказать,2001:DB8::AE21:AD12 что принес этот год.
 					""";
 
-				List<String> expectedList = List.of(
+				List<String> expected = List.of(
 					"2001:0DB8:11A3:09D7:1F34:8A2E:07A0:765D",
 					"AD12::AE21::",
 					"::AE21:AD12",
 					"2001:DB8::AE21:AD12"
 				);
 
-				List<String> actualList = StringRegexp.findInet6Address(value);
+				List<String> actual = StringRegexp.findInet6Address(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -2036,6 +2571,49 @@ public class StringRegexpTest
 		@Nested
 		public class FindInet6AddressIgnoreCase
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findInet6AddressIgnoreCase(String)} без корректных значений.
+			 */
+			@Test
+			public void findInet6AddressIgnoreCaseWithZeroValue()
+			{
+				String value = """
+					За окнами солнце, за окнами свет - это день.
+					Ну, а я всегда любил ночь.
+					И это мое дело - любить ночь,
+					И это мое право - уйти в тень.
+
+					Я люблю ночь за то, что в ней меньше машин,
+					Я люблю дым и пепел своих папирос,
+					Я люблю кухни за то, что они хранят тайны,
+					Я люблю свой дом, но вряд ли это всерьез.
+
+					И эта ночь и ее электрический свет бьет мне в глаза,
+					И эта ночь и ее электрический дождь бьет мне в окно,
+					И эта ночь и ее электрический голос манит меня к себе,
+					И я не знаю, как мне прожить следующий день.
+
+					Я один, но это не значит, что я одинок,
+					Мой магнитофон хрипит о радостях дня,
+					Я помню, что завтра меня ждет несколько встреч,
+					И кофе в известном кафе согреет меня.
+
+					И эта ночь и ее электрический свет бьет мне в глаза,
+					И эта ночь и ее электрический дождь бьет мне в окно,
+					И эта ночь и ее электрический голос манит меня к себе,
+					И я не знаю, как мне прожить следующий день.
+
+					И эта ночь и ее электрический свет бьет мне в глаза,
+					И эта ночь и ее электрический дождь бьет мне в окно,
+					И эта ночь и ее электрический голос манит меня к себе,
+					И я не знаю, как мне прожить следующий день.
+					""";
+
+				List<String> actual = StringRegexp.findInet6AddressIgnoreCase(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findInet6AddressIgnoreCase(String)} с несколькими корректными значениями.
 			 */
@@ -2074,16 +2652,16 @@ public class StringRegexpTest
 					И я не знаю,2001:db8::AE21:AD12 как мне прожить следующий день.
 					""";
 
-				List<String> expectedList = List.of(
+				List<String> expected = List.of(
 					"2001:0db8:11a3:09d7:1F34:8A2E:07A0:765D",
 					"ad12::AE21::",
 					"::ae21:AD12",
 					"2001:db8::AE21:AD12"
 				);
 
-				List<String> actualList = StringRegexp.findInet6AddressIgnoreCase(value);
+				List<String> actual = StringRegexp.findInet6AddressIgnoreCase(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -2095,6 +2673,42 @@ public class StringRegexpTest
 		@Nested
 		public class FindTag
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findTag(String)} без корректных значений.
+			 */
+			@Test
+			public void findTagWithZeroValue()
+			{
+				String value = """
+					Гуляю. Я один гуляю.
+					Что дальше делать, я не знаю.
+					Нет дома. Никого нет дома.
+					Я лишний, словно куча лома, у-у.
+
+					Припев:
+					Я бездельник, о-о, мама, мама, я бездельник, у-у...
+					Я бездельник, о-о, мама, мама.
+
+					В толпе я как иголка в сене.
+					Я снова человек без цели.
+					Болтаюсь, целый день гуляю.
+					Не знаю, я ничего не знаю, у-у.
+
+					Припев:
+					Я бездельник, о-о, мама, мама, я бездельник, у-у...
+					Я бездельник, о-о, мама, мама.
+
+					у-у... я бездельник, о-о, мама, мама.
+					Я бездельник, у-у...
+					Я бездельник, о-о, мама, мама, я бездельник, у-у...
+					Я бездельник, у-у...
+					""";
+
+				List<String> actual = StringRegexp.findTag(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findTag(String)} с несколькими корректными значениями.
 			 */
@@ -2126,11 +2740,11 @@ public class StringRegexpTest
 					Я бездельник, у-у...
 					""";
 
-				List<String> expectedList = List.of("#tag", "#Tag", "#TAG", "#ta_g");
+				List<String> expected = List.of("#tag", "#Tag", "#TAG", "#ta_g");
 
-				List<String> actualList = StringRegexp.findTag(value);
+				List<String> actual = StringRegexp.findTag(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -2142,6 +2756,45 @@ public class StringRegexpTest
 		@Nested
 		public class FindDigitBinary
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findDigitBinary(String)} без корректных значений.
+			 */
+			@Test
+			public void findDigitBinaryWithZeroValue()
+			{
+				String value = """
+					Мы хотим видеть дальше, чем окна дома напротив
+					Мы хотим жить, мы живучи, как кошки
+					И вот мы пришли заявить о своих правах, да
+					Слышишь шелест плащей? Это мы
+
+					Дальше действовать будем мы
+					Дальше действовать будем мы
+					Дальше действовать будем мы
+					Дальше действовать будем мы
+					
+					Мы родились в тесных квартирах новых районов
+					Мы потеряли невинность в боях за любовь
+					Нам уже стали тесны одежды,
+					Сшитые вами для нас одежды
+					И вот мы пришли сказать вам о том, что дальше...
+
+					Дальше действовать будем мы
+					Дальше действовать будем мы
+					Дальше действовать будем мы
+					Дальше действовать будем мы
+
+					Дальше действовать будем мы
+					Дальше действовать будем мы
+					Дальше действовать будем мы
+					Дальше действовать будем мы
+					""";
+
+				List<String> actual = StringRegexp.findDigitBinary(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findDigitBinary(String)} с несколькими корректными значениями.
 			 */
@@ -2176,11 +2829,11 @@ public class StringRegexpTest
 					Дальше действовать будем мы
 					""";
 
-				List<String> expectedList = List.of("010101", "1101", "10101", "01010101");
+				List<String> expected = List.of("010101", "1101", "10101", "01010101");
 
-				List<String> actualList = StringRegexp.findDigitBinary(value);
+				List<String> actual = StringRegexp.findDigitBinary(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -2192,6 +2845,45 @@ public class StringRegexpTest
 		@Nested
 		public class FindDigitTernary
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findDigitTernary(String)} без корректных значений.
+			 */
+			@Test
+			public void findDigitTernaryWithZeroValue()
+			{
+				String value = """
+					Струн провода, ток по рукам,
+					Телефон на все голоса говорит: «Пока!» Пора...
+					И пальто на гвозде, шарф в рукаве
+					И перчатки в карманах шепчут:
+					«Подожди до утра!» До утра...
+
+					Но странный стук зовёт: «В дорогу!»
+					Может сердца, а может стук в дверь.
+					И, когда я обернусь на пороге,
+					Я скажу одно лишь слово: «Верь!»
+
+					И опять на вокзал, и опять к поездам,
+					И опять проводник выдаст бельё и чай,
+					И опять не усну, и опять сквозь грохот колёс
+					Мне послышится слово: «Прощай!»
+
+					Но странный стук зовёт: «В дорогу!»
+					Может сердца, а может стук в дверь.
+					И, когда я обернусь на пороге,
+					Я скажу одно лишь слово: «Верь!»
+
+					Но странный стук зовёт: «В дорогу!»
+					Может сердца, а может стук в дверь.
+					И, когда я обернусь на пороге,
+					Я скажу одно лишь слово: «Верь!»
+					""";
+
+				List<String> actual = StringRegexp.findDigitTernary(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findDigitTernary(String)} с несколькими корректными значениями.
 			 */
@@ -2226,11 +2918,11 @@ public class StringRegexpTest
 					Я скажу одно лишь слово: «Верь!»
 					""";
 
-				List<String> expectedList = List.of("0101201", "11021", "102101", "010210101");
+				List<String> expected = List.of("0101201", "11021", "102101", "010210101");
 
-				List<String> actualList = StringRegexp.findDigitTernary(value);
+				List<String> actual = StringRegexp.findDigitTernary(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -2242,6 +2934,47 @@ public class StringRegexpTest
 		@Nested
 		public class FindDigitOctal
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findDigitOctal(String)} без корректных значений.
+			 */
+			@Test
+			public void findDigitOctalWithZeroValue()
+			{
+				String value = """
+					Над землёй мороз, что ни тронь - всё лёд.
+					Лишь во сне моём, поёт капель.
+					А снег идёт стеной, а снег идёт весь день,
+					А за той стеной - стоит Апрель.
+
+					А он придёт и приведёт за собой Весну,
+					И рассеет серых туч войска,
+					А когда мы все посмотрим в глаза его,
+					На нас из глаз его посмотрит тоска.
+					И откроются двери домов,
+					Да ты садись, а то в ногах правды нет.
+					И когда мы все посмотрим в глаза его,
+					То увидим в тех глазах солнца свет.
+					
+					На теле ран не счесть, не легки шаги,
+					Лишь в груди горит звезда.
+					И умрёт Апрель, и родится вновь,
+					И придёт уже навсегда.
+
+					А он придёт и приведёт за собой Весну,
+					И рассеет серых туч войска.
+					А когда мы все посмотрим в глаза его,
+					На нас из глаз его посмотрит тоска.
+					И откроются двери домов,
+					Да ты садись, а то в ногах правды нет,
+					И когда мы все посмотрим в глаза его,
+					То увидим в тех глазах солнца свет.
+					""";
+
+				List<String> actual = StringRegexp.findDigitOctal(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findDigitOctal(String)} с несколькими корректными значениями.
 			 */
@@ -2278,11 +3011,11 @@ public class StringRegexpTest
 					То увидим в тех глазах солнца свет.
 					""";
 
-				List<String> expectedList = List.of("010317201", "1160215", "170241031", "01021034567101");
+				List<String> expected = List.of("010317201", "1160215", "170241031", "01021034567101");
 
-				List<String> actualList = StringRegexp.findDigitOctal(value);
+				List<String> actual = StringRegexp.findDigitOctal(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -2294,6 +3027,49 @@ public class StringRegexpTest
 		@Nested
 		public class FindDigitDuodecimal
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findDigitDuodecimal(String)} без корректных значений.
+			 */
+			@Test
+			public void findDigitDuodecimalWithZeroValue()
+			{
+				String value = """
+					Крыши домов дрожат под тяжестью дней
+					Небесный пастух пасёт облака 
+					Город стреляет в ночь дробью огней
+					Но ночь сильней, её власть велика
+
+					Тем, кто ложится спать
+					Спокойного сна, спокойная ночь
+					Тем, кто ложится спать, спокойного сна
+					Спокойная ночь
+					
+					Я ждал это время, и вот это время пришло
+					Те, кто молчал перестали молчать
+					Те, кому нечего ждать, садятся в седло
+					Их не догнать, уже не догнать
+
+					А тем, кто ложится спать
+					Спокойного сна, спокойная ночь
+					Тем, кто ложится спать, спокойного сна
+					Спокойная ночь
+
+					Соседи приходят, им слышится стук копыт
+					Мешает уснуть, тревожит их сон
+					Те, кому нечего ждать, отправляются в путь
+					Те, кто спасён, те, кто спасён
+
+					А тем, кто ложится спать
+					Спокойного сна, спокойная ночь
+					Тем, кто ложится спать, спокойного сна
+					Спокойная ночь
+					""";
+
+				List<String> actual = StringRegexp.findDigitDuodecimal(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findDigitDuodecimal(String)} с несколькими корректными значениями.
 			 */
@@ -2332,11 +3108,11 @@ public class StringRegexpTest
 					Спокойная ночь
 					""";
 
-				List<String> expectedList = List.of("01031A9b7201", "11602B15", "17024A1031", "B010A210394567101");
+				List<String> expected = List.of("01031A9b7201", "11602B15", "17024A1031", "B010A210394567101");
 
-				List<String> actualList = StringRegexp.findDigitDuodecimal(value);
+				List<String> actual = StringRegexp.findDigitDuodecimal(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -2348,6 +3124,44 @@ public class StringRegexpTest
 		@Nested
 		public class FindDigitHexadecimal
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findDigitHexadecimal(String)} без корректных значений.
+			 */
+			@Test
+			public void findDigitHexadecimalWithZeroValue()
+			{
+				String value = """
+					На холодной земле стоит город большой.
+					Там горят фонари, и машины гудят.
+					А над городом ночь, а над ночью луна,
+					И сегодня луна каплей крови красна.
+
+					Дом стоит, свет горит, из окна видна даль.
+					Так откуда взялась печаль?
+					И вроде, жив и здоров, и вроде жить, не тужить.
+					Так откуда взялась печаль?
+
+					А вокруг благодать - ни черта не видать,
+					А вокруг красота - не видать ни черта.
+					И все кричат: "Ура!" и все бегут вперед,
+					И над этим всем, новый день встает.
+
+					Дом стоит, свет горит, из окна видна даль.
+					Так откуда взялась, печаль?
+					И вроде, жив и здоров, и вроде жить, не тужить.
+					Так откуда взялась, печаль?
+
+					Дом стоит, свет горит, из окна видна даль.
+					Так откуда взялась, печаль?
+					И вроде, жив и здоров, и вроде жить, не тужить.
+					Так откуда взялась, печаль?
+					""";
+
+				List<String> actual = StringRegexp.findDigitHexadecimal(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findDigitHexadecimal(String)} с несколькими корректными значениями.
 			 */
@@ -2381,12 +3195,12 @@ public class StringRegexpTest
 					Так откуда взялась, печаль?
 					""";
 
-				List<String> expectedList = List.of(
+				List<String> expected = List.of(
 					"0103f1A9b720d1", "1160de2B15", "17024cA103d1", "B010A210cde3945f67101");
 
-				List<String> actualList = StringRegexp.findDigitHexadecimal(value);
+				List<String> actual = StringRegexp.findDigitHexadecimal(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -2398,6 +3212,49 @@ public class StringRegexpTest
 		@Nested
 		public class FindLocalization
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findLocalization(String)} без корректных значений.
+			 */
+			@Test
+			public void findLocalizationWithZeroValue()
+			{
+				String value = """
+					Застоялся мой поезд в депо.
+					Снова я уезжаю. Пора...
+					На пороге ветер заждался меня.
+					На пороге осень — моя сестра.
+
+					После красно-желтых дней начнется и кончится зима.
+					Горе ты мое от ума, не печалься, гляди веселей.
+					И я вернусь домой со щитом, а, может быть, на щите,
+					В серебре, а, может быть, в нищете, но как можно скорей.
+
+					Расскажи мне о тех, кто устал
+					От безжалостных уличных драм
+					И о храме из разбитых сердец
+					И о тех, кто идет в этот храм.
+
+					После красно-желтых дней начнется и кончится зима.
+					Горе ты мое от ума, не печалься, гляди веселей.
+					И я вернусь домой со щитом, а, может быть, на щите,
+					В серебре, а, может быть, в нищете, но как можно скорей.
+
+					А мне приснилось: миром правит любовь,
+					А мне приснилось: миром правит мечта.
+					И над этим прекрасно горит звезда,
+					Я проснулся и понял — беда...
+
+					После красно-желтых дней начнется и кончится зима.
+					Горе ты мое от ума, не печалься, гляди веселей.
+					И я вернусь домой со щитом, а, может быть, на щите,
+					В серебре, а, может быть, в нищете, но как можно скорей.
+					""";
+
+				List<String> actual = StringRegexp.findLocalization(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findLocalization(String)} с несколькими корректными значениями.
 			 */
@@ -2436,11 +3293,11 @@ public class StringRegexpTest
 					В серебре, а, может быть, в нищете, но как можно скорей.
 					""";
 
-				List<String> expectedList = List.of("ru-RU", "en-EN", "by-BY", "it-IT");
+				List<String> expected = List.of("ru-RU", "en-EN", "by-BY", "it-IT");
 
-				List<String> actualList = StringRegexp.findLocalization(value);
+				List<String> actual = StringRegexp.findLocalization(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -2452,6 +3309,40 @@ public class StringRegexpTest
 		@Nested
 		public class FindDigitDecimal
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findDigitDecimal(String)} без корректных значений.
+			 */
+			@Test
+			public void findDigitDecimalWithZeroValue()
+			{
+				String value = """
+					Ты часто проходишь мимо, не видя меня,
+					С кем-то другим, я стою не дыша.
+					Я знаю, что ты живешь в соседнем дворе,
+					Ты идешь не спеша, не спеша...
+
+					О, но это не любовь...
+
+					А вечером я стою под твоим окном,
+					Ты поливаешь цветы, поливаешь цветы.
+					А я дотемна стою и сгораю огнем,
+					И виной тому ты, только ты...
+
+					О, но это не любовь...
+
+					Научи меня всему тому, что умеешь ты,
+					Я хочу это знать и уметь.
+					Сделай так, чтобы сбылись все мои мечты,
+					Мне нельзя больше ждать, я могу умереть...
+
+					О, но это не любовь...
+					""";
+
+				List<String> actual = StringRegexp.findDigitDecimal(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findDigitDecimal(String)} с несколькими корректными значениями.
 			 */
@@ -2481,11 +3372,11 @@ public class StringRegexpTest
 					О, но это не любовь...0123456789
 					""";
 
-				List<String> expectedList = List.of("0", "12", "123", "0123456789");
+				List<String> expected = List.of("0", "12", "123", "0123456789");
 
-				List<String> actualList = StringRegexp.findDigitDecimal(value);
+				List<String> actual = StringRegexp.findDigitDecimal(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -2497,6 +3388,49 @@ public class StringRegexpTest
 		@Nested
 		public class FindNumber
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findNumber(String)} без корректных значений.
+			 */
+			@Test
+			public void findNumberWithZeroValue()
+			{
+				String value = """
+					Ночь коротка, цель далека;
+					Ночью так часто хочется пить,
+					Ты выходишь на кухню, но вода здесь горька;
+					Ты не можешь здесь спать, ты не хочешь здесь жить.
+
+					Доброе утро, последний герой!
+					Доброе утро, — тебе, и таким, как ты!
+					Доброе утро, последний герой!
+					Здравствуй, последний герой!
+
+					Ты хотел быть один — это быстро прошло,
+					Ты хотел быть один, но не смог быть один.
+					Твоя ноша легка, но немеет рука;
+					И ты встречаешь рассвет за игрой в «Дурака».
+
+					Доброе утро, последний герой!
+					Доброе утро, тебе, и таким, как ты!
+					Доброе утро, последний герой!
+					Здравствуй, последний герой!
+
+					Утром ты стремишься скорее уйти,
+					Телефонный звонок, как команда «Вперёд!»
+					Ты уходишь туда, куда не хочешь идти;
+					Ты уходишь туда, но тебя там никто не ждёт!
+
+					Доброе утро, последний герой!
+					Доброе утро, — тебе, и таким, как ты!
+					Доброе утро, последний герой!
+					Здравствуй, последний герой!
+					""";
+
+				List<String> actual = StringRegexp.findNumber(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findNumber(String)} с несколькими корректными значениями.
 			 */
@@ -2535,11 +3469,11 @@ public class StringRegexpTest
 					Здравствуй, последний герой!
 					""";
 
-				List<String> expectedList = List.of("1.100", "0,1", "1,000,00", "1.222,123");
+				List<String> expected = List.of("1.100", "0,1", "1,000,00", "1.222,123");
 
-				List<String> actualList = StringRegexp.findNumber(value);
+				List<String> actual = StringRegexp.findNumber(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -2551,6 +3485,22 @@ public class StringRegexpTest
 		@Nested
 		public class FindWord
 		{
+			/**
+			 * Проверка метода {@link StringRegexp#findWord(String)} без корректных значений.
+			 */
+			@Test
+			public void findWordWithZeroValue()
+			{
+				String value = """
+					0101 .0 13 .0
+					64*$#83 --
+					""";
+
+				List<String> actual = StringRegexp.findWord(value);
+
+				assertThat(actual).isEmpty();
+			}
+
 			/**
 			 * Проверка метода {@link StringRegexp#findWord(String)} с несколькими корректными значениями.
 			 */
@@ -2566,14 +3516,14 @@ public class StringRegexpTest
 					На пороге осень — моя сестра.
 					""";
 
-				List<String> expectedList = List.of("Красно-жёлтые", "дни", "Застоялся", "мой", "поезд", "в", "депо",
+				List<String> expected = List.of("Красно-жёлтые", "дни", "Застоялся", "мой", "поезд", "в", "депо",
 													"Снова", "я", "уезжаю", "Пора", "На", "пороге", "ветер", "заждался",
 													"меня", "На", "пороге", "осень", "моя", "сестра"
 				);
 
-				List<String> actualList = StringRegexp.findWord(value);
+				List<String> actual = StringRegexp.findWord(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 
@@ -2586,6 +3536,22 @@ public class StringRegexpTest
 		public class FindLetter
 		{
 			/**
+			 * Проверка метода {@link StringRegexp#findLetter(String)} без корректных значений.
+			 */
+			@Test
+			public void findLetterWithZeroValue()
+			{
+				String value = """
+					937 45635 68234
+					/*-+32 88 *^%3
+					""";
+
+				List<String> actual = StringRegexp.findLetter(value);
+
+				assertThat(actual).isEmpty();
+			}
+
+			/**
 			 * Проверка метода {@link StringRegexp#findLetter(String)} с несколькими корректными значениями.
 			 */
 			@Test
@@ -2595,11 +3561,11 @@ public class StringRegexpTest
 					Малыш
 					""";
 
-				List<String> expectedList = List.of("М", "а", "л", "ы", "ш");
+				List<String> expected = List.of("М", "а", "л", "ы", "ш");
 
-				List<String> actualList = StringRegexp.findLetter(value);
+				List<String> actual = StringRegexp.findLetter(value);
 
-				assertThat(actualList).containsExactlyElementsOf(expectedList);
+				assertThat(actual).containsExactlyElementsOf(expected);
 			}
 		}
 	}
